@@ -1,76 +1,85 @@
-name: GitHubPagesForGAP
-version: "0.2"
-license: "0BSD"
-date: 2017-02-04
+name: PAG
+version: "0.2.0"
+license: "GPL-2.0-or-later"
+date: 2023-03-27
 description: |
-    A GitHub Pages generator for GAP packages
+    Prescribed Automorphism Groups
 
 authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    - name: Vedran Krcadinac
+      url: https://web.math.pmf.unizg.hr/~krcko/homepage.html
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Vedran Krcadinac
+      url: https://web.math.pmf.unizg.hr/~krcko/homepage.html
 
-GAP: ">=4.8.1"
+GAP: "4.11"
 
 needed-pkgs:
     - name: "GAPDoc"
-      version: ">= 1.2"
+      version: "1.5"
       url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
+    - name: "images"
+      version: "1.3"
+      url: "https://gap-packages.github.io/images/"
+    - name: "GRAPE"
+      version: "4.8"
+      url: "https://gap-packages.github.io/grape"
+    - name: "DESIGN"
+      version: "1.7"
+      url: "https://gap-packages.github.io/design"
 
 suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
+    - name: "AssociationSchemes"
+      version: "2.0"
+      url: "http://www.jesselansdown.com/AssociationSchemes"
+    - name: "GUAVA"
+      version: "3.15"
+      url: "https://gap-packages.github.io/guava"
+    - name: "DifSets"
+      version: "2.3.1"
+      url: "https://dylanpeifer.github.io/difsets"
 
-www: https://gap-system.github.io/GitHubPagesForGAP/
-readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+www: https://vkrcadinac.github.io/pag
+readme: README.txt
+packageinfo: https://vkrcadinac.github.io/pag/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
-    - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/vkrcadinac/pag/releases/download/v0.2.0/PAG-0.2.0.tar.gz
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
+    The <span class="pkgname">PAG</span> package contains functions for    constructing combinatorial objects with prescribed automorphism groups.
 
-status: other
+status: dev
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
 keywords: |
-    GitHub Pages, GAP.
+    automorphism group, block design, latin square, hadamard matrix.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>HTI17</span>]   <b class='BibAuthor'>Horn, M., Thor, A. U. and Itor, J.</b>,
-     <i class='BibTitle'>GitHubPagesForGAP, A GitHub Pages generator for GAP packages,
-             Version 0.2</i>
-     (<span class='BibYear'>2017</span>)<br />
+    [<span class='BibKey'>Krc23</span>]   <b class='BibAuthor'>Krcadinac, V.</b>,
+     <i class='BibTitle'>PAG, Prescribed Automorphism Groups,
+             Version 0.2.0</i>
+     (<span class='BibYear'>2023</span>)<br />
     (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://gap-system.github.io/GitHubPagesForGAP/">https://gap-system.github.io/GitHubPagesForGAP/</a></span>.
+    <span class='BibHowpublished'><a href="https://vkrcadinac.github.io/pag">https://vkrcadinac.github.io/pag</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ GitHubPagesForGAP0.2,
-      author =           {Horn, M. and Thor, A. U. and Itor, J.},
-      title =            {{GitHubPagesForGAP}, A GitHub Pages generator for GAP packages, {V}ersion 0.2},
-      month =            {Feb},
-      year =             {2017},
+    @misc{ PAG0.2.0,
+      author =           {Krcadinac, V.},
+      title =            {{PAG},   Prescribed  Automorphism  Groups,  {V}ersion
+                          0.2.0},
+      month =            {Mar},
+      year =             {2023},
       note =             {GAP package},
-      howpublished =     {\href                              {https://gap-system.github.io/GitHubPagesForGAP/}
-                          {\texttt{https://gap-system.github.io/}\discretionary
-                          {}{}{}\texttt{GitHubPagesForGAP/}}},
-      keywords =         {GitHub Pages; GAP},
-      printedkey =       {HTI17}
+      howpublished =     {\href              {https://vkrcadinac.github.io/pag}
+                          {\texttt{https://vkrcadinac.github.io/}\discretionary
+                          {}{}{}\texttt{pag}}},
+      keywords =         {automorphism   group;  block  design;  latin  square;
+                          hadamard matrix},
+      printedkey =       {Krc23}
     }
 

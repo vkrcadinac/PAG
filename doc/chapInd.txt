@@ -1,0 +1,70 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XAllSubgroupsConjugation[102X 2.1-10 
+  [2XBaseBlocks[102X 2.3-5 
+  [2XBlockDesignAut[102X 2.4-1 
+  [2XBlockDesignFilter[102X 2.4-2 
+  [2XBlockScheme[102X 2.4-4 
+  [2XCayleyTableOfGroup[102X 2.5-3 
+  [2XCompatibilityMat[102X 2.3-3 
+  [2XCubeAut[102X 2.6-12 
+  [2XCubeFilter[102X 2.6-13 
+  [2XCubeInvariant[102X 2.6-11 
+  [2XCubeSlice[102X 2.6-3 
+  [2XCubeSlices[102X 2.6-4 
+  [2XCubeTest[102X 2.6-10 
+  [2XCubeToOrthogonalArray[102X 2.6-5 
+  [2XCubeToTransversalDesign[102X 2.6-7 
+  [2XCyclicPerm[102X 2.1-1 
+  [2XDifferenceCube[102X 2.6-1 
+  [2XExpandMatRHS[102X 2.3-6 
+  [2XFieldToMOLS[102X 2.5-4 
+  [2XGroupCube[102X 2.6-2 
+  [2XHadamardMatAut[102X 2.7-1 
+  [2XHadamardMatFilter[102X 2.7-2 
+  [2XIntersectionNumbers[102X 2.4-3 
+  [2XIsGoodSubsetOrbit[102X 2.2-4 
+  [2XIsotopismToPerm[102X 2.5-7 
+  [2XIversonBracket[102X 2.4-6 
+  [2XKramerMesnerMat[102X 2.3-2 
+  [2XKramerMesnerMOLS[102X 2.5-11 
+  [2XKramerMesnerMOLSParatopism[102X 2.5-12 
+  [2XKramerMesnerSearch[102X 2.3-1 
+  [2XLatinSquareToCube[102X 2.6-9 
+  [2XLeftDevelopment[102X 2.3-8 
+  License .-2 
+  [2XMOLSAut[102X 2.5-5 
+  [2XMOLSFilter[102X 2.5-6 
+  [2XMOLSSubsetOrbitRep[102X 2.5-9 
+  [2XMoveGroup[102X 2.1-4 
+  [2XMovePerm[102X 2.1-3 
+  [2XMultiGroup[102X 2.1-6 
+  [2XMultiPerm[102X 2.1-5 
+  [2XOrbitFilter1[102X 2.2-6 
+  [2XOrbitFilter2[102X 2.2-7 
+  [2XOrthogonalArrayToCube[102X 2.6-6 
+  PAG 1. 
+  [2XPAGGlobalOptions[102X 2.8-1 
+  [2XPermRepresentationLeft[102X 2.1-12 
+  [2XPermRepresentationRight[102X 2.1-11 
+  [2XPermToIsotopism[102X 2.5-8 
+  [2XPrimitiveGroupsOfDegree[102X 2.1-8 
+  [2XReadMOLS[102X 2.5-1 
+  [2XRestrictedGroup[102X 2.1-7 
+  [2XRightDevelopment[102X 2.3-7 
+  [2XSmallLambdaFilter[102X 2.2-5 
+  [2XSolveKramerMesner[102X 2.3-4 
+  [2XSubsetOrbitRep[102X 2.2-1 
+  [2XSubsetOrbitRepIN[102X 2.2-3 
+  [2XSubsetOrbitRepShort1[102X 2.2-2 
+  [2XTDesignB[102X 2.4-5 
+  [2XToGroup[102X 2.1-2 
+  [2XTransitiveGroupsOfDegree[102X 2.1-9 
+  [2XTransversalDesignToCube[102X 2.6-8 
+  [2XTuplesToMOLS[102X 2.5-10 
+  [2XWriteMOLS[102X 2.5-2 
+  
+  
+  -------------------------------------------------------

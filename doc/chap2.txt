@@ -1,0 +1,626 @@
+  
+  [1X2 [33X[0;0YThe PAG Functions[133X[101X
+  
+  [33X[0;0YThe following functions are available in the PAG package.[133X
+  
+  
+  [1X2.1 [33X[0;0YWorking With Permutation Groups[133X[101X
+  
+  [1X2.1-1 CyclicPerm[101X
+  
+  [33X[1;0Y[29X[2XCyclicPerm[102X( [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YReturns the cyclic permutation (1,...,[3Xn[103X).[133X
+  
+  [1X2.1-2 ToGroup[101X
+  
+  [33X[1;0Y[29X[2XToGroup[102X( [3XG[103X, [3Xf[103X ) [32X function[133X
+  
+  [33X[0;0YApply function [3Xf[103X to each generator of the group [3XG[103X.[133X
+  
+  [1X2.1-3 MovePerm[101X
+  
+  [33X[1;0Y[29X[2XMovePerm[102X( [3Xp[103X, [3Xfrom[103X, [3Xto[103X ) [32X function[133X
+  
+  [33X[0;0YMoves  permutation  [3Xp[103X  acting on the set [3Xfrom[103X to a permutation acting on the
+  set  [3Xto[103X.  The  arguments [3Xfrom[103X and [3Xto[103X should be lists of integers of the same
+  size.  Alternatively, if instead of [3Xfrom[103X and [3Xto[103X just one integer argument [3Xby[103X
+  is given, the permutation is moved from [10XMovedPoints([110X[3Xp[103X[10X)[110X to [10XMovedPoints([110X[3Xp[103X[10X)+[110X[3Xby[103X;
+  see [2XMovedPoints[102X ([14XReference: MovedPoints for a permutation[114X).[133X
+  
+  [1X2.1-4 MoveGroup[101X
+  
+  [33X[1;0Y[29X[2XMoveGroup[102X( [3XG[103X, [3Xfrom[103X, [3Xto[103X ) [32X function[133X
+  
+  [33X[0;0YApply [2XMovePerm[102X ([14X2.1-3[114X) to each generator of the group [3XG[103X.[133X
+  
+  [1X2.1-5 MultiPerm[101X
+  
+  [33X[1;0Y[29X[2XMultiPerm[102X( [3Xp[103X, [3Xset[103X, [3Xm[103X ) [32X function[133X
+  
+  [33X[0;0YRepeat  the  action  of a permutation [3Xm[103X times. The new permutation acts on [3Xm[103X
+  disjoint copies of [3Xset[103X.[133X
+  
+  [1X2.1-6 MultiGroup[101X
+  
+  [33X[1;0Y[29X[2XMultiGroup[102X( [3XG[103X, [3Xset[103X, [3Xm[103X ) [32X function[133X
+  
+  [33X[0;0YApply [2XMultiPerm[102X ([14X2.1-5[114X) to each generator of the group [3XG[103X.[133X
+  
+  [1X2.1-7 RestrictedGroup[101X
+  
+  [33X[1;0Y[29X[2XRestrictedGroup[102X( [3XG[103X, [3Xset[103X ) [32X function[133X
+  
+  [33X[0;0YApply  [2XRestrictedPerm[102X  ([14XReference:  RestrictedPerm[114X) to each generator of the
+  group [3XG[103X.[133X
+  
+  [1X2.1-8 PrimitiveGroupsOfDegree[101X
+  
+  [33X[1;0Y[29X[2XPrimitiveGroupsOfDegree[102X( [3Xv[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of all primitive permutation groups on [3Xv[103X points.[133X
+  
+  [1X2.1-9 TransitiveGroupsOfDegree[101X
+  
+  [33X[1;0Y[29X[2XTransitiveGroupsOfDegree[102X( [3Xv[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of all transitive permutation groups on [3Xv[103X points.[133X
+  
+  [1X2.1-10 AllSubgroupsConjugation[101X
+  
+  [33X[1;0Y[29X[2XAllSubgroupsConjugation[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of all subgroups of [3XG[103X up to conjugation.[133X
+  
+  [1X2.1-11 PermRepresentationRight[101X
+  
+  [33X[1;0Y[29X[2XPermRepresentationRight[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  regular  permutation  representation  of  a  group  [3XG[103X by right
+  multiplication.[133X
+  
+  [1X2.1-12 PermRepresentationLeft[101X
+  
+  [33X[1;0Y[29X[2XPermRepresentationLeft[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  regular  permutation  representation  of  a  group  [3XG[103X  by left
+  multiplication.[133X
+  
+  
+  [1X2.2 [33X[0;0YGenerating Orbits[133X[101X
+  
+  [1X2.2-1 SubsetOrbitRep[101X
+  
+  [33X[1;0Y[29X[2XSubsetOrbitRep[102X( [3XG[103X, [3Xv[103X, [3Xk[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YComputes  orbit  representatives  of [3Xk[103X-subsets of [1..[3Xv[103X] under the action of
+  the  permutation  group  [3XG[103X. The basic algorithm is described in [KVK21]. The
+  algorithm  for  short  orbits is described in [KV16]. The last argument is a
+  record [3Xopt[103X for options. The possible components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XSizeLE[103X:=[3Xn[103X  If  defined, only representatives of orbits of size less or
+        equal to [3Xn[103X are computed.[133X
+  
+  [30X    [33X[0;6Y[3XIntesectionNumbers[103X:=[3Xlin[103X  If  defined,  only  representatives  of  good
+        orbits are returned. These are orbits with intersection numbers in the
+        list of integers [3Xlin[103X.[133X
+  
+  [1X2.2-2 SubsetOrbitRepShort1[101X
+  
+  [33X[1;0Y[29X[2XSubsetOrbitRepShort1[102X( [3XG[103X, [3Xv[103X, [3Xk[103X, [3Xsize[103X ) [32X function[133X
+  
+  [33X[0;0YComputes  [3XG[103X-orbit  representatives  of  [3Xk[103X-subsets  of [1..[3Xv[103X] of size less or
+  equal  [3Xsize[103X. Here, [3Xsize[103X is an integer smaller than the order of the group [3XG[103X.
+  The algorithm is described in [KV16].[133X
+  
+  [1X2.2-3 SubsetOrbitRepIN[101X
+  
+  [33X[1;0Y[29X[2XSubsetOrbitRepIN[102X( [3XG[103X, [3Xv[103X, [3Xk[103X, [3Xlin[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YComputes  orbit  representatives  of [3Xk[103X-subsets of [1..[3Xv[103X] under the action of
+  the  permutation group [3XG[103X with intersection numbers in the list [3Xlin[103X. Parts of
+  the  search  tree with partial subsets intersecting in more than the largest
+  number  in  [3Xlin[103X  are  skipped.  Short  orbits  are  computed separately. The
+  algorithm  is  described  in  [KVK21]. The last (optional) argument [3Xopt[103X is a
+  record for options. The possible components are:[133X
+  
+  [30X    [33X[0;6Y[3XVerbose[103X:=[10Xtrue[110X/[10Xfalse[110X  Print  comments  reporting  the  progress  of the
+        calculation.[133X
+  
+  [30X    [33X[0;6Y[3XFilteringLevel[103X:=[3Xn[103X  Apply filrering of the search tree up to subsets of
+        size [3Xn[103X. By default, [3Xn[103X=[3Xk[103X.[133X
+  
+  [1X2.2-4 IsGoodSubsetOrbit[101X
+  
+  [33X[1;0Y[29X[2XIsGoodSubsetOrbit[102X( [3XG[103X, [3Xrep[103X, [3Xlin[103X ) [32X function[133X
+  
+  [33X[0;0YCheck  if  the  subset  orbit  generated  by the permutation group [3XG[103X and the
+  representative  [3Xrep[103X is a good orbit with respect to the list of intersection
+  numbers  [3Xlin[103X. This means that the intersection size of any pair of sets from
+  the orbit is an integer in [3Xlin[103X.[133X
+  
+  [1X2.2-5 SmallLambdaFilter[101X
+  
+  [33X[1;0Y[29X[2XSmallLambdaFilter[102X( [3XG[103X, [3Xtsub[103X, [3Xksub[103X, [3Xlambda[103X ) [32X function[133X
+  
+  [33X[0;0YRemove  [22Xk[122X-subset  representatives  from  [3Xksub[103X  such  that  the corresponding
+  [3XG[103X-orbit  covers  some  of  the  [22Xt[122X-subset representatives from [3Xtsub[103X more than
+  [3Xlambda[103X times.[133X
+  
+  [1X2.2-6 OrbitFilter1[101X
+  
+  [33X[1;0Y[29X[2XOrbitFilter1[102X( [3XG[103X, [3Xobj[103X, [3Xaction[103X ) [32X function[133X
+  
+  [33X[0;0YTakes  a  list of objects [3Xobj[103X and returns one representative from each orbit
+  of  the  group  [3XG[103X  acting  by  [3Xaction[103X.  The  result is a sublist of [3Xobj[103X. The
+  algorithm uses the [5XGAP[105X function [2XOrbit[102X ([14XReference: Orbit[114X).[133X
+  
+  [1X2.2-7 OrbitFilter2[101X
+  
+  [33X[1;0Y[29X[2XOrbitFilter2[102X( [3XG[103X, [3Xobj[103X, [3Xaction[103X ) [32X function[133X
+  
+  [33X[0;0YTakes  a  list of objects [3Xobj[103X and returns one representative from each orbit
+  of  the group [3XG[103X acting by [3Xaction[103X. Canonical representatives are returned, so
+  the  result  is  not a sublist of [3Xobj[103X. The algorithm uses the [2XCanonicalImage[102X
+  ([14Ximages: CanonicalImage[114X) function from the package [5XImages[105X.[133X
+  
+  
+  [1X2.3 [33X[0;0YConstructing Objects[133X[101X
+  
+  [1X2.3-1 KramerMesnerSearch[101X
+  
+  [33X[1;0Y[29X[2XKramerMesnerSearch[102X( [3Xt[103X, [3Xv[103X, [3Xk[103X, [3Xlambda[103X, [3XG[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YPerforms  a  search for [3Xt[103X-([3Xv[103X,[3Xk[103X,[3Xlambda[103X) designs with presrcribed automorphism
+  group  [3XG[103X by the Kramer-Mesner method. A record with options can be supplied.
+  By  default,  a list of base blocks for the constructed designs is returned.
+  If  [3Xopt.Design[103X  is  defined,  the designs are returned in the [5XDesign[105X package
+  format  [14X'DESIGN:  Design'[114X.  If [3Xopt.NonIsomorphic[103X is defined, the designs are
+  returned  in  [5XDesign[105X  format  and  isomorph-rejection  is  performed.  Other
+  available options are:[133X
+  
+  [30X    [33X[0;6Y[3XSmallLambda[103X:=[10Xtrue[110X/[10Xfalse[110X.  Perform the [21Xsmall lambda filter[121X, i.e. remove
+        [3Xk[103X-orbits  covering  some  of  the  [3Xt[103X-orbits more than [3Xlambda[103X times. By
+        default, this is done if [3Xlambda[103X<=3.[133X
+  
+  [30X    [33X[0;6Y[3XIntersectionNumbers[103X:=[3Xlin[103X.  Search  for designs with block intersection
+        nubers in the list of integers [3Xlin[103X (e.g. quasi-symmetric designs).[133X
+  
+  [1X2.3-2 KramerMesnerMat[101X
+  
+  [33X[1;0Y[29X[2XKramerMesnerMat[102X( [3XG[103X, [3Xtsub[103X, [3Xksub[103X[, [3Xlambda[103X][, [3Xb[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns  the  Kramer-Mesner  matrix  for a permutation group [3XG[103X. The rows are
+  labelled by [22Xt[122X-subset orbits represented by [3Xtsub[103X, and the columns by [22Xk[122X-subset
+  orbits  represented  by  [3Xksub[103X.  A column of constants [3Xlambda[103X is added if the
+  optional  argument  [3Xlambda[103X  is  given.  Another row is added if the optional
+  argument  [3Xb[103X  is  given,  repesenting the constraint that sizes of the chosen
+  [22Xk[122X-subset orbits must sum up to the number of blocks [3Xb[103X.[133X
+  
+  [1X2.3-3 CompatibilityMat[101X
+  
+  [33X[1;0Y[29X[2XCompatibilityMat[102X( [3XG[103X, [3Xksub[103X, [3Xlin[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  compatibility matrix of the [22Xk[122X-subset representatives [3Xksub[103X with
+  respect  to  the group [3XG[103X and list of intersection numbers [3Xlin[103X. Entries are [22X1[122X
+  if  intersection  sizes  of  subsets  in  the corresponding [3XG[103X-orbits are all
+  integers in [3Xlin[103X, and [22X0[122X otherwise.[133X
+  
+  [1X2.3-4 SolveKramerMesner[101X
+  
+  [33X[1;0Y[29X[2XSolveKramerMesner[102X( [3Xmat[103X[, [3Xcm[103X][, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YSolve  a system of linear equations determined by the matrix [3Xmat[103X over [22X{0,1}[122X.
+  By  default, A.Wassermann's LLL solver [10Xsolvediophant[110X [Was98] is used. If the
+  second  argument  is  a  compatibility  matrix  [3Xcm[103X, the backtracking program
+  [10Xsolvecm[110X  from  the papers [KNP11] and [KV16] is used. The solver can also be
+  chosen explicitly in the record [3Xopt[103X. Possible components are:[133X
+  
+  [30X    [33X[0;6Y[3XSolver[103X:=[10X"solvediophant"[110X If defined, [10Xsolvediophant[110X is used.[133X
+  
+  [30X    [33X[0;6Y[3XSolver[103X:=[10X"solvecm"[110X If defined, [10Xsolvecm[110X is used.[133X
+  
+  [1X2.3-5 BaseBlocks[101X
+  
+  [33X[1;0Y[29X[2XBaseBlocks[102X( [3Xksub[103X, [3Xsol[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  base  blocks of design(s) from solution(s) [3Xsol[103X by picking them from
+  [22Xk[122X-subset orbit representatives [3Xksub[103X.[133X
+  
+  [1X2.3-6 ExpandMatRHS[101X
+  
+  [33X[1;0Y[29X[2XExpandMatRHS[102X( [3Xmat[103X, [3Xlambda[103X ) [32X function[133X
+  
+  [33X[0;0YAdd a column of [3Xlambda[103X's to the right of the matrix [3Xmat[103X.[133X
+  
+  [1X2.3-7 RightDevelopment[101X
+  
+  [33X[1;0Y[29X[2XRightDevelopment[102X( [3XG[103X, [3Xds[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  block design that is the development of the difference set [3Xds[103X by
+  right multiplication in the group [3XG[103X.[133X
+  
+  [1X2.3-8 LeftDevelopment[101X
+  
+  [33X[1;0Y[29X[2XLeftDevelopment[102X( [3XG[103X, [3Xds[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  block design that is the development of the difference set [3Xds[103X by
+  left multiplication in the group [3XG[103X.[133X
+  
+  
+  [1X2.4 [33X[0;0YInspecting Objects and Other Functions[133X[101X
+  
+  [1X2.4-1 BlockDesignAut[101X
+  
+  [33X[1;0Y[29X[2XBlockDesignAut[102X( [3Xd[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YComputes  the full automorphism group of a block design [3Xd[103X. Uses [10Xnauty/Traces
+  2.8[110X  by  B.D.McKay  and  A.Piperno  [MP14].  This  is an alternative for the
+  [10XAutGroupBlockDesign[110X  function  from the [5XDesign[105X package [14X'DESIGN: Automorphism
+  groups and isomorphism testing for block designs'[114X. The optional argument [3Xopt[103X
+  is a record for options. Possible components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XTraces[103X:=[10Xtrue[110X/[10Xfalse[110X Use [10XTraces[110X. This is the default.[133X
+  
+  [30X    [33X[0;6Y[3XSparseNauty[103X:=[10Xtrue[110X/[10Xfalse[110X Use [10Xnauty[110X for sparse graphs.[133X
+  
+  [30X    [33X[0;6Y[3XDenseNauty[103X:=[10Xtrue[110X/[10Xfalse[110X Use [10Xnauty[110X for dense graphs. This is usually the
+        slowest  program,  but  it allows vertex invariants. Vertex invariants
+        are ignored by the other programs.[133X
+  
+  [30X    [33X[0;6Y[3XBlockAction[103X:=[10Xtrue[110X/[10Xfalse[110X   If   set   to   [10Xtrue[110X,   the  action  of  the
+        automorphisms  on blocks is also given. In this case automorphisms are
+        permutations  of  degree [22Xv+b[122X. By default, only the action on points is
+        given, i.e. automorphisms are permutations of degree [22Xv[122X.[133X
+  
+  [30X    [33X[0;6Y[3XDual[103X:=[10Xtrue[110X/[10Xfalse[110X If set to [10Xtrue[110X, dual automorphisms (correlations) are
+        also  included.  They will appear only for self-dual symmetric designs
+        (with the same number of points and blocks). The default is [10Xfalse[110X.[133X
+  
+  [30X    [33X[0;6Y[3XPointClasses[103X:=[3Xs[103X Color the points into classes of size [3Xs[103X that cannot be
+        mapped onto each other. By default all points are in the same class.[133X
+  
+  [30X    [33X[0;6Y[3XVertexInvariant[103X:=[3Xn[103X Use vertex invariant number [3Xn[103X. The numbering is the
+        same  as  in  [10Xdreadnaut[110X,  e.g. [3Xn[103X=1: [10Xtwopaths[110X, [3Xn[103X=2: [10Xadjtriang[110X, etc. The
+        default  is  [10Xtwopaths[110X.  Vertex  invariants only work with dense [10Xnauty[110X.
+        They are ignored by sparse [10Xnauty[110X and [10XTraces[110X.[133X
+  
+  [30X    [33X[0;6Y[3XMininvarlevel[103X:=[3Xn[103X Set [10Xmininvarlevel[110X to [3Xn[103X. The default is [3Xn[103X=0.[133X
+  
+  [30X    [33X[0;6Y[3XMaxinvarlevel[103X:=[3Xn[103X Set [10Xmaxinvarlevel[110X to [3Xn[103X. The default is [3Xn[103X=2.[133X
+  
+  [30X    [33X[0;6Y[3XInvararg[103X:=[3Xn[103X Set [10Xinvararg[110X to [3Xn[103X. The default is [3Xn[103X=0.[133X
+  
+  [1X2.4-2 BlockDesignFilter[101X
+  
+  [33X[1;0Y[29X[2XBlockDesignFilter[102X( [3Xdl[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YEliminates  isomorphic  copies  from  a  list  of  block  designs  [3Xdl[103X.  Uses
+  [10Xnauty/Traces  2.8[110X  by B.D.McKay and A.Piperno [MP14]. This is an alternative
+  for  the [10XBlockDesignIsomorphismClassRepresentatives[110X function from the [5XDesign[105X
+  package  [14X'DESIGN:  Automorphism  groups  and  isomorphism  testing for block
+  designs'[114X.  The  optional  argument  [3Xopt[103X  is  a  record for options. Possible
+  components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XTraces[103X:=[10Xtrue[110X/[10Xfalse[110X Use [10XTraces[110X. This is the default.[133X
+  
+  [30X    [33X[0;6Y[3XSparseNauty[103X:=[10Xtrue[110X/[10Xfalse[110X Use [10Xnauty[110X for sparse graphs.[133X
+  
+  [30X    [33X[0;6Y[3XPointClasses[103X:=[3Xs[103X Color the points into classes of size [3Xs[103X that cannot be
+        mapped onto each other. By default all points are in the same class.[133X
+  
+  [30X    [33X[0;6Y[3XPositions[103X:=[10Xtrue[110X/[10Xfalse[110X   Return   positions  of  nonisomorphic  designs
+        instead of the designs themselves.[133X
+  
+  [1X2.4-3 IntersectionNumbers[101X
+  
+  [33X[1;0Y[29X[2XIntersectionNumbers[102X( [3Xd[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns the list of intersection numbers of the block design [3Xd[103X. The optional
+  argument [3Xopt[103X is a record for options. Possible components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XFrequencies[103X:=[10Xtrue[110X/[10Xfalse[110X   If   set   to   [10Xtrue[110X,   frequencies  of  the
+        intersection numbers are also returned.[133X
+  
+  [1X2.4-4 BlockScheme[101X
+  
+  [33X[1;0Y[29X[2XBlockScheme[102X( [3Xd[103X ) [32X function[133X
+  
+  [33X[0;0YReturns the block intersection scheme of a schematic block design [3Xd[103X. If [3Xd[103X is
+  not schematic, returns [10Xfail[110X. Uses the package [5XAssociationSchemes[105X.[133X
+  
+  [1X2.4-5 TDesignB[101X
+  
+  [33X[1;0Y[29X[2XTDesignB[102X( [3Xt[103X, [3Xv[103X, [3Xk[103X, [3Xlambda[103X ) [32X function[133X
+  
+  [33X[0;0YThe number of blocks of a [3Xt[103X-([3Xv[103X,[3Xk[103X,[3Xlambda[103X) design.[133X
+  
+  [1X2.4-6 IversonBracket[101X
+  
+  [33X[1;0Y[29X[2XIversonBracket[102X( [3XP[103X ) [32X function[133X
+  
+  [33X[0;0YReturns 1 if [3XP[103X is true, and 0 otherwise.[133X
+  
+  
+  [1X2.5 [33X[0;0YLatin Squares[133X[101X
+  
+  [1X2.5-1 ReadMOLS[101X
+  
+  [33X[1;0Y[29X[2XReadMOLS[102X( [3Xfilename[103X ) [32X function[133X
+  
+  [33X[0;0YRead  a  list  of  MOLS sets from a file. The file starts with the number of
+  rows  [22Xm[122X,  columns [22Xn[122X, and size of the sets [22Xs[122X, followed by the matrix entries.
+  Integers in the file are separated by whitespaces.[133X
+  
+  [1X2.5-2 WriteMOLS[101X
+  
+  [33X[1;0Y[29X[2XWriteMOLS[102X( [3Xfilename[103X, [3Xlist[103X ) [32X function[133X
+  
+  [33X[0;0YWrite  a  list  of MOLS sets to a file. The number of rows [22Xm[122X, columns [22Xn[122X, and
+  size  of  the  sets  [22Xs[122X  is  written  first,  followed by the matrix entries.
+  Integers are separated by whitespaces.[133X
+  
+  [1X2.5-3 CayleyTableOfGroup[101X
+  
+  [33X[1;0Y[29X[2XCayleyTableOfGroup[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns   a  Cayley  table  of  the  group  [3XG[103X.  The  elements  are  integers
+  [22X1,...,[122X[10XOrder([110X[3XG[103X[10X)[110X.[133X
+  
+  [1X2.5-4 FieldToMOLS[101X
+  
+  [33X[1;0Y[29X[2XFieldToMOLS[102X( [3XF[103X ) [32X function[133X
+  
+  [33X[0;0YConstruct a complete set of MOLS from the finite field [3XF[103X.[133X
+  
+  [1X2.5-5 MOLSAut[101X
+  
+  [33X[1;0Y[29X[2XMOLSAut[102X( [3Xls[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YCompute  autotopism,  autoparatopism, or automorphism groups of MOLS sets in
+  the  list  [3Xls[103X. A record with options can be supplied. By default, autotopism
+  groups are computed. If [3Xopt.Paratopism[103X is defined, autoparatopism groups are
+  computed. If [3Xopt.Isomorphism[103X is defined, automorphism groups are computed.[133X
+  
+  [1X2.5-6 MOLSFilter[101X
+  
+  [33X[1;0Y[29X[2XMOLSFilter[102X( [3Xls[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns  representatives of isotopism, paratopism, or isomorphism classes of
+  MOLS sets in the list [3Xls[103X. A record with options can be supplied. By default,
+  isotopism  class representatives are returned. If [3Xopt.Paratopism[103X is defined,
+  paratopism  class representatives (main class representatives) are returned.
+  If   [3Xopt.Isomorphism[103X  is  defined,  isomorphism  class  representatives  are
+  returned.[133X
+  
+  [1X2.5-7 IsotopismToPerm[101X
+  
+  [33X[1;0Y[29X[2XIsotopismToPerm[102X( [3Xn[103X, [3Xl[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms an isotopism, i.e. a list [3Xl[103X of three permutations of degree [3Xn[103X, to
+  a single permutation of degree [22X3[122X[3Xn[103X.[133X
+  
+  [1X2.5-8 PermToIsotopism[101X
+  
+  [33X[1;0Y[29X[2XPermToIsotopism[102X( [3Xn[103X, [3Xp[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms  a  permutation  [3Xp[103X  of  degree [22X3[122X[3Xn[103X to an isotopism, i.e. a list of
+  three permutations of degree [3Xn[103X.[133X
+  
+  [1X2.5-9 MOLSSubsetOrbitRep[101X
+  
+  [33X[1;0Y[29X[2XMOLSSubsetOrbitRep[102X( [3Xn[103X, [3Xs[103X, [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YComputes  representatives  of pairs and [22X([122X[3Xs[103X[22X+2)[122X-tuples for the construction of
+  MOLS  of order [3Xn[103X with prescribed autotopism group [3XG[103X. A list containing pairs
+  representatives  in  the  first  component and tuples representatives in the
+  second component is returned.[133X
+  
+  [1X2.5-10 TuplesToMOLS[101X
+  
+  [33X[1;0Y[29X[2XTuplesToMOLS[102X( [3Xn[103X, [3Xs[103X, [3XT[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms a set of [22X([122X[3Xs[103X[22X+2)[122X-tuples [3XT[103X to a set of MOLS of order [3Xn[103X.[133X
+  
+  [1X2.5-11 KramerMesnerMOLS[101X
+  
+  [33X[1;0Y[29X[2XKramerMesnerMOLS[102X( [3Xn[103X, [3Xs[103X, [3XG[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YSearch  for MOLS sets of order [3Xn[103X and size [3Xs[103X with prescribed autotopism group
+  [3XG[103X. A record [3Xopt[103X with options can be supplied. By default, A.Wassermann's LLL
+  solver  [10Xsolvediophant[110X is used and all constructed MOLS are returned, i.e. no
+  filtering is performed. Available options are:[133X
+  
+  [30X    [33X[0;6Y[3XSolver[103X:=[10X"solvecm"[110X The backtracing solver [10Xsolvecm[110X is used.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Isotopism"[110X Non-isotopic MOLS are returned.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Paratopism"[110X Non-paratopic MOLS are returned.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Isomorphism"[110X Non-isomorphic MOLS are returned.[133X
+  
+  [1X2.5-12 KramerMesnerMOLSParatopism[101X
+  
+  [33X[1;0Y[29X[2XKramerMesnerMOLSParatopism[102X( [3Xn[103X, [3Xs[103X, [3XG[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YSearch  for  MOLS  sets of order [3Xn[103X and size [3Xs[103X with prescribed autoparatopism
+  group   [3XG[103X.   A  record  [3Xopt[103X  with  options  can  be  supplied.  By  default,
+  A.Wassermann's LLL solver [10Xsolvediophant[110X is used and all constructed MOLS are
+  returned, i.e. no filtering is performed. Available options are:[133X
+  
+  [30X    [33X[0;6Y[3XSolver[103X:=[10X"solvecm"[110X The backtracing solver [10Xsolvecm[110X is used.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Isotopism"[110X Non-isotopic MOLS are returned.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Paratopism"[110X Non-paratopic MOLS are returned.[133X
+  
+  [30X    [33X[0;6Y[3XFilter[103X:=[10X"Isomorphism"[110X Non-isomorphic MOLS are returned.[133X
+  
+  
+  [1X2.6 [33X[0;0YCubes of Symmetric Designs[133X[101X
+  
+  [1X2.6-1 DifferenceCube[101X
+  
+  [33X[1;0Y[29X[2XDifferenceCube[102X( [3XG[103X, [3Xds[103X, [3Xd[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  [3Xd[103X-dimenional difference cube constructed from a difference set
+  [3Xds[103X in the group [3XG[103X.[133X
+  
+  [1X2.6-2 GroupCube[101X
+  
+  [33X[1;0Y[29X[2XGroupCube[102X( [3XG[103X, [3Xdds[103X, [3Xd[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the [3Xd[103X-dimenional group cube constructed from a symmetric design [3Xdds[103X
+  such that the blocks are difference sets in the group [3XG[103X.[133X
+  
+  [1X2.6-3 CubeSlice[101X
+  
+  [33X[1;0Y[29X[2XCubeSlice[102X( [3XC[103X, [3Xx[103X, [3Xy[103X, [3Xfixed[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a 2-dimensional slice of the cube [3XC[103X obtained by varying coordinates
+  in  positions [3Xx[103X and [3Xy[103X, and taking fixed values for the remaining coordinates
+  given in a list [3Xfixed[103X.[133X
+  
+  [1X2.6-4 CubeSlices[101X
+  
+  [33X[1;0Y[29X[2XCubeSlices[102X( [3XC[103X[, [3Xx[103X, [3Xy[103X][, [3Xfixed[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns  2-dimensional  slices  of  the  cube  [3XC[103X. Optional arguments are the
+  varying  coordinates  [3Xx[103X and [3Xy[103X, and values of the fixed coordinates in a list
+  [3Xfixed[103X.  If  optional  arguments  are  not  given,  all possibilities will be
+  supplied.  For  a  [22Xd[122X-dimensional cube [3XC[103X of order [22Xv[122X, the following calls will
+  return:[133X
+  
+  [30X    [33X[0;6YCubeSlices(  [3XC[103X,  [3Xx[103X, [3Xy[103X ) [22X... v^d-2[122X slices obtained by varying values of
+        the fixed coordinates.[133X
+  
+  [30X    [33X[0;6YCubeSlices(  [3XC[103X,  [3Xfixed[103X  ) [22X... dchoose 2[122X slices obtained by varying the
+        non-fixed coordinates [22Xx < y[122X.[133X
+  
+  [30X    [33X[0;6YCubeSlices(  [3XC[103X  ) [22X... dchoose 2⋅ v^d-2[122X slices obtained by varying both
+        the non-fixed coordinates [22Xx < y[122X and values of the fixed coordinates.[133X
+  
+  [1X2.6-5 CubeToOrthogonalArray[101X
+  
+  [33X[1;0Y[29X[2XCubeToOrthogonalArray[102X( [3XC[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms the incidence cube [3XC[103X to an equivalent orthogonal array.[133X
+  
+  [1X2.6-6 OrthogonalArrayToCube[101X
+  
+  [33X[1;0Y[29X[2XOrthogonalArrayToCube[102X( [3XOA[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms the orthogonal array [3XOA[103X to an equivalent incidence cube.[133X
+  
+  [1X2.6-7 CubeToTransversalDesign[101X
+  
+  [33X[1;0Y[29X[2XCubeToTransversalDesign[102X( [3XC[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms the incidence cube [3XC[103X to an equivalent transversal design.[133X
+  
+  [1X2.6-8 TransversalDesignToCube[101X
+  
+  [33X[1;0Y[29X[2XTransversalDesignToCube[102X( [3XTD[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms the transversal design [3XTD[103X to an equivalent incidence cube.[133X
+  
+  [1X2.6-9 LatinSquareToCube[101X
+  
+  [33X[1;0Y[29X[2XLatinSquareToCube[102X( [3XL[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms the Latin square [3XL[103X to an equivalent incidence cube.[133X
+  
+  [1X2.6-10 CubeTest[101X
+  
+  [33X[1;0Y[29X[2XCubeTest[102X( [3XC[103X ) [32X function[133X
+  
+  [33X[0;0YTest  whether an incidence cube [3XC[103X is a cube of symmetric designs. The result
+  should  be  [10X[[v,k,lambda]][110X. Anything else means that [3XC[103X is not a [22X(v,k,lambda)[122X
+  cube.[133X
+  
+  [1X2.6-11 CubeInvariant[101X
+  
+  [33X[1;0Y[29X[2XCubeInvariant[102X( [3XC[103X ) [32X function[133X
+  
+  [33X[0;0YComputes  an equivalence invariant of the cube [3XC[103X based on automorphism group
+  sizes  of  its  slices.  Cubes  equivalent  under  paratopy  have  the  same
+  invariant.[133X
+  
+  [1X2.6-12 CubeAut[101X
+  
+  [33X[1;0Y[29X[2XCubeAut[102X( [3XC[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YComputes  the  full  auto(para)topy  group  of  an  incidence  cube  [3XC[103X. Uses
+  [10Xnauty/Traces  2.8[110X  by  B.D.McKay and A.Piperno [MP14]. The optional argument
+  [3Xopt[103X is a record for options. Possible components are:[133X
+  
+  [30X    [33X[0;6Y[3XIsotopy[103X:=[10Xtrue[110X/[10Xfalse[110X  Compute the full autotopy group of [3XC[103X. This is the
+        default.[133X
+  
+  [30X    [33X[0;6Y[3XParatopy[103X:=[10Xtrue[110X/[10Xfalse[110X Compute the full autoparatopy group of [3XC[103X.[133X
+  
+  [33X[0;0YAny  other  components  will  be  forwarded  to  the  [2XBlockDesignAut[102X ([14X2.4-1[114X)
+  function; see its documentation.[133X
+  
+  [1X2.6-13 CubeFilter[101X
+  
+  [33X[1;0Y[29X[2XCubeFilter[102X( [3Xcl[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YEliminates  equivalent  copies  from  a  list  of  incidence  cubes [3Xcl[103X. Uses
+  [10Xnauty/Traces  2.8[110X  by  B.D.McKay and A.Piperno [MP14]. The optional argument
+  [3Xopt[103X is a record for options. Possible components are:[133X
+  
+  [30X    [33X[0;6Y[3XParatopy[103X:=[10Xtrue[110X/[10Xfalse[110X Eliminate paratopic cubes. This is the default.[133X
+  
+  [30X    [33X[0;6Y[3XIsotopy[103X:=[10Xtrue[110X/[10Xfalse[110X Eliminate isotopic cubes.[133X
+  
+  [33X[0;0YAny  other  components  will  be  forwarded to the [2XBlockDesignFilter[102X ([14X2.4-2[114X)
+  function; see its documentation.[133X
+  
+  
+  [1X2.7 [33X[0;0YHadamard Matrices[133X[101X
+  
+  [1X2.7-1 HadamardMatAut[101X
+  
+  [33X[1;0Y[29X[2XHadamardMatAut[102X( [3XH[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YComputes  the full automorphism group of a Hadamard matrix [3XH[103X. Represents the
+  matrix  by  a  colored  graph  (see  [McK79])  and  uses [10Xnauty/Traces 2.8[110X by
+  B.D.McKay  and  A.Piperno  [MP14]. The optional argument [3Xopt[103X is a record for
+  options. Possible components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XDual[103X:=[10Xtrue[110X/[10Xfalse[110X  If  set to [10Xtrue[110X, dual automorphisms (transpositions)
+        are also allowed. The default is [10Xfalse[110X.[133X
+  
+  [1X2.7-2 HadamardMatFilter[101X
+  
+  [33X[1;0Y[29X[2XHadamardMatFilter[102X( [3Xhl[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YEliminates equivalent copies from a list of Hadamard matrices [3Xhl[103X. Represents
+  the  matrices  by  colored graphs (see [McK79]) and uses [10Xnauty/Traces 2.8[110X by
+  B.D.McKay  and  A.Piperno  [MP14]. The optional argument [3Xopt[103X is a record for
+  options. Possible components of [3Xopt[103X are:[133X
+  
+  [30X    [33X[0;6Y[3XDual[103X:=[10Xtrue[110X/[10Xfalse[110X If set to [10Xtrue[110X, dual equivalence is allowed (i.e. the
+        matrices can be transposed). The default is [10Xfalse[110X.[133X
+  
+  [30X    [33X[0;6Y[3XPositions[103X:=[10Xtrue[110X/[10Xfalse[110X   Return   positions  of  inequivalent  Hadamard
+        matrices instead of the matrices themselves.[133X
+  
+  
+  [1X2.8 [33X[0;0YGlobal Options[133X[101X
+  
+  [1X2.8-1 PAGGlobalOptions[101X
+  
+  [33X[1;0Y[29X[2XPAGGlobalOptions[102X [32X global variable[133X
+  
+  [33X[0;0YA record with global options for the PAG package. Components are:[133X
+  
+  [30X    [33X[0;6Y[3XSilent[103X:=[10Xtrue[110X/[10Xfalse[110X If set to [10Xtrue[110X, functions such as SolveKramerMesner
+        will not print comments reporting the progress of the calculation.[133X
+  
+  [30X    [33X[0;6Y[3XTempDir[103X:=[10Xdirectory object[110X Temporary directory used to communicate with
+        external programs.[133X
+  
+  [33X[0;0Y [133X
+  

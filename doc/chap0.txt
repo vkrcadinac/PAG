@@ -1,1 +1,138 @@
-Placeholder
+  
+  
+                                     [1X PAG [101X
+  
+  
+                        [1X Prescribed Automorphism Groups [101X
+  
+  
+                                     0.2.0
+  
+  
+                                 27 March 2023
+  
+  
+                                Vedran Krcadinac
+  
+  
+  
+  Vedran Krcadinac
+      Email:    [7Xmailto:vedran.krcadinac@math.hr[107X
+      Homepage: [7Xhttps://web.math.pmf.unizg.hr/~krcko/homepage.html[107X
+      Address:  [33X[0;14YUniversity of Zagreb, Faculty of Science,[133X
+                [33X[0;14YDepartment of Mathematics[133X
+                [33X[0;14YBijenicka cesta 30, HR-10000 Zagreb, Croatia[133X
+  
+  
+  
+  -------------------------------------------------------
+  [1XAbstract[101X
+  [33X[0;0Y[5XPAG[105X  is a [5XGAP[105X package for constructing combinatorial objects with prescribed
+  automorphism groups.[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2023 by Vedran Krcadinac[133X
+  
+  [33X[0;0YThe  [5XPAG[105X  package is free software; you can redistribute it and/or modify it
+  under     the     terms     of    the    GNU    General    Public    License
+  ([7Xhttp://www.fsf.org/licenses/gpl.html[107X)  as  published  by  the Free Software
+  Foundation;  either  version 2 of the License, or (at your option) any later
+  version.[133X
+  
+  
+  -------------------------------------------------------
+  [1XAcknowledgements[101X
+  [33X[0;0YDevelopment  of  the  [5XPAG[105X package has been supported by the Croatian Science
+  Foundation under the project IP-2020-02-9752.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (PAG)[101X
+  
+  1 [33X[0;0YThe PAG Package[133X
+    1.1 [33X[0;0YGetting Started[133X
+    1.2 [33X[0;0YInstallation[133X
+    1.3 [33X[0;0YExamples: Designs[133X
+      1.3-1 [33X[0;0Y6-(14,7,4) Designs[133X
+      1.3-2 [33X[0;0Y6-(28,8,[22Xλ[122X) Designs[133X
+      1.3-3 [33X[0;0Y2-(81,6,2) Designs[133X
+      1.3-4 [33X[0;0YQuasi-symmetric 2-(56,16,18) Designs[133X
+    1.4 [33X[0;0YExamples: Latin Squares[133X
+    1.5 [33X[0;0YExamples: Cubes of Symmetric Designs[133X
+  2 [33X[0;0YThe PAG Functions[133X
+    2.1 [33X[0;0YWorking With Permutation Groups[133X
+      2.1-1 CyclicPerm
+      2.1-2 ToGroup
+      2.1-3 MovePerm
+      2.1-4 MoveGroup
+      2.1-5 MultiPerm
+      2.1-6 MultiGroup
+      2.1-7 RestrictedGroup
+      2.1-8 PrimitiveGroupsOfDegree
+      2.1-9 TransitiveGroupsOfDegree
+      2.1-10 AllSubgroupsConjugation
+      2.1-11 PermRepresentationRight
+      2.1-12 PermRepresentationLeft
+    2.2 [33X[0;0YGenerating Orbits[133X
+      2.2-1 SubsetOrbitRep
+      2.2-2 SubsetOrbitRepShort1
+      2.2-3 SubsetOrbitRepIN
+      2.2-4 IsGoodSubsetOrbit
+      2.2-5 SmallLambdaFilter
+      2.2-6 OrbitFilter1
+      2.2-7 OrbitFilter2
+    2.3 [33X[0;0YConstructing Objects[133X
+      2.3-1 KramerMesnerSearch
+      2.3-2 KramerMesnerMat
+      2.3-3 CompatibilityMat
+      2.3-4 SolveKramerMesner
+      2.3-5 BaseBlocks
+      2.3-6 ExpandMatRHS
+      2.3-7 RightDevelopment
+      2.3-8 LeftDevelopment
+    2.4 [33X[0;0YInspecting Objects and Other Functions[133X
+      2.4-1 BlockDesignAut
+      2.4-2 BlockDesignFilter
+      2.4-3 IntersectionNumbers
+      2.4-4 BlockScheme
+      2.4-5 TDesignB
+      2.4-6 IversonBracket
+    2.5 [33X[0;0YLatin Squares[133X
+      2.5-1 ReadMOLS
+      2.5-2 WriteMOLS
+      2.5-3 CayleyTableOfGroup
+      2.5-4 FieldToMOLS
+      2.5-5 MOLSAut
+      2.5-6 MOLSFilter
+      2.5-7 IsotopismToPerm
+      2.5-8 PermToIsotopism
+      2.5-9 MOLSSubsetOrbitRep
+      2.5-10 TuplesToMOLS
+      2.5-11 KramerMesnerMOLS
+      2.5-12 KramerMesnerMOLSParatopism
+    2.6 [33X[0;0YCubes of Symmetric Designs[133X
+      2.6-1 DifferenceCube
+      2.6-2 GroupCube
+      2.6-3 CubeSlice
+      2.6-4 CubeSlices
+      2.6-5 CubeToOrthogonalArray
+      2.6-6 OrthogonalArrayToCube
+      2.6-7 CubeToTransversalDesign
+      2.6-8 TransversalDesignToCube
+      2.6-9 LatinSquareToCube
+      2.6-10 CubeTest
+      2.6-11 CubeInvariant
+      2.6-12 CubeAut
+      2.6-13 CubeFilter
+    2.7 [33X[0;0YHadamard Matrices[133X
+      2.7-1 HadamardMatAut
+      2.7-2 HadamardMatFilter
+    2.8 [33X[0;0YGlobal Options[133X
+      2.8-1 PAGGlobalOptions
+  
+  
+  [32X
