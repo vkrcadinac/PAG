@@ -27,8 +27,8 @@ For details on how to use the package see the documentation in the
 
 ## Authors
 
-GAP code and C programs in the 'src' subdirectory, exept the ones 
-listed below:
+Package, GAP code and C programs in the 'src' subdirectory, 
+except the ones listed below:
 * Vedran Krcadinac (vedran.krcadinac@math.hr)
 
 Solvediophant:
