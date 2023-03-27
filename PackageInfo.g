@@ -12,56 +12,19 @@ Version := "0.2.0",
 Date := "27/03/2023",
 License := "GPL-2.0-or-later",
 PackageWWWHome :=
-  Concatenation( "https://gap-packages.github.io/", LowercaseString( ~.PackageName ) ),
-
-##  Optional:
-##    - Type and the URL of the source code repository
-##    - URL of the public issue tracker
-##    - Support email address
-##
-##  SourceRepository :=
-##    rec( Type := "vcs", # e.g. "git", "hg", "svn", "cvs", etc.
-##         URL  := "http://hosting-service.com/mypackage"),
-##  IssueTrackerURL := "http://issue-tracker.com/mypackage",
-##  SupportEmail := "support@mypackage.org",
-##
-# SourceRepository :=
-#    rec( Type := "git/hg/svn/cvs", # edit as necessary
-#         URL := ""),
-# IssueTrackerURL := "",
-# SupportEmail := "",
+  Concatenation( "https://vkrcadinac.github.io/", LowercaseString( ~.PackageName ) ),
 
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/gap-packages/", LowercaseString( ~.PackageName ) ),
+    URL := Concatenation( "https://github.com/vkrcadinac/", LowercaseString( ~.PackageName ) ),
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
 SupportEmail := "vedran.krcadinac@math.hr",
-
-##  URL of the archive(s) of the current package release, but *without*
-##  the format extension(s), like '.tar.gz' or '-win.zip', which are given next.
-##  The archive file name *must be changed* with each version of the archive
-##  (and probably somehow contain the package name and version).
-##  The paths of the files in the archive must begin with the name of the
-##  directory containing the package (in our "example" probably:
-##  example/init.g, ...    or example-3.3/init.g, ...  )
-# 
 ArchiveURL := Concatenation( ~.SourceRepository.URL,
                                  "/releases/download/v", ~.Version,
                                  "/", ~.PackageName, "-", ~.Version ),
-
-##  All provided formats as list of file extensions, separated by white
-##  space or commas.
-##  Currently recognized formats are:
-##      .tar.gz    the UNIX standard
-##      .tar.bz2   compressed with 'bzip2', often smaller than with gzip
-##      -win.zip   zip-format for DOS/Windows, text files must have DOS 
-##                 style line breaks (CRLF)
-##  
-##  In the future we may also provide .deb or .rpm formats which allow
-##  a convenient installation and upgrading on Linux systems.
-##  
-# ArchiveFormats := ".tar.gz", # the others are generated automatically
 ArchiveFormats := ".tar.gz",
 
 Persons := [
