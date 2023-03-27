@@ -1,0 +1,37 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XKNP11[120X]  [16XKrcadinac,  V.,  Nakic,  A. and Pavcevic, M. O.[116X, [17XThe Kramer-Mesner method with tactical
+  decompositions: some new unitals on 65 points[117X, [18XJ. Combin. Des.[118X, [19X19[119X, 4 (2011), 290–303.
+  
+  [[20XKPT23[120X]  [16XKrcadinac,  V.,  Pavcevic,  M.  O.  and Tabak, K.[116X, [17XCubes of symmetric designs[117X, [18Xpreprint[118X
+  (2023), ((https://arxiv.org/abs/...)).
+  
+  [[20XKrc18[120X]  [16XKrcadinac,  V.[116X,  [17XSome new designs with prescribed automorphism groups[117X, [18XJ. Combin. Des.[118X,
+  [19X26[119X, 4 (2018), 193–200.
+  
+  [[20XKV16[120X]  [16XKrcadinac, V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X,
+  [18XDiscrete Math.[118X, [19X339[119X, 12 (2016), 2884–2890.
+  
+  [[20XKVK21[120X]  [16XKrcadinac,  V.  and Vlahovic Kruc, R.[116X, [17XQuasi-symmetric designs on 56 points[117X, [18XAdv. Math.
+  Commun.[118X, [19X15[119X, 4 (2021), 633–646.
+  
+  [[20XMcK79[120X]  [16XMcKay,  B.[116X,  [17XHadamard  equivalence  via  graph  isomorphism[117X, [18XDiscrete Math.[118X, [19X27[119X (1979),
+  213–214.
+  
+  [[20XMP14[120X]  [16XMcKay,  B.  and  Piperno,  A.[116X,  [17XPractical graph isomorphism, II[117X, [18XJ. Symbolic Comput.[118X, [19X60[119X
+  (2014), 94–112.
+  
+  [[20XNak21[120X]   [16XNakic,   A.[116X,   [17XThe   first  example  of  a  simple  2-(81,6,2)  design[117X,  [18XExamples  and
+  Counterexamples[118X, [19X1[119X (2021), 100005.
+  
+  [[20XSch93[120X]  [16XSchmalz, B.[116X, [17XThe t-designs with prescribed automorphism group, new simple 6-designs[117X, [18XJ.
+  Combin. Des.[118X, [19X1[119X, 2 (1993), 125–170.
+  
+  [[20XWas98[120X]  [16XWassermann,  A.[116X, [17XFinding simple t-designs with enumeration techniques[117X, [18XJ. Combin. Des.[118X,
+  [19X6[119X, 2 (1998), 79–90.
+  
+  
+  
+  [32X

@@ -1,0 +1,91 @@
+\GAPDocLabFile{pag}
+\makelabel{pag:Title page}{}{X7D2C85EC87DD46E5}
+\makelabel{pag:Abstract}{}{X7AA6C5737B711C89}
+\makelabel{pag:Copyright}{}{X81488B807F2A1CF1}
+\makelabel{pag:Acknowledgements}{}{X82A988D47DFAFCFA}
+\makelabel{pag:Table of Contents}{}{X8537FEB07AF2BEC8}
+\makelabel{pag:The PAG Package}{1}{X84BC1F5D7BD3CF55}
+\makelabel{pag:Getting Started}{1.1}{X7B1863E17896BCE1}
+\makelabel{pag:Installation}{1.2}{X8360C04082558A12}
+\makelabel{pag:Examples: Designs}{1.3}{X87AF9F4C789605D1}
+\makelabel{pag:6-(14,7,4) Designs}{1.3.1}{X85DE43FE83E85401}
+\makelabel{pag:6-(28,8,λ) Designs}{1.3.2}{X7835113382A11FA1}
+\makelabel{pag:2-(81,6,2) Designs}{1.3.3}{X82F01F238596D36C}
+\makelabel{pag:Quasi-symmetric 2-(56,16,18) Designs}{1.3.4}{X7C9ADE74821A9A39}
+\makelabel{pag:Examples: Latin Squares}{1.4}{X7CCA2066781B6D56}
+\makelabel{pag:Examples: Cubes of Symmetric Designs}{1.5}{X7B532D6B81CC1FC2}
+\makelabel{pag:The PAG Functions}{2}{X7A34C81F843FE798}
+\makelabel{pag:Working With Permutation Groups}{2.1}{X85FF48B18482CA86}
+\makelabel{pag:Generating Orbits}{2.2}{X7CA95AB080E5135D}
+\makelabel{pag:Constructing Objects}{2.3}{X81E58D178665D555}
+\makelabel{pag:Inspecting Objects and Other Functions}{2.4}{X7A5A75EE7D024A4A}
+\makelabel{pag:Latin Squares}{2.5}{X7889CA477AC29A8C}
+\makelabel{pag:Cubes of Symmetric Designs}{2.6}{X79F7C22885C658DE}
+\makelabel{pag:Hadamard Matrices}{2.7}{X7AD0B7D486954F10}
+\makelabel{pag:Global Options}{2.8}{X78E96F5385881B1B}
+\makelabel{pag:Bibliography}{Bib}{X7A6F98FD85F02BFE}
+\makelabel{pag:References}{Bib}{X7A6F98FD85F02BFE}
+\makelabel{pag:Index}{Ind}{X83A0356F839C696F}
+\makelabel{pag:License}{}{X81488B807F2A1CF1}
+\makelabel{pag:PAG}{1}{X84BC1F5D7BD3CF55}
+\makelabel{pag:CyclicPerm}{2.1.1}{X79BF29A07905A90C}
+\makelabel{pag:ToGroup}{2.1.2}{X7E1860E983EA72FC}
+\makelabel{pag:MovePerm}{2.1.3}{X80BEBE7B7A66BA4E}
+\makelabel{pag:MoveGroup}{2.1.4}{X81284A59843F7A7B}
+\makelabel{pag:MultiPerm}{2.1.5}{X7C03293E80B0CA72}
+\makelabel{pag:MultiGroup}{2.1.6}{X7904788286E59E2E}
+\makelabel{pag:RestrictedGroup}{2.1.7}{X790683938254CDC1}
+\makelabel{pag:PrimitiveGroupsOfDegree}{2.1.8}{X7C6BC92378E6B4BC}
+\makelabel{pag:TransitiveGroupsOfDegree}{2.1.9}{X8589DDAD7DB0FCA8}
+\makelabel{pag:AllSubgroupsConjugation}{2.1.10}{X81A70E877DF8AA34}
+\makelabel{pag:PermRepresentationRight}{2.1.11}{X780C40F4873006FB}
+\makelabel{pag:PermRepresentationLeft}{2.1.12}{X815AE3827C9CA969}
+\makelabel{pag:SubsetOrbitRep}{2.2.1}{X7C1945A784AC5F72}
+\makelabel{pag:SubsetOrbitRepShort1}{2.2.2}{X7A6453417DBD5FC1}
+\makelabel{pag:SubsetOrbitRepIN}{2.2.3}{X81601D33790912F8}
+\makelabel{pag:IsGoodSubsetOrbit}{2.2.4}{X821B07AF82565DCE}
+\makelabel{pag:SmallLambdaFilter}{2.2.5}{X84B02FCA8105895E}
+\makelabel{pag:OrbitFilter1}{2.2.6}{X7DDEA540864CCB29}
+\makelabel{pag:OrbitFilter2}{2.2.7}{X844E305B81352606}
+\makelabel{pag:KramerMesnerSearch}{2.3.1}{X853E396684BE1D17}
+\makelabel{pag:KramerMesnerMat}{2.3.2}{X831AFBCE828421DC}
+\makelabel{pag:CompatibilityMat}{2.3.3}{X79E1DA2E802C2EDA}
+\makelabel{pag:SolveKramerMesner}{2.3.4}{X7A9D5D9A7FB92630}
+\makelabel{pag:BaseBlocks}{2.3.5}{X80F64ADB7EC13F7E}
+\makelabel{pag:ExpandMatRHS}{2.3.6}{X86582C2D7F941DCA}
+\makelabel{pag:RightDevelopment}{2.3.7}{X83B4006C82C7DCC7}
+\makelabel{pag:LeftDevelopment}{2.3.8}{X81C414057EC904AC}
+\makelabel{pag:BlockDesignAut}{2.4.1}{X805C0B9F831607DC}
+\makelabel{pag:BlockDesignFilter}{2.4.2}{X7C629C8280899316}
+\makelabel{pag:IntersectionNumbers}{2.4.3}{X864491248518B7CD}
+\makelabel{pag:BlockScheme}{2.4.4}{X824E5FCE8742EB70}
+\makelabel{pag:TDesignB}{2.4.5}{X858A707E81380706}
+\makelabel{pag:IversonBracket}{2.4.6}{X8386E2DC7CDC30D2}
+\makelabel{pag:ReadMOLS}{2.5.1}{X7A81988C8176227D}
+\makelabel{pag:WriteMOLS}{2.5.2}{X7E57B98986C1F138}
+\makelabel{pag:CayleyTableOfGroup}{2.5.3}{X87AF98127C4CD44B}
+\makelabel{pag:FieldToMOLS}{2.5.4}{X7C72080B8777A3E8}
+\makelabel{pag:MOLSAut}{2.5.5}{X7D15F68E7A55A95F}
+\makelabel{pag:MOLSFilter}{2.5.6}{X826116DB845FC8E8}
+\makelabel{pag:IsotopismToPerm}{2.5.7}{X81091786799E1D18}
+\makelabel{pag:PermToIsotopism}{2.5.8}{X80287D6B8140E827}
+\makelabel{pag:MOLSSubsetOrbitRep}{2.5.9}{X782EAB457FC77498}
+\makelabel{pag:TuplesToMOLS}{2.5.10}{X7F19D770838101F2}
+\makelabel{pag:KramerMesnerMOLS}{2.5.11}{X87FD64DB7C954BA1}
+\makelabel{pag:KramerMesnerMOLSParatopism}{2.5.12}{X79190696821CB0EC}
+\makelabel{pag:DifferenceCube}{2.6.1}{X796E426D877E220A}
+\makelabel{pag:GroupCube}{2.6.2}{X7D20EEDC8566D8BF}
+\makelabel{pag:CubeSlice}{2.6.3}{X7F4C2D7579CA223C}
+\makelabel{pag:CubeSlices}{2.6.4}{X7D2F947285ECC89F}
+\makelabel{pag:CubeToOrthogonalArray}{2.6.5}{X8214B28081B21BDE}
+\makelabel{pag:OrthogonalArrayToCube}{2.6.6}{X87C8CFE97ECDC3DA}
+\makelabel{pag:CubeToTransversalDesign}{2.6.7}{X8281E4697AA795A3}
+\makelabel{pag:TransversalDesignToCube}{2.6.8}{X7D717F98781699EF}
+\makelabel{pag:LatinSquareToCube}{2.6.9}{X8699117579A6173C}
+\makelabel{pag:CubeTest}{2.6.10}{X7B79A7857DAD2FFE}
+\makelabel{pag:CubeInvariant}{2.6.11}{X7E1717C57A5F7865}
+\makelabel{pag:CubeAut}{2.6.12}{X7E96F84678D23676}
+\makelabel{pag:CubeFilter}{2.6.13}{X810B22E286D857C1}
+\makelabel{pag:HadamardMatAut}{2.7.1}{X801DEB1E7D5668E9}
+\makelabel{pag:HadamardMatFilter}{2.7.2}{X7E0014F67EC9FC23}
+\makelabel{pag:PAGGlobalOptions}{2.8.1}{X8626782884DAC536}

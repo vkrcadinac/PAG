@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (PAG) - Chapter 1: The PAG Package</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap1_mj.html">[MathJax on]</a></p>
+<p><a id="X84BC1F5D7BD3CF55" name="X84BC1F5D7BD3CF55"></a></p>
+<div class="ChapSects"><a href="chap1.html#X84BC1F5D7BD3CF55">1 <span class="Heading">The PAG Package</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B1863E17896BCE1">1.1 <span class="Heading">Getting Started</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X8360C04082558A12">1.2 <span class="Heading">Installation</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X87AF9F4C789605D1">1.3 <span class="Heading">Examples: Designs</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X85DE43FE83E85401">1.3-1 <span class="Heading">6-(14,7,4) Designs</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7835113382A11FA1">1.3-2 <span class="Heading">6-(28,8,<span class="SimpleMath">λ</span>) Designs</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X82F01F238596D36C">1.3-3 <span class="Heading">2-(81,6,2) Designs</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7C9ADE74821A9A39">1.3-4 <span class="Heading">Quasi-symmetric 2-(56,16,18) Designs</span></a>
+</span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7CCA2066781B6D56">1.4 <span class="Heading">Examples: Latin Squares</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B532D6B81CC1FC2">1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></a>
+</span>
+</div>
+</div>
+
+<h3>1 <span class="Heading">The PAG Package</span></h3>
+
+<p><em>Prescribed Automorphism Groups</em> (<strong class="pkg">PAG</strong>) is a <strong class="pkg">GAP</strong> package for constructing combinatorial objects with prescribed automorphism groups.</p>
+
+<p><a id="X7B1863E17896BCE1" name="X7B1863E17896BCE1"></a></p>
+
+<h4>1.1 <span class="Heading">Getting Started</span></h4>
+
+<p>The package is loaded by</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("PAG"); </span></pre></div>
+
+<p>Let us present a small example from the paper <a href="chapBib.html#biBVK18">[Krc18]</a>. In Theorem 8.1, simple 5-(16,7,10) designs with the following automorphism group were constructed.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Group((2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">(1,5)(2,12)(3,15)(4,8)(6,14)(7,16)(9,10)(11,13));</span></pre></div>
+
+<p>They can be obtained by typing</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">KramerMesnerSearch(5,16,7,10,g);</span>
+Computing t-subset orbit representatives...
+28
+Computing k-subset orbit representatives...
+71
+Computing the Kramer-Mesner matrix...
+[ 29, 72 ]
+Starting solver...
+No BOUNDS 
+The RHS is fixed !
+No upper bounds: 0/1 variables are assumed 
+
+Orthogonal defect: 26.953339
+First reduction successful
+Orthogonal defect: 20.216092
+Second reduction successful
+.
+.
+.
+</pre></div>
+
+<p>Comments during the calculation can be supressed by setting global options.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PAGGlobalOptions.Silent:=true;</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">KramerMesnerSearch(5,16,7,10,g);</span>
+[ [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 8, 9 ], 
+	[ 1, 2, 3, 5, 6, 9, 10 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+	[ 1, 2, 3, 5, 6, 10, 15 ], [ 1, 2, 3, 5, 6, 14, 16 ], 
+	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 16 ], 
+	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+	[ 1, 2, 5, 6, 7, 14, 15 ] ], 
+    [ [ 1, 2, 3, 4, 5, 6, 8 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+	[ 1, 2, 3, 5, 6, 10, 12 ], [ 1, 2, 3, 5, 6, 10, 16 ], 
+	[ 1, 2, 3, 5, 6, 12, 13 ], [ 1, 2, 3, 5, 6, 14, 15 ], 
+	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 9 ], 
+	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+	[ 1, 2, 5, 6, 11, 14, 16 ] ] ]
+</pre></div>
+
+<p>The output is a list of base blocks for two designs. There are options to get them in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. Then we can also check that they are really 5-designs.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=KramerMesnerSearch(5,16,7,10,g,rec(Design:=true));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AllTDesignLambdas);</span>
+[ [ 2080, 910, 364, 130, 40, 10 ], [ 2080, 910, 364, 130, 40, 10 ] ]
+</pre></div>
+
+<p>The two designs are in fact isomorphic.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=KramerMesnerSearch(5,16,7,10,g,rec(NonIsomorphic:=true));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(d);</span>
+1
+</pre></div>
+
+<p>The option <code class="code">NonIsomorphic</code> applies the function <code class="func">BlockDesignIsomorphismClassRepresentatives</code> (<a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP006.htm#SECT002"><span class="RefLink">DESIGN: BlockDesignIsomorphismClassRepresentatives</span></a>) to the constructed designs.</p>
+
+<p><a id="X8360C04082558A12" name="X8360C04082558A12"></a></p>
+
+<h4>1.2 <span class="Heading">Installation</span></h4>
+
+<p>The <strong class="pkg">PAG</strong> package requires <strong class="pkg">GAP</strong> 4.11 and the following packages:</p>
+
+
+<ul>
+<li><p><strong class="pkg">Images</strong> 1.3</p>
+
+</li>
+<li><p><strong class="pkg">GRAPE</strong> 4.8</p>
+
+</li>
+<li><p><strong class="pkg">Design</strong> 1.7</p>
+
+</li>
+</ul>
+<p>The following packages are also loaded, if available. They are needed for a limited number of <strong class="pkg">PAG</strong> functions.</p>
+
+
+<ul>
+<li><p><strong class="pkg">AssociationSchemes</strong> 2.0</p>
+
+</li>
+<li><p><strong class="pkg">DifSets</strong> 2.3.1</p>
+
+</li>
+<li><p><strong class="pkg">GUAVA</strong> 3.15</p>
+
+</li>
+</ul>
+<p>To install <strong class="pkg">PAG</strong>, copy and unpack the package to the <code class="file">pkg</code> directory of your local <strong class="pkg">GAP</strong> installation. The package uses external binaries. To compile them on UNIX-like environments, change to the <code class="file">pkg/PAG-*</code> directory and call</p>
+
+
+<div class="example"><pre>
+$ ./configure.sh
+</pre></div>
+
+<p>This produces a <code class="file">Makefile</code> in the current directory. Now call</p>
+
+
+<div class="example"><pre>
+$ make all
+</pre></div>
+
+<p>to compile the binares. They are placed in the <code class="file">bin</code> subdirectory. Documentation in the <code class="file">doc</code> subdirectory is already compiled and can be read in PDF, html or from within <strong class="pkg">GAP</strong>. To recompile the documentation, call <strong class="pkg">GAP</strong> with the <code class="file">makedoc.g</code> file.</p>
+
+<p>Installations files for <strong class="pkg">PAG</strong> are available from the authors. If you are interested, please write to <span class="URL"><a href="mailto:vedran.krcadinac@math.hr">vedran.krcadinac@math.hr</a></span>.</p>
+
+<p><a id="X87AF9F4C789605D1" name="X87AF9F4C789605D1"></a></p>
+
+<h4>1.3 <span class="Heading">Examples: Designs</span></h4>
+
+<p>The <strong class="pkg">PAG</strong> function <code class="code">KramerMesnerSearch</code> performs a search for <span class="SimpleMath">t</span>-designs with given parameters and a given permutation group as group of automorphisms. See the paper by B. Schmalz <a href="chapBib.html#biBBS93">[Sch93]</a> for an introduction to the Kramer-Mesner approach to constructing <span class="SimpleMath">t</span>-designs. Our first two examples are from this paper.</p>
+
+<p><a id="X85DE43FE83E85401" name="X85DE43FE83E85401"></a></p>
+
+<h5>1.3-1 <span class="Heading">6-(14,7,4) Designs</span></h5>
+
+<p>The summary about known 6-designs on page 130 of <a href="chapBib.html#biBBS93">[Sch93]</a> mentions that there are exactly two 6-(14,7,4) designs with cyclic derived designs. This means that the two 6-designs have automorphisms of order 13. They can be constructed with the following <strong class="pkg">GAP</strong> commands.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Group(CyclicPerm(13));</span>
+Group([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=KramerMesnerSearch(6,14,7,4,g,rec(NonIsomorphic:=true));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AllTDesignLambdas);</span>
+[ [ 1716, 858, 396, 165, 60, 18, 4 ], [ 1716, 858, 396, 165, 60, 18, 4 ] ]
+</pre></div>
+
+<p>The solver quickly finds 24 solutions of the Kramer-Mesner system. Most of the computation time is used to eliminate isomorphic designs. Both designs have <span class="SimpleMath">ℤ_13</span> as their full automorphism group.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AutomorphismGroup);</span>
+[ Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]), 
+  Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]) ]
+</pre></div>
+
+<p><a id="X7835113382A11FA1" name="X7835113382A11FA1"></a></p>
+
+<h5>1.3-2 <span class="Heading">6-(28,8,<span class="SimpleMath">λ</span>) Designs</span></h5>
+
+<p>In <a href="chapBib.html#biBBS93">[Sch93]</a>, the existence of 6-(28,8,<span class="SimpleMath">λ</span>) designs was established for <span class="SimpleMath">λ=42</span>, 63, 84, and 105. The exact numbers of these designs with automorphism group <span class="SimpleMath">PΓ L(2,27)</span> were computed. While the projective general linear groups are readily available in <strong class="pkg">GAP</strong> through the <code class="code">PGL</code> command, there seemst to be no equivalent command for semilinear groups. Using the <strong class="pkg">FinInG</strong> package, we can get <span class="SimpleMath">PΓ L(2,27)</span> as the collineation group of the projective line over <span class="SimpleMath">GF(27)</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("FinInG");</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1:=CollineationGroup(ProjectiveSpace(1,27));</span>
+The FinInG collineation group PGammaL(2,27)
+</pre></div>
+
+<p>We need a permutation representation of this group on 28 points.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Image(ActionOnAllProjPoints(g1));</span>
+Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5), 
+  (1,2,4)(5,8,24)(6,21,10)(7,16,15)(9,25,28)(11,13,14)(12,27,23)(17,26,18)
+  (19,20,22), (5,7,13)(6,10,21)(8,16,14)(9,18,22)(11,24,15)(12,27,23)(17,19,25)
+  (20,28,26) ])
+</pre></div>
+
+<p>Alternatively, we can get the group from the library of small primitive permutation groups.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrimitiveGroupsOfDegree(28);</span>
+[ PGL(2, 7), PSL(2, 8), PGammaL(2, 8), PSU(3, 3), PGammaU(3, 3), PSp(6, 2), A(8), 
+  S(8), PSL(2, 27), PGL(2, 27), PSL(2, 27):3, PGammaL(2, 27), A(28), S(28) ]
+</pre></div>
+
+<p>Now we can construct the designs with <span class="SimpleMath">λ=42</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=KramerMesnerSearch(6,28,8,42,g);;</span>
+Computing t-subset orbit representatives...
+14
+Computing k-subset orbit representatives...
+72
+Computing the Kramer-Mesner matrix...
+.
+.
+.
+Loops: 27732
+Total number of solutions: 3
+
+total enumeration time: 0:00:00
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(d);</span>
+4
+</pre></div>
+
+<p>Notice that A. Wassermann's LLL solver <a href="chapBib.html#biBAW98">[Was98]</a> reports finding 3 solutions, but we get 4 sets of base blocks. That's because the solver may return the same solution more than once. Here is how to get rid of multiple solutions.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(AsSet(d));</span>
+3
+</pre></div>
+
+<p>Most of the CPU time in the example above was used to compute the Kramer-Mesner matrix. The left-hand side of the Kramer-Mesner system is the same matrix for all <span class="SimpleMath">λ</span>, so we can compute it once and reuse it to save time.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">tsub:=SubsetOrbitRep(g,28,6);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ksub:=SubsetOrbitRep(g,28,8);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=KramerMesnerMat(g,tsub,ksub);;</span>
+</pre></div>
+
+<p>Now we can quickly get the exact numbers of designs from the paper <a href="chapBib.html#biBBS93">[Sch93]</a>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PAGGlobalOptions.Silent:=true;</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,42))));</span>
+3
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,63))));</span>
+367
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,84))));</span>
+21743
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,105))));</span>
+38277
+</pre></div>
+
+<p><a id="X82F01F238596D36C" name="X82F01F238596D36C"></a></p>
+
+<h5>1.3-3 <span class="Heading">2-(81,6,2) Designs</span></h5>
+
+<p>The first simple 2-(81,6,2) design was recently found by A. Nakic <a href="chapBib.html#biBAN21">[Nak21]</a>. Here are the base blocks of this design copy-pasted from the paper.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bb:=[[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,1,0,0],[0,1,0,1],[0,1,0,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[0,0,1,1],[0,0,2,2],[2,1,0,0],[2,1,1,1],[2,1,2,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[0,1,1,1],[0,2,2,2],[0,0,1,0],[0,1,2,1],[0,2,0,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[0,1,2,0],[0,2,1,0],[2,0,2,1],[2,1,1,1],[2,2,0,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,0,0,0],[2,0,0,0],[0,2,2,1],[1,2,2,1],[2,2,2,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,0,1,0],[2,0,2,0],[0,1,0,0],[1,1,1,0],[2,1,2,0]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,0,1,1],[2,0,2,2],[0,0,2,0],[1,0,0,1],[2,0,1,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,0,2,0],[2,0,1,0],[0,2,1,1],[1,2,0,1],[2,2,2,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,0,2,2],[2,0,1,1],[0,1,2,1],[1,1,1,0],[2,1,0,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,1,0,0],[2,2,0,0],[0,2,0,1],[1,0,0,1],[2,1,0,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,1,0,1],[2,2,0,2],[0,2,2,0],[1,0,2,1],[2,1,2,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,1,2,0],[2,2,1,0],[0,0,2,1],[1,1,1,1],[2,2,0,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,1,2,1],[2,2,1,2],[0,2,1,1],[1,0,0,2],[2,1,2,0]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,1,2,2],[2,2,1,1],[0,2,2,0],[1,0,1,2],[2,1,0,1]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,2,1,2],[2,1,2,1],[0,0,2,1],[1,2,0,0],[2,1,1,2]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0,0,0],[1,2,2,0],[2,1,1,0],[0,2,2,1],[1,1,1,1],[2,0,0,1]]]*Z(3)^0;;</span>
+</pre></div>
+
+<p>The points of this design are elements of the 4-dimensional vector space <span class="SimpleMath">V</span> over <span class="SimpleMath">GF(3)</span>. Here is how to get the desing in the <strong class="pkg">Design</strong> package format.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">V:=Tuples([0,1,2],4)*Z(3)^0;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d1:=Union(List(bb,y-&gt;List(V,x-&gt;AsSet(x+y))));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=BlockDesign(81,List(d1,y-&gt;List(y,x-&gt;Position(V,x))));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AllTDesignLambdas(d);</span>
+[ 432, 32, 2 ]
+</pre></div>
+
+<p>The full automorphism group of the design is of order 2592. It's a semidirect product of the additive group of <span class="SimpleMath">V</span> and a group of order 32.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">aut:=AutomorphismGroup(d);</span>
+&lt;permutation group with 4 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(aut);</span>
+2592
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">StructureDescription(aut);</span>
+"(C3 x C3 x C3 x C3) : (C16 : C2)"
+</pre></div>
+
+<p>This group has three subgroups of order 648 up to conjugation. We can use the second subgroup to construct four more simple 2-(81,6,2) designs.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Filtered(AllSubgroupsConjugation(aut),x-&gt;Size(x)=648);</span>
+[ &lt;permutation group of size 648 with 7 generators&gt;, 
+  &lt;permutation group of size 648 with 7 generators&gt;, 
+  &lt;permutation group of size 648 with 7 generators&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">dd:=KramerMesnerSearch(2,81,6,2,g[2],rec(NonIsomorphic:=true));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(dd,x-&gt;Size(AutomorphismGroup(x)));</span>
+[ 1944, 15552, 1296, 2592, 3888 ]
+</pre></div>
+
+<p>Two of the new designs have larger full automorphism groups than design from <a href="chapBib.html#biBAN21">[Nak21]</a>. Using their subgroups, more simple 2-(81,6,2) designs can be constructed.</p>
+
+<p><a id="X7C9ADE74821A9A39" name="X7C9ADE74821A9A39"></a></p>
+
+<h5>1.3-4 <span class="Heading">Quasi-symmetric 2-(56,16,18) Designs</span></h5>
+
+<p>Here is how the quasi-symmetric 2-(56,16,18) designs with intersection numbers <span class="SimpleMath">x=4</span>, <span class="SimpleMath">y=8</span> from the paper <a href="chapBib.html#biBKV16">[KV16]</a> can be constructed.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Group((1,2,3,4,5)(6,7,8,9,10)(11,12,13,14,15)(16,17,18,19,20)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">  (21,22,23,24,25)(26,27,28,29,30)(31,32,33,34,35)(36,37,38,39,40)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">  (41,42,43,44,45)(46,47,48,49,50)(51,52,53,54,55),</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">(1,6,8)(2,21,26)(3,32,34)(4,11,5)(7,15,22)(9,16,13)(10,29,17)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">  (12,33,30)(14,19,31)(18,23,35)(24,28,36)(25,37,39)(27,38,40)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">  (42,51,49)(43,52,45)(44,46,47)(48,54,53)(50,56,55));</span>
+&lt;permutation group with 2 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:=KramerMesnerSearch(2,56,16,18,g,rec(NonIsomorphic:=true,</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">IntersectionNumbers:=[4,8]));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(d);</span>
+3
+</pre></div>
+
+<p>We check that they have all the required properties and compute their full automorphism groups:</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AllTDesignLambdas);</span>
+[ [ 231, 66, 18 ], [ 231, 66, 18 ], [ 231, 66, 18 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,IntersectionNumbers);</span>
+[ [ 4, 8 ], [ 4, 8 ], [ 4, 8 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">aut:=List(d,AutomorphismGroup);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(aut,StructureDescription);</span>
+[ "PSL(3,4) : C2", "(C2 x C2 x C2 x C2) : A5", "(C2 x C2 x C2 x C2) : S5" ]
+</pre></div>
+
+<p><a id="X7CCA2066781B6D56" name="X7CCA2066781B6D56"></a></p>
+
+<h4>1.4 <span class="Heading">Examples: Latin Squares</span></h4>
+
+<p><a id="X7B532D6B81CC1FC2" name="X7B532D6B81CC1FC2"></a></p>
+
+<h4>1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></h4>
+
+<p>Cubes of symmetric designs were introduced in <a href="chapBib.html#biBKPT23">[KPT23]</a>. Here is the motivational example.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);</span>
+[ [ [ 1, 1, 0, 1, 0, 0, 0 ], 
+     [ 1, 0, 1, 0, 0, 0, 1 ], 
+     [ 0, 1, 0, 0, 0, 1, 1 ], 
+     [ 1, 0, 0, 0, 1, 1, 0 ], 
+     [ 0, 0, 0, 1, 1, 0, 1 ], 
+     [ 0, 0, 1, 1, 0, 1, 0 ], 
+     [ 0, 1, 1, 0, 1, 0, 0 ] ], 
+  [ [ 1, 0, 1, 0, 0, 0, 1 ], 
+     [ 0, 1, 0, 0, 0, 1, 1 ], 
+     [ 1, 0, 0, 0, 1, 1, 0 ], 
+     [ 0, 0, 0, 1, 1, 0, 1 ], 
+     [ 0, 0, 1, 1, 0, 1, 0 ], 
+     [ 0, 1, 1, 0, 1, 0, 0 ], 
+     [ 1, 1, 0, 1, 0, 0, 0 ] ], 
+  [ [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ] ], 
+  [ [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ] ], 
+  [ [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ] ], 
+  [ [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ] ], 
+  [ [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ] ] ]
+</pre></div>
+
+<p>This is a <span class="SimpleMath">3</span>-dimensional array of zeros and ones such that all <span class="SimpleMath">2</span>-dimensional slices are incidence matrices of the <span class="SimpleMath">(7,3,1)</span> design. For example, here is a slice obtained by varying coordinates <span class="SimpleMath">1,3</span> and setting coordinate <span class="SimpleMath">2</span> to <span class="SimpleMath">7</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=CubeSlice(c,1,3,[7]);</span>
+[ [ 0, 1, 1, 0, 1, 0, 0 ], 
+  [ 1, 1, 0, 1, 0, 0, 0 ], 
+  [ 1, 0, 1, 0, 0, 0, 1 ], 
+  [ 0, 1, 0, 0, 0, 1, 1 ], 
+  [ 1, 0, 0, 0, 1, 1, 0 ], 
+  [ 0, 0, 0, 1, 1, 0, 1 ], 
+  [ 0, 0, 1, 1, 0, 1, 0 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m*TransposedMat(m);</span>
+[ [ 3, 1, 1, 1, 1, 1, 1 ], 
+  [ 1, 3, 1, 1, 1, 1, 1 ], 
+  [ 1, 1, 3, 1, 1, 1, 1 ], 
+  [ 1, 1, 1, 3, 1, 1, 1 ], 
+  [ 1, 1, 1, 1, 3, 1, 1 ], 
+  [ 1, 1, 1, 1, 1, 3, 1 ], 
+  [ 1, 1, 1, 1, 1, 1, 3 ] ]
+</pre></div>
+
+<p>For any <span class="SimpleMath">dge 2</span>, a <span class="SimpleMath">d</span>-dimensional cube of symmetric designs can be constructed from a difference set. We use the representation of difference sets from the <strong class="pkg">DifSets</strong> package <a href="/opt/gap-4.11.1/pkg/difsets-2.3.1/doc/chap1.html#X8248A9AB7E689C64"><span class="RefLink">DifSets: Difference Sets</span></a>. For <span class="SimpleMath">d=2</span>, the cube is simply an incidence matrix of the associated symmetric design.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=SmallGroup(15,1);</span>
+&lt;pc group of size 15 with 2 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ds:=DifferenceSets(g);</span>
+[ [ 1, 2, 3, 4, 8, 11, 12 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DifferenceCube(g,ds[1],2);</span>
+[ [ 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0 ], 
+  [ 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ], 
+  [ 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1 ], 
+  [ 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0 ], 
+  [ 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 ], 
+  [ 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0 ], 
+  [ 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1 ], 
+  [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1 ], 
+  [ 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0 ], 
+  [ 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 ], 
+  [ 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0 ], 
+  [ 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0 ], 
+  [ 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 ], 
+  [ 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0 ], 
+  [ 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 ] ]
+</pre></div>
+
+<p>Here is a small <span class="SimpleMath">4</span>-dimensional <span class="SimpleMath">(3,2,1)</span> cube.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DifferenceCube(Group((1,2,3)),[1,2],4);</span>
+[ [ [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
+      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], 
+      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ] ], 
+  [ [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], 
+      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], 
+      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ] ], 
+  [ [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], 
+      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
+      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ] ] ]
+</pre></div>
+
+<p>Here are all <span class="SimpleMath">3</span>-dimensional difference cubes constructed from the groups of order <span class="SimpleMath">21</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=AllSmallGroups(21);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(g,StructureDescription);</span>
+[ "C7 : C3", "C21" ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ds:=List(g,DifferenceSets);</span>
+[ [ [ 1, 2, 3, 9, 10 ] ], [ [ 1, 2, 7, 10, 16 ] ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c1:=DifferenceCube(g[1],ds[1][1],3);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c2:=DifferenceCube(g[2],ds[2][1],3);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(CubeAut(c1));</span>
+1323
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(CubeAut(c2));</span>
+2646
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([c1,c2],CubeTest);</span>
+[ [ [ 21, 5, 1 ] ], [ [ 21, 5, 1 ] ] ]
+</pre></div>
+
+<p>We can make a non-difference cube by the "group cube" construction from <a href="chapBib.html#biBKPT23">[KPT23]</a> (Theorem 4.1). First we find all <span class="SimpleMath">(21,5,1)</span> designs whose blocks are difference sets in the Frobenius group of order <span class="SimpleMath">21</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=Filtered(Combinations([1..21],5),x-&gt;IsDifferenceSet(g[1],x));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(allds);</span>
+294
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">A:=KramerMesnerMat(Group(()),Combinations([1..21],2),allds,1,21);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PAGGlobalOptions.Silent:=true;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sol:=AsSet(SolveKramerMesner(A));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">des:=List(sol,x-&gt;BaseBlocks(allds,x));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(des);</span>
+70
+</pre></div>
+
+<p>Among these <span class="SimpleMath">70</span> designs, <span class="SimpleMath">14</span> are left developments, and <span class="SimpleMath">14</span> are right developments. There are <span class="SimpleMath">42</span> designs that are not developments, but all of their blocks are difference sets.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">dev1:=AsSet(List(allds,x-&gt;LeftDevelopment(g[1],x).blocks));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(dev1);</span>
+14
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">dev2:=AsSet(List(allds,x-&gt;RightDevelopment(g[1],x).blocks));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(dev2);</span>
+14
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">nondev:=Difference(des,Union(dev1,dev2));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(nondev);</span>
+42
+</pre></div>
+
+<p>Now we apply the group cube construction to any one of these <span class="SimpleMath">42</span> designs.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c3:=GroupCube(g[1],nondev[1],3);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CubeTest(c3);</span>
+[ [ 21, 5, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(CubeAut(c3));</span>
+441
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

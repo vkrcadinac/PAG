@@ -1,0 +1,698 @@
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+<Chapter Label="The PAG Package">
+<Heading>The PAG Package</Heading>
+<Index>PAG</Index>
+	
+<E>Prescribed Automorphism Groups</E> (&PAG;) is a &GAP; package
+for constructing combinatorial objects with prescribed automorphism
+groups.
+
+<P/>
+
+<Section Label="Getting Started">
+<Heading>Getting Started</Heading>
+
+The package is loaded by
+<Example><![CDATA[gap> LoadPackage("PAG"); ]]></Example>
+Let us present a small example from the paper <Cite Key='VK18'/>. 
+In Theorem 8.1, simple 5-(16,7,10) designs with the following
+automorphism group were constructed.
+<Example><![CDATA[gap> g:=Group((2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), 
+> (1,5)(2,12)(3,15)(4,8)(6,14)(7,16)(9,10)(11,13));]]></Example>
+They can be obtained by typing
+<Example><![CDATA[gap> KramerMesnerSearch(5,16,7,10,g);
+Computing t-subset orbit representatives...
+28
+Computing k-subset orbit representatives...
+71
+Computing the Kramer-Mesner matrix...
+[ 29, 72 ]
+Starting solver...
+No BOUNDS 
+The RHS is fixed !
+No upper bounds: 0/1 variables are assumed 
+
+Orthogonal defect: 26.953339
+First reduction successful
+Orthogonal defect: 20.216092
+Second reduction successful
+.
+.
+.
+]]></Example>
+Comments during the calculation can be supressed by setting global options.
+<Example><![CDATA[gap> PAGGlobalOptions.Silent:=true;
+true
+gap> KramerMesnerSearch(5,16,7,10,g);
+[ [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 8, 9 ], 
+	[ 1, 2, 3, 5, 6, 9, 10 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+	[ 1, 2, 3, 5, 6, 10, 15 ], [ 1, 2, 3, 5, 6, 14, 16 ], 
+	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 16 ], 
+	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+	[ 1, 2, 5, 6, 7, 14, 15 ] ], 
+    [ [ 1, 2, 3, 4, 5, 6, 8 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+	[ 1, 2, 3, 5, 6, 10, 12 ], [ 1, 2, 3, 5, 6, 10, 16 ], 
+	[ 1, 2, 3, 5, 6, 12, 13 ], [ 1, 2, 3, 5, 6, 14, 15 ], 
+	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 9 ], 
+	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+	[ 1, 2, 5, 6, 11, 14, 16 ] ] ]
+]]></Example>
+The output is a list of base blocks for two designs. There are options
+to get them in the <Package>Design</Package> package format <Ref Chap="Design" BookName="DESIGN"/>.
+Then we can also check that they are really 5-designs.
+<Example><![CDATA[gap> d:=KramerMesnerSearch(5,16,7,10,g,rec(Design:=true));;
+gap> List(d,AllTDesignLambdas);
+[ [ 2080, 910, 364, 130, 40, 10 ], [ 2080, 910, 364, 130, 40, 10 ] ]
+]]></Example>
+The two designs are in fact isomorphic. 
+<Example><![CDATA[gap> d:=KramerMesnerSearch(5,16,7,10,g,rec(NonIsomorphic:=true));;
+gap> Size(d);
+1
+]]></Example>
+The option <C>NonIsomorphic</C> applies the function 
+<Ref Func="BlockDesignIsomorphismClassRepresentatives" BookName="DESIGN"/>
+to the constructed designs.
+</Section>
+
+<Section Label="Installation">
+<Heading>Installation</Heading>
+
+The &PAG; package requires &GAP; 4.11 and the following packages:
+<List>
+	<Item><Package>Images</Package> 1.3</Item>
+	<Item><Package>GRAPE</Package> 4.8</Item>
+	<Item><Package>Design</Package> 1.7</Item>
+</List>
+The following packages are also loaded, if available. They are needed for
+a limited number of &PAG; functions.
+<List>
+	<Item><Package>AssociationSchemes</Package> 2.0</Item>
+	<Item><Package>DifSets</Package> 2.3.1</Item>
+	<Item><Package>GUAVA</Package> 3.15</Item>
+</List>
+To install &PAG;, copy and unpack the package to the <F>pkg</F> directory of 
+your local &GAP; installation. The package uses external binaries. To compile 
+them on UNIX-like environments, change to the <F>pkg/PAG-*</F> directory and 
+call
+<Log>
+$ ./configure.sh
+</Log> 
+This produces a <F>Makefile</F> in the current directory. Now call
+<Log>
+$ make all
+</Log> 
+to compile the binares. They are placed in the <F>bin</F> subdirectory.
+Documentation in the <F>doc</F> subdirectory is already compiled and
+can be read in PDF, html or from within &GAP;. To recompile the
+documentation, call &GAP; with the <F>makedoc.g</F> file.<P/>
+
+Installations files for &PAG; are available from the authors. If you are
+interested, please write to <Email>vedran.krcadinac@math.hr</Email>.
+
+</Section>
+
+<Section Label="Examples: Designs">
+<Heading>Examples: Designs</Heading>
+
+The &PAG; function <C>KramerMesnerSearch</C> performs a search for <M>t</M>-designs 
+with given parameters and a given permutation group as group of automorphisms. 
+See the paper by B.&nbsp;Schmalz&nbsp;<Cite Key='BS93'/> for an introduction to 
+the Kramer-Mesner approach to constructing <M>t</M>-designs. Our first two 
+examples are from this paper.
+
+<Subsection Label="6-(14,7,4) Designs">
+<Heading>6-(14,7,4) Designs</Heading>
+
+The summary about known 6-designs on page 130 of <Cite Key='BS93'/> mentions
+that there are exactly two 6-(14,7,4) designs with cyclic derived designs.
+This means that the two 6-designs have automorphisms of order 13.
+They can be constructed with the following &GAP; commands. 
+
+<Example><![CDATA[gap> g:=Group(CyclicPerm(13));
+Group([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ])
+gap> d:=KramerMesnerSearch(6,14,7,4,g,rec(NonIsomorphic:=true));;
+gap> List(d,AllTDesignLambdas);
+[ [ 1716, 858, 396, 165, 60, 18, 4 ], [ 1716, 858, 396, 165, 60, 18, 4 ] ]
+]]></Example>
+
+The solver quickly finds 24 solutions of the Kramer-Mesner system. Most of
+the computation time is used to eliminate isomorphic designs. Both 
+designs have <M>&ZZ;_{13}</M> as their full automorphism group.
+
+<Example><![CDATA[gap> List(d,AutomorphismGroup);
+[ Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]), 
+  Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]) ]
+]]></Example>
+
+</Subsection>
+
+<Subsection Label="6-(28,8,lambda) Designs">
+<Heading>6-(28,8,<M>\lambda</M>) Designs</Heading>
+
+In <Cite Key='BS93'/>, the existence of 6-(28,8,<M>\lambda</M>) designs
+was established for <M>\lambda=42</M>, 63, 84, and 105. The exact numbers
+of these designs with automorphism group <M>P\Gamma L(2,27)</M> were
+computed. While the projective general linear groups are readily available
+in &GAP; through the <C>PGL</C> command, there seemst to be no equivalent
+command for semilinear groups. Using the <Package>FinInG</Package> 
+package, we can get <M>P\Gamma L(2,27)</M> as the collineation group of 
+the projective line over <M>GF(27)</M>.
+
+<Example><![CDATA[gap> LoadPackage("FinInG");
+gap> g1:=CollineationGroup(ProjectiveSpace(1,27));
+The FinInG collineation group PGammaL(2,27)
+]]></Example>
+
+We need a permutation representation of this group on 28 points.
+
+<Example><![CDATA[gap> g:=Image(ActionOnAllProjPoints(g1));
+Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5), 
+  (1,2,4)(5,8,24)(6,21,10)(7,16,15)(9,25,28)(11,13,14)(12,27,23)(17,26,18)
+  (19,20,22), (5,7,13)(6,10,21)(8,16,14)(9,18,22)(11,24,15)(12,27,23)(17,19,25)
+  (20,28,26) ])
+]]></Example>
+
+Alternatively, we can get the group from the library of small
+primitive permutation groups.
+
+<Example><![CDATA[gap> PrimitiveGroupsOfDegree(28);
+[ PGL(2, 7), PSL(2, 8), PGammaL(2, 8), PSU(3, 3), PGammaU(3, 3), PSp(6, 2), A(8), 
+  S(8), PSL(2, 27), PGL(2, 27), PSL(2, 27):3, PGammaL(2, 27), A(28), S(28) ]
+]]></Example>
+
+Now we can construct the designs with <M>\lambda=42</M>.
+
+<Example><![CDATA[gap> d:=KramerMesnerSearch(6,28,8,42,g);;
+Computing t-subset orbit representatives...
+14
+Computing k-subset orbit representatives...
+72
+Computing the Kramer-Mesner matrix...
+.
+.
+.
+Loops: 27732
+Total number of solutions: 3
+
+total enumeration time: 0:00:00
+gap> Size(d);
+4
+]]></Example>
+
+Notice that A.&nbsp;Wassermann's LLL solver <Cite Key='AW98'/> reports finding 3 solutions, 
+but we get 4 sets of base blocks. That's because the solver may return the same solution more
+than once. Here is how to get rid of multiple solutions.
+
+<Example><![CDATA[gap> Size(AsSet(d));
+3
+]]></Example>
+
+Most of the CPU time in the example above was used to compute the Kramer-Mesner
+matrix. The left-hand side of the Kramer-Mesner system is the same matrix for
+all <M>\lambda</M>, so we can compute it once and reuse it to save time.
+
+<Example><![CDATA[gap> tsub:=SubsetOrbitRep(g,28,6);;
+gap> ksub:=SubsetOrbitRep(g,28,8);;
+gap> m:=KramerMesnerMat(g,tsub,ksub);;
+]]></Example>
+
+Now we can quickly get the exact numbers of designs from the paper <Cite Key='BS93'/>.
+
+<Example><![CDATA[gap> PAGGlobalOptions.Silent:=true;
+true
+gap> Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,42))));
+3
+gap> Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,63))));
+367
+gap> Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,84))));
+21743
+gap> Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,105))));
+38277
+]]></Example>
+
+</Subsection>
+
+<Subsection Label="2-(81,6,2) Designs">
+<Heading>2-(81,6,2) Designs</Heading>
+
+The first simple 2-(81,6,2) design was recently found by 
+A.&nbsp;Nakic&nbsp;<Cite Key='AN21'/>. Here are the base 
+blocks of this design copy-pasted from the paper.
+
+<Example><![CDATA[gap> bb:=[[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,1,0,0],[0,1,0,1],[0,1,0,2]],
+> [[0,0,0,0],[0,0,1,1],[0,0,2,2],[2,1,0,0],[2,1,1,1],[2,1,2,2]],
+> [[0,0,0,0],[0,1,1,1],[0,2,2,2],[0,0,1,0],[0,1,2,1],[0,2,0,2]],
+> [[0,0,0,0],[0,1,2,0],[0,2,1,0],[2,0,2,1],[2,1,1,1],[2,2,0,1]],
+> [[0,0,0,0],[1,0,0,0],[2,0,0,0],[0,2,2,1],[1,2,2,1],[2,2,2,1]],
+> [[0,0,0,0],[1,0,1,0],[2,0,2,0],[0,1,0,0],[1,1,1,0],[2,1,2,0]],
+> [[0,0,0,0],[1,0,1,1],[2,0,2,2],[0,0,2,0],[1,0,0,1],[2,0,1,2]],
+> [[0,0,0,0],[1,0,2,0],[2,0,1,0],[0,2,1,1],[1,2,0,1],[2,2,2,1]],
+> [[0,0,0,0],[1,0,2,2],[2,0,1,1],[0,1,2,1],[1,1,1,0],[2,1,0,2]],
+> [[0,0,0,0],[1,1,0,0],[2,2,0,0],[0,2,0,1],[1,0,0,1],[2,1,0,1]],
+> [[0,0,0,0],[1,1,0,1],[2,2,0,2],[0,2,2,0],[1,0,2,1],[2,1,2,2]],
+> [[0,0,0,0],[1,1,2,0],[2,2,1,0],[0,0,2,1],[1,1,1,1],[2,2,0,1]],
+> [[0,0,0,0],[1,1,2,1],[2,2,1,2],[0,2,1,1],[1,0,0,2],[2,1,2,0]],
+> [[0,0,0,0],[1,1,2,2],[2,2,1,1],[0,2,2,0],[1,0,1,2],[2,1,0,1]],
+> [[0,0,0,0],[1,2,1,2],[2,1,2,1],[0,0,2,1],[1,2,0,0],[2,1,1,2]],
+> [[0,0,0,0],[1,2,2,0],[2,1,1,0],[0,2,2,1],[1,1,1,1],[2,0,0,1]]]*Z(3)^0;;
+]]></Example>
+
+The points of this design are elements of the 4-dimensional vector
+space <M>V</M> over <M>GF(3)</M>. Here is how to get the desing in the
+<Package>Design</Package> package format.
+
+<Example><![CDATA[gap> V:=Tuples([0,1,2],4)*Z(3)^0;;
+gap> d1:=Union(List(bb,y->List(V,x->AsSet(x+y))));;
+gap> d:=BlockDesign(81,List(d1,y->List(y,x->Position(V,x))));;
+gap> AllTDesignLambdas(d);
+[ 432, 32, 2 ]
+]]></Example>
+
+The full automorphism group of the design is of order 2592. It's a semidirect 
+product of the additive group of <M>V</M> and a group of order 32.
+
+<Example><![CDATA[gap> aut:=AutomorphismGroup(d);
+<permutation group with 4 generators>
+gap> Size(aut);
+2592
+gap> StructureDescription(aut);
+"(C3 x C3 x C3 x C3) : (C16 : C2)"
+]]></Example>
+
+This group has three subgroups of order 648 up to conjugation. We can use
+the second subgroup to construct four more simple 2-(81,6,2) designs.
+
+<Example><![CDATA[gap> g:=Filtered(AllSubgroupsConjugation(aut),x->Size(x)=648);
+[ <permutation group of size 648 with 7 generators>, 
+  <permutation group of size 648 with 7 generators>, 
+  <permutation group of size 648 with 7 generators> ]
+gap> dd:=KramerMesnerSearch(2,81,6,2,g[2],rec(NonIsomorphic:=true));;
+gap> List(dd,x->Size(AutomorphismGroup(x)));
+[ 1944, 15552, 1296, 2592, 3888 ]
+]]></Example>
+
+Two of the new designs have larger full automorphism groups than
+design from&nbsp;<Cite Key='AN21'/>. Using their subgroups, more 
+simple 2-(81,6,2) designs can be constructed.
+
+</Subsection>
+
+<Subsection Label="Quasi-symmetric 2-(56,16,18) Designs">
+<Heading>Quasi-symmetric 2-(56,16,18) Designs</Heading>
+
+Here is how the quasi-symmetric 2-(56,16,18) designs with intersection 
+numbers <M>x=4</M>, <M>y=8</M> from the paper&nbsp;<Cite Key='KV16'/> 
+can be constructed. 
+
+<Example><![CDATA[gap> g:=Group((1,2,3,4,5)(6,7,8,9,10)(11,12,13,14,15)(16,17,18,19,20)
+>   (21,22,23,24,25)(26,27,28,29,30)(31,32,33,34,35)(36,37,38,39,40)
+>   (41,42,43,44,45)(46,47,48,49,50)(51,52,53,54,55),
+> (1,6,8)(2,21,26)(3,32,34)(4,11,5)(7,15,22)(9,16,13)(10,29,17)
+>   (12,33,30)(14,19,31)(18,23,35)(24,28,36)(25,37,39)(27,38,40)
+>   (42,51,49)(43,52,45)(44,46,47)(48,54,53)(50,56,55));
+<permutation group with 2 generators>
+gap> d:=KramerMesnerSearch(2,56,16,18,g,rec(NonIsomorphic:=true,
+> IntersectionNumbers:=[4,8]));;
+gap> Size(d);
+3
+]]></Example>
+
+We check that they have all the required properties and compute their full automorphism
+groups:
+
+<Example><![CDATA[gap> List(d,AllTDesignLambdas);
+[ [ 231, 66, 18 ], [ 231, 66, 18 ], [ 231, 66, 18 ] ]
+gap> List(d,IntersectionNumbers);
+[ [ 4, 8 ], [ 4, 8 ], [ 4, 8 ] ]
+gap> aut:=List(d,AutomorphismGroup);;
+gap> List(aut,StructureDescription);
+[ "PSL(3,4) : C2", "(C2 x C2 x C2 x C2) : A5", "(C2 x C2 x C2 x C2) : S5" ]
+]]></Example>
+
+</Subsection>
+
+</Section>
+
+<Section Label="Examples: Latin Squares">
+<Heading>Examples: Latin Squares</Heading>
+
+</Section>
+
+<Section Label="Examples: Cubes of Symmetric Designs">
+<Heading>Examples: Cubes of Symmetric Designs</Heading>
+
+Cubes of symmetric designs were introduced in  <Cite Key='KPT23'/>.
+Here is the motivational example.
+
+<Example><![CDATA[gap> c:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);
+[ [ [ 1, 1, 0, 1, 0, 0, 0 ], 
+     [ 1, 0, 1, 0, 0, 0, 1 ], 
+     [ 0, 1, 0, 0, 0, 1, 1 ], 
+     [ 1, 0, 0, 0, 1, 1, 0 ], 
+     [ 0, 0, 0, 1, 1, 0, 1 ], 
+     [ 0, 0, 1, 1, 0, 1, 0 ], 
+     [ 0, 1, 1, 0, 1, 0, 0 ] ], 
+  [ [ 1, 0, 1, 0, 0, 0, 1 ], 
+     [ 0, 1, 0, 0, 0, 1, 1 ], 
+     [ 1, 0, 0, 0, 1, 1, 0 ], 
+     [ 0, 0, 0, 1, 1, 0, 1 ], 
+     [ 0, 0, 1, 1, 0, 1, 0 ], 
+     [ 0, 1, 1, 0, 1, 0, 0 ], 
+     [ 1, 1, 0, 1, 0, 0, 0 ] ], 
+  [ [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ] ], 
+  [ [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ] ], 
+  [ [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ] ], 
+  [ [ 0, 0, 1, 1, 0, 1, 0 ], 
+      [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ] ], 
+  [ [ 0, 1, 1, 0, 1, 0, 0 ], 
+      [ 1, 1, 0, 1, 0, 0, 0 ], 
+      [ 1, 0, 1, 0, 0, 0, 1 ], 
+      [ 0, 1, 0, 0, 0, 1, 1 ], 
+      [ 1, 0, 0, 0, 1, 1, 0 ], 
+      [ 0, 0, 0, 1, 1, 0, 1 ], 
+      [ 0, 0, 1, 1, 0, 1, 0 ] ] ]
+]]></Example>
+
+This is a <M>3</M>-dimensional array of zeros and ones such that all
+<M>2</M>-dimensional slices are incidence matrices of the <M>(7,3,1)</M> 
+design. For example, here is a slice obtained by varying coordinates
+<M>1,3</M> and setting coordinate <M>2</M> to <M>7</M>.
+
+<Example><![CDATA[gap> m:=CubeSlice(c,1,3,[7]);
+[ [ 0, 1, 1, 0, 1, 0, 0 ], 
+  [ 1, 1, 0, 1, 0, 0, 0 ], 
+  [ 1, 0, 1, 0, 0, 0, 1 ], 
+  [ 0, 1, 0, 0, 0, 1, 1 ], 
+  [ 1, 0, 0, 0, 1, 1, 0 ], 
+  [ 0, 0, 0, 1, 1, 0, 1 ], 
+  [ 0, 0, 1, 1, 0, 1, 0 ] ]
+gap> m*TransposedMat(m);
+[ [ 3, 1, 1, 1, 1, 1, 1 ], 
+  [ 1, 3, 1, 1, 1, 1, 1 ], 
+  [ 1, 1, 3, 1, 1, 1, 1 ], 
+  [ 1, 1, 1, 3, 1, 1, 1 ], 
+  [ 1, 1, 1, 1, 3, 1, 1 ], 
+  [ 1, 1, 1, 1, 1, 3, 1 ], 
+  [ 1, 1, 1, 1, 1, 1, 3 ] ]
+]]></Example>
+
+For any <M>d\ge 2</M>, a <M>d</M>-dimensional cube of symmetric designs can be constructed 
+from a difference set. We use the representation of difference sets from the 
+<Package>DifSets</Package> package <Ref Sect="Difference Sets" BookName="DifSets"/>. For 
+<M>d=2</M>, the cube is simply an incidence matrix of the associated symmetric design. 
+
+<Example><![CDATA[gap> g:=SmallGroup(15,1);
+<pc group of size 15 with 2 generators>
+gap> ds:=DifferenceSets(g);
+[ [ 1, 2, 3, 4, 8, 11, 12 ] ]
+gap> DifferenceCube(g,ds[1],2);
+[ [ 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0 ], 
+  [ 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ], 
+  [ 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1 ], 
+  [ 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0 ], 
+  [ 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 ], 
+  [ 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0 ], 
+  [ 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1 ], 
+  [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1 ], 
+  [ 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0 ], 
+  [ 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 ], 
+  [ 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0 ], 
+  [ 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0 ], 
+  [ 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 ], 
+  [ 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0 ], 
+  [ 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 ] ]
+]]></Example>
+
+Here is a small <M>4</M>-dimensional <M>(3,2,1)</M> cube.
+
+<Example><![CDATA[gap> DifferenceCube(Group((1,2,3)),[1,2],4);
+[ [ [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
+      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], 
+      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ] ], 
+  [ [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], 
+      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], 
+      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ] ], 
+  [ [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], 
+      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
+      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ] ] ]
+]]></Example>
+
+Here are all <M>3</M>-dimensional difference cubes constructed from the groups of order <M>21</M>.
+
+<Example><![CDATA[gap> g:=AllSmallGroups(21);;
+gap> List(g,StructureDescription);
+[ "C7 : C3", "C21" ]
+gap> ds:=List(g,DifferenceSets);
+[ [ [ 1, 2, 3, 9, 10 ] ], [ [ 1, 2, 7, 10, 16 ] ] ]
+gap> c1:=DifferenceCube(g[1],ds[1][1],3);;
+gap> c2:=DifferenceCube(g[2],ds[2][1],3);;
+gap> Size(CubeAut(c1));
+1323
+gap> Size(CubeAut(c2));
+2646
+gap> List([c1,c2],CubeTest);
+[ [ [ 21, 5, 1 ] ], [ [ 21, 5, 1 ] ] ]
+]]></Example>
+
+We can make a non-difference cube by the "group cube" construction
+from <Cite Key='KPT23'/> (Theorem 4.1). First we find all <M>(21,5,1)</M> designs
+whose blocks are difference sets in the Frobenius group of order <M>21</M>.
+
+<Example><![CDATA[gap> allds:=Filtered(Combinations([1..21],5),x->IsDifferenceSet(g[1],x));;
+gap> Size(allds);
+294
+gap> A:=KramerMesnerMat(Group(()),Combinations([1..21],2),allds,1,21);;
+gap> PAGGlobalOptions.Silent:=true;;
+gap> sol:=AsSet(SolveKramerMesner(A));;
+gap> des:=List(sol,x->BaseBlocks(allds,x));;
+gap> Size(des);
+70
+]]></Example>
+
+Among these <M>70</M> designs, <M>14</M> are left developments, and <M>14</M> are right developments. There are <M>42</M> designs that are not developments, but all of their blocks are difference sets.
+
+<Example><![CDATA[gap> dev1:=AsSet(List(allds,x->LeftDevelopment(g[1],x).blocks));;
+gap> Size(dev1);
+14
+gap> dev2:=AsSet(List(allds,x->RightDevelopment(g[1],x).blocks));;
+gap> Size(dev2);
+14
+gap> nondev:=Difference(des,Union(dev1,dev2));;
+gap> Size(nondev);
+42
+]]></Example>
+
+Now we apply the group cube construction to any one of these <M>42</M> designs.
+
+<Example><![CDATA[gap> c3:=GroupCube(g[1],nondev[1],3);;
+gap> CubeTest(c3);
+[ [ 21, 5, 1 ] ]
+gap> Size(CubeAut(c3));
+441
+]]></Example>
+
+</Section>
+
+</Chapter>
+
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+<Chapter Label="The PAG Functions">
+<Heading>The PAG Functions</Heading>
+
+The following functions are available in the PAG package.
+
+<Section Label="Working With Permutation Groups">
+<Heading>Working With Permutation Groups</Heading>
+
+<#Include Label="CyclicPerm">
+
+<#Include Label="ToGroup">
+
+<#Include Label="MovePerm">
+
+<#Include Label="MoveGroup">
+
+<#Include Label="MultiPerm">
+
+<#Include Label="MultiGroup">
+
+<#Include Label="RestrictedGroup">
+
+<#Include Label="PrimitiveGroupsOfDegree">
+
+<#Include Label="TransitiveGroupsOfDegree">
+
+<#Include Label="AllSubgroupsConjugation">
+
+<#Include Label="PermRepresentationRight">
+
+<#Include Label="PermRepresentationLeft">
+
+</Section>
+
+<Section Label="Generating Ortbits">
+<Heading>Generating Orbits</Heading>
+
+<#Include Label="SubsetOrbitRep">
+
+<#Include Label="SubsetOrbitRepShort1">
+
+<#Include Label="SubsetOrbitRepIN">
+
+<#Include Label="IsGoodSubsetOrbit">
+
+<#Include Label="SmallLambdaFilter">
+
+<#Include Label="OrbitFilter1">
+
+<#Include Label="OrbitFilter2">
+
+</Section>
+
+<Section Label="Constructing Objects">
+<Heading>Constructing Objects</Heading>
+
+<#Include Label="KramerMesnerSearch">
+
+<#Include Label="KramerMesnerMat">
+
+<#Include Label="CompatibilityMat">
+
+<#Include Label="SolveKramerMesner">
+
+<#Include Label="BaseBlocks">
+
+<#Include Label="ExpandMatRHS">
+
+<#Include Label="RightDevelopment">
+
+<#Include Label="LeftDevelopment">
+
+</Section>
+
+<Section Label="Inspecting Objects and Other Functions">
+<Heading>Inspecting Objects and Other Functions</Heading>
+
+<#Include Label="BlockDesignAut">
+
+<#Include Label="BlockDesignFilter">
+
+<#Include Label="IntersectionNumbers">
+
+<#Include Label="BlockScheme">
+
+<#Include Label="TDesignB">
+
+<#Include Label="IversonBracket">
+
+</Section>
+
+<Section Label="Latin Squares">
+<Heading>Latin Squares</Heading>
+
+<#Include Label="ReadMOLS">
+
+<#Include Label="WriteMOLS">
+
+<#Include Label="CayleyTableOfGroup">
+
+<#Include Label="FieldToMOLS">
+
+<#Include Label="MOLSAut">
+
+<#Include Label="MOLSFilter">
+
+<#Include Label="IsotopismToPerm">
+
+<#Include Label="PermToIsotopism">
+
+<#Include Label="MOLSSubsetOrbitRep">
+
+<#Include Label="TuplesToMOLS">
+
+<#Include Label="KramerMesnerMOLS">
+
+<#Include Label="KramerMesnerMOLSParatopism">
+
+</Section>
+
+<Section Label="Cubes of Symmetric Designs">
+<Heading>Cubes of Symmetric Designs</Heading>
+
+<#Include Label="DifferenceCube">
+
+<#Include Label="GroupCube">
+
+<#Include Label="CubeSlice">
+
+<#Include Label="CubeSlices">
+
+<#Include Label="CubeToOrthogonalArray">
+
+<#Include Label="OrthogonalArrayToCube">
+
+<#Include Label="CubeToTransversalDesign">
+
+<#Include Label="TransversalDesignToCube">
+
+<#Include Label="LatinSquareToCube">
+
+<#Include Label="CubeTest">
+
+<#Include Label="CubeInvariant">
+
+<#Include Label="CubeAut">
+
+<#Include Label="CubeFilter">
+
+</Section>
+
+<Section Label="Hadamard Matrices">
+<Heading>Hadamard Matrices</Heading>
+
+<#Include Label="HadamardMatAut">
+
+<#Include Label="HadamardMatFilter">
+
+</Section>
+
+<Section Label="Global Options">
+<Heading>Global Options</Heading>
+
+<#Include Label="PAGGlobalOptions">
+
+</Section>
+
+</Chapter>
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+

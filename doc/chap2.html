@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (PAG) - Chapter 2: The PAG Functions</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
+<p><a id="X7A34C81F843FE798" name="X7A34C81F843FE798"></a></p>
+<div class="ChapSects"><a href="chap2.html#X7A34C81F843FE798">2 <span class="Heading">The PAG Functions</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X85FF48B18482CA86">2.1 <span class="Heading">Working With Permutation Groups</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X79BF29A07905A90C">2.1-1 CyclicPerm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E1860E983EA72FC">2.1-2 ToGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80BEBE7B7A66BA4E">2.1-3 MovePerm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81284A59843F7A7B">2.1-4 MoveGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C03293E80B0CA72">2.1-5 MultiPerm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7904788286E59E2E">2.1-6 MultiGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X790683938254CDC1">2.1-7 RestrictedGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C6BC92378E6B4BC">2.1-8 PrimitiveGroupsOfDegree</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8589DDAD7DB0FCA8">2.1-9 TransitiveGroupsOfDegree</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81A70E877DF8AA34">2.1-10 AllSubgroupsConjugation</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X780C40F4873006FB">2.1-11 PermRepresentationRight</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X815AE3827C9CA969">2.1-12 PermRepresentationLeft</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7CA95AB080E5135D">2.2 <span class="Heading">Generating Orbits</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C1945A784AC5F72">2.2-1 SubsetOrbitRep</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A6453417DBD5FC1">2.2-2 SubsetOrbitRepShort1</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81601D33790912F8">2.2-3 SubsetOrbitRepIN</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X821B07AF82565DCE">2.2-4 IsGoodSubsetOrbit</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84B02FCA8105895E">2.2-5 SmallLambdaFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7DDEA540864CCB29">2.2-6 OrbitFilter1</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X844E305B81352606">2.2-7 OrbitFilter2</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X81E58D178665D555">2.3 <span class="Heading">Constructing Objects</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X853E396684BE1D17">2.3-1 KramerMesnerSearch</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X831AFBCE828421DC">2.3-2 KramerMesnerMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X79E1DA2E802C2EDA">2.3-3 CompatibilityMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A9D5D9A7FB92630">2.3-4 SolveKramerMesner</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80F64ADB7EC13F7E">2.3-5 BaseBlocks</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X86582C2D7F941DCA">2.3-6 ExpandMatRHS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X83B4006C82C7DCC7">2.3-7 RightDevelopment</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81C414057EC904AC">2.3-8 LeftDevelopment</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7A5A75EE7D024A4A">2.4 <span class="Heading">Inspecting Objects and Other Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X805C0B9F831607DC">2.4-1 BlockDesignAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C629C8280899316">2.4-2 BlockDesignFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X864491248518B7CD">2.4-3 IntersectionNumbers</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X824E5FCE8742EB70">2.4-4 BlockScheme</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X858A707E81380706">2.4-5 TDesignB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8386E2DC7CDC30D2">2.4-6 IversonBracket</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7889CA477AC29A8C">2.5 <span class="Heading">Latin Squares</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A81988C8176227D">2.5-1 ReadMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E57B98986C1F138">2.5-2 WriteMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87AF98127C4CD44B">2.5-3 CayleyTableOfGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C72080B8777A3E8">2.5-4 FieldToMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D15F68E7A55A95F">2.5-5 MOLSAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X826116DB845FC8E8">2.5-6 MOLSFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81091786799E1D18">2.5-7 IsotopismToPerm</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80287D6B8140E827">2.5-8 PermToIsotopism</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X782EAB457FC77498">2.5-9 MOLSSubsetOrbitRep</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F19D770838101F2">2.5-10 TuplesToMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87FD64DB7C954BA1">2.5-11 KramerMesnerMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X79190696821CB0EC">2.5-12 KramerMesnerMOLSParatopism</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X79F7C22885C658DE">2.6 <span class="Heading">Cubes of Symmetric Designs</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X796E426D877E220A">2.6-1 DifferenceCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D20EEDC8566D8BF">2.6-2 GroupCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F4C2D7579CA223C">2.6-3 CubeSlice</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D2F947285ECC89F">2.6-4 CubeSlices</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8214B28081B21BDE">2.6-5 CubeToOrthogonalArray</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87C8CFE97ECDC3DA">2.6-6 OrthogonalArrayToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8281E4697AA795A3">2.6-7 CubeToTransversalDesign</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D717F98781699EF">2.6-8 TransversalDesignToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8699117579A6173C">2.6-9 LatinSquareToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B79A7857DAD2FFE">2.6-10 CubeTest</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E1717C57A5F7865">2.6-11 CubeInvariant</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E96F84678D23676">2.6-12 CubeAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X810B22E286D857C1">2.6-13 CubeFilter</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7AD0B7D486954F10">2.7 <span class="Heading">Hadamard Matrices</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X801DEB1E7D5668E9">2.7-1 HadamardMatAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E0014F67EC9FC23">2.7-2 HadamardMatFilter</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X78E96F5385881B1B">2.8 <span class="Heading">Global Options</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8626782884DAC536">2.8-1 PAGGlobalOptions</a></span>
+</div></div>
+</div>
+
+<h3>2 <span class="Heading">The PAG Functions</span></h3>
+
+<p>The following functions are available in the PAG package.</p>
+
+<p><a id="X85FF48B18482CA86" name="X85FF48B18482CA86"></a></p>
+
+<h4>2.1 <span class="Heading">Working With Permutation Groups</span></h4>
+
+<p><a id="X79BF29A07905A90C" name="X79BF29A07905A90C"></a></p>
+
+<h5>2.1-1 CyclicPerm</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CyclicPerm</code>( <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the cyclic permutation (1,...,<var class="Arg">n</var>).</p>
+
+<p><a id="X7E1860E983EA72FC" name="X7E1860E983EA72FC"></a></p>
+
+<h5>2.1-2 ToGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ToGroup</code>( <var class="Arg">G</var>, <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Apply function <var class="Arg">f</var> to each generator of the group <var class="Arg">G</var>.</p>
+
+<p><a id="X80BEBE7B7A66BA4E" name="X80BEBE7B7A66BA4E"></a></p>
+
+<h5>2.1-3 MovePerm</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MovePerm</code>( <var class="Arg">p</var>, <var class="Arg">from</var>, <var class="Arg">to</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Moves permutation <var class="Arg">p</var> acting on the set <var class="Arg">from</var> to a permutation acting on the set <var class="Arg">to</var>. The arguments <var class="Arg">from</var> and <var class="Arg">to</var> should be lists of integers of the same size. Alternatively, if instead of <var class="Arg">from</var> and <var class="Arg">to</var> just one integer argument <var class="Arg">by</var> is given, the permutation is moved from <code class="code">MovedPoints(</code><var class="Arg">p</var><code class="code">)</code> to <code class="code">MovedPoints(</code><var class="Arg">p</var><code class="code">)+</code><var class="Arg">by</var>; see <code class="func">MovedPoints</code> (<a href="/opt/gap-4.11.1/doc/ref/chap42.html#X85E61B9C7A6B0CCA"><span class="RefLink">Reference: MovedPoints for a permutation</span></a>).</p>
+
+<p><a id="X81284A59843F7A7B" name="X81284A59843F7A7B"></a></p>
+
+<h5>2.1-4 MoveGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MoveGroup</code>( <var class="Arg">G</var>, <var class="Arg">from</var>, <var class="Arg">to</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Apply <code class="func">MovePerm</code> (<a href="chap2.html#X80BEBE7B7A66BA4E"><span class="RefLink">2.1-3</span></a>) to each generator of the group <var class="Arg">G</var>.</p>
+
+<p><a id="X7C03293E80B0CA72" name="X7C03293E80B0CA72"></a></p>
+
+<h5>2.1-5 MultiPerm</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultiPerm</code>( <var class="Arg">p</var>, <var class="Arg">set</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Repeat the action of a permutation <var class="Arg">m</var> times. The new permutation acts on <var class="Arg">m</var> disjoint copies of <var class="Arg">set</var>.</p>
+
+<p><a id="X7904788286E59E2E" name="X7904788286E59E2E"></a></p>
+
+<h5>2.1-6 MultiGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MultiGroup</code>( <var class="Arg">G</var>, <var class="Arg">set</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Apply <code class="func">MultiPerm</code> (<a href="chap2.html#X7C03293E80B0CA72"><span class="RefLink">2.1-5</span></a>) to each generator of the group <var class="Arg">G</var>.</p>
+
+<p><a id="X790683938254CDC1" name="X790683938254CDC1"></a></p>
+
+<h5>2.1-7 RestrictedGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RestrictedGroup</code>( <var class="Arg">G</var>, <var class="Arg">set</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Apply <code class="func">RestrictedPerm</code> (<a href="/opt/gap-4.11.1/doc/ref/chap42.html#X7EF8388E7DA8E600"><span class="RefLink">Reference: RestrictedPerm</span></a>) to each generator of the group <var class="Arg">G</var>.</p>
+
+<p><a id="X7C6BC92378E6B4BC" name="X7C6BC92378E6B4BC"></a></p>
+
+<h5>2.1-8 PrimitiveGroupsOfDegree</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimitiveGroupsOfDegree</code>( <var class="Arg">v</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a list of all primitive permutation groups on <var class="Arg">v</var> points.</p>
+
+<p><a id="X8589DDAD7DB0FCA8" name="X8589DDAD7DB0FCA8"></a></p>
+
+<h5>2.1-9 TransitiveGroupsOfDegree</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TransitiveGroupsOfDegree</code>( <var class="Arg">v</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a list of all transitive permutation groups on <var class="Arg">v</var> points.</p>
+
+<p><a id="X81A70E877DF8AA34" name="X81A70E877DF8AA34"></a></p>
+
+<h5>2.1-10 AllSubgroupsConjugation</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllSubgroupsConjugation</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a list of all subgroups of <var class="Arg">G</var> up to conjugation.</p>
+
+<p><a id="X780C40F4873006FB" name="X780C40F4873006FB"></a></p>
+
+<h5>2.1-11 PermRepresentationRight</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermRepresentationRight</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the regular permutation representation of a group <var class="Arg">G</var> by right multiplication.</p>
+
+<p><a id="X815AE3827C9CA969" name="X815AE3827C9CA969"></a></p>
+
+<h5>2.1-12 PermRepresentationLeft</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermRepresentationLeft</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the regular permutation representation of a group <var class="Arg">G</var> by left multiplication.</p>
+
+<p><a id="X7CA95AB080E5135D" name="X7CA95AB080E5135D"></a></p>
+
+<h4>2.2 <span class="Heading">Generating Orbits</span></h4>
+
+<p><a id="X7C1945A784AC5F72" name="X7C1945A784AC5F72"></a></p>
+
+<h5>2.2-1 SubsetOrbitRep</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SubsetOrbitRep</code>( <var class="Arg">G</var>, <var class="Arg">v</var>, <var class="Arg">k</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes orbit representatives of <var class="Arg">k</var>-subsets of [1..<var class="Arg">v</var>] under the action of the permutation group <var class="Arg">G</var>. The basic algorithm is described in <a href="chapBib.html#biBKVK21">[KVK21]</a>. The algorithm for short orbits is described in <a href="chapBib.html#biBKV16">[KV16]</a>. The last argument is a record <var class="Arg">opt</var> for options. The possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">SizeLE</var>:=<var class="Arg">n</var> If defined, only representatives of orbits of size less or equal to <var class="Arg">n</var> are computed.</p>
+
+</li>
+<li><p><var class="Arg">IntesectionNumbers</var>:=<var class="Arg">lin</var> If defined, only representatives of good orbits are returned. These are orbits with intersection numbers in the list of integers <var class="Arg">lin</var>.</p>
+
+</li>
+</ul>
+<p><a id="X7A6453417DBD5FC1" name="X7A6453417DBD5FC1"></a></p>
+
+<h5>2.2-2 SubsetOrbitRepShort1</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SubsetOrbitRepShort1</code>( <var class="Arg">G</var>, <var class="Arg">v</var>, <var class="Arg">k</var>, <var class="Arg">size</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes <var class="Arg">G</var>-orbit representatives of <var class="Arg">k</var>-subsets of [1..<var class="Arg">v</var>] of size less or equal <var class="Arg">size</var>. Here, <var class="Arg">size</var> is an integer smaller than the order of the group <var class="Arg">G</var>. The algorithm is described in <a href="chapBib.html#biBKV16">[KV16]</a>.</p>
+
+<p><a id="X81601D33790912F8" name="X81601D33790912F8"></a></p>
+
+<h5>2.2-3 SubsetOrbitRepIN</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SubsetOrbitRepIN</code>( <var class="Arg">G</var>, <var class="Arg">v</var>, <var class="Arg">k</var>, <var class="Arg">lin</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes orbit representatives of <var class="Arg">k</var>-subsets of [1..<var class="Arg">v</var>] under the action of the permutation group <var class="Arg">G</var> with intersection numbers in the list <var class="Arg">lin</var>. Parts of the search tree with partial subsets intersecting in more than the largest number in <var class="Arg">lin</var> are skipped. Short orbits are computed separately. The algorithm is described in <a href="chapBib.html#biBKVK21">[KVK21]</a>. The last (optional) argument <var class="Arg">opt</var> is a record for options. The possible components are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Verbose</var>:=<code class="code">true</code>/<code class="code">false</code> Print comments reporting the progress of the calculation.</p>
+
+</li>
+<li><p><var class="Arg">FilteringLevel</var>:=<var class="Arg">n</var> Apply filrering of the search tree up to subsets of size <var class="Arg">n</var>. By default, <var class="Arg">n</var>=<var class="Arg">k</var>.</p>
+
+</li>
+</ul>
+<p><a id="X821B07AF82565DCE" name="X821B07AF82565DCE"></a></p>
+
+<h5>2.2-4 IsGoodSubsetOrbit</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsGoodSubsetOrbit</code>( <var class="Arg">G</var>, <var class="Arg">rep</var>, <var class="Arg">lin</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Check if the subset orbit generated by the permutation group <var class="Arg">G</var> and the representative <var class="Arg">rep</var> is a good orbit with respect to the list of intersection numbers <var class="Arg">lin</var>. This means that the intersection size of any pair of sets from the orbit is an integer in <var class="Arg">lin</var>.</p>
+
+<p><a id="X84B02FCA8105895E" name="X84B02FCA8105895E"></a></p>
+
+<h5>2.2-5 SmallLambdaFilter</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SmallLambdaFilter</code>( <var class="Arg">G</var>, <var class="Arg">tsub</var>, <var class="Arg">ksub</var>, <var class="Arg">lambda</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Remove <span class="SimpleMath">k</span>-subset representatives from <var class="Arg">ksub</var> such that the corresponding <var class="Arg">G</var>-orbit covers some of the <span class="SimpleMath">t</span>-subset representatives from <var class="Arg">tsub</var> more than <var class="Arg">lambda</var> times.</p>
+
+<p><a id="X7DDEA540864CCB29" name="X7DDEA540864CCB29"></a></p>
+
+<h5>2.2-6 OrbitFilter1</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OrbitFilter1</code>( <var class="Arg">G</var>, <var class="Arg">obj</var>, <var class="Arg">action</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Takes a list of objects <var class="Arg">obj</var> and returns one representative from each orbit of the group <var class="Arg">G</var> acting by <var class="Arg">action</var>. The result is a sublist of <var class="Arg">obj</var>. The algorithm uses the <strong class="pkg">GAP</strong> function <code class="func">Orbit</code> (<a href="/opt/gap-4.11.1/doc/ref/chap41.html#X80E0234E7BD79409"><span class="RefLink">Reference: Orbit</span></a>).</p>
+
+<p><a id="X844E305B81352606" name="X844E305B81352606"></a></p>
+
+<h5>2.2-7 OrbitFilter2</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OrbitFilter2</code>( <var class="Arg">G</var>, <var class="Arg">obj</var>, <var class="Arg">action</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Takes a list of objects <var class="Arg">obj</var> and returns one representative from each orbit of the group <var class="Arg">G</var> acting by <var class="Arg">action</var>. Canonical representatives are returned, so the result is not a sublist of <var class="Arg">obj</var>. The algorithm uses the <code class="func">CanonicalImage</code> (<a href="/opt/gap-4.11.1/pkg/images-1.3.1/doc/chap2.html#X780189E3873B7A42"><span class="RefLink">images: CanonicalImage</span></a>) function from the package <strong class="pkg">Images</strong>.</p>
+
+<p><a id="X81E58D178665D555" name="X81E58D178665D555"></a></p>
+
+<h4>2.3 <span class="Heading">Constructing Objects</span></h4>
+
+<p><a id="X853E396684BE1D17" name="X853E396684BE1D17"></a></p>
+
+<h5>2.3-1 KramerMesnerSearch</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; KramerMesnerSearch</code>( <var class="Arg">t</var>, <var class="Arg">v</var>, <var class="Arg">k</var>, <var class="Arg">lambda</var>, <var class="Arg">G</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Performs a search for <var class="Arg">t</var>-(<var class="Arg">v</var>,<var class="Arg">k</var>,<var class="Arg">lambda</var>) designs with presrcribed automorphism group <var class="Arg">G</var> by the Kramer-Mesner method. A record with options can be supplied. By default, a list of base blocks for the constructed designs is returned. If <var class="Arg">opt.Design</var> is defined, the designs are returned in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. If <var class="Arg">opt.NonIsomorphic</var> is defined, the designs are returned in <strong class="pkg">Design</strong> format and isomorph-rejection is performed. Other available options are:</p>
+
+
+<ul>
+<li><p><var class="Arg">SmallLambda</var>:=<code class="code">true</code>/<code class="code">false</code>. Perform the "small lambda filter", i.e. remove <var class="Arg">k</var>-orbits covering some of the <var class="Arg">t</var>-orbits more than <var class="Arg">lambda</var> times. By default, this is done if <var class="Arg">lambda</var>&lt;=3.</p>
+
+</li>
+<li><p><var class="Arg">IntersectionNumbers</var>:=<var class="Arg">lin</var>. Search for designs with block intersection nubers in the list of integers <var class="Arg">lin</var> (e.g. quasi-symmetric designs).</p>
+
+</li>
+</ul>
+<p><a id="X831AFBCE828421DC" name="X831AFBCE828421DC"></a></p>
+
+<h5>2.3-2 KramerMesnerMat</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; KramerMesnerMat</code>( <var class="Arg">G</var>, <var class="Arg">tsub</var>, <var class="Arg">ksub</var>[, <var class="Arg">lambda</var>][, <var class="Arg">b</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the Kramer-Mesner matrix for a permutation group <var class="Arg">G</var>. The rows are labelled by <span class="SimpleMath">t</span>-subset orbits represented by <var class="Arg">tsub</var>, and the columns by <span class="SimpleMath">k</span>-subset orbits represented by <var class="Arg">ksub</var>. A column of constants <var class="Arg">lambda</var> is added if the optional argument <var class="Arg">lambda</var> is given. Another row is added if the optional argument <var class="Arg">b</var> is given, repesenting the constraint that sizes of the chosen <span class="SimpleMath">k</span>-subset orbits must sum up to the number of blocks <var class="Arg">b</var>.</p>
+
+<p><a id="X79E1DA2E802C2EDA" name="X79E1DA2E802C2EDA"></a></p>
+
+<h5>2.3-3 CompatibilityMat</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CompatibilityMat</code>( <var class="Arg">G</var>, <var class="Arg">ksub</var>, <var class="Arg">lin</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the compatibility matrix of the <span class="SimpleMath">k</span>-subset representatives <var class="Arg">ksub</var> with respect to the group <var class="Arg">G</var> and list of intersection numbers <var class="Arg">lin</var>. Entries are <span class="SimpleMath">1</span> if intersection sizes of subsets in the corresponding <var class="Arg">G</var>-orbits are all integers in <var class="Arg">lin</var>, and <span class="SimpleMath">0</span> otherwise.</p>
+
+<p><a id="X7A9D5D9A7FB92630" name="X7A9D5D9A7FB92630"></a></p>
+
+<h5>2.3-4 SolveKramerMesner</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SolveKramerMesner</code>( <var class="Arg">mat</var>[, <var class="Arg">cm</var>][, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Solve a system of linear equations determined by the matrix <var class="Arg">mat</var> over <span class="SimpleMath">{0,1}</span>. By default, A.Wassermann's LLL solver <code class="code">solvediophant</code> <a href="chapBib.html#biBAW98">[Was98]</a> is used. If the second argument is a compatibility matrix <var class="Arg">cm</var>, the backtracking program <code class="code">solvecm</code> from the papers <a href="chapBib.html#biBKNP11">[KNP11]</a> and <a href="chapBib.html#biBKV16">[KV16]</a> is used. The solver can also be chosen explicitly in the record <var class="Arg">opt</var>. Possible components are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Solver</var>:=<code class="code">"solvediophant"</code> If defined, <code class="code">solvediophant</code> is used.</p>
+
+</li>
+<li><p><var class="Arg">Solver</var>:=<code class="code">"solvecm"</code> If defined, <code class="code">solvecm</code> is used.</p>
+
+</li>
+</ul>
+<p><a id="X80F64ADB7EC13F7E" name="X80F64ADB7EC13F7E"></a></p>
+
+<h5>2.3-5 BaseBlocks</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseBlocks</code>( <var class="Arg">ksub</var>, <var class="Arg">sol</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns base blocks of design(s) from solution(s) <var class="Arg">sol</var> by picking them from <span class="SimpleMath">k</span>-subset orbit representatives <var class="Arg">ksub</var>.</p>
+
+<p><a id="X86582C2D7F941DCA" name="X86582C2D7F941DCA"></a></p>
+
+<h5>2.3-6 ExpandMatRHS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ExpandMatRHS</code>( <var class="Arg">mat</var>, <var class="Arg">lambda</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Add a column of <var class="Arg">lambda</var>'s to the right of the matrix <var class="Arg">mat</var>.</p>
+
+<p><a id="X83B4006C82C7DCC7" name="X83B4006C82C7DCC7"></a></p>
+
+<h5>2.3-7 RightDevelopment</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RightDevelopment</code>( <var class="Arg">G</var>, <var class="Arg">ds</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a block design that is the development of the difference set <var class="Arg">ds</var> by right multiplication in the group <var class="Arg">G</var>.</p>
+
+<p><a id="X81C414057EC904AC" name="X81C414057EC904AC"></a></p>
+
+<h5>2.3-8 LeftDevelopment</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LeftDevelopment</code>( <var class="Arg">G</var>, <var class="Arg">ds</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a block design that is the development of the difference set <var class="Arg">ds</var> by left multiplication in the group <var class="Arg">G</var>.</p>
+
+<p><a id="X7A5A75EE7D024A4A" name="X7A5A75EE7D024A4A"></a></p>
+
+<h4>2.4 <span class="Heading">Inspecting Objects and Other Functions</span></h4>
+
+<p><a id="X805C0B9F831607DC" name="X805C0B9F831607DC"></a></p>
+
+<h5>2.4-1 BlockDesignAut</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlockDesignAut</code>( <var class="Arg">d</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes the full automorphism group of a block design <var class="Arg">d</var>. Uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. This is an alternative for the <code class="code">AutGroupBlockDesign</code> function from the <strong class="pkg">Design</strong> package <a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP006.htm"><span class="RefLink">DESIGN: Automorphism groups and isomorphism testing for block designs</span></a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Traces</var>:=<code class="code">true</code>/<code class="code">false</code> Use <code class="code">Traces</code>. This is the default.</p>
+
+</li>
+<li><p><var class="Arg">SparseNauty</var>:=<code class="code">true</code>/<code class="code">false</code> Use <code class="code">nauty</code> for sparse graphs.</p>
+
+</li>
+<li><p><var class="Arg">DenseNauty</var>:=<code class="code">true</code>/<code class="code">false</code> Use <code class="code">nauty</code> for dense graphs. This is usually the slowest program, but it allows vertex invariants. Vertex invariants are ignored by the other programs.</p>
+
+</li>
+<li><p><var class="Arg">BlockAction</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, the action of the automorphisms on blocks is also given. In this case automorphisms are permutations of degree <span class="SimpleMath">v+b</span>. By default, only the action on points is given, i.e. automorphisms are permutations of degree <span class="SimpleMath">v</span>.</p>
+
+</li>
+<li><p><var class="Arg">Dual</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, dual automorphisms (correlations) are also included. They will appear only for self-dual symmetric designs (with the same number of points and blocks). The default is <code class="code">false</code>.</p>
+
+</li>
+<li><p><var class="Arg">PointClasses</var>:=<var class="Arg">s</var> Color the points into classes of size <var class="Arg">s</var> that cannot be mapped onto each other. By default all points are in the same class.</p>
+
+</li>
+<li><p><var class="Arg">VertexInvariant</var>:=<var class="Arg">n</var> Use vertex invariant number <var class="Arg">n</var>. The numbering is the same as in <code class="code">dreadnaut</code>, e.g. <var class="Arg">n</var>=1: <code class="code">twopaths</code>, <var class="Arg">n</var>=2: <code class="code">adjtriang</code>, etc. The default is <code class="code">twopaths</code>. Vertex invariants only work with dense <code class="code">nauty</code>. They are ignored by sparse <code class="code">nauty</code> and <code class="code">Traces</code>.</p>
+
+</li>
+<li><p><var class="Arg">Mininvarlevel</var>:=<var class="Arg">n</var> Set <code class="code">mininvarlevel</code> to <var class="Arg">n</var>. The default is <var class="Arg">n</var>=0.</p>
+
+</li>
+<li><p><var class="Arg">Maxinvarlevel</var>:=<var class="Arg">n</var> Set <code class="code">maxinvarlevel</code> to <var class="Arg">n</var>. The default is <var class="Arg">n</var>=2.</p>
+
+</li>
+<li><p><var class="Arg">Invararg</var>:=<var class="Arg">n</var> Set <code class="code">invararg</code> to <var class="Arg">n</var>. The default is <var class="Arg">n</var>=0.</p>
+
+</li>
+</ul>
+<p><a id="X7C629C8280899316" name="X7C629C8280899316"></a></p>
+
+<h5>2.4-2 BlockDesignFilter</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlockDesignFilter</code>( <var class="Arg">dl</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Eliminates isomorphic copies from a list of block designs <var class="Arg">dl</var>. Uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. This is an alternative for the <code class="code">BlockDesignIsomorphismClassRepresentatives</code> function from the <strong class="pkg">Design</strong> package <a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP006.htm"><span class="RefLink">DESIGN: Automorphism groups and isomorphism testing for block designs</span></a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Traces</var>:=<code class="code">true</code>/<code class="code">false</code> Use <code class="code">Traces</code>. This is the default.</p>
+
+</li>
+<li><p><var class="Arg">SparseNauty</var>:=<code class="code">true</code>/<code class="code">false</code> Use <code class="code">nauty</code> for sparse graphs.</p>
+
+</li>
+<li><p><var class="Arg">PointClasses</var>:=<var class="Arg">s</var> Color the points into classes of size <var class="Arg">s</var> that cannot be mapped onto each other. By default all points are in the same class.</p>
+
+</li>
+<li><p><var class="Arg">Positions</var>:=<code class="code">true</code>/<code class="code">false</code> Return positions of nonisomorphic designs instead of the designs themselves.</p>
+
+</li>
+</ul>
+<p><a id="X864491248518B7CD" name="X864491248518B7CD"></a></p>
+
+<h5>2.4-3 IntersectionNumbers</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IntersectionNumbers</code>( <var class="Arg">d</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the list of intersection numbers of the block design <var class="Arg">d</var>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Frequencies</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, frequencies of the intersection numbers are also returned.</p>
+
+</li>
+</ul>
+<p><a id="X824E5FCE8742EB70" name="X824E5FCE8742EB70"></a></p>
+
+<h5>2.4-4 BlockScheme</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlockScheme</code>( <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the block intersection scheme of a schematic block design <var class="Arg">d</var>. If <var class="Arg">d</var> is not schematic, returns <code class="code">fail</code>. Uses the package <strong class="pkg">AssociationSchemes</strong>.</p>
+
+<p><a id="X858A707E81380706" name="X858A707E81380706"></a></p>
+
+<h5>2.4-5 TDesignB</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TDesignB</code>( <var class="Arg">t</var>, <var class="Arg">v</var>, <var class="Arg">k</var>, <var class="Arg">lambda</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>The number of blocks of a <var class="Arg">t</var>-(<var class="Arg">v</var>,<var class="Arg">k</var>,<var class="Arg">lambda</var>) design.</p>
+
+<p><a id="X8386E2DC7CDC30D2" name="X8386E2DC7CDC30D2"></a></p>
+
+<h5>2.4-6 IversonBracket</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IversonBracket</code>( <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns 1 if <var class="Arg">P</var> is true, and 0 otherwise.</p>
+
+<p><a id="X7889CA477AC29A8C" name="X7889CA477AC29A8C"></a></p>
+
+<h4>2.5 <span class="Heading">Latin Squares</span></h4>
+
+<p><a id="X7A81988C8176227D" name="X7A81988C8176227D"></a></p>
+
+<h5>2.5-1 ReadMOLS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ReadMOLS</code>( <var class="Arg">filename</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Read a list of MOLS sets from a file. The file starts with the number of rows <span class="SimpleMath">m</span>, columns <span class="SimpleMath">n</span>, and size of the sets <span class="SimpleMath">s</span>, followed by the matrix entries. Integers in the file are separated by whitespaces.</p>
+
+<p><a id="X7E57B98986C1F138" name="X7E57B98986C1F138"></a></p>
+
+<h5>2.5-2 WriteMOLS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WriteMOLS</code>( <var class="Arg">filename</var>, <var class="Arg">list</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Write a list of MOLS sets to a file. The number of rows <span class="SimpleMath">m</span>, columns <span class="SimpleMath">n</span>, and size of the sets <span class="SimpleMath">s</span> is written first, followed by the matrix entries. Integers are separated by whitespaces.</p>
+
+<p><a id="X87AF98127C4CD44B" name="X87AF98127C4CD44B"></a></p>
+
+<h5>2.5-3 CayleyTableOfGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CayleyTableOfGroup</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a Cayley table of the group <var class="Arg">G</var>. The elements are integers <span class="SimpleMath">1,...,</span><code class="code">Order(</code><var class="Arg">G</var><code class="code">)</code>.</p>
+
+<p><a id="X7C72080B8777A3E8" name="X7C72080B8777A3E8"></a></p>
+
+<h5>2.5-4 FieldToMOLS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldToMOLS</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Construct a complete set of MOLS from the finite field <var class="Arg">F</var>.</p>
+
+<p><a id="X7D15F68E7A55A95F" name="X7D15F68E7A55A95F"></a></p>
+
+<h5>2.5-5 MOLSAut</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MOLSAut</code>( <var class="Arg">ls</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Compute autotopism, autoparatopism, or automorphism groups of MOLS sets in the list <var class="Arg">ls</var>. A record with options can be supplied. By default, autotopism groups are computed. If <var class="Arg">opt.Paratopism</var> is defined, autoparatopism groups are computed. If <var class="Arg">opt.Isomorphism</var> is defined, automorphism groups are computed.</p>
+
+<p><a id="X826116DB845FC8E8" name="X826116DB845FC8E8"></a></p>
+
+<h5>2.5-6 MOLSFilter</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MOLSFilter</code>( <var class="Arg">ls</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns representatives of isotopism, paratopism, or isomorphism classes of MOLS sets in the list <var class="Arg">ls</var>. A record with options can be supplied. By default, isotopism class representatives are returned. If <var class="Arg">opt.Paratopism</var> is defined, paratopism class representatives (main class representatives) are returned. If <var class="Arg">opt.Isomorphism</var> is defined, isomorphism class representatives are returned.</p>
+
+<p><a id="X81091786799E1D18" name="X81091786799E1D18"></a></p>
+
+<h5>2.5-7 IsotopismToPerm</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsotopismToPerm</code>( <var class="Arg">n</var>, <var class="Arg">l</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms an isotopism, i.e. a list <var class="Arg">l</var> of three permutations of degree <var class="Arg">n</var>, to a single permutation of degree <span class="SimpleMath">3</span><var class="Arg">n</var>.</p>
+
+<p><a id="X80287D6B8140E827" name="X80287D6B8140E827"></a></p>
+
+<h5>2.5-8 PermToIsotopism</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PermToIsotopism</code>( <var class="Arg">n</var>, <var class="Arg">p</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms a permutation <var class="Arg">p</var> of degree <span class="SimpleMath">3</span><var class="Arg">n</var> to an isotopism, i.e. a list of three permutations of degree <var class="Arg">n</var>.</p>
+
+<p><a id="X782EAB457FC77498" name="X782EAB457FC77498"></a></p>
+
+<h5>2.5-9 MOLSSubsetOrbitRep</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MOLSSubsetOrbitRep</code>( <var class="Arg">n</var>, <var class="Arg">s</var>, <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes representatives of pairs and <span class="SimpleMath">(</span><var class="Arg">s</var><span class="SimpleMath">+2)</span>-tuples for the construction of MOLS of order <var class="Arg">n</var> with prescribed autotopism group <var class="Arg">G</var>. A list containing pairs representatives in the first component and tuples representatives in the second component is returned.</p>
+
+<p><a id="X7F19D770838101F2" name="X7F19D770838101F2"></a></p>
+
+<h5>2.5-10 TuplesToMOLS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TuplesToMOLS</code>( <var class="Arg">n</var>, <var class="Arg">s</var>, <var class="Arg">T</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms a set of <span class="SimpleMath">(</span><var class="Arg">s</var><span class="SimpleMath">+2)</span>-tuples <var class="Arg">T</var> to a set of MOLS of order <var class="Arg">n</var>.</p>
+
+<p><a id="X87FD64DB7C954BA1" name="X87FD64DB7C954BA1"></a></p>
+
+<h5>2.5-11 KramerMesnerMOLS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; KramerMesnerMOLS</code>( <var class="Arg">n</var>, <var class="Arg">s</var>, <var class="Arg">G</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Search for MOLS sets of order <var class="Arg">n</var> and size <var class="Arg">s</var> with prescribed autotopism group <var class="Arg">G</var>. A record <var class="Arg">opt</var> with options can be supplied. By default, A.Wassermann's LLL solver <code class="code">solvediophant</code> is used and all constructed MOLS are returned, i.e. no filtering is performed. Available options are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Solver</var>:=<code class="code">"solvecm"</code> The backtracing solver <code class="code">solvecm</code> is used.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Isotopism"</code> Non-isotopic MOLS are returned.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Paratopism"</code> Non-paratopic MOLS are returned.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Isomorphism"</code> Non-isomorphic MOLS are returned.</p>
+
+</li>
+</ul>
+<p><a id="X79190696821CB0EC" name="X79190696821CB0EC"></a></p>
+
+<h5>2.5-12 KramerMesnerMOLSParatopism</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; KramerMesnerMOLSParatopism</code>( <var class="Arg">n</var>, <var class="Arg">s</var>, <var class="Arg">G</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Search for MOLS sets of order <var class="Arg">n</var> and size <var class="Arg">s</var> with prescribed autoparatopism group <var class="Arg">G</var>. A record <var class="Arg">opt</var> with options can be supplied. By default, A.Wassermann's LLL solver <code class="code">solvediophant</code> is used and all constructed MOLS are returned, i.e. no filtering is performed. Available options are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Solver</var>:=<code class="code">"solvecm"</code> The backtracing solver <code class="code">solvecm</code> is used.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Isotopism"</code> Non-isotopic MOLS are returned.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Paratopism"</code> Non-paratopic MOLS are returned.</p>
+
+</li>
+<li><p><var class="Arg">Filter</var>:=<code class="code">"Isomorphism"</code> Non-isomorphic MOLS are returned.</p>
+
+</li>
+</ul>
+<p><a id="X79F7C22885C658DE" name="X79F7C22885C658DE"></a></p>
+
+<h4>2.6 <span class="Heading">Cubes of Symmetric Designs</span></h4>
+
+<p><a id="X796E426D877E220A" name="X796E426D877E220A"></a></p>
+
+<h5>2.6-1 DifferenceCube</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceCube</code>( <var class="Arg">G</var>, <var class="Arg">ds</var>, <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the <var class="Arg">d</var>-dimenional difference cube constructed from a difference set <var class="Arg">ds</var> in the group <var class="Arg">G</var>.</p>
+
+<p><a id="X7D20EEDC8566D8BF" name="X7D20EEDC8566D8BF"></a></p>
+
+<h5>2.6-2 GroupCube</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GroupCube</code>( <var class="Arg">G</var>, <var class="Arg">dds</var>, <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the <var class="Arg">d</var>-dimenional group cube constructed from a symmetric design <var class="Arg">dds</var> such that the blocks are difference sets in the group <var class="Arg">G</var>.</p>
+
+<p><a id="X7F4C2D7579CA223C" name="X7F4C2D7579CA223C"></a></p>
+
+<h5>2.6-3 CubeSlice</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeSlice</code>( <var class="Arg">C</var>, <var class="Arg">x</var>, <var class="Arg">y</var>, <var class="Arg">fixed</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a 2-dimensional slice of the cube <var class="Arg">C</var> obtained by varying coordinates in positions <var class="Arg">x</var> and <var class="Arg">y</var>, and taking fixed values for the remaining coordinates given in a list <var class="Arg">fixed</var>.</p>
+
+<p><a id="X7D2F947285ECC89F" name="X7D2F947285ECC89F"></a></p>
+
+<h5>2.6-4 CubeSlices</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeSlices</code>( <var class="Arg">C</var>[, <var class="Arg">x</var>, <var class="Arg">y</var>][, <var class="Arg">fixed</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns 2-dimensional slices of the cube <var class="Arg">C</var>. Optional arguments are the varying coordinates <var class="Arg">x</var> and <var class="Arg">y</var>, and values of the fixed coordinates in a list <var class="Arg">fixed</var>. If optional arguments are not given, all possibilities will be supplied. For a <span class="SimpleMath">d</span>-dimensional cube <var class="Arg">C</var> of order <span class="SimpleMath">v</span>, the following calls will return:</p>
+
+
+<ul>
+<li><p>CubeSlices( <var class="Arg">C</var>, <var class="Arg">x</var>, <var class="Arg">y</var> ) <span class="SimpleMath">... v^d-2</span> slices obtained by varying values of the fixed coordinates.</p>
+
+</li>
+<li><p>CubeSlices( <var class="Arg">C</var>, <var class="Arg">fixed</var> ) <span class="SimpleMath">... dchoose 2</span> slices obtained by varying the non-fixed coordinates <span class="SimpleMath">x &lt; y</span>.</p>
+
+</li>
+<li><p>CubeSlices( <var class="Arg">C</var> ) <span class="SimpleMath">... dchoose 2⋅ v^d-2</span> slices obtained by varying both the non-fixed coordinates <span class="SimpleMath">x &lt; y</span> and values of the fixed coordinates.</p>
+
+</li>
+</ul>
+<p><a id="X8214B28081B21BDE" name="X8214B28081B21BDE"></a></p>
+
+<h5>2.6-5 CubeToOrthogonalArray</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeToOrthogonalArray</code>( <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms the incidence cube <var class="Arg">C</var> to an equivalent orthogonal array.</p>
+
+<p><a id="X87C8CFE97ECDC3DA" name="X87C8CFE97ECDC3DA"></a></p>
+
+<h5>2.6-6 OrthogonalArrayToCube</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OrthogonalArrayToCube</code>( <var class="Arg">OA</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms the orthogonal array <var class="Arg">OA</var> to an equivalent incidence cube.</p>
+
+<p><a id="X8281E4697AA795A3" name="X8281E4697AA795A3"></a></p>
+
+<h5>2.6-7 CubeToTransversalDesign</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeToTransversalDesign</code>( <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms the incidence cube <var class="Arg">C</var> to an equivalent transversal design.</p>
+
+<p><a id="X7D717F98781699EF" name="X7D717F98781699EF"></a></p>
+
+<h5>2.6-8 TransversalDesignToCube</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TransversalDesignToCube</code>( <var class="Arg">TD</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms the transversal design <var class="Arg">TD</var> to an equivalent incidence cube.</p>
+
+<p><a id="X8699117579A6173C" name="X8699117579A6173C"></a></p>
+
+<h5>2.6-9 LatinSquareToCube</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LatinSquareToCube</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Transforms the Latin square <var class="Arg">L</var> to an equivalent incidence cube.</p>
+
+<p><a id="X7B79A7857DAD2FFE" name="X7B79A7857DAD2FFE"></a></p>
+
+<h5>2.6-10 CubeTest</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeTest</code>( <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Test whether an incidence cube <var class="Arg">C</var> is a cube of symmetric designs. The result should be <code class="code">[[v,k,lambda]]</code>. Anything else means that <var class="Arg">C</var> is not a <span class="SimpleMath">(v,k,lambda)</span> cube.</p>
+
+<p><a id="X7E1717C57A5F7865" name="X7E1717C57A5F7865"></a></p>
+
+<h5>2.6-11 CubeInvariant</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeInvariant</code>( <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes an equivalence invariant of the cube <var class="Arg">C</var> based on automorphism group sizes of its slices. Cubes equivalent under paratopy have the same invariant.</p>
+
+<p><a id="X7E96F84678D23676" name="X7E96F84678D23676"></a></p>
+
+<h5>2.6-12 CubeAut</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeAut</code>( <var class="Arg">C</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes the full auto(para)topy group of an incidence cube <var class="Arg">C</var>. Uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Isotopy</var>:=<code class="code">true</code>/<code class="code">false</code> Compute the full autotopy group of <var class="Arg">C</var>. This is the default.</p>
+
+</li>
+<li><p><var class="Arg">Paratopy</var>:=<code class="code">true</code>/<code class="code">false</code> Compute the full autoparatopy group of <var class="Arg">C</var>.</p>
+
+</li>
+</ul>
+<p>Any other components will be forwarded to the <code class="func">BlockDesignAut</code> (<a href="chap2.html#X805C0B9F831607DC"><span class="RefLink">2.4-1</span></a>) function; see its documentation.</p>
+
+<p><a id="X810B22E286D857C1" name="X810B22E286D857C1"></a></p>
+
+<h5>2.6-13 CubeFilter</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CubeFilter</code>( <var class="Arg">cl</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Eliminates equivalent copies from a list of incidence cubes <var class="Arg">cl</var>. Uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Paratopy</var>:=<code class="code">true</code>/<code class="code">false</code> Eliminate paratopic cubes. This is the default.</p>
+
+</li>
+<li><p><var class="Arg">Isotopy</var>:=<code class="code">true</code>/<code class="code">false</code> Eliminate isotopic cubes.</p>
+
+</li>
+</ul>
+<p>Any other components will be forwarded to the <code class="func">BlockDesignFilter</code> (<a href="chap2.html#X7C629C8280899316"><span class="RefLink">2.4-2</span></a>) function; see its documentation.</p>
+
+<p><a id="X7AD0B7D486954F10" name="X7AD0B7D486954F10"></a></p>
+
+<h4>2.7 <span class="Heading">Hadamard Matrices</span></h4>
+
+<p><a id="X801DEB1E7D5668E9" name="X801DEB1E7D5668E9"></a></p>
+
+<h5>2.7-1 HadamardMatAut</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HadamardMatAut</code>( <var class="Arg">H</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes the full automorphism group of a Hadamard matrix <var class="Arg">H</var>. Represents the matrix by a colored graph (see <a href="chapBib.html#biBBM79">[McK79]</a>) and uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Dual</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, dual automorphisms (transpositions) are also allowed. The default is <code class="code">false</code>.</p>
+
+</li>
+</ul>
+<p><a id="X7E0014F67EC9FC23" name="X7E0014F67EC9FC23"></a></p>
+
+<h5>2.7-2 HadamardMatFilter</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HadamardMatFilter</code>( <var class="Arg">hl</var>[, <var class="Arg">opt</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Eliminates equivalent copies from a list of Hadamard matrices <var class="Arg">hl</var>. Represents the matrices by colored graphs (see <a href="chapBib.html#biBBM79">[McK79]</a>) and uses <code class="code">nauty/Traces 2.8</code> by B.D.McKay and A.Piperno <a href="chapBib.html#biBMP14">[MP14]</a>. The optional argument <var class="Arg">opt</var> is a record for options. Possible components of <var class="Arg">opt</var> are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Dual</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, dual equivalence is allowed (i.e. the matrices can be transposed). The default is <code class="code">false</code>.</p>
+
+</li>
+<li><p><var class="Arg">Positions</var>:=<code class="code">true</code>/<code class="code">false</code> Return positions of inequivalent Hadamard matrices instead of the matrices themselves.</p>
+
+</li>
+</ul>
+<p><a id="X78E96F5385881B1B" name="X78E96F5385881B1B"></a></p>
+
+<h4>2.8 <span class="Heading">Global Options</span></h4>
+
+<p><a id="X8626782884DAC536" name="X8626782884DAC536"></a></p>
+
+<h5>2.8-1 PAGGlobalOptions</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PAGGlobalOptions</code></td><td class="tdright">(&nbsp;global variable&nbsp;)</td></tr></table></div>
+<p>A record with global options for the PAG package. Components are:</p>
+
+
+<ul>
+<li><p><var class="Arg">Silent</var>:=<code class="code">true</code>/<code class="code">false</code> If set to <code class="code">true</code>, functions such as SolveKramerMesner will not print comments reporting the progress of the calculation.</p>
+
+</li>
+<li><p><var class="Arg">TempDir</var>:=<code class="code">directory object</code> Temporary directory used to communicate with external programs.</p>
+
+</li>
+</ul>
+<p> </p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

@@ -1,0 +1,545 @@
+  
+  [1X1 [33X[0;0YThe PAG Package[133X[101X
+  
+  [33X[0;0Y[13XPrescribed  Automorphism  Groups[113X  ([5XPAG[105X)  is  a  [5XGAP[105X package for constructing
+  combinatorial objects with prescribed automorphism groups.[133X
+  
+  
+  [1X1.1 [33X[0;0YGetting Started[133X[101X
+  
+  [33X[0;0YThe package is loaded by[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage("PAG"); [127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YLet  us  present  a  small  example  from the paper [Krc18]. In Theorem 8.1,
+  simple  5-(16,7,10)  designs  with  the  following  automorphism  group were
+  constructed.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=Group((2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), [127X[104X
+    [4X[25X>[125X [27X(1,5)(2,12)(3,15)(4,8)(6,14)(7,16)(9,10)(11,13));[127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThey can be obtained by typing[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XKramerMesnerSearch(5,16,7,10,g);[127X[104X
+    [4X[28XComputing t-subset orbit representatives...[128X[104X
+    [4X[28X28[128X[104X
+    [4X[28XComputing k-subset orbit representatives...[128X[104X
+    [4X[28X71[128X[104X
+    [4X[28XComputing the Kramer-Mesner matrix...[128X[104X
+    [4X[28X[ 29, 72 ][128X[104X
+    [4X[28XStarting solver...[128X[104X
+    [4X[28XNo BOUNDS [128X[104X
+    [4X[28XThe RHS is fixed ![128X[104X
+    [4X[28XNo upper bounds: 0/1 variables are assumed [128X[104X
+    [4X[28X[128X[104X
+    [4X[28XOrthogonal defect: 26.953339[128X[104X
+    [4X[28XFirst reduction successful[128X[104X
+    [4X[28XOrthogonal defect: 20.216092[128X[104X
+    [4X[28XSecond reduction successful[128X[104X
+    [4X[28X.[128X[104X
+    [4X[28X.[128X[104X
+    [4X[28X.[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YComments during the calculation can be supressed by setting global options.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XPAGGlobalOptions.Silent:=true;[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XKramerMesnerSearch(5,16,7,10,g);[127X[104X
+    [4X[28X[ [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 8, 9 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 9, 10 ], [ 1, 2, 3, 5, 6, 9, 12 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 10, 15 ], [ 1, 2, 3, 5, 6, 14, 16 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 16 ], [128X[104X
+    [4X[28X	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], [128X[104X
+    [4X[28X	[ 1, 2, 5, 6, 7, 14, 15 ] ], [128X[104X
+    [4X[28X    [ [ 1, 2, 3, 4, 5, 6, 8 ], [ 1, 2, 3, 4, 5, 6, 14 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 9, 12 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 10, 12 ], [ 1, 2, 3, 5, 6, 10, 16 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 6, 12, 13 ], [ 1, 2, 3, 5, 6, 14, 15 ], [128X[104X
+    [4X[28X	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 9 ], [128X[104X
+    [4X[28X	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], [128X[104X
+    [4X[28X	[ 1, 2, 5, 6, 11, 14, 16 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  output  is  a list of base blocks for two designs. There are options to
+  get  them  in  the  [5XDesign[105X package format [14X'DESIGN: Design'[114X. Then we can also
+  check that they are really 5-designs.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xd:=KramerMesnerSearch(5,16,7,10,g,rec(Design:=true));;[127X[104X
+    [4X[25Xgap>[125X [27XList(d,AllTDesignLambdas);[127X[104X
+    [4X[28X[ [ 2080, 910, 364, 130, 40, 10 ], [ 2080, 910, 364, 130, 40, 10 ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe two designs are in fact isomorphic.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xd:=KramerMesnerSearch(5,16,7,10,g,rec(NonIsomorphic:=true));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(d);[127X[104X
+    [4X[28X1[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe        option       [10XNonIsomorphic[110X       applies       the       function
+  [2XBlockDesignIsomorphismClassRepresentatives[102X                          ([14XDESIGN:
+  BlockDesignIsomorphismClassRepresentatives[114X) to the constructed designs.[133X
+  
+  
+  [1X1.2 [33X[0;0YInstallation[133X[101X
+  
+  [33X[0;0YThe [5XPAG[105X package requires [5XGAP[105X 4.11 and the following packages:[133X
+  
+  [30X    [33X[0;6Y[5XImages[105X 1.3[133X
+  
+  [30X    [33X[0;6Y[5XGRAPE[105X 4.8[133X
+  
+  [30X    [33X[0;6Y[5XDesign[105X 1.7[133X
+  
+  [33X[0;0YThe  following packages are also loaded, if available. They are needed for a
+  limited number of [5XPAG[105X functions.[133X
+  
+  [30X    [33X[0;6Y[5XAssociationSchemes[105X 2.0[133X
+  
+  [30X    [33X[0;6Y[5XDifSets[105X 2.3.1[133X
+  
+  [30X    [33X[0;6Y[5XGUAVA[105X 3.15[133X
+  
+  [33X[0;0YTo  install  [5XPAG[105X,  copy  and unpack the package to the [11Xpkg[111X directory of your
+  local  [5XGAP[105X installation. The package uses external binaries. To compile them
+  on UNIX-like environments, change to the [11Xpkg/PAG-*[111X directory and call[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X$ ./configure.sh[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThis produces a [11XMakefile[111X in the current directory. Now call[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X$ make all[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0Yto   compile   the  binares.  They  are  placed  in  the  [11Xbin[111X  subdirectory.
+  Documentation in the [11Xdoc[111X subdirectory is already compiled and can be read in
+  PDF,  html or from within [5XGAP[105X. To recompile the documentation, call [5XGAP[105X with
+  the [11Xmakedoc.g[111X file.[133X
+  
+  [33X[0;0YInstallations  files  for  [5XPAG[105X  are  available  from the authors. If you are
+  interested, please write to [7Xmailto:vedran.krcadinac@math.hr[107X.[133X
+  
+  
+  [1X1.3 [33X[0;0YExamples: Designs[133X[101X
+  
+  [33X[0;0YThe  [5XPAG[105X  function  [10XKramerMesnerSearch[110X  performs a search for [22Xt[122X-designs with
+  given  parameters  and  a given permutation group as group of automorphisms.
+  See the paper by B. Schmalz [Sch93] for an introduction to the Kramer-Mesner
+  approach  to  constructing  [22Xt[122X-designs.  Our first two examples are from this
+  paper.[133X
+  
+  
+  [1X1.3-1 [33X[0;0Y6-(14,7,4) Designs[133X[101X
+  
+  [33X[0;0YThe summary about known 6-designs on page 130 of [Sch93] mentions that there
+  are  exactly  two 6-(14,7,4) designs with cyclic derived designs. This means
+  that  the  two  6-designs  have  automorphisms  of  order  13.  They  can be
+  constructed with the following [5XGAP[105X commands.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=Group(CyclicPerm(13));[127X[104X
+    [4X[28XGroup([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ])[128X[104X
+    [4X[25Xgap>[125X [27Xd:=KramerMesnerSearch(6,14,7,4,g,rec(NonIsomorphic:=true));;[127X[104X
+    [4X[25Xgap>[125X [27XList(d,AllTDesignLambdas);[127X[104X
+    [4X[28X[ [ 1716, 858, 396, 165, 60, 18, 4 ], [ 1716, 858, 396, 165, 60, 18, 4 ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  solver  quickly finds 24 solutions of the Kramer-Mesner system. Most of
+  the  computation  time is used to eliminate isomorphic designs. Both designs
+  have [22Xℤ_13[122X as their full automorphism group.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XList(d,AutomorphismGroup);[127X[104X
+    [4X[28X[ Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]), [128X[104X
+    [4X[28X  Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]) ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X1.3-2 [33X[0;0Y6-(28,8,[22Xλ[122X[101X[1X) Designs[133X[101X
+  
+  [33X[0;0YIn  [Sch93],  the  existence of 6-(28,8,[22Xλ[122X) designs was established for [22Xλ=42[122X,
+  63,  84, and 105. The exact numbers of these designs with automorphism group
+  [22XPΓ  L(2,27)[122X  were  computed.  While the projective general linear groups are
+  readily  available  in  [5XGAP[105X  through  the [10XPGL[110X command, there seemst to be no
+  equivalent  command  for semilinear groups. Using the [5XFinInG[105X package, we can
+  get [22XPΓ L(2,27)[122X as the collineation group of the projective line over [22XGF(27)[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage("FinInG");[127X[104X
+    [4X[25Xgap>[125X [27Xg1:=CollineationGroup(ProjectiveSpace(1,27));[127X[104X
+    [4X[28XThe FinInG collineation group PGammaL(2,27)[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YWe need a permutation representation of this group on 28 points.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=Image(ActionOnAllProjPoints(g1));[127X[104X
+    [4X[28XGroup([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5), [128X[104X
+    [4X[28X  (1,2,4)(5,8,24)(6,21,10)(7,16,15)(9,25,28)(11,13,14)(12,27,23)(17,26,18)[128X[104X
+    [4X[28X  (19,20,22), (5,7,13)(6,10,21)(8,16,14)(9,18,22)(11,24,15)(12,27,23)(17,19,25)[128X[104X
+    [4X[28X  (20,28,26) ])[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAlternatively,  we  can  get  the  group from the library of small primitive
+  permutation groups.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XPrimitiveGroupsOfDegree(28);[127X[104X
+    [4X[28X[ PGL(2, 7), PSL(2, 8), PGammaL(2, 8), PSU(3, 3), PGammaU(3, 3), PSp(6, 2), A(8), [128X[104X
+    [4X[28X  S(8), PSL(2, 27), PGL(2, 27), PSL(2, 27):3, PGammaL(2, 27), A(28), S(28) ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YNow we can construct the designs with [22Xλ=42[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xd:=KramerMesnerSearch(6,28,8,42,g);;[127X[104X
+    [4X[28XComputing t-subset orbit representatives...[128X[104X
+    [4X[28X14[128X[104X
+    [4X[28XComputing k-subset orbit representatives...[128X[104X
+    [4X[28X72[128X[104X
+    [4X[28XComputing the Kramer-Mesner matrix...[128X[104X
+    [4X[28X.[128X[104X
+    [4X[28X.[128X[104X
+    [4X[28X.[128X[104X
+    [4X[28XLoops: 27732[128X[104X
+    [4X[28XTotal number of solutions: 3[128X[104X
+    [4X[28X[128X[104X
+    [4X[28Xtotal enumeration time: 0:00:00[128X[104X
+    [4X[25Xgap>[125X [27XSize(d);[127X[104X
+    [4X[28X4[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YNotice  that A. Wassermann's LLL solver [Was98] reports finding 3 solutions,
+  but  we  get 4 sets of base blocks. That's because the solver may return the
+  same solution more than once. Here is how to get rid of multiple solutions.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XSize(AsSet(d));[127X[104X
+    [4X[28X3[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YMost  of  the  CPU  time  in  the  example  above  was  used  to compute the
+  Kramer-Mesner  matrix. The left-hand side of the Kramer-Mesner system is the
+  same matrix for all [22Xλ[122X, so we can compute it once and reuse it to save time.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xtsub:=SubsetOrbitRep(g,28,6);;[127X[104X
+    [4X[25Xgap>[125X [27Xksub:=SubsetOrbitRep(g,28,8);;[127X[104X
+    [4X[25Xgap>[125X [27Xm:=KramerMesnerMat(g,tsub,ksub);;[127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YNow we can quickly get the exact numbers of designs from the paper [Sch93].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XPAGGlobalOptions.Silent:=true;[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XSize(AsSet(SolveKramerMesner(ExpandMatRHS(m,42))));[127X[104X
+    [4X[28X3[128X[104X
+    [4X[25Xgap>[125X [27XSize(AsSet(SolveKramerMesner(ExpandMatRHS(m,63))));[127X[104X
+    [4X[28X367[128X[104X
+    [4X[25Xgap>[125X [27XSize(AsSet(SolveKramerMesner(ExpandMatRHS(m,84))));[127X[104X
+    [4X[28X21743[128X[104X
+    [4X[25Xgap>[125X [27XSize(AsSet(SolveKramerMesner(ExpandMatRHS(m,105))));[127X[104X
+    [4X[28X38277[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X1.3-3 [33X[0;0Y2-(81,6,2) Designs[133X[101X
+  
+  [33X[0;0YThe  first  simple 2-(81,6,2) design was recently found by A. Nakic [Nak21].
+  Here are the base blocks of this design copy-pasted from the paper.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xbb:=[[[0,0,0,0],[0,0,0,1],[0,0,0,2],[0,1,0,0],[0,1,0,1],[0,1,0,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[0,0,1,1],[0,0,2,2],[2,1,0,0],[2,1,1,1],[2,1,2,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[0,1,1,1],[0,2,2,2],[0,0,1,0],[0,1,2,1],[0,2,0,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[0,1,2,0],[0,2,1,0],[2,0,2,1],[2,1,1,1],[2,2,0,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,0,0,0],[2,0,0,0],[0,2,2,1],[1,2,2,1],[2,2,2,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,0,1,0],[2,0,2,0],[0,1,0,0],[1,1,1,0],[2,1,2,0]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,0,1,1],[2,0,2,2],[0,0,2,0],[1,0,0,1],[2,0,1,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,0,2,0],[2,0,1,0],[0,2,1,1],[1,2,0,1],[2,2,2,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,0,2,2],[2,0,1,1],[0,1,2,1],[1,1,1,0],[2,1,0,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,1,0,0],[2,2,0,0],[0,2,0,1],[1,0,0,1],[2,1,0,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,1,0,1],[2,2,0,2],[0,2,2,0],[1,0,2,1],[2,1,2,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,1,2,0],[2,2,1,0],[0,0,2,1],[1,1,1,1],[2,2,0,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,1,2,1],[2,2,1,2],[0,2,1,1],[1,0,0,2],[2,1,2,0]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,1,2,2],[2,2,1,1],[0,2,2,0],[1,0,1,2],[2,1,0,1]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,2,1,2],[2,1,2,1],[0,0,2,1],[1,2,0,0],[2,1,1,2]],[127X[104X
+    [4X[25X>[125X [27X[[0,0,0,0],[1,2,2,0],[2,1,1,0],[0,2,2,1],[1,1,1,1],[2,0,0,1]]]*Z(3)^0;;[127X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  points  of this design are elements of the 4-dimensional vector space [22XV[122X
+  over [22XGF(3)[122X. Here is how to get the desing in the [5XDesign[105X package format.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XV:=Tuples([0,1,2],4)*Z(3)^0;;[127X[104X
+    [4X[25Xgap>[125X [27Xd1:=Union(List(bb,y->List(V,x->AsSet(x+y))));;[127X[104X
+    [4X[25Xgap>[125X [27Xd:=BlockDesign(81,List(d1,y->List(y,x->Position(V,x))));;[127X[104X
+    [4X[25Xgap>[125X [27XAllTDesignLambdas(d);[127X[104X
+    [4X[28X[ 432, 32, 2 ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  full  automorphism  group  of  the  design  is  of  order  2592. It's a
+  semidirect product of the additive group of [22XV[122X and a group of order 32.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xaut:=AutomorphismGroup(d);[127X[104X
+    [4X[28X<permutation group with 4 generators>[128X[104X
+    [4X[25Xgap>[125X [27XSize(aut);[127X[104X
+    [4X[28X2592[128X[104X
+    [4X[25Xgap>[125X [27XStructureDescription(aut);[127X[104X
+    [4X[28X"(C3 x C3 x C3 x C3) : (C16 : C2)"[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThis  group  has  three subgroups of order 648 up to conjugation. We can use
+  the second subgroup to construct four more simple 2-(81,6,2) designs.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=Filtered(AllSubgroupsConjugation(aut),x->Size(x)=648);[127X[104X
+    [4X[28X[ <permutation group of size 648 with 7 generators>, [128X[104X
+    [4X[28X  <permutation group of size 648 with 7 generators>, [128X[104X
+    [4X[28X  <permutation group of size 648 with 7 generators> ][128X[104X
+    [4X[25Xgap>[125X [27Xdd:=KramerMesnerSearch(2,81,6,2,g[2],rec(NonIsomorphic:=true));;[127X[104X
+    [4X[25Xgap>[125X [27XList(dd,x->Size(AutomorphismGroup(x)));[127X[104X
+    [4X[28X[ 1944, 15552, 1296, 2592, 3888 ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YTwo  of  the  new  designs  have larger full automorphism groups than design
+  from [Nak21].  Using  their subgroups, more simple 2-(81,6,2) designs can be
+  constructed.[133X
+  
+  
+  [1X1.3-4 [33X[0;0YQuasi-symmetric 2-(56,16,18) Designs[133X[101X
+  
+  [33X[0;0YHere  is  how  the  quasi-symmetric  2-(56,16,18)  designs with intersection
+  numbers [22Xx=4[122X, [22Xy=8[122X from the paper [KV16] can be constructed.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=Group((1,2,3,4,5)(6,7,8,9,10)(11,12,13,14,15)(16,17,18,19,20)[127X[104X
+    [4X[25X>[125X [27X  (21,22,23,24,25)(26,27,28,29,30)(31,32,33,34,35)(36,37,38,39,40)[127X[104X
+    [4X[25X>[125X [27X  (41,42,43,44,45)(46,47,48,49,50)(51,52,53,54,55),[127X[104X
+    [4X[25X>[125X [27X(1,6,8)(2,21,26)(3,32,34)(4,11,5)(7,15,22)(9,16,13)(10,29,17)[127X[104X
+    [4X[25X>[125X [27X  (12,33,30)(14,19,31)(18,23,35)(24,28,36)(25,37,39)(27,38,40)[127X[104X
+    [4X[25X>[125X [27X  (42,51,49)(43,52,45)(44,46,47)(48,54,53)(50,56,55));[127X[104X
+    [4X[28X<permutation group with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xd:=KramerMesnerSearch(2,56,16,18,g,rec(NonIsomorphic:=true,[127X[104X
+    [4X[25X>[125X [27XIntersectionNumbers:=[4,8]));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(d);[127X[104X
+    [4X[28X3[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YWe  check  that they have all the required properties and compute their full
+  automorphism groups:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XList(d,AllTDesignLambdas);[127X[104X
+    [4X[28X[ [ 231, 66, 18 ], [ 231, 66, 18 ], [ 231, 66, 18 ] ][128X[104X
+    [4X[25Xgap>[125X [27XList(d,IntersectionNumbers);[127X[104X
+    [4X[28X[ [ 4, 8 ], [ 4, 8 ], [ 4, 8 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xaut:=List(d,AutomorphismGroup);;[127X[104X
+    [4X[25Xgap>[125X [27XList(aut,StructureDescription);[127X[104X
+    [4X[28X[ "PSL(3,4) : C2", "(C2 x C2 x C2 x C2) : A5", "(C2 x C2 x C2 x C2) : S5" ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X1.4 [33X[0;0YExamples: Latin Squares[133X[101X
+  
+  
+  [1X1.5 [33X[0;0YExamples: Cubes of Symmetric Designs[133X[101X
+  
+  [33X[0;0YCubes  of  symmetric  designs  were  introduced  in  [KPT23].  Here  is  the
+  motivational example.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xc:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);[127X[104X
+    [4X[28X[ [ [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X     [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X     [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X     [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X     [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X     [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X     [ 0, 1, 1, 0, 1, 0, 0 ] ], [128X[104X
+    [4X[28X  [ [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X     [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X     [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X     [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X     [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X     [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X     [ 1, 1, 0, 1, 0, 0, 0 ] ], [128X[104X
+    [4X[28X  [ [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 1, 0, 0, 0, 1 ] ], [128X[104X
+    [4X[28X  [ [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 1 ] ], [128X[104X
+    [4X[28X  [ [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 1, 1, 0 ] ], [128X[104X
+    [4X[28X  [ [ 0, 0, 1, 1, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 1, 1, 0, 1 ] ], [128X[104X
+    [4X[28X  [ [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 1, 0, 1, 0 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThis  is a [22X3[122X-dimensional array of zeros and ones such that all [22X2[122X-dimensional
+  slices  are incidence matrices of the [22X(7,3,1)[122X design. For example, here is a
+  slice obtained by varying coordinates [22X1,3[122X and setting coordinate [22X2[122X to [22X7[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xm:=CubeSlice(c,1,3,[7]);[127X[104X
+    [4X[28X[ [ 0, 1, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 0, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X  [ 0, 1, 0, 0, 0, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 0, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X  [ 0, 0, 0, 1, 1, 0, 1 ], [128X[104X
+    [4X[28X  [ 0, 0, 1, 1, 0, 1, 0 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xm*TransposedMat(m);[127X[104X
+    [4X[28X[ [ 3, 1, 1, 1, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 3, 1, 1, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 3, 1, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 3, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1, 3, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1, 1, 3, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1, 1, 1, 3 ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YFor  any [22Xdge 2[122X, a [22Xd[122X-dimensional cube of symmetric designs can be constructed
+  from a difference set. We use the representation of difference sets from the
+  [5XDifSets[105X  package  [14X'DifSets: Difference Sets'[114X. For [22Xd=2[122X, the cube is simply an
+  incidence matrix of the associated symmetric design.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=SmallGroup(15,1);[127X[104X
+    [4X[28X<pc group of size 15 with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xds:=DifferenceSets(g);[127X[104X
+    [4X[28X[ [ 1, 2, 3, 4, 8, 11, 12 ] ][128X[104X
+    [4X[25Xgap>[125X [27XDifferenceCube(g,ds[1],2);[127X[104X
+    [4X[28X[ [ 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X  [ 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X  [ 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0 ], [128X[104X
+    [4X[28X  [ 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1 ], [128X[104X
+    [4X[28X  [ 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X  [ 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0 ], [128X[104X
+    [4X[28X  [ 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X  [ 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X  [ 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X  [ 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YHere is a small [22X4[122X-dimensional [22X(3,2,1)[122X cube.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XDifferenceCube(Group((1,2,3)),[1,2],4);[127X[104X
+    [4X[28X[ [ [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], [128X[104X
+    [4X[28X      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], [128X[104X
+    [4X[28X      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ] ], [128X[104X
+    [4X[28X  [ [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], [128X[104X
+    [4X[28X      [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], [128X[104X
+    [4X[28X      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ] ], [128X[104X
+    [4X[28X  [ [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], [128X[104X
+    [4X[28X      [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], [128X[104X
+    [4X[28X      [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YHere  are  all [22X3[122X-dimensional difference cubes constructed from the groups of
+  order [22X21[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xg:=AllSmallGroups(21);;[127X[104X
+    [4X[25Xgap>[125X [27XList(g,StructureDescription);[127X[104X
+    [4X[28X[ "C7 : C3", "C21" ][128X[104X
+    [4X[25Xgap>[125X [27Xds:=List(g,DifferenceSets);[127X[104X
+    [4X[28X[ [ [ 1, 2, 3, 9, 10 ] ], [ [ 1, 2, 7, 10, 16 ] ] ][128X[104X
+    [4X[25Xgap>[125X [27Xc1:=DifferenceCube(g[1],ds[1][1],3);;[127X[104X
+    [4X[25Xgap>[125X [27Xc2:=DifferenceCube(g[2],ds[2][1],3);;[127X[104X
+    [4X[25Xgap>[125X [27XSize(CubeAut(c1));[127X[104X
+    [4X[28X1323[128X[104X
+    [4X[25Xgap>[125X [27XSize(CubeAut(c2));[127X[104X
+    [4X[28X2646[128X[104X
+    [4X[25Xgap>[125X [27XList([c1,c2],CubeTest);[127X[104X
+    [4X[28X[ [ [ 21, 5, 1 ] ], [ [ 21, 5, 1 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YWe  can  make  a  non-difference  cube by the "group cube" construction from
+  [KPT23]  (Theorem  4.1). First we find all [22X(21,5,1)[122X designs whose blocks are
+  difference sets in the Frobenius group of order [22X21[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xallds:=Filtered(Combinations([1..21],5),x->IsDifferenceSet(g[1],x));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(allds);[127X[104X
+    [4X[28X294[128X[104X
+    [4X[25Xgap>[125X [27XA:=KramerMesnerMat(Group(()),Combinations([1..21],2),allds,1,21);;[127X[104X
+    [4X[25Xgap>[125X [27XPAGGlobalOptions.Silent:=true;;[127X[104X
+    [4X[25Xgap>[125X [27Xsol:=AsSet(SolveKramerMesner(A));;[127X[104X
+    [4X[25Xgap>[125X [27Xdes:=List(sol,x->BaseBlocks(allds,x));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(des);[127X[104X
+    [4X[28X70[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAmong  these  [22X70[122X  designs,  [22X14[122X  are  left  developments,  and  [22X14[122X  are right
+  developments.  There  are  [22X42[122X  designs that are not developments, but all of
+  their blocks are difference sets.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xdev1:=AsSet(List(allds,x->LeftDevelopment(g[1],x).blocks));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(dev1);[127X[104X
+    [4X[28X14[128X[104X
+    [4X[25Xgap>[125X [27Xdev2:=AsSet(List(allds,x->RightDevelopment(g[1],x).blocks));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(dev2);[127X[104X
+    [4X[28X14[128X[104X
+    [4X[25Xgap>[125X [27Xnondev:=Difference(des,Union(dev1,dev2));;[127X[104X
+    [4X[25Xgap>[125X [27XSize(nondev);[127X[104X
+    [4X[28X42[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YNow we apply the group cube construction to any one of these [22X42[122X designs.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xc3:=GroupCube(g[1],nondev[1],3);;[127X[104X
+    [4X[25Xgap>[125X [27XCubeTest(c3);[127X[104X
+    [4X[28X[ [ 21, 5, 1 ] ][128X[104X
+    [4X[25Xgap>[125X [27XSize(CubeAut(c3));[127X[104X
+    [4X[28X441[128X[104X
+  [4X[32X[104X
+  

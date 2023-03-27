@@ -1,0 +1,117 @@
+# makefile
+CC ?= gcc
+GAPARCH=@GAPARCH@
+CFLAGS= -O6 -Wall -malign-double -ffast-math -funroll-all-loops -fomit-frame-pointer -finline-functions
+NAUTYPATH=src/nauty2_8_6
+NAUTYPATHold=src/nauty27r4
+
+all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/molsaut bin/$(GAPARCH)/molsfilter bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter
+
+bin/$(GAPARCH): src/nautil.c
+	        mkdir -p bin/$(GAPARCH)
+		cp src/nautil.c $(NAUTYPATHold)
+
+bin/$(GAPARCH)/sol2gap: src/sol2gap.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/sol2gap src/sol2gap.c $(CFLAGS)
+
+bin/$(GAPARCH)/solvecm: src/solvecm.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/solvecm src/solvecm.c $(CFLAGS)
+
+bin/$(GAPARCH)/togapmat: src/togapmat.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/togapmat src/togapmat.c $(CFLAGS)
+
+bin/$(GAPARCH)/blockint: src/blockint.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/blockint src/blockint.c $(CFLAGS)
+
+bin/$(GAPARCH)/delgen: src/delgen.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/delgen src/delgen.c $(CFLAGS)
+
+bin/$(GAPARCH)/solvediophant: src/diophant.o src/diophant.h bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/solvediophant src/solvediophant.c src/diophant.o -lm 
+
+src/diophant.o: src/diophant.c 
+	        $(CC) $(CFLAGS) -c -o src/diophant.o src/diophant.c
+
+$(NAUTYPATHold)/naugraph.o: $(NAUTYPATHold)/naugraph.c $(NAUTYPATHold)/nauty.h
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/naugraph.o $(NAUTYPATHold)/naugraph.c
+
+$(NAUTYPATHold)/naurng.o: $(NAUTYPATHold)/naurng.c $(NAUTYPATHold)/naurng.h
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/naurng.o $(NAUTYPATHold)/naurng.c
+
+$(NAUTYPATHold)/nautil.o: $(NAUTYPATHold)/nautil.c $(NAUTYPATHold)/nauty.h 
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/nautil.o $(NAUTYPATHold)/nautil.c
+
+$(NAUTYPATHold)/nautinv.o: $(NAUTYPATHold)/nautinv.c $(NAUTYPATHold)/nautinv.h 
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/nautinv.o $(NAUTYPATHold)/nautinv.c
+
+$(NAUTYPATHold)/nauty.o: $(NAUTYPATHold)/nauty.c $(NAUTYPATHold)/nauty.h $(NAUTYPATHold)/schreier.h
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/nauty.o $(NAUTYPATHold)/nauty.c
+
+$(NAUTYPATHold)/schreier.o: $(NAUTYPATHold)/schreier.c $(NAUTYPATHold)/schreier.h
+	        $(CC) $(CFLAGS) -c -o $(NAUTYPATHold)/schreier.o $(NAUTYPATHold)/schreier.c
+
+$(NAUTYPATHold)/molsaut.c: src/molsaut.c
+	        cp src/molsaut.c $(NAUTYPATHold)
+
+bin/$(GAPARCH)/molsaut: $(NAUTYPATHold)/molsaut.c $(NAUTYPATHold)/naugraph.o $(NAUTYPATHold)/naurng.o $(NAUTYPATHold)/nautil.o $(NAUTYPATHold)/nautinv.o $(NAUTYPATHold)/nauty.o $(NAUTYPATHold)/schreier.o bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/molsaut $(NAUTYPATHold)/molsaut.c $(NAUTYPATHold)/naugraph.o $(NAUTYPATHold)/naurng.o $(NAUTYPATHold)/nautil.o $(NAUTYPATHold)/nautinv.o $(NAUTYPATHold)/nauty.o $(NAUTYPATHold)/schreier.o
+
+$(NAUTYPATHold)/molsfilter.c: src/molsfilter.c
+	        cp src/molsfilter.c $(NAUTYPATHold)
+
+bin/$(GAPARCH)/molsfilter: $(NAUTYPATHold)/molsfilter.c $(NAUTYPATHold)/naugraph.o $(NAUTYPATHold)/naurng.o $(NAUTYPATHold)/nautil.o $(NAUTYPATHold)/nautinv.o $(NAUTYPATHold)/nauty.o $(NAUTYPATHold)/schreier.o bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/molsfilter $(NAUTYPATHold)/molsfilter.c $(NAUTYPATHold)/naugraph.o $(NAUTYPATHold)/naurng.o $(NAUTYPATHold)/nautil.o $(NAUTYPATHold)/nautinv.o $(NAUTYPATHold)/nauty.o $(NAUTYPATHold)/schreier.o
+
+$(NAUTYPATH)/bdaut.c: src/bdaut.c
+	        cp src/bdaut.c $(NAUTYPATH)
+
+$(NAUTYPATH)/bdautsp.c: src/bdautsp.c
+	        cp src/bdautsp.c $(NAUTYPATH)
+
+$(NAUTYPATH)/bdauttr.c: src/bdauttr.c
+	        cp src/bdauttr.c $(NAUTYPATH)
+
+$(NAUTYPATH)/hadaut.c: src/hadaut.c
+	        cp src/hadaut.c $(NAUTYPATH)
+
+$(NAUTYPATH)/bdfiltersp.c: src/bdfiltersp.c
+	        cp src/bdfiltersp.c $(NAUTYPATH)
+
+$(NAUTYPATH)/bdfiltertr.c: src/bdfiltertr.c
+	        cp src/bdfiltertr.c $(NAUTYPATH)
+
+$(NAUTYPATH)/hadfilter.c: src/hadfilter.c
+	        cp src/hadfilter.c $(NAUTYPATH)
+
+$(NAUTYPATH)/nauty.a: $(NAUTYPATH)/configure 
+	        cd $(NAUTYPATH) && ./configure
+	        cd $(NAUTYPATH) && make
+
+bin/$(GAPARCH)/bdaut: $(NAUTYPATH)/bdaut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdaut $(NAUTYPATH)/bdaut.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/bdautsp: $(NAUTYPATH)/bdautsp.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdautsp $(NAUTYPATH)/bdautsp.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/bdauttr: $(NAUTYPATH)/bdauttr.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdauttr $(NAUTYPATH)/bdauttr.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/hadaut: $(NAUTYPATH)/hadaut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/hadaut $(NAUTYPATH)/hadaut.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/bdfiltersp: $(NAUTYPATH)/bdfiltersp.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdfiltersp $(NAUTYPATH)/bdfiltersp.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/bdfiltertr: $(NAUTYPATH)/bdfiltertr.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdfiltertr $(NAUTYPATH)/bdfiltertr.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/hadfilter: $(NAUTYPATH)/hadfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/hadfilter $(NAUTYPATH)/hadfilter.c $(NAUTYPATH)/nauty.a 
+
+clean:
+	        rm -rf bin
+	        rm -f src/*.o 
+	        rm -f $(NAUTYPATHold)/*.o 
+	        rm -f $(NAUTYPATH)/*.o 
+	        rm -f Makefile
+

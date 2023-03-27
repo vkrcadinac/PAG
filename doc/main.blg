@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: alpha.bst
+Database file #1: bib.xml.bib
+Repeated entry---line 25 of file bib.xml.bib
+ : @article{ KV16
+ :               ,
+I'm skipping whatever remains of this entry
+You've used 10 entries,
+            2543 wiz_defined-function locations,
+            631 strings with 5706 characters,
+and the built_in function-call counts, 4594 in all, are:
+= -- 464
+> -- 147
+< -- 5
++ -- 48
+- -- 46
+* -- 376
+:= -- 729
+add.period$ -- 31
+call.type$ -- 10
+change.case$ -- 57
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 144
+empty$ -- 382
+format.name$ -- 61
+if$ -- 938
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 54
+num.names$ -- 30
+pop$ -- 33
+preamble$ -- 1
+purify$ -- 67
+quote$ -- 0
+skip$ -- 117
+stack$ -- 0
+substring$ -- 543
+swap$ -- 10
+text.length$ -- 5
+text.prefix$ -- 5
+top$ -- 0
+type$ -- 80
+warning$ -- 0
+while$ -- 34
+width$ -- 13
+write$ -- 133
+(There was 1 error message)

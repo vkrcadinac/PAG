@@ -1,0 +1,38 @@
+The inputfile format for solving
+		A times x = b
+where A has k rows and n columns,
+and the variable x_i is bounded by 0<= x_i <= u_i
+
+Be careful with trivial upper bounds (0<=u_i<=0)!
+
+Example:
+---------------------------------------
+k n 1
+A b
+
+BOUNDS n
+u_1 u_2 ... u_n
+---------------------------------------
+
+The program is called with:
+
+solvediophant -c10000 -bkz -beta80 -p18 -osolutionfile inputfile
+
+e.g.:
+solvediophant -c10000 -bkz -beta80 -p18 -osolutionfile 145.txt
+
+If you want to stop the program after a finding m solutions include
+% stopafter m
+before the dimensions, e.g.:
+---------------------------------------
+% stopafter 1
+k n 1
+A b
+
+BOUNDS n
+u_1 u_2 ... u_n
+---------------------------------------
+
+This is the single precision version of solvediophant,
+so keep the lcm(u_1,...,u_n) small.
+

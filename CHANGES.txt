@@ -1,0 +1,7 @@
+Version 0.0.1: 29/03/2022
+  First created. 
+Version 0.1: 02/05/2022
+  Basic Kramer-Mesner method for t-designs implemented. 
+Version 0.2: 27/03/2023
+  Functionality for quasi-symmetric designs and cubes of symmetric designs added. 
+  Basic functionality for latin squares and Hadamard matrices added.

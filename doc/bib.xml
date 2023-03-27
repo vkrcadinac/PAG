@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE file SYSTEM "bibxmlext.dtd">
+<file>
+
+<entry id="KVK21"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Renata</first><last>Vlahovic Kruc</last></name>
+  </author>
+  <title>Quasi-symmetric designs on 56 points</title>
+  <journal>Adv. Math. Commun.</journal>
+  <year>2021</year>
+  <volume>15</volume>
+  <number>4</number>
+  <pages>633&ndash;646</pages>
+</article></entry>
+
+<entry id="KV16"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Renata</first><last>Vlahovic</last></name>
+  </author>
+  <title>New quasi-symmetric designs by the Kramer-Mesner method</title>
+  <journal>Discrete Math.</journal>
+  <year>2016</year>
+  <volume>339</volume>
+  <number>12</number>
+  <pages>2884&ndash;2890</pages>
+</article></entry>
+
+<entry id="KV16"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Renata</first><last>Vlahovic</last></name>
+  </author>
+  <title>New quasi-symmetric designs by the Kramer-Mesner method</title>
+  <journal>Discrete Math.</journal>
+  <year>2016</year>
+  <volume>339</volume>
+  <number>12</number>
+  <pages>2884&ndash;2890</pages>
+</article></entry>
+
+<entry id="VK18"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+  </author>
+  <title>Some new designs with prescribed automorphism groups</title>
+  <journal>J. Combin. Des.</journal>
+  <year>2018</year>
+  <volume>26</volume>
+  <number>4</number>
+  <pages>193&ndash;200</pages>
+</article></entry>
+
+<entry id="KNP11"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Anamari</first><last>Nakic</last></name>
+    <name><first>Mario Osvin</first><last>Pavcevic</last></name>
+  </author>
+  <title><C>The Kramer-Mesner method with tactical decompositions: some new unitals on 65 points</C></title>
+  <journal>J. Combin. Des.</journal>
+  <year>2011</year>
+  <volume>19</volume>
+  <number>4</number>
+  <pages>290&ndash;303</pages>
+</article></entry>
+
+<entry id="AN21"><article>
+  <author>
+    <name><first>Anamari</first><last>Nakic</last></name>
+  </author>
+  <title>The first example of a simple 2-(81,6,2) design</title>
+  <journal>Examples and Counterexamples</journal>
+  <year>2021</year>
+  <volume>1</volume>
+  <pages>100005</pages>
+</article></entry>
+
+<entry id="BM79"><article>
+  <author>
+    <name><first>Brendan</first><middle>Damien</middle><last>McKay</last></name>
+  </author>
+  <title><C>Hadamard equivalence via graph isomorphism</C></title>
+  <journal>Discrete Math.</journal>
+  <year>1979</year>
+  <volume>27</volume>
+  <pages>213&ndash;214</pages>
+</article></entry>
+
+<entry id="MP14"><article>
+  <author>
+    <name><first>Brendan</first><middle>Damien</middle><last>McKay</last></name>
+    <name><first>Adolfo</first><last>Piperno</last></name>
+  </author>
+  <title><C>Practical graph isomorphism, II</C></title>
+  <journal>J. Symbolic Comput.</journal>
+  <year>2014</year>
+  <volume>60</volume>
+  <pages>94&ndash;112</pages>
+</article></entry>
+
+<entry id="BS93"><article>
+  <author>
+    <name><first>Bernd</first><last>Schmalz</last></name>
+  </author>
+  <title>The <M>t</M>-designs with prescribed automorphism group, new simple 6-designs</title>
+  <journal>J. Combin. Des.</journal>
+  <year>1993</year>
+  <volume>1</volume>
+  <number>2</number>
+  <pages>125&ndash;170</pages>
+</article></entry>
+
+<entry id="AW98"><article>
+  <author>
+    <name><first>Alfred</first><last>Wassermann</last></name>
+  </author>
+  <title>Finding simple <M>t</M>-designs with enumeration techniques</title>
+  <journal>J. Combin. Des.</journal>
+  <year>1998</year>
+  <volume>6</volume>
+  <number>2</number>
+  <pages>79&ndash;90</pages>
+</article></entry>
+
+<entry id="KPT23"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Mario Osvin</first><last>Pavcevic</last></name>
+    <name><first>Kristijan</first><last>Tabak</last></name>
+  </author>
+  <title>Cubes of symmetric designs</title>
+  <journal>preprint</journal>
+  <year>2023</year>
+  <note><URL>https://arxiv.org/abs/...</URL></note>
+</article></entry>
+
+</file>
