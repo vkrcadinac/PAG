@@ -19,8 +19,6 @@ SourceRepository := rec(
     URL := Concatenation( "https://github.com/vkrcadinac/", LowercaseString( ~.PackageName ) ),
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-README_URL      := Concatenation( ~.PackageWWWHome, "/README.md" ),
-PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
 SupportEmail := "vedran.krcadinac@math.hr",
 ArchiveURL := Concatenation( ~.SourceRepository.URL,
                                  "/releases/download/v", ~.Version,
@@ -47,16 +45,6 @@ Persons := [
 
 Status := "dev",
 
-##  For a central overview of all packages and a collection of all package
-##  archives it is necessary to have two files accessible which should be
-##  contained in each package:
-##     - A README file, containing a short abstract about the package
-##       content and installation instructions.
-##     - The PackageInfo.g file you are currently reading or editing!
-##  You must specify URLs for these two files, these allow to automate 
-##  the updating of package information on the GAP Website, and inclusion
-##  and updating of the package in the GAP distribution.
-#
 README_URL := 
   Concatenation( ~.PackageWWWHome, "/README.txt" ),
 PackageInfoURL := 
