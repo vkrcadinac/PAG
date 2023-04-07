@@ -11,7 +11,6 @@
   [2XCompatibilityMat[102X 2.3-3 
   [2XCubeAut[102X 2.6-12 
   [2XCubeFilter[102X 2.6-13 
-  [2XCubeInvariant[102X 2.6-11 
   [2XCubeSlice[102X 2.6-3 
   [2XCubeSlices[102X 2.6-4 
   [2XCubeTest[102X 2.6-10 
@@ -20,24 +19,28 @@
   [2XCyclicPerm[102X 2.1-1 
   [2XDifferenceCube[102X 2.6-1 
   [2XExpandMatRHS[102X 2.3-6 
+  [2XExtendedPermRepresentation[102X 2.1-13 
   [2XFieldToMOLS[102X 2.5-4 
   [2XGroupCube[102X 2.6-2 
   [2XHadamardMatAut[102X 2.7-1 
   [2XHadamardMatFilter[102X 2.7-2 
   [2XIntersectionNumbers[102X 2.4-3 
+  [2XIsAutotopyGroup[102X 2.5-11 
   [2XIsGoodSubsetOrbit[102X 2.2-4 
-  [2XIsotopismToPerm[102X 2.5-7 
   [2XIversonBracket[102X 2.4-6 
   [2XKramerMesnerMat[102X 2.3-2 
-  [2XKramerMesnerMOLS[102X 2.5-11 
-  [2XKramerMesnerMOLSParatopism[102X 2.5-12 
+  [2XKramerMesnerMOLS[102X 2.5-13 
+  [2XKramerMesnerMOLSAutoparatopy[102X 2.5-15 
+  [2XKramerMesnerMOLSAutotopy[102X 2.5-14 
   [2XKramerMesnerSearch[102X 2.3-1 
   [2XLatinSquareToCube[102X 2.6-9 
   [2XLeftDevelopment[102X 2.3-8 
   License .-2 
-  [2XMOLSAut[102X 2.5-5 
-  [2XMOLSFilter[102X 2.5-6 
-  [2XMOLSSubsetOrbitRep[102X 2.5-9 
+  [2XMOLSAut[102X 2.5-9 
+  [2XMOLSFilter[102X 2.5-10 
+  [2XMOLSSubsetOrbitRep[102X 2.5-12 
+  [2XMOLSToOrthogonalArray[102X 2.5-5 
+  [2XMOLSToTransversalDesign[102X 2.5-7 
   [2XMoveGroup[102X 2.1-4 
   [2XMovePerm[102X 2.1-3 
   [2XMultiGroup[102X 2.1-6 
@@ -45,25 +48,30 @@
   [2XOrbitFilter1[102X 2.2-6 
   [2XOrbitFilter2[102X 2.2-7 
   [2XOrthogonalArrayToCube[102X 2.6-6 
+  [2XOrthogonalArrayToMOLS[102X 2.5-6 
   PAG 1. 
   [2XPAGGlobalOptions[102X 2.8-1 
   [2XPermRepresentationLeft[102X 2.1-12 
   [2XPermRepresentationRight[102X 2.1-11 
-  [2XPermToIsotopism[102X 2.5-8 
   [2XPrimitiveGroupsOfDegree[102X 2.1-8 
   [2XReadMOLS[102X 2.5-1 
   [2XRestrictedGroup[102X 2.1-7 
   [2XRightDevelopment[102X 2.3-7 
+  [2XSDPSeriesDesign[102X 2.6-15 
+  [2XSDPSeriesGroup[102X 2.6-14 
+  [2XSDPSeriesHadamardMat[102X 2.7-3 
+  [2XSliceInvariant[102X 2.6-11 
   [2XSmallLambdaFilter[102X 2.2-5 
   [2XSolveKramerMesner[102X 2.3-4 
   [2XSubsetOrbitRep[102X 2.2-1 
   [2XSubsetOrbitRepIN[102X 2.2-3 
   [2XSubsetOrbitRepShort1[102X 2.2-2 
+  [2XSymmetricDifference[102X 2.4-7 
   [2XTDesignB[102X 2.4-5 
   [2XToGroup[102X 2.1-2 
   [2XTransitiveGroupsOfDegree[102X 2.1-9 
   [2XTransversalDesignToCube[102X 2.6-8 
-  [2XTuplesToMOLS[102X 2.5-10 
+  [2XTransversalDesignToMOLS[102X 2.5-8 
   [2XWriteMOLS[102X 2.5-2 
   
   

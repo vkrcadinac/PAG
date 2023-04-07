@@ -201,6 +201,23 @@ DeclareGlobalFunction( "PermRepresentationLeft" );
 
 #############################################################################
 ##
+#F  ExtendedPermRepresentation( <G> ) 
+##
+##  <#GAPDoc Label="ExtendedPermRepresentation">
+##  <ManSection>
+##  <Func Name="ExtendedPermRepresentation" Arg="G"/>
+##
+##  <Description>
+##  Returns the extended permutation representation of a group <A>G</A>
+##  including right multiplication, left multiplication, and group
+##  automorphisms. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ExtendedPermRepresentation" );
+
+#############################################################################
+##
 #F  SubsetOrbitRep( <G>, <v>, <k>[, <opt>] ) 
 ##
 ##  <#GAPDoc Label="SubsetOrbitRep">
@@ -640,20 +657,22 @@ DeclareGlobalFunction( "BlockScheme" );
 ##  <Description>
 ##  Performs a search for <A>t</A>-(<A>v</A>,<A>k</A>,<A>lambda</A>) designs
 ##  with presrcribed automorphism group <A>G</A> by the Kramer-Mesner method.
-##  A record with options can be supplied. By default, a list of base blocks
-##  for the constructed designs is returned. If <A>opt.Design</A> is defined,
-##  the designs are returned in the <Package>Design</Package> package format 
-##  <Ref Chap="Design" BookName="DESIGN"/>. If <A>opt.NonIsomorphic</A> is 
-##  defined, the designs are returned in <Package>Design</Package> format and 
-##  isomorph-rejection is performed. Other available options are:
+##  A record with options can be supplied. By default, designs are returned 
+##  in the <Package>Design</Package> package format 
+##  <Ref Chap="Design" BookName="DESIGN"/> and isomorph-rejection is performed
+##  by calling <Ref Func="BlockDesignFilter" Style="Text"/>. It can be turned
+##  off by setting <A>opt.NonIsomorphic</A>:=<C>false</C>. By setting 
+##  <A>opt.BaseBlocks</A>:=<C>true</C>, base blocks are returned instead
+##  of designs. This automatically turns off isomorph-rejection. Other available 
+##  options are:
 ##  <List>
 ##  <Item><A>SmallLambda</A>:=<C>true</C>/<C>false</C>. Perform the <Q>small 
 ##  lambda filter</Q>, i.e. remove <A>k</A>-orbits covering some of the 
 ##  <A>t</A>-orbits more than  <A>lambda</A> times. By default, this is 
 ##  done if <A>lambda</A>&lt;=3.</Item>
-##  <Item><A>IntersectionNumbers</A>:=<A>lin</A>. Search for designs with 
-##  block intersection nubers in the list of integers <A>lin</A> (e.g. 
-##  quasi-symmetric designs).</Item>
+##  <Item><A>IntersectionNumbers</A>:=<A>lin</A>/<C>false</C>. Search
+##  for designs with block intersection nubers in the list of integers
+##  <A>lin</A> (e.g. quasi-symmetric designs).</Item>
 ##  </List>
 ##  </Description>
 ##  </ManSection>
@@ -670,7 +689,7 @@ DeclareGlobalFunction( "KramerMesnerSearch" );
 ##
 ##  <Description>
 ##  Read a list of MOLS sets from a file. The file starts with the number
-##  of rows <M>m</M>, columns <M>n</M>, and size of the sets <M>s</M>,
+##  of rows <M>m</M>, columns <M>n</M>, and the size of the sets <M>s</M>,
 ##  followed by the matrix entries. Integers in the file are separated 
 ##  by whitespaces.
 ##  </Description>
@@ -688,7 +707,7 @@ DeclareGlobalFunction( "ReadMOLS" );
 ##
 ##  <Description>
 ##  Write a list of MOLS sets to a file. The number of rows <M>m</M>,
-##  columns <M>n</M>, and size of the sets <M>s</M> is written first, 
+##  columns <M>n</M>, and the size of the sets <M>s</M> is written first, 
 ##  followed by the matrix entries. Integers are separated by whitespaces.
 ##  </Description>
 ##  </ManSection>
@@ -713,6 +732,66 @@ DeclareGlobalFunction( "CayleyTableOfGroup" );
 
 #############################################################################
 ##
+#F  MOLSToOrthogonalArray( <ls> ) 
+##
+##  <#GAPDoc Label="MOLSToOrthogonalArray">
+##  <ManSection>
+##  <Func Name="MOLSToOrthogonalArray" Arg="ls"/>
+##
+##  <Description>
+##  Transforms the set of MOLS <A>ls</A> to an equivalent orthogonal array.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MOLSToOrthogonalArray" );
+
+#############################################################################
+##
+#F  OrthogonalArrayToMOLS( <oa> ) 
+##
+##  <#GAPDoc Label="OrthogonalArrayToMOLS">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayToMOLS" Arg="oa"/>
+##
+##  <Description>
+##  Transforms the orthogonal array <A>oa</A> to an equivalent set of MOLS.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayToMOLS" );
+
+#############################################################################
+##
+#F  MOLSToTransversalDesign( <ls> ) 
+##
+##  <#GAPDoc Label="MOLSToTransversalDesign">
+##  <ManSection>
+##  <Func Name="MOLSToTransversalDesign" Arg="ls"/>
+##
+##  <Description>
+##  Transforms the set of MOLS <A>ls</A> to an equivalent transversal design.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MOLSToTransversalDesign" );
+
+#############################################################################
+##
+#F  TransversalDesignToMOLS( <td> ) 
+##
+##  <#GAPDoc Label="TransversalDesignToMOLS">
+##  <ManSection>
+##  <Func Name="TransversalDesignToMOLS" Arg="td"/>
+##
+##  <Description>
+##  Transforms the transversal design <A>td</A> to an equivalent set of MOLS.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "TransversalDesignToMOLS" );
+
+#############################################################################
+##
 #F  MOLSAut( <ls>[, <opt>] ) 
 ##
 ##  <#GAPDoc Label="MOLSAut">
@@ -720,11 +799,16 @@ DeclareGlobalFunction( "CayleyTableOfGroup" );
 ##  <Func Name="MOLSAut" Arg="ls[, opt]"/>
 ##
 ##  <Description>
-##  Compute autotopism, autoparatopism, or automorphism groups of MOLS sets 
-##  in the list <A>ls</A>. A record with options can be supplied. By default, 
-##  autotopism groups are computed. If <A>opt.Paratopism</A> is defined, 
-##  autoparatopism groups are computed. If <A>opt.Isomorphism</A> is defined, 
-##  automorphism groups are computed.
+##  Computes the full auto(para)topy group of a set of MOLS <A>ls</A>.
+##  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+##  The optional argument <A>opt</A> is a record for options. Possible 
+##  components are:
+##  <List>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Compute the full autotopy
+##  group of <A>ls</A>. This is the default.</Item>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
+##  autoparatopy group of <A>ls</A>.</Item>
+##  </List>
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -732,18 +816,24 @@ DeclareGlobalFunction( "MOLSAut" );
 
 #############################################################################
 ##
-#F  MOLSFilter( <ls>[, <opt>] ) 
+#F  MOLSFilter( <ls>[, <opt>] )  
 ##
 ##  <#GAPDoc Label="MOLSFilter">
 ##  <ManSection>
 ##  <Func Name="MOLSFilter" Arg="ls[, opt]"/>
-##
+##  
 ##  <Description>
-##  Returns representatives of isotopism, paratopism, or isomorphism classes of MOLS
-##  sets in the list <A>ls</A>. A record with options can be supplied. By default, 
-##  isotopism class representatives are returned. If <A>opt.Paratopism</A> is defined, 
-##  paratopism class representatives (main class representatives) are returned. If 
-##  <A>opt.Isomorphism</A> is defined, isomorphism class representatives are returned.
+##  Eliminates isotopic/paratopic copies from a list of MOLS sets <A>ls</A>. 
+##  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+##  The optional argument <A>opt</A> is a record for options. Possible 
+##  components are:
+##  <List>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic MOLS sets. 
+##  This is the default.</Item>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic MOLS sets.</Item>
+##  </List>
+##  Any other components will be forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+##  function; see its documentation.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -759,6 +849,8 @@ DeclareGlobalFunction( "MOLSFilter" );
 ##
 ##  <Description>
 ##  Construct a complete set of MOLS from the finite field <A>F</A>.
+##  A similar function is <Ref Func="MOLS" BookName="Guava"/> from 
+##  the package <Package>Guava</Package>. 
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -766,35 +858,19 @@ DeclareGlobalFunction( "FieldToMOLS" );
 
 #############################################################################
 ##
-#F  IsotopismToPerm( <n>, <l> ) 
+#F  IsAutotopyGroup( <n>, <s>, <G> ) 
 ##
-##  <#GAPDoc Label="IsotopismToPerm">
+##  <#GAPDoc Label="IsAutotopyGroup">
 ##  <ManSection>
-##  <Func Name="IsotopismToPerm" Arg="n, l"/>
+##  <Func Name="IsAutotopyGroup" Arg="n, s, G"/>
 ##
 ##  <Description>
-##  Transforms an isotopism, i.e. a list <A>l</A> of three permutations of 
-##  degree <A>n</A>, to a single permutation of degree <M>3</M><A>n</A>. 
+##  Check if <A>G</A> is an autotopy group for transversal designs with
+##  <A>s</A><M>+2</M> point classes of order <A>n</A>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
-DeclareGlobalFunction( "IsotopismToPerm" );
-
-#############################################################################
-##
-#F  PermToIsotopism( <n>, <p> ) 
-##
-##  <#GAPDoc Label="PermToIsotopism">
-##  <ManSection>
-##  <Func Name="PermToIsotopism" Arg="n, p"/>
-##
-##  <Description>
-##  Transforms a permutation <A>p</A> of degree <M>3</M><A>n</A> to an
-##  isotopism, i.e. a list of three permutations of degree <A>n</A>. 
-##  </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-DeclareGlobalFunction( "PermToIsotopism" );
+DeclareGlobalFunction( "IsAutotopyGroup" );
 
 #############################################################################
 ##
@@ -805,30 +881,14 @@ DeclareGlobalFunction( "PermToIsotopism" );
 ##  <Func Name="MOLSSubsetOrbitRep" Arg="n, s, G"/>
 ##
 ##  <Description>
-##  Computes representatives of pairs and <M>(</M><A>s</A><M>+2)</M>-tuples
-##  for the construction of MOLS of order <A>n</A> with prescribed autotopism
-##  group <A>G</A>. A list containing pairs representatives in the first 
-##  component and tuples representatives in the second component is returned.
+##  Computes representatives of pairs and transversals of the <A>s</A><M>+2</M>
+##  point classes for the construction of MOLS of order <A>n</A> with prescribed autotopy
+##  group <A>G</A>. A list containing pair representatives in the first component and 
+##  transversal representatives in the second component is returned.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "MOLSSubsetOrbitRep" );
-
-#############################################################################
-##
-#F  TuplesToMOLS( <n>, <s>, <T> ) 
-##
-##  <#GAPDoc Label="TuplesToMOLS">
-##  <ManSection>
-##  <Func Name="TuplesToMOLS" Arg="n, s, T"/>
-##
-##  <Description>
-##  Transforms a set of <M>(</M><A>s</A><M>+2)</M>-tuples <A>T</A> to a 
-##  set of MOLS of order <A>n</A>.
-##  </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-DeclareGlobalFunction( "TuplesToMOLS" );
 
 #############################################################################
 ##
@@ -839,18 +899,9 @@ DeclareGlobalFunction( "TuplesToMOLS" );
 ##  <Func Name="KramerMesnerMOLS" Arg="n, s, G[, opt]"/>
 ##
 ##  <Description>
-##  Search for MOLS sets of order <A>n</A> and size <A>s</A> with prescribed
-##  autotopism group <A>G</A>. A record <A>opt</A> with options can be supplied.
-##  By default, A.Wassermann's LLL solver <C>solvediophant</C> is used and
-##  all constructed MOLS are returned, i.e. no filtering is performed. Available 
-##  options are:
-##  <List>
-##  <Item><A>Solver</A>:=<C>"solvecm"</C> The backtracing solver <C>solvecm</C> 
-##  is used.</Item>
-##  <Item><A>Filter</A>:=<C>"Isotopism"</C> Non-isotopic MOLS are returned.</Item>
-##  <Item><A>Filter</A>:=<C>"Paratopism"</C> Non-paratopic MOLS are returned.</Item>
-##  <Item><A>Filter</A>:=<C>"Isomorphism"</C> Non-isomorphic MOLS are returned.</Item>
-##  </List>
+##  If the function <Ref Func="IsAutotopyGroup"/>(<A>G</A>) returns <C>true</C>
+##  for the group <A>G</A>, call <Ref Func="KramerMesnerMOLSAutotopy"/>; otherwise 
+##  call <Ref Func="KramerMesnerMOLSAutoparatopy"/>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -858,29 +909,57 @@ DeclareGlobalFunction( "KramerMesnerMOLS" );
 
 #############################################################################
 ##
-#F  KramerMesnerMOLSParatopism( <n>, <s>, <G>[, <opt>] ) 
+#F  KramerMesnerMOLSAutotopy( <n>, <s>, <G>[, <opt>] ) 
 ##
-##  <#GAPDoc Label="KramerMesnerMOLSParatopism">
+##  <#GAPDoc Label="KramerMesnerMOLSAutotopy">
 ##  <ManSection>
-##  <Func Name="KramerMesnerMOLSParatopism" Arg="n, s, G[, opt]"/>
+##  <Func Name="KramerMesnerMOLSAutotopy" Arg="n, s, G[, opt]"/>
 ##
 ##  <Description>
 ##  Search for MOLS sets of order <A>n</A> and size <A>s</A> with prescribed
-##  autoparatopism group <A>G</A>. A record <A>opt</A> with options can be supplied.
-##  By default, A.Wassermann's LLL solver <C>solvediophant</C> is used and
-##  all constructed MOLS are returned, i.e. no filtering is performed. Available 
-##  options are:
+##  autotopy group <A>G</A>. By default, A.Wassermann's LLL solver 
+##  <C>solvediophant</C> is used for <A>s</A><M>=1</M>, and the backtracking
+##  solver <C>solvecm</C> is used for <A>s</A><M>&gt;1</M>. This can be changed
+##  by setting options in the record <A>opt</A>. Available options are:
 ##  <List>
-##  <Item><A>Solver</A>:=<C>"solvecm"</C> The backtracing solver <C>solvecm</C> 
-##  is used.</Item>
-##  <Item><A>Filter</A>:=<C>"Isotopism"</C> Non-isotopic MOLS are returned.</Item>
-##  <Item><A>Filter</A>:=<C>"Paratopism"</C> Non-paratopic MOLS are returned.</Item>
-##  <Item><A>Filter</A>:=<C>"Isomorphism"</C> Non-isomorphic MOLS are returned.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>.</Item>
+##  <Item><A>Solver</A>:=<C>"solvecm"</C> Use <C>solvecm</C>.</Item>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic solutions. 
+##  This is the default.</Item>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic solutions.
+##  All solutions are returned if either option is set to <C>false</C>.</Item>
 ##  </List>
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
-DeclareGlobalFunction( "KramerMesnerMOLSParatopism" );
+DeclareGlobalFunction( "KramerMesnerMOLSAutotopy" );
+
+#############################################################################
+##
+#F  KramerMesnerMOLSAutoparatopy( <n>, <s>, <G>[, <opt>] ) 
+##
+##  <#GAPDoc Label="KramerMesnerMOLSAutoparatopy">
+##  <ManSection>
+##  <Func Name="KramerMesnerMOLSAutoparatopy" Arg="n, s, G[, opt]"/>
+##
+##  <Description>
+##  Search for MOLS sets of order <A>n</A> and size <A>s</A> with prescribed
+##  autoparatopy group <A>G</A>. By default, A.Wassermann's LLL solver 
+##  <C>solvediophant</C> is used for <A>s</A><M>=1</M>, and the backtracking
+##  solver <C>solvecm</C> is used for <A>s</A><M>&gt;1</M>. This can be changed
+##  by setting options in the record <A>opt</A>. Available options are:
+##  <List>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>.</Item>
+##  <Item><A>Solver</A>:=<C>"solvecm"</C> Use <C>solvecm</C>.</Item>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic solutions. 
+##  This is the default.</Item>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic solutions.
+##  All solutions are returned if either option is set to <C>false</C>.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "KramerMesnerMOLSAutoparatopy" );
 
 #############################################################################
 ##
@@ -928,6 +1007,21 @@ DeclareGlobalFunction( "LeftDevelopment" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "IversonBracket" );
+
+#############################################################################
+##
+#F  SymmetricDifference( <X>, <Y> ) 
+##
+##  <#GAPDoc Label="SymmetricDifference">
+##  <ManSection>
+##  <Func Name="SymmetricDifference" Arg="X, Y"/>
+##
+##  <Description>
+##  Returns the symmetric difference of two sets <A>X</A> and <A>Y</A>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SymmetricDifference" );
 
 #############################################################################
 ##
@@ -1024,14 +1118,14 @@ DeclareGlobalFunction( "CubeToOrthogonalArray" );
 
 #############################################################################
 ##
-#F  OrthogonalArrayToCube( <OA> ) 
+#F  OrthogonalArrayToCube( <oa> ) 
 ##
 ##  <#GAPDoc Label="OrthogonalArrayToCube">
 ##  <ManSection>
-##  <Func Name="OrthogonalArrayToCube" Arg="OA"/>
+##  <Func Name="OrthogonalArrayToCube" Arg="oa"/>
 ##
 ##  <Description>
-##  Transforms the orthogonal array <A>OA</A> to an equivalent incidence cube.
+##  Transforms the orthogonal array <A>oa</A> to an equivalent incidence cube.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -1054,14 +1148,14 @@ DeclareGlobalFunction( "CubeToTransversalDesign" );
 
 #############################################################################
 ##
-#F  TransversalDesignToCube( <TD> ) 
+#F  TransversalDesignToCube( <td> ) 
 ##
 ##  <#GAPDoc Label="TransversalDesignToCube">
 ##  <ManSection>
-##  <Func Name="TransversalDesignToCube" Arg="TD"/>
+##  <Func Name="TransversalDesignToCube" Arg="td"/>
 ##
 ##  <Description>
-##  Transforms the transversal design <A>TD</A> to an equivalent incidence cube.
+##  Transforms the transversal design <A>td</A> to an equivalent incidence cube.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -1101,20 +1195,20 @@ DeclareGlobalFunction( "CubeTest" );
 
 #############################################################################
 ##
-#F  CubeInvariant( <C> ) 
+#F  SliceInvariant( <C> ) 
 ##
-##  <#GAPDoc Label="CubeInvariant">
+##  <#GAPDoc Label="SliceInvariant">
 ##  <ManSection>
-##  <Func Name="CubeInvariant" Arg="C"/>
+##  <Func Name="SliceInvariant" Arg="C"/>
 ##
 ##  <Description>
-##  Computes an equivalence invariant of the cube <A>C</A>
+##  Computes a paratopy invariant of the cube <A>C</A>
 ##  based on automorphism group sizes of its slices. Cubes
 ##  equivalent under paratopy have the same invariant.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
-DeclareGlobalFunction( "CubeInvariant" );
+DeclareGlobalFunction( "SliceInvariant" );
 
 #############################################################################
 ##
@@ -1166,6 +1260,65 @@ DeclareGlobalFunction( "CubeAut" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeFilter" );
+
+#############################################################################
+##
+#F  SDPSeriesGroup( <m> ) 
+##
+##  <#GAPDoc Label="SDPSeriesGroup">
+##  <ManSection>
+##  <Func Name="SDPSeriesGroup" Arg="m"/>
+##
+##  <Description>
+##  Returns a group for the designs of <Ref Func="SDPSeriesDesign"/>.
+##  This is the elementary Abelian group of order <M>4^m</M>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SDPSeriesGroup" );
+
+#############################################################################
+##
+#F  SDPSeriesHadamardMat( <m>, <i> ) 
+##
+##  <#GAPDoc Label="SDPSeriesHadamardMat">
+##  <ManSection>
+##  <Func Name="SDPSeriesHadamardMat" Arg="m, i"/>
+##
+##  <Description>
+##  Returns a Hadamard matrix of order <M>4^m</M> for the SDP series 
+##  of designs. The argument <A>i</A> must be 1, 2, or 3. See documentation
+##  for the <Ref Func="SDPSeriesDesign"/> function.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SDPSeriesHadamardMat" );
+
+#############################################################################
+##
+#F  SDPSeriesDesign( <m>, <i> ) 
+##
+##  <#GAPDoc Label="SDPSeriesDesign">
+##  <ManSection>
+##  <Func Name="SDPSeriesDesign" Arg="m, i"/>
+##
+##  <Description>
+##  Returns a symmetric block design with parameters 
+##  <M>(4^m,2^{m-1}(2^m-1),2^{m-1}(2^{m-1}-1))</M>. 
+##  The argument <A>i</A> must be 1, 2, or 3. 
+##  If <A>i</A><M>=1</M>, the design is the symplectic design
+##  of Kantor <Cite Key='WK75'/>. This design has the symmetric
+##  difference property (SDP). If <A>i</A><M>=2</M> or <A>i</A><M>=3</M>,
+##  two other non-isomorphic designs with the same parameters
+##  are returned. They are not SDP designs, but have the property that 
+##  all their blocks are difference sets in the group returned by
+##  <Ref Func="SDPSeriesGroup"/>. Developments of these blocks are
+##  isomorphic to the design for <A>i</A><M>=1</M>, so the two other 
+##  designs are not developments of their blocks.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SDPSeriesDesign" );
 
 #############################################################################
 ##

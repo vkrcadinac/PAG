@@ -8,15 +8,15 @@
 SetPackageInfo( rec(
 PackageName := "PAG",
 Subtitle := "Prescribed Automorphism Groups",
-Version := "0.2.0",
-Date := "27/03/2023",
+Version := "0.2.0.2",
+Date := "07/04/2023",
 License := "GPL-2.0-or-later",
 PackageWWWHome :=
-  Concatenation( "https://vkrcadinac.github.io/", LowercaseString( ~.PackageName ) ),
+  Concatenation( "https://vkrcadinac.github.io/", ~.PackageName ),
 
 SourceRepository := rec(
     Type := "git",
-    URL := Concatenation( "https://github.com/vkrcadinac/", LowercaseString( ~.PackageName ) ),
+    URL := Concatenation( "https://github.com/vkrcadinac/", ~.PackageName ),
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 SupportEmail := "vedran.krcadinac@math.hr",
@@ -111,42 +111,6 @@ AvailabilityTest := function()
     return true;
   end,
 
-##  *Optional*: the LoadPackage mechanism produces a nice default banner from
-##  the info in this file. Normally, there is no need to change it, and we
-##  recommend that you don't as this minimizes work for everybody (you and the
-##  GAP team) on the long run.
-##
-##  However, if you reall think that you need a custom banner, you can provide
-##  a string here that is used as a banner. GAP decides when the banner is 
-##  shown and when it is not shown (note the ~-syntax in this example).
-# BannerString := Concatenation( 
-#     "----------------------------------------------------------------\n",
-#     "Loading  Example ", ~.Version, "\n",
-#     "by ",
-#     JoinStringsWithSeparator( List( Filtered( ~.Persons, r -> r.IsAuthor ),
-#                                     r -> Concatenation(
-#         r.FirstNames, " ", r.LastName, " (", r.WWWHome, ")\n" ) ), "   " ),
-#     "For help, type: ?Example package \n",
-#     "----------------------------------------------------------------\n" ),
-
-##  *Optional*: if you need a custom BannerString but would like to include
-##  information in it that is only available once your package is being loaded
-##  (i.e., which is computed in your init.g file, such as the presence and
-##  versions of external software your package depends on), then you can
-##  use a BannerFunction instead. The difference is that the BannerString is
-##  usually computed when GAP starts, i.e., long before your init.g is run.
-##  While the BannerFunction is called right before the banner is to be
-##  displayed, which is after your init.g has been executed.
-##
-# BannerFunction := function(info)
-#       local l;
-#       # modify the default banner string, and insert something before
-#       # its last line (which is a separator string)
-#       l:=SplitString(DefaultPackageBannerString(info), "\n");
-#       Add(l, " ...  some extra information ... ", Length(l));
-#       return JoinStringsWithSeparator(l,"\n");
-#     end,
-
 ##  *Optional*, but recommended: path relative to package root to a file
 ##  which contains a short test (to run for no more than several minutes)
 ##  which may be used to check that a package works as expected.
@@ -158,7 +122,7 @@ AvailabilityTest := function()
 ##  '?TestPackage', and also '?TestDirectory' for more information.
 TestFile := "tst/testall.g",
 
-Keywords := ["automorphism group", "block design", "latin square", "hadamard matrix"],
+Keywords := ["automorphism group", "block design", "latin square", "Hadamard matrix"],
 
 AutoDoc := rec(
   TitlePage := rec(

@@ -134,7 +134,78 @@
   <title>Cubes of symmetric designs</title>
   <journal>preprint</journal>
   <year>2023</year>
-  <note><URL>https://arxiv.org/abs/...</URL></note>
+</article></entry>
+
+<entry id="SVW12"><article>
+  <author>
+    <name><first>Douglas S.</first><last>Stones</last></name>
+    <name><first>Petr</first><last>Vojtechovsky</last></name>
+    <name><first>Ian M.</first><last>Wanless</last></name>
+  </author>
+  <title>Cycle structure of autotopisms of quasigroups and Latin squares</title>
+  <journal>J. Combin. Des.</journal>
+  <year>2012</year>
+  <volume>20</volume>
+  <number>5</number>
+  <pages>227&ndash;263</pages>
+</article></entry>
+
+<entry id="RF12"><article>
+  <author>
+    <name><first>Raul Manuel</first><last>Falcon</last></name>
+  </author>
+  <title>Cycle structures of autotopisms of the Latin squares of order up to 11</title>
+  <journal>Ars Combin.</journal>
+  <year>2012</year>
+  <volume>103</volume>
+  <pages>239&ndash;256</pages>
+</article></entry>
+
+<entry id="KD15"><book>
+  <author>
+    <name><first>A. D.</first><last>Keedwell</last></name>
+    <name><first>J.</first><last>Denes</last></name>
+  </author>
+  <title>Latin squares and their applications. Second edition</title>
+  <publisher>Elsevier/North-Holland</publisher>
+  <year>2015</year>
+  <location>Amsterdam</location>
+</book></entry>
+
+<entry id="CD07"><book>
+  <editor>
+    <name><first>C. J.</first><last>Colbourn</last></name>
+    <name><first>J. H.</first><last>Dinitz</last></name>
+  </editor>
+  <title>Handbook of combinatorial designs. Second edition</title>
+  <publisher>Chapman &amp; Hall/CRC</publisher>
+  <year>2007</year>
+  <location>Boca Raton, FL</location>
+</book></entry>
+
+<entry id="KM76"><article>
+  <author>
+    <name><first>E. S.</first><last>Kramer</last></name>
+    <name><first>D. M.</first><last>Mesner</last></name>
+  </author>
+  <title>t-designs on hypergraphs</title>
+  <journal>Discrete Math.</journal>
+  <year>1976</year>
+  <volume>15</volume>
+  <number>3</number>
+  <pages>263&ndash;296</pages>
+</article></entry>
+
+<entry id="WK75"><article>
+  <author>
+    <name><first>W. M.</first><last>Kantor</last></name>
+  </author>
+  <title>Symplectic groups, symmetric designs, and line ovals</title>
+  <journal> J. Algebra</journal>
+  <year>1975</year>
+  <volume>33</volume>
+  <pages>43&ndash;58</pages>
 </article></entry>
 
 </file>
+
