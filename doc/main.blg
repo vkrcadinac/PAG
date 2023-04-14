@@ -7,45 +7,45 @@ Repeated entry---line 25 of file bib.xml.bib
  : @article{ KV16
  :               ,
 I'm skipping whatever remains of this entry
-You've used 10 entries,
+You've used 16 entries,
             2543 wiz_defined-function locations,
-            631 strings with 5706 characters,
-and the built_in function-call counts, 4594 in all, are:
-= -- 464
-> -- 147
-< -- 5
-+ -- 48
-- -- 46
-* -- 376
-:= -- 729
-add.period$ -- 31
-call.type$ -- 10
-change.case$ -- 57
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 144
-empty$ -- 382
-format.name$ -- 61
-if$ -- 938
+            672 strings with 6414 characters,
+and the built_in function-call counts, 7183 in all, are:
+= -- 719
+> -- 246
+< -- 7
++ -- 79
+- -- 77
+* -- 577
+:= -- 1140
+add.period$ -- 49
+call.type$ -- 16
+change.case$ -- 90
+chr.to.int$ -- 16
+cite$ -- 16
+duplicate$ -- 233
+empty$ -- 598
+format.name$ -- 100
+if$ -- 1470
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 10
-newline$ -- 54
-num.names$ -- 30
-pop$ -- 33
+missing$ -- 17
+newline$ -- 84
+num.names$ -- 49
+pop$ -- 63
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 108
 quote$ -- 0
-skip$ -- 117
+skip$ -- 189
 stack$ -- 0
-substring$ -- 543
-swap$ -- 10
-text.length$ -- 5
-text.prefix$ -- 5
+substring$ -- 807
+swap$ -- 16
+text.length$ -- 7
+text.prefix$ -- 7
 top$ -- 0
-type$ -- 80
+type$ -- 120
 warning$ -- 0
-while$ -- 34
-width$ -- 13
-write$ -- 133
+while$ -- 54
+width$ -- 18
+write$ -- 209
 (There was 1 error message)

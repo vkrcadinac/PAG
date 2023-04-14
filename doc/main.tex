@@ -98,8 +98,8 @@
 {\Huge \textbf{ Prescribed Automorphism Groups \mbox{}}}\\
 \vfill
 
-{\Huge  0.2.0 \mbox{}}\\[1cm]
-{ 27 March 2023 \mbox{}}\\[1cm]
+{\Huge  0.2.1 \mbox{}}\\[1cm]
+{ 14 April 2023 \mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Vedran Krcadinac\\
     \mbox{}}}\\
@@ -163,13 +163,13 @@ groups.
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@LoadPackage("PAG"); |
 \end{Verbatim}
- Let us present a small example from the paper \cite{VK18}. In Theorem 8.1, simple 5-(16,7,10) designs with the following automorphism
-group were constructed. 
+ Let us present a small example from the paper \cite{VK18}. In Theorem 8.1, a simple 5-(16,7,10) design with the following automorphism
+group was constructed. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@g:=Group((2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), |
   !gapprompt@>| !gapinput@(1,5)(2,12)(3,15)(4,8)(6,14)(7,16)(9,10)(11,13));|
 \end{Verbatim}
- They can be obtained by typing 
+ The design can be obtained by typing 
 \begin{Verbatim}[commandchars=@|A,fontsize=\small,frame=single,label=Example]
   @gapprompt|gap>A @gapinput|KramerMesnerSearch(5,16,7,10,g);A
   Computing t-subset orbit representatives...
@@ -195,36 +195,45 @@ group were constructed.
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@PAGGlobalOptions.Silent:=true;|
   true
-  !gapprompt@gap>| !gapinput@KramerMesnerSearch(5,16,7,10,g);|
-  [ [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
-  	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 8, 9 ], 
-  	[ 1, 2, 3, 5, 6, 9, 10 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
-  	[ 1, 2, 3, 5, 6, 10, 15 ], [ 1, 2, 3, 5, 6, 14, 16 ], 
-  	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 16 ], 
-  	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
-  	[ 1, 2, 5, 6, 7, 14, 15 ] ], 
-      [ [ 1, 2, 3, 4, 5, 6, 8 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
-  	[ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
-  	[ 1, 2, 3, 5, 6, 10, 12 ], [ 1, 2, 3, 5, 6, 10, 16 ], 
-  	[ 1, 2, 3, 5, 6, 12, 13 ], [ 1, 2, 3, 5, 6, 14, 15 ], 
-  	[ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 9 ], 
-  	[ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
-  	[ 1, 2, 5, 6, 11, 14, 16 ] ] ]
+  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(5,16,7,10,g);|
+  [ rec( autSubgroup := Group([ (2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), 
+            (1,5)(2,12)(3,15)(4,8)(6,14)(7,16)(9,10)(11,13) ]), 
+        blocks := [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+            [ 1, 2, 3, 4, 5, 7, 9 ], [ 1, 2, 3, 4, 5, 7, 12 ], 
+            [ 1, 2, 3, 4, 5, 9, 16 ], [ 1, 2, 3, 4, 5, 10, 12 ], 
+            [ 1, 2, 3, 4, 5, 10, 13 ], [ 1, 2, 3, 4, 5, 11, 12 ], 
+            [ 1, 2, 3, 4, 5, 11, 16 ], [ 1, 2, 3, 4, 5, 12, 14 ], 
+            [ 1, 2, 3, 4, 6, 7, 14 ], [ 1, 2, 3, 4, 6, 7, 15 ], 
+  .
+  .
+  .
 \end{Verbatim}
- The output is a list of base blocks for two designs. There are options to get
-them in the \textsf{Design} package format  (\textbf{DESIGN: Design}). Then we can also check that they are really 5-designs. 
+ The output is a list of non-isomorphic designs in the \textsf{Design} package format  (\textbf{DESIGN: Design}). We can check that it is really a 5-design. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(5,16,7,10,g,rec(Design:=true));;|
   !gapprompt@gap>| !gapinput@List(d,AllTDesignLambdas);|
-  [ [ 2080, 910, 364, 130, 40, 10 ], [ 2080, 910, 364, 130, 40, 10 ] ]
+  [ [ 2080, 910, 364, 130, 40, 10 ] ]
 \end{Verbatim}
- The two designs are in fact isomorphic. 
+ The output is large because the \textsf{Design} format includes a list of all blocks, and 5-(16,7,10) designs have 2080
+blocks. Instead, we can ask just for the base blocks. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(5,16,7,10,g,rec(NonIsomorphic:=true));;|
-  !gapprompt@gap>| !gapinput@Size(d);|
-  1
+  !gapprompt@gap>| !gapinput@bb:=KramerMesnerSearch(5,16,7,10,g,rec(BaseBlocks:=true));|
+  [ [ [ 1, 2, 3, 4, 5, 6, 13 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+        [ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 8, 9 ], 
+        [ 1, 2, 3, 5, 6, 9, 10 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+        [ 1, 2, 3, 5, 6, 10, 15 ], [ 1, 2, 3, 5, 6, 14, 16 ], 
+        [ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 16 ], 
+        [ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+        [ 1, 2, 5, 6, 7, 14, 15 ] ], 
+    [ [ 1, 2, 3, 4, 5, 6, 8 ], [ 1, 2, 3, 4, 5, 6, 14 ], 
+        [ 1, 2, 3, 5, 6, 7, 11 ], [ 1, 2, 3, 5, 6, 9, 12 ], 
+        [ 1, 2, 3, 5, 6, 10, 12 ], [ 1, 2, 3, 5, 6, 10, 16 ], 
+        [ 1, 2, 3, 5, 6, 12, 13 ], [ 1, 2, 3, 5, 6, 14, 15 ], 
+        [ 1, 2, 3, 5, 8, 11, 12 ], [ 1, 2, 5, 6, 7, 8, 9 ], 
+        [ 1, 2, 5, 6, 7, 9, 14 ], [ 1, 2, 5, 6, 7, 12, 13 ], 
+        [ 1, 2, 5, 6, 11, 14, 16 ] ] ]
 \end{Verbatim}
- The option \texttt{NonIsomorphic} applies the function \texttt{BlockDesignIsomorphismClassRepresentatives} (\textbf{DESIGN: BlockDesignIsomorphismClassRepresentatives}) to the constructed designs. }
+ In this case isomorph rejection is not performed and we get two sets of base
+blocks. They can be turned into designs by calling the \texttt{BlockDesign} (\textbf{DESIGN: BlockDesign}) function: \texttt{List(bb,x-{\textgreater}BlockDesign(16,x,g));}. }
 
  
 \section{\textcolor{Chapter }{Installation}}\label{Installation}
@@ -244,7 +253,7 @@ limited number of \textsf{PAG} functions.
 \item \textsf{DifSets} 2.3.1
 \item \textsf{GUAVA} 3.15
 \end{itemize}
- To install \textsf{PAG}, copy and unpack the package to the \texttt{pkg} directory of your local \textsf{GAP} installation. The package uses external binaries. To compile them on UNIX-like
+ The current installation file for \textsf{PAG} is available at \href{https://vkrcadinac.github.io/PAG/} {\texttt{https://vkrcadinac.github.io/PAG/}}. To install \textsf{PAG}, unpack it to the \texttt{pkg} directory of your local \textsf{GAP} installation. The package uses external binaries. To compile them on UNIX-like
 environments, change to the \texttt{pkg/PAG-*} directory and call 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   $ ./configure.sh
@@ -253,9 +262,7 @@ environments, change to the \texttt{pkg/PAG-*} directory and call
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   $ make all
 \end{Verbatim}
- to compile the binares. They are placed in the \texttt{bin} subdirectory. Documentation in the \texttt{doc} subdirectory is already compiled and can be read in PDF, html or from within \textsf{GAP}. To recompile the documentation, call \textsf{GAP} with the \texttt{makedoc.g} file.
-
- Installations files for \textsf{PAG} are available from the authors. If you are interested, please write to \href{mailto://vedran.krcadinac@math.hr} {\texttt{vedran.krcadinac@math.hr}}. }
+ to compile the binares. They are placed in the \texttt{bin} subdirectory. Documentation in the \texttt{doc} subdirectory is already compiled and can be read in PDF, html or from within \textsf{GAP}. To recompile the documentation, call \textsf{GAP} with the \texttt{makedoc.g} file. }
 
  
 \section{\textcolor{Chapter }{Examples: Designs}}\label{Examples: Designs}
@@ -263,27 +270,39 @@ environments, change to the \texttt{pkg/PAG-*} directory and call
 \hyperdef{L}{X87AF9F4C789605D1}{}
 {
   The \textsf{PAG} function \texttt{KramerMesnerSearch} performs a search for $t$-designs with given parameters and a given permutation group as group of
-automorphisms. See the paper by B.{\nobreakspace}Schmalz{\nobreakspace}\cite{BS93} for an introduction to the Kramer-Mesner approach to constructing $t$-designs. Our first two examples are from this paper. 
+automorphisms. See the paper by B.{\nobreakspace}Schmalz{\nobreakspace}\cite{BS93} for an introduction to the Kramer-Mesner approach to constructing $t$-designs. Our first two examples are from this paper. The original paper of
+Earl Kramer and Dale Mesner is{\nobreakspace}\cite{KM76}. 
 \subsection{\textcolor{Chapter }{6-(14,7,4) Designs}}\label{6-(14,7,4) Designs}
 \logpage{[ 1, 3, 1 ]}
 \hyperdef{L}{X85DE43FE83E85401}{}
 {
   The summary about known 6-designs on page 130 of \cite{BS93} mentions that there are exactly two 6-(14,7,4) designs with cyclic derived
 designs. This means that the two 6-designs have automorphisms of order 13.
-They can be constructed with the following \textsf{GAP} commands. 
+They can be constructed by the following \textsf{GAP} commands. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@g:=Group(CyclicPerm(13));|
   Group([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ])
-  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(6,14,7,4,g,rec(NonIsomorphic:=true));;|
+  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(6,14,7,4,g);;|
   !gapprompt@gap>| !gapinput@List(d,AllTDesignLambdas);|
   [ [ 1716, 858, 396, 165, 60, 18, 4 ], [ 1716, 858, 396, 165, 60, 18, 4 ] ]
 \end{Verbatim}
  The solver quickly finds 24 solutions of the Kramer-Mesner system. Most of the
-computation time is used to eliminate isomorphic designs. Both designs have ${\ensuremath{\mathbb Z}}_{13}$ as their full automorphism group. 
+computation time is used to eliminate isomorphic designs. This can be turned
+off: 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@List(d,AutomorphismGroup);|
-  [ Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]), 
-    Group([ (1,13,12,11,10,9,8,7,6,5,4,3,2) ]) ]
+  !gapprompt@gap>| !gapinput@d2:=KramerMesnerSearch(6,14,7,4,g,rec(NonIsomorphic:=false));;|
+  !gapprompt@gap>| !gapinput@Size(d2);|
+  30
+  !gapprompt@gap>| !gapinput@Size(AsSet(d2));|
+  24
+\end{Verbatim}
+ Now we get a list of 30 designs. By default, A.{\nobreakspace}Wassermann's LLL
+solver \cite{AW98} is used; it may return the same solution more than once. The number of
+distinct designs is 24. The two non-isomorphic designs have ${\ensuremath{\mathbb Z}}_{13}$ as their full automorphism group. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@List(d,BlockDesignAut);|
+  [ Group([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ]), 
+    Group([ (1,2,3,4,5,6,7,8,9,10,11,12,13) ]) ]
 \end{Verbatim}
  }
 
@@ -293,8 +312,8 @@ computation time is used to eliminate isomorphic designs. Both designs have ${\e
 \hyperdef{L}{X7835113382A11FA1}{}
 {
   In \cite{BS93}, the existence of 6-(28,8,$\lambda$) designs was established for $\lambda=42$, 63, 84, and 105. The exact numbers of these designs with automorphism group $P\Gamma L(2,27)$ were computed. While the projective general linear groups are readily
-available in \textsf{GAP} through the \texttt{PGL} command, there seemst to be no equivalent command for semilinear groups. Using
-the \textsf{FinInG} package, we can get $P\Gamma L(2,27)$ as the collineation group of the projective line over $GF(27)$. 
+available in \textsf{GAP} through the \texttt{PGL} command, there seems to be no equivalent command for semilinear groups. We can
+get $P\Gamma L(2,27)$ using the \textsf{FinInG} package, as the collineation group of the projective line over $GF(27)$. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@LoadPackage("FinInG");|
   !gapprompt@gap>| !gapinput@g1:=CollineationGroup(ProjectiveSpace(1,27));|
@@ -308,8 +327,7 @@ the \textsf{FinInG} package, we can get $P\Gamma L(2,27)$ as the collineation gr
     (19,20,22), (5,7,13)(6,10,21)(8,16,14)(9,18,22)(11,24,15)(12,27,23)(17,19,25)
     (20,28,26) ])
 \end{Verbatim}
- Alternatively, we can get the group from the library of small primitive
-permutation groups. 
+ Alternatively, we can get $P\Gamma L(2,27)$ from the library of small primitive permutation groups. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@PrimitiveGroupsOfDegree(28);|
   [ PGL(2, 7), PSL(2, 8), PGammaL(2, 8), PSU(3, 3), PGammaU(3, 3), PSp(6, 2), A(8), 
@@ -317,32 +335,13 @@ permutation groups.
 \end{Verbatim}
  Now we can construct the designs with $\lambda=42$. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(6,28,8,42,g);;|
-  Computing t-subset orbit representatives...
-  14
-  Computing k-subset orbit representatives...
-  72
-  Computing the Kramer-Mesner matrix...
-  .
-  .
-  .
-  Loops: 27732
-  Total number of solutions: 3
-  
-  total enumeration time: 0:00:00
-  !gapprompt@gap>| !gapinput@Size(d);|
-  4
-\end{Verbatim}
- Notice that A.{\nobreakspace}Wassermann's LLL solver \cite{AW98} reports finding 3 solutions, but we get 4 sets of base blocks. That's because
-the solver may return the same solution more than once. Here is how to get rid
-of multiple solutions. 
-\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(6,28,8,42,g,rec(BaseBlocks:=true));;|
   !gapprompt@gap>| !gapinput@Size(AsSet(d));|
   3
 \end{Verbatim}
  Most of the CPU time in the example above was used to compute the
-Kramer-Mesner matrix. The left-hand side of the Kramer-Mesner system is the
-same matrix for all $\lambda$, so we can compute it once and reuse it to save time. 
+Kramer-Mesner matrix. The left side of the Kramer-Mesner system is the same
+matrix for all $\lambda$, so we can compute it once and reuse it to save time. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@tsub:=SubsetOrbitRep(g,28,6);;|
   !gapprompt@gap>| !gapinput@ksub:=SubsetOrbitRep(g,28,8);;|
@@ -350,8 +349,6 @@ same matrix for all $\lambda$, so we can compute it once and reuse it to save ti
 \end{Verbatim}
  Now we can quickly get the exact numbers of designs from the paper \cite{BS93}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@PAGGlobalOptions.Silent:=true;|
-  true
   !gapprompt@gap>| !gapinput@Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,42))));|
   3
   !gapprompt@gap>| !gapinput@Size(AsSet(SolveKramerMesner(ExpandMatRHS(m,63))));|
@@ -396,11 +393,11 @@ A.{\nobreakspace}Nakic{\nobreakspace}\cite{AN21}. Here are the base blocks of th
   !gapprompt@gap>| !gapinput@AllTDesignLambdas(d);|
   [ 432, 32, 2 ]
 \end{Verbatim}
- The full automorphism group of the design is of order 2592. It's a semidirect
+ The full automorphism group of the design is of order 2592. It is a semidirect
 product of the additive group of $V$ and a group of order 32. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@aut:=AutomorphismGroup(d);|
-  <permutation group with 4 generators>
+  !gapprompt@gap>| !gapinput@aut:=BlockDesignAut(d);|
+  <permutation group with 5 generators>
   !gapprompt@gap>| !gapinput@Size(aut);|
   2592
   !gapprompt@gap>| !gapinput@StructureDescription(aut);|
@@ -413,11 +410,11 @@ second subgroup to construct four more simple 2-(81,6,2) designs.
   [ <permutation group of size 648 with 7 generators>, 
     <permutation group of size 648 with 7 generators>, 
     <permutation group of size 648 with 7 generators> ]
-  !gapprompt@gap>| !gapinput@dd:=KramerMesnerSearch(2,81,6,2,g[2],rec(NonIsomorphic:=true));;|
+  !gapprompt@gap>| !gapinput@dd:=KramerMesnerSearch(2,81,6,2,g[2]);;|
   !gapprompt@gap>| !gapinput@List(dd,x->Size(AutomorphismGroup(x)));|
-  [ 1944, 15552, 1296, 2592, 3888 ]
+  [ 1296, 2592, 3888, 1944, 15552 ]
 \end{Verbatim}
- Two of the new designs have larger full automorphism groups than design
+ Two of the new designs have larger full automorphism groups than the design
 from{\nobreakspace}\cite{AN21}. Using their subgroups, more simple 2-(81,6,2) designs can be constructed. }
 
  
@@ -434,21 +431,20 @@ from{\nobreakspace}\cite{AN21}. Using their subgroups, more simple 2-(81,6,2) de
   !gapprompt@>| !gapinput@  (12,33,30)(14,19,31)(18,23,35)(24,28,36)(25,37,39)(27,38,40)|
   !gapprompt@>| !gapinput@  (42,51,49)(43,52,45)(44,46,47)(48,54,53)(50,56,55));|
   <permutation group with 2 generators>
-  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(2,56,16,18,g,rec(NonIsomorphic:=true,|
-  !gapprompt@>| !gapinput@IntersectionNumbers:=[4,8]));;|
+  !gapprompt@gap>| !gapinput@d:=KramerMesnerSearch(2,56,16,18,g,rec(IntersectionNumbers:=[4,8]));;|
   !gapprompt@gap>| !gapinput@Size(d);|
   3
 \end{Verbatim}
- We check that they have all the required properties and compute their full
+ We check that they have all required properties and compute their full
 automorphism groups: 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@List(d,AllTDesignLambdas);|
   [ [ 231, 66, 18 ], [ 231, 66, 18 ], [ 231, 66, 18 ] ]
   !gapprompt@gap>| !gapinput@List(d,IntersectionNumbers);|
   [ [ 4, 8 ], [ 4, 8 ], [ 4, 8 ] ]
-  !gapprompt@gap>| !gapinput@aut:=List(d,AutomorphismGroup);;|
+  !gapprompt@gap>| !gapinput@aut:=List(d,BlockDesignAut);;|
   !gapprompt@gap>| !gapinput@List(aut,StructureDescription);|
-  [ "PSL(3,4) : C2", "(C2 x C2 x C2 x C2) : A5", "(C2 x C2 x C2 x C2) : S5" ]
+  [ "(C2 x C2 x C2 x C2) : S5", "(C2 x C2 x C2 x C2) : A5", "PSL(3,4) : C2" ]
 \end{Verbatim}
  }
 
@@ -459,14 +455,119 @@ automorphism groups:
 \logpage{[ 1, 4, 0 ]}
 \hyperdef{L}{X7CCA2066781B6D56}{}
 {
-  }
+  See{\nobreakspace}\cite{KD15} for an introduction to Latin squares and definitions of isotopy, paratopy,
+etc. Multiplication tables of groups are examples of Latin squares. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@CayleyTableOfGroup(CyclicGroup(7));|
+  [ [ 1, 2, 3, 4, 5, 6, 7 ], 
+    [ 2, 3, 4, 5, 6, 7, 1 ], 
+    [ 3, 4, 5, 6, 7, 1, 2 ], 
+    [ 4, 5, 6, 7, 1, 2, 3 ], 
+    [ 5, 6, 7, 1, 2, 3, 4 ], 
+    [ 6, 7, 1, 2, 3, 4, 5 ], 
+    [ 7, 1, 2, 3, 4, 5, 6 ] ]
+\end{Verbatim}
+ We can construct more examples by prescribing symmetry groups. The \textsf{PAG} function \texttt{KramerMesnerMOLS} performs a search for sets of $s$ mutually orthogonal Latin squares (MOLS) of order $n$ and a given permutation group as autotopy or autoparatopy group. The group
+must act on the $s+2$ point classes of the corresponding transversal design. By{\nobreakspace}\cite{RF12} and{\nobreakspace}\cite{SVW12}, an autotopism of order 5 of a Latin square of order 7 must have the
+following cycle structure. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@a:=MultiPerm(CyclicPerm(5),[1..7],3);|
+  (1,2,3,4,5)(8,9,10,11,12)(15,16,17,18,19)
+\end{Verbatim}
+ There are two main classes of such Latin squares. They are multiplication
+tables of non-associative quasigroups. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@KramerMesnerMOLS(7,1,Group(a));|
+  [ [ [ [ 1, 3, 2, 6, 7, 4, 5 ], 
+            [ 7, 2, 4, 3, 6, 5, 1 ], 
+            [ 6, 7, 3, 5, 4, 1, 2 ], 
+            [ 5, 6, 7, 4, 1, 2, 3 ], 
+            [ 2, 1, 6, 7, 5, 3, 4 ], 
+            [ 3, 4, 5, 1, 2, 6, 7 ], 
+            [ 4, 5, 1, 2, 3, 7, 6 ] ] ], 
+    [ [ [ 1, 3, 5, 6, 7, 2, 4 ], 
+            [ 7, 2, 4, 1, 6, 3, 5 ], 
+            [ 6, 7, 3, 5, 2, 4, 1 ], 
+            [ 3, 6, 7, 4, 1, 5, 2 ], 
+            [ 2, 4, 6, 7, 5, 1, 3 ], 
+            [ 4, 5, 1, 2, 3, 6, 7 ], 
+            [ 5, 1, 2, 3, 4, 7, 6 ] ] ] ]
+\end{Verbatim}
+ Single Latin squares are treated as MOLS sets of size $s=1$, hence the excess brackets. When the order $n$ is a prime power, complete sets of $s=n-1$ MOLS are easily constructed from finite fields. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@ls4:=FieldToMOLS(GF(4));|
+  [ [ [ 1, 2, 3, 4 ], 
+        [ 2, 1, 4, 3 ], 
+        [ 3, 4, 1, 2 ], 
+        [ 4, 3, 2, 1 ] ], 
+    [ [ 1, 2, 3, 4 ], 
+        [ 3, 4, 1, 2 ], 
+        [ 4, 3, 2, 1 ], 
+        [ 2, 1, 4, 3 ] ], 
+    [ [ 1, 2, 3, 4 ], 
+        [ 4, 3, 2, 1 ], 
+        [ 2, 1, 4, 3 ], 
+        [ 3, 4, 1, 2 ] ] ]
+  !gapprompt@gap>| !gapinput@AreMOLS(ls4);|
+  true
+\end{Verbatim}
+ The package \textsf{Guava} contains a function \texttt{AreMOLS} (\textbf{GUAVA: AreMOLS}) to test sets of MOLS. A famous problem is to find MOLS of order 10. The
+Handbook of Combinatorial Designs{\nobreakspace}\cite{CD07}, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin
+square $L$ of order 10. Self-orthogonal means that $L$ is orthogonal to its transpose. In other words, the MOLS set $\{L,L^t\}$ is invariant under the following conjugation, simultaneously exchanging
+rows{\textendash}columns and the two Latin squares. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@c:=Sortex(Concatenation([11..20],[1..10],[31..40],[21..30]));|
+  (1,11)(2,12)(3,13)(4,14)(5,15)(6,16)(7,17)(8,18)(9,19)(10,20)(21,
+  31)(22,32)(23,33)(24,34)(25,35)(26,36)(27,37)(28,38)(29,39)(30,40)
+\end{Verbatim}
+ Furthermore, the example from{\nobreakspace}\cite{CD07} has an autotopism of order 9. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@a:=MultiPerm(CyclicPerm(9),[1..10],4);|
+  (1,2,3,4,5,6,7,8,9)(11,12,13,14,15,16,17,18,19)(21,22,23,24,25,26,
+  27,28,29)(31,32,33,34,35,36,37,38,39)
+\end{Verbatim}
+ The permutations $a$ and $c$ generate an autoparatopy group of order 18 we can use to construct the
+example. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@g:=Group(a,c);;|
+  !gapprompt@gap>| !gapinput@Size(g);|
+  18
+  !gapprompt@gap>| !gapinput@ls10:=KramerMesnerMOLS(10,2,g);;|
+  !gapprompt@gap>| !gapinput@List(ls10,AreMOLS);|
+  [ true, true, true, true, true ]
+\end{Verbatim}
+ We see that there are 5 inequivalent pairs of MOLS with $g$ as autoparatopy group. Here is one pair. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@ls10[1];|
+  [ [ [ 1, 3, 6, 9, 2, 10, 5, 7, 4, 8 ], 
+        [ 5, 2, 4, 7, 1, 3, 10, 6, 8, 9 ], 
+        [ 9, 6, 3, 5, 8, 2, 4, 10, 7, 1 ], 
+        [ 8, 1, 7, 4, 6, 9, 3, 5, 10, 2 ], 
+        [ 10, 9, 2, 8, 5, 7, 1, 4, 6, 3 ], 
+        [ 7, 10, 1, 3, 9, 6, 8, 2, 5, 4 ], 
+        [ 6, 8, 10, 2, 4, 1, 7, 9, 3, 5 ], 
+        [ 4, 7, 9, 10, 3, 5, 2, 8, 1, 6 ], 
+        [ 2, 5, 8, 1, 10, 4, 6, 3, 9, 7 ], 
+        [ 3, 4, 5, 6, 7, 8, 9, 1, 2, 10 ] ], 
+    [ [ 1, 5, 9, 8, 10, 7, 6, 4, 2, 3 ], 
+        [ 3, 2, 6, 1, 9, 10, 8, 7, 5, 4 ], 
+        [ 6, 4, 3, 7, 2, 1, 10, 9, 8, 5 ], 
+        [ 9, 7, 5, 4, 8, 3, 2, 10, 1, 6 ], 
+        [ 2, 1, 8, 6, 5, 9, 4, 3, 10, 7 ], 
+        [ 10, 3, 2, 9, 7, 6, 1, 5, 4, 8 ], 
+        [ 5, 10, 4, 3, 1, 8, 7, 2, 6, 9 ], 
+        [ 7, 6, 10, 5, 4, 2, 9, 8, 3, 1 ], 
+        [ 4, 8, 7, 10, 6, 5, 3, 1, 9, 2 ], 
+        [ 8, 9, 1, 2, 3, 4, 5, 6, 7, 10 ] ] ]
+\end{Verbatim}
+ }
 
  
 \section{\textcolor{Chapter }{Examples: Cubes of Symmetric Designs}}\label{Examples: Cubes of Symmetric Designs}
 \logpage{[ 1, 5, 0 ]}
 \hyperdef{L}{X7B532D6B81CC1FC2}{}
 {
-  Cubes of symmetric designs were introduced in \cite{KPT23}. Here is the motivational example. 
+  Cubes of symmetric designs are studied in the paper \cite{KPT23}. Here is an example. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@c:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);|
   [ [ [ 1, 1, 0, 1, 0, 0, 0 ], 
@@ -519,7 +620,7 @@ automorphism groups:
         [ 0, 0, 0, 1, 1, 0, 1 ], 
         [ 0, 0, 1, 1, 0, 1, 0 ] ] ]
 \end{Verbatim}
- This is a $3$-dimensional array of zeros and ones such that all $2$-dimensional slices are incidence matrices of the $(7,3,1)$ design. For example, here is a slice obtained by varying coordinates $1,3$ and setting coordinate $2$ to $7$. 
+ This is a $3$-dimensional array of zeros and ones such that all $2$-dimensional slices are incidence matrices of $(7,3,1)$ designs. For example, here is a slice obtained by varying coordinates $1,3$ and setting coordinate $2$ to $7$. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@m:=CubeSlice(c,1,3,[7]);|
   [ [ 0, 1, 1, 0, 1, 0, 0 ], 
@@ -538,14 +639,16 @@ automorphism groups:
     [ 1, 1, 1, 1, 1, 3, 1 ], 
     [ 1, 1, 1, 1, 1, 1, 3 ] ]
 \end{Verbatim}
- For any $d\ge 2$, a $d$-dimensional cube of symmetric designs can be constructed from a difference
-set. We use the representation of difference sets from the \textsf{DifSets} package  (\textbf{DifSets: Difference Sets}). For $d=2$, the cube is simply an incidence matrix of the associated symmetric design. 
+ A cube of arbitrary dimension $n\ge 2$ can be constructed from a difference set in a group by calling \texttt{DifferenceCube} (\ref{DifferenceCube}). The function uses the representation of difference sets from the \textsf{DifSets} package  (\textbf{DifSets: Difference Sets}). For $n=2$, the difference cube is simply an incidence matrix of the associated
+symmetric design, i.e. the development of the difference set. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@g:=SmallGroup(15,1);|
   <pc group of size 15 with 2 generators>
+  !gapprompt@gap>| !gapinput@StructureDescription(g);|
+  "C15"
   !gapprompt@gap>| !gapinput@ds:=DifferenceSets(g);|
   [ [ 1, 2, 3, 4, 8, 11, 12 ] ]
-  !gapprompt@gap>| !gapinput@DifferenceCube(g,ds[1],2);|
+  !gapprompt@gap>| !gapinput@m:=DifferenceCube(g,ds[1],2);|
   [ [ 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0 ], 
     [ 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ], 
     [ 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1 ], 
@@ -561,10 +664,14 @@ set. We use the representation of difference sets from the \textsf{DifSets} pack
     [ 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1 ], 
     [ 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0 ], 
     [ 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 ] ]
+  !gapprompt@gap>| !gapinput@d:=BlockDesign(15,List(m,x->Positions(x,1)));;|
+  !gapprompt@gap>| !gapinput@AllTDesignLambdas(d);|
+  [ 15, 7, 3 ]
 \end{Verbatim}
- Here is a small $4$-dimensional $(3,2,1)$ cube. 
+ The function \texttt{DifferenceSets} (\textbf{DifSets: DifferenceSets}) returns a list of all difference sets up to equivalence in a given group. Here
+is a small $4$-dimensional $(3,2,1)$ cube. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@DifferenceCube(Group((1,2,3)),[1,2],4);|
+  !gapprompt@gap>| !gapinput@c:=DifferenceCube(Group((1,2,3)),[1,2],4);|
   [ [ [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
         [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ], 
         [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ] ], 
@@ -574,8 +681,10 @@ set. We use the representation of difference sets from the \textsf{DifSets} pack
     [ [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 1, 0, 1 ] ], 
         [ [ 1, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ], 
         [ [ 1, 0, 1 ], [ 0, 1, 1 ], [ 1, 1, 0 ] ] ] ]
+  !gapprompt@gap>| !gapinput@CubeTest(c);|
+  [ [ 3, 2, 1 ] ]
 \end{Verbatim}
- Here are all $3$-dimensional difference cubes constructed from the groups of order $21$. 
+ The function \texttt{CubeTest} (\ref{CubeTest}) looks at all possible slices and checks if they are incidence matrices of $(v,k,\lambda)$ designs. In the next example we construct all $3$-dimensional difference cubes of order $21$. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@g:=AllSmallGroups(21);;|
   !gapprompt@gap>| !gapinput@List(g,StructureDescription);|
@@ -584,14 +693,16 @@ set. We use the representation of difference sets from the \textsf{DifSets} pack
   [ [ [ 1, 2, 3, 9, 10 ] ], [ [ 1, 2, 7, 10, 16 ] ] ]
   !gapprompt@gap>| !gapinput@c1:=DifferenceCube(g[1],ds[1][1],3);;|
   !gapprompt@gap>| !gapinput@c2:=DifferenceCube(g[2],ds[2][1],3);;|
+  !gapprompt@gap>| !gapinput@List([c1,c2],CubeTest);|
+  [ [ [ 21, 5, 1 ] ], [ [ 21, 5, 1 ] ] ]
   !gapprompt@gap>| !gapinput@Size(CubeAut(c1));|
   1323
   !gapprompt@gap>| !gapinput@Size(CubeAut(c2));|
   2646
-  !gapprompt@gap>| !gapinput@List([c1,c2],CubeTest);|
-  [ [ [ 21, 5, 1 ] ], [ [ 21, 5, 1 ] ] ]
 \end{Verbatim}
- We can make a non-difference cube by the "group cube" construction from \cite{KPT23} (Theorem 4.1). First we find all $(21,5,1)$ designs whose blocks are difference sets in the Frobenius group of order $21$. 
+ The function \texttt{CubeAut} (\ref{CubeAut}) computes the full autotopy group of a cube. By setting options, full
+autoparatopy groups can also be obtained. We can make a non-difference cube by
+the "group cube" construction of Theorem 4.1 from \cite{KPT23}. First we search for all $(21,5,1)$ designs with blocks being difference sets in the Frobenius group of order $21$. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@allds:=Filtered(Combinations([1..21],5),x->IsDifferenceSet(g[1],x));;|
   !gapprompt@gap>| !gapinput@Size(allds);|
@@ -603,8 +714,7 @@ set. We use the representation of difference sets from the \textsf{DifSets} pack
   !gapprompt@gap>| !gapinput@Size(des);|
   70
 \end{Verbatim}
- Among these $70$ designs, $14$ are left developments, and $14$ are right developments. There are $42$ designs that are not developments, but all of their blocks are difference
-sets. 
+ Among these $70$ designs, $14$ are left developments, and $14$ are right developments. The remaining $42$ designs are not developments, but all of their blocks are difference sets. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@dev1:=AsSet(List(allds,x->LeftDevelopment(g[1],x).blocks));;|
   !gapprompt@gap>| !gapinput@Size(dev1);|
@@ -616,15 +726,195 @@ sets.
   !gapprompt@gap>| !gapinput@Size(nondev);|
   42
 \end{Verbatim}
- Now we apply the group cube construction to any one of these $42$ designs. 
+ Now we apply the group cube construction to these $42$ designs. The obtained cubes are equivalent. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@c3:=GroupCube(g[1],nondev[1],3);;|
+  !gapprompt@gap>| !gapinput@cc:=List(nondev,x->GroupCube(g[1],x,3));;|
+  !gapprompt@gap>| !gapinput@Size(CubeFilter(cc));|
+  1
+\end{Verbatim}
+ The function \texttt{CubeFilter} (\ref{CubeFilter}) eliminates equivalent copies from a list of cubes. Our new cube is not
+equivalent with the two $(21,5,1)$ difference cubes. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@c3:=cc[1];;|
   !gapprompt@gap>| !gapinput@CubeTest(c3);|
   [ [ 21, 5, 1 ] ]
+  !gapprompt@gap>| !gapinput@Size(CubeFilter([c1,c2,c3]));|
+  3
   !gapprompt@gap>| !gapinput@Size(CubeAut(c3));|
   441
 \end{Verbatim}
- }
+ However, the three cubes have the same slice invariant; see{\nobreakspace}\cite{KPT23} for the definition. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@List([c1,c2,c3],SliceInvariant);|
+  [ [ [ [ [ 120960, 21 ] ], 3 ] ], [ [ [ [ 120960, 21 ] ], 3 ] ], 
+    [ [ [ [ 120960, 21 ] ], 3 ] ] ]
+\end{Verbatim}
+ Cubes with slice invariants different from any difference cube can be
+constructed for parameters of the form $(4^m,2^{m-1}(2^m-1),2^{m-1}(2^{m-1}-1))$, $m\ge 2$. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@m:=2;; n:=3;;|
+  !gapprompt@gap>| !gapinput@cl:=List([1,2,3],i->GroupCube(SDPSeriesGroup(m),SDPSeriesDesign(m,i),n));;|
+  !gapprompt@gap>| !gapinput@List(cl,CubeTest);|
+  [ [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ] ]
+  !gapprompt@gap>| !gapinput@List(cl,SliceInvariant);|
+  [ [ [ [ [ 11520, 16 ] ], 3 ] ], 
+    [ [ [ [ 768, 16 ] ], 2 ], [ [ [ 11520, 16 ] ], 1 ] ], 
+    [ [ [ [ 384, 16 ] ], 2 ], [ [ [ 11520, 16 ] ], 1 ] ] ]
+\end{Verbatim}
+ The first cube in the list \texttt{cl} is a difference cube. The other two cubes are not, because they have
+non-isomorphic slices in different directions. This construction works for all $m\ge 2$ and dimensions $n\ge 3$, but it takes a lot of time and memory for bigger values of $m$ and{\nobreakspace}$n$. We classified all 3-dimensional group cubes of $(16,6,2)$ designs; they are available at \href{https://web.math.pmf.unizg.hr/~krcko/results/cubes.html} {\texttt{https://web.math.pmf.unizg.hr/\texttt{\symbol{126}}krcko/results/cubes.html}}. A list of 1423 non-group cubes of $(16,6,2)$ designs is also provided. 
+
+ The package \textsf{DifSets} contains precomputed lists of difference sets up to equivalence. They are
+loaded by the function \texttt{LoadDifferenceSets} (\textbf{DifSets: LoadDifferenceSets}). We can use them to compute all difference cubes up to equivalence. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@v:=27;|
+  27
+  !gapprompt@gap>| !gapinput@l1:=Concatenation(List([1..NrSmallGroups(v)],|
+  !gapprompt@>| !gapinput@i->List(LoadDifferenceSets(v,i),x->[i,x])));|
+  [ [ 4, [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ] ], 
+    [ 4, [ 1, 2, 3, 4, 5, 7, 8, 9, 13, 15, 18, 19, 23 ] ], 
+    [ 5, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 23, 25, 27 ] ] ]
+\end{Verbatim}
+ The list \texttt{l1} now contains all inequivalent difference sets in groups of order 27. The first
+entry is the group ID from the \textsf{GAP} library of small groups, followed by the difference set. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@StructureDescription(SmallGroup(27,4));|
+  "C9 : C3"
+  !gapprompt@gap>| !gapinput@StructureDescription(SmallGroup(27,5));|
+  "C3 x C3 x C3"
+  !gapprompt@gap>| !gapinput@l2:=List(l1,x->DifferenceCube(SmallGroup(v,x[1]),x[2],3));;|
+  !gapprompt@gap>| !gapinput@l3:=l1{CubeFilter(l2,rec(Positions:=true))};|
+  [ [ 4, [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ] ], 
+    [ 5, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 23, 25, 27 ] ] ]
+\end{Verbatim}
+ The list \texttt{l3} contains difference sets giving 3-cubes that are inequivalent (not paratopic).
+Notice that the two cubes arising from difference sets in ${\ensuremath{\mathbb Z}}_9\rtimes {\ensuremath{\mathbb Z}}_3$ (group ID 4) are paratopic, but not isotopic: 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@l4:=l1{CubeFilter(l2,rec(Positions:=true,Isotopy:=true))};|
+  [ [ 4, [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ] ], 
+    [ 4, [ 1, 2, 3, 4, 5, 7, 8, 9, 13, 15, 18, 19, 23 ] ], 
+    [ 5, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 23, 25, 27 ] ] ]
+\end{Verbatim}
+ 
+
+ We will now construct some non-difference group cubes in ${\ensuremath{\mathbb Z}}_9\rtimes {\ensuremath{\mathbb Z}}_3$. Here is an efficient way to get all difference sets, including equivalent
+ones. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@g:=SmallGroup(v,4);|
+  <pc group of size 27 with 3 generators>
+  !gapprompt@gap>| !gapinput@ge:=ExtendedPermRepresentation(g);|
+  <permutation group with 7 generators>
+  !gapprompt@gap>| !gapinput@ds:=LoadDifferenceSets(v,4);|
+  [ [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ], 
+    [ 1, 2, 3, 4, 5, 7, 8, 9, 13, 15, 18, 19, 23 ] ]
+  !gapprompt@gap>| !gapinput@allds:=Union(List(ds,x->Orbit(ge,x,OnSets)));;|
+  !gapprompt@gap>| !gapinput@Size(allds);|
+  972
+\end{Verbatim}
+ For parameters $(21,5,1)$ we could search for all designs with difference sets as blocks. This would
+take too much time for $(27,13,6)$, so we prescribe an automorphism group of order{\nobreakspace}3. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@sub:=AllSubgroupsConjugation(ge);;|
+  !gapprompt@gap>| !gapinput@h:=sub[4];|
+  Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
+    (11,25,19)(13,26,21)(18,27,24) ])
+  !gapprompt@gap>| !gapinput@alldsorb:=List(Orbits(h,allds,OnSets),Representative);;|
+  !gapprompt@gap>| !gapinput@Size(alldsorb);|
+  324
+  !gapprompt@gap>| !gapinput@pairsorb:=List(Orbits(h,Combinations([1..27],2),OnSets),Representative);;|
+  !gapprompt@gap>| !gapinput@Size(pairsorb);|
+  117
+  !gapprompt@gap>| !gapinput@A:=KramerMesnerMat(h,pairsorb,alldsorb,6,27);;|
+  !gapprompt@gap>| !gapinput@sol:=AsSet(SolveKramerMesner(A));;|
+  !gapprompt@gap>| !gapinput@des:=List(sol,x->BlockDesign(27,BaseBlocks(alldsorb,x),h).blocks);;|
+  !gapprompt@gap>| !gapinput@Size(des);|
+  288
+\end{Verbatim}
+ We get 288 designs with difference sets as blocks. Let us remove the ones
+which are developments of their blocks. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@dev1:=AsSet(List(allds,x->LeftDevelopment(g,x).blocks));;|
+  !gapprompt@gap>| !gapinput@dev2:=AsSet(List(allds,x->RightDevelopment(g,x).blocks));;|
+  !gapprompt@gap>| !gapinput@nondev:=List(Difference(des,Union(dev1,dev2)),x->[4,x]);;|
+  !gapprompt@gap>| !gapinput@Size(nondev);|
+  216
+\end{Verbatim}
+ Next, we remove the ones leading to equivalent 3-cubes. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@cc:=List(nondev,x->GroupCube(SmallGroup(v,x[1]),x[2],3));;|
+  !gapprompt@gap>| !gapinput@l5:=nondev{CubeFilter(cc,rec(Positions:=true))};|
+  [ [ 4, 
+        [ [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ], 
+            [ 1, 2, 3, 4, 5, 7, 10, 13, 14, 19, 21, 22, 24 ], 
+            [ 1, 2, 3, 7, 11, 12, 13, 15, 20, 23, 24, 25, 27 ], 
+            [ 1, 2, 4, 6, 10, 11, 13, 14, 15, 17, 18, 20, 26 ], 
+            [ 1, 2, 4, 8, 9, 12, 13, 16, 17, 18, 22, 24, 27 ], 
+            [ 1, 2, 9, 10, 11, 14, 16, 17, 19, 21, 23, 25, 27 ], 
+            [ 1, 3, 4, 7, 8, 11, 17, 18, 19, 22, 23, 25, 26 ], 
+            [ 1, 3, 5, 8, 9, 10, 14, 15, 18, 23, 24, 26, 27 ], 
+            [ 1, 3, 5, 8, 10, 11, 12, 15, 16, 17, 20, 21, 22 ], 
+            [ 1, 4, 6, 7, 9, 10, 12, 15, 21, 22, 25, 26, 27 ], 
+            [ 1, 5, 6, 7, 9, 11, 14, 16, 18, 20, 22, 24, 25 ], 
+            [ 1, 5, 6, 8, 13, 17, 19, 20, 21, 24, 25, 26, 27 ], 
+            [ 1, 6, 7, 8, 12, 13, 14, 15, 16, 18, 19, 21, 23 ], 
+            [ 2, 3, 5, 6, 9, 13, 15, 17, 18, 21, 22, 23, 25 ], 
+            [ 2, 3, 6, 7, 8, 9, 11, 12, 14, 17, 21, 24, 26 ], 
+            [ 2, 3, 6, 8, 10, 12, 14, 18, 19, 20, 22, 25, 27 ], 
+            [ 2, 4, 5, 7, 8, 9, 11, 15, 18, 19, 20, 21, 27 ], 
+            [ 2, 4, 8, 14, 15, 16, 20, 21, 22, 23, 24, 25, 26 ], 
+            [ 2, 5, 6, 7, 8, 10, 11, 13, 16, 22, 23, 26, 27 ], 
+            [ 2, 5, 7, 10, 12, 15, 16, 17, 18, 19, 24, 25, 26 ], 
+            [ 3, 4, 5, 11, 12, 13, 14, 16, 18, 21, 25, 26, 27 ], 
+            [ 3, 4, 6, 7, 10, 16, 17, 18, 20, 21, 23, 24, 27 ], 
+            [ 3, 4, 6, 8, 9, 10, 11, 13, 15, 16, 19, 24, 25 ], 
+            [ 3, 7, 9, 13, 14, 15, 16, 17, 19, 20, 22, 26, 27 ], 
+            [ 4, 5, 6, 11, 12, 14, 15, 17, 19, 22, 23, 24, 27 ], 
+            [ 4, 5, 7, 8, 9, 10, 12, 13, 14, 17, 20, 23, 25 ], 
+            [ 9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24, 26 ] ] ], 
+    [ 4, 
+        [ [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ], 
+            [ 1, 2, 3, 5, 7, 11, 14, 15, 18, 20, 23, 24, 25 ], 
+            [ 1, 2, 3, 7, 9, 13, 14, 17, 19, 20, 21, 22, 27 ], 
+            [ 1, 2, 4, 6, 7, 8, 10, 11, 13, 18, 20, 22, 26 ], 
+            [ 1, 2, 4, 10, 12, 14, 15, 21, 22, 23, 25, 26, 27 ], 
+            [ 1, 2, 5, 8, 12, 13, 17, 18, 19, 21, 24, 25, 26 ], 
+            [ 1, 3, 4, 6, 8, 11, 13, 15, 17, 19, 23, 25, 27 ], 
+            [ 1, 3, 5, 8, 10, 11, 12, 15, 16, 17, 20, 21, 22 ], 
+            [ 1, 3, 6, 7, 8, 9, 10, 12, 18, 21, 23, 24, 27 ], 
+            [ 1, 4, 5, 6, 7, 10, 13, 14, 15, 16, 19, 21, 24 ], 
+            [ 1, 4, 8, 9, 14, 15, 16, 17, 18, 20, 24, 26, 27 ], 
+            [ 1, 5, 6, 9, 11, 12, 13, 14, 16, 18, 22, 25, 27 ], 
+            [ 1, 7, 9, 10, 11, 16, 17, 19, 22, 23, 24, 25, 26 ], 
+            [ 2, 3, 4, 5, 10, 13, 16, 17, 18, 22, 23, 24, 27 ], 
+            [ 2, 3, 4, 8, 9, 10, 11, 14, 16, 18, 19, 21, 25 ], 
+            [ 2, 3, 6, 9, 10, 11, 12, 13, 14, 15, 17, 24, 26 ], 
+            [ 2, 4, 5, 7, 8, 9, 11, 12, 15, 19, 22, 24, 27 ], 
+            [ 2, 5, 6, 7, 8, 11, 14, 16, 17, 21, 23, 26, 27 ], 
+            [ 2, 6, 7, 10, 12, 15, 16, 17, 18, 19, 20, 25, 27 ], 
+            [ 2, 6, 8, 9, 13, 15, 16, 20, 21, 22, 23, 24, 25 ], 
+            [ 3, 4, 5, 6, 7, 9, 15, 17, 18, 21, 22, 25, 26 ], 
+            [ 3, 4, 7, 11, 12, 13, 16, 20, 21, 24, 25, 26, 27 ], 
+            [ 3, 5, 6, 8, 10, 14, 19, 20, 22, 24, 25, 26, 27 ], 
+            [ 3, 7, 8, 12, 13, 14, 15, 16, 18, 19, 22, 23, 26 ], 
+            [ 4, 5, 7, 8, 9, 10, 12, 13, 14, 17, 20, 23, 25 ], 
+            [ 4, 6, 11, 12, 14, 17, 18, 19, 20, 21, 22, 23, 24 ], 
+            [ 5, 9, 10, 11, 13, 15, 18, 19, 20, 21, 23, 26, 27 ] ] ] ]
+\end{Verbatim}
+ We have constructed two $(27,13,6)$ designs with blocks being difference sets in ${\ensuremath{\mathbb Z}}_9\rtimes {\ensuremath{\mathbb Z}}_3$, which are not their developments. Here are the slice invariants of the
+difference and non-difference group 3-cubes constructed so far. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@dc:=List(l3,x->DifferenceCube(SmallGroup(v,x[1]),x[2],3));;|
+  !gapprompt@gap>| !gapinput@gc:=List(l5,x->GroupCube(SmallGroup(v,x[1]),x[2],3));;|
+  !gapprompt@gap>| !gapinput@List(dc,SliceInvariant);|
+  [ [ [ [ [ 1053, 27 ] ], 3 ] ], [ [ [ [ 1053, 27 ] ], 3 ] ] ]
+  !gapprompt@gap>| !gapinput@List(gc,SliceInvariant);|
+  [ [ [ [ [ 27, 27 ] ], 2 ], [ [ [ 1053, 27 ] ], 1 ] ], 
+    [ [ [ [ 27, 27 ] ], 2 ], [ [ [ 1053, 27 ] ], 1 ] ] ]
+\end{Verbatim}
+ More examples of difference and non-difference group cubes are available on
+our web page: 
+
+ \href{https://web.math.pmf.unizg.hr/~krcko/results/cubes.html} {\texttt{https://web.math.pmf.unizg.hr/\texttt{\symbol{126}}krcko/results/cubes.html}} }
 
  }
 
@@ -782,6 +1072,18 @@ sets.
 
  Returns the regular permutation representation of a group \mbox{\texttt{\mdseries\slshape G}} by left multiplication. }
 
+ 
+
+\subsection{\textcolor{Chapter }{ExtendedPermRepresentation}}
+\logpage{[ 2, 1, 13 ]}\nobreak
+\hyperdef{L}{X7BD56AE78333F3A2}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ExtendedPermRepresentation({\mdseries\slshape G})\index{ExtendedPermRepresentation@\texttt{ExtendedPermRepresentation}}
+\label{ExtendedPermRepresentation}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the extended permutation representation of a group \mbox{\texttt{\mdseries\slshape G}} including right multiplication, left multiplication, and group automorphisms. }
+
  }
 
  
@@ -905,10 +1207,11 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
 
 
  Performs a search for \mbox{\texttt{\mdseries\slshape t}}-(\mbox{\texttt{\mdseries\slshape v}},\mbox{\texttt{\mdseries\slshape k}},\mbox{\texttt{\mdseries\slshape lambda}}) designs with presrcribed automorphism group \mbox{\texttt{\mdseries\slshape G}} by the Kramer-Mesner method. A record with options can be supplied. By
-default, a list of base blocks for the constructed designs is returned. If \mbox{\texttt{\mdseries\slshape opt.Design}} is defined, the designs are returned in the \textsf{Design} package format  (\textbf{DESIGN: Design}). If \mbox{\texttt{\mdseries\slshape opt.NonIsomorphic}} is defined, the designs are returned in \textsf{Design} format and isomorph-rejection is performed. Other available options are: 
+default, designs are returned in the \textsf{Design} package format  (\textbf{DESIGN: Design}) and isomorph-rejection is performed by calling \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}). It can be turned off by setting \mbox{\texttt{\mdseries\slshape opt.NonIsomorphic}}:=\texttt{false}. By setting \mbox{\texttt{\mdseries\slshape opt.BaseBlocks}}:=\texttt{true}, base blocks are returned instead of designs. This automatically turns off
+isomorph-rejection. Other available options are: 
 \begin{itemize}
 \item \mbox{\texttt{\mdseries\slshape SmallLambda}}:=\texttt{true}/\texttt{false}. Perform the ``small lambda filter'', i.e. remove \mbox{\texttt{\mdseries\slshape k}}-orbits covering some of the \mbox{\texttt{\mdseries\slshape t}}-orbits more than \mbox{\texttt{\mdseries\slshape lambda}} times. By default, this is done if \mbox{\texttt{\mdseries\slshape lambda}}{\textless}=3.
-\item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}}. Search for designs with block intersection nubers in the list of integers \mbox{\texttt{\mdseries\slshape lin}} (e.g. quasi-symmetric designs).
+\item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}}/\texttt{false}. Search for designs with block intersection nubers in the list of integers \mbox{\texttt{\mdseries\slshape lin}} (e.g. quasi-symmetric designs).
 \end{itemize}
  }
 
@@ -1111,6 +1414,18 @@ class.
 
  Returns 1 if \mbox{\texttt{\mdseries\slshape P}} is true, and 0 otherwise. }
 
+ 
+
+\subsection{\textcolor{Chapter }{SymmetricDifference}}
+\logpage{[ 2, 4, 7 ]}\nobreak
+\hyperdef{L}{X86F40A1A87BF4E96}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SymmetricDifference({\mdseries\slshape X, Y})\index{SymmetricDifference@\texttt{SymmetricDifference}}
+\label{SymmetricDifference}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the symmetric difference of two sets \mbox{\texttt{\mdseries\slshape X}} and \mbox{\texttt{\mdseries\slshape Y}}. }
+
  }
 
  
@@ -1128,7 +1443,7 @@ class.
 }\hfill{\scriptsize (function)}}\\
 
 
- Read a list of MOLS sets from a file. The file starts with the number of rows $m$, columns $n$, and size of the sets $s$, followed by the matrix entries. Integers in the file are separated by
+ Read a list of MOLS sets from a file. The file starts with the number of rows $m$, columns $n$, and the size of the sets $s$, followed by the matrix entries. Integers in the file are separated by
 whitespaces. }
 
  
@@ -1141,7 +1456,7 @@ whitespaces. }
 }\hfill{\scriptsize (function)}}\\
 
 
- Write a list of MOLS sets to a file. The number of rows $m$, columns $n$, and size of the sets $s$ is written first, followed by the matrix entries. Integers are separated by
+ Write a list of MOLS sets to a file. The number of rows $m$, columns $n$, and the size of the sets $s$ is written first, followed by the matrix entries. Integers are separated by
 whitespaces. }
 
  
@@ -1166,123 +1481,164 @@ whitespaces. }
 }\hfill{\scriptsize (function)}}\\
 
 
- Construct a complete set of MOLS from the finite field \mbox{\texttt{\mdseries\slshape F}}. }
+ Construct a complete set of MOLS from the finite field \mbox{\texttt{\mdseries\slshape F}}. A similar function is \texttt{MOLS} (\textbf{GUAVA: MOLS}) from the package \textsf{Guava}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MOLSToOrthogonalArray}}
+\logpage{[ 2, 5, 5 ]}\nobreak
+\hyperdef{L}{X7F1F5D9A833584F7}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOLSToOrthogonalArray({\mdseries\slshape ls})\index{MOLSToOrthogonalArray@\texttt{MOLSToOrthogonalArray}}
+\label{MOLSToOrthogonalArray}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms the set of MOLS \mbox{\texttt{\mdseries\slshape ls}} to an equivalent orthogonal array. }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrthogonalArrayToMOLS}}
+\logpage{[ 2, 5, 6 ]}\nobreak
+\hyperdef{L}{X7E7B537D83F87531}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrthogonalArrayToMOLS({\mdseries\slshape oa})\index{OrthogonalArrayToMOLS@\texttt{OrthogonalArrayToMOLS}}
+\label{OrthogonalArrayToMOLS}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms the orthogonal array \mbox{\texttt{\mdseries\slshape oa}} to an equivalent set of MOLS. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MOLSToTransversalDesign}}
+\logpage{[ 2, 5, 7 ]}\nobreak
+\hyperdef{L}{X84CA3E8478200A8A}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOLSToTransversalDesign({\mdseries\slshape ls})\index{MOLSToTransversalDesign@\texttt{MOLSToTransversalDesign}}
+\label{MOLSToTransversalDesign}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms the set of MOLS \mbox{\texttt{\mdseries\slshape ls}} to an equivalent transversal design. }
+
+ 
+
+\subsection{\textcolor{Chapter }{TransversalDesignToMOLS}}
+\logpage{[ 2, 5, 8 ]}\nobreak
+\hyperdef{L}{X84C2E30C8354947C}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TransversalDesignToMOLS({\mdseries\slshape td})\index{TransversalDesignToMOLS@\texttt{TransversalDesignToMOLS}}
+\label{TransversalDesignToMOLS}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms the transversal design \mbox{\texttt{\mdseries\slshape td}} to an equivalent set of MOLS. }
 
  
 
 \subsection{\textcolor{Chapter }{MOLSAut}}
-\logpage{[ 2, 5, 5 ]}\nobreak
+\logpage{[ 2, 5, 9 ]}\nobreak
 \hyperdef{L}{X7D15F68E7A55A95F}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOLSAut({\mdseries\slshape ls[, opt]})\index{MOLSAut@\texttt{MOLSAut}}
 \label{MOLSAut}
 }\hfill{\scriptsize (function)}}\\
 
 
- Compute autotopism, autoparatopism, or automorphism groups of MOLS sets in the
-list \mbox{\texttt{\mdseries\slshape ls}}. A record with options can be supplied. By default, autotopism groups are
-computed. If \mbox{\texttt{\mdseries\slshape opt.Paratopism}} is defined, autoparatopism groups are computed. If \mbox{\texttt{\mdseries\slshape opt.Isomorphism}} is defined, automorphism groups are computed. }
+ Computes the full auto(para)topy group of a set of MOLS \mbox{\texttt{\mdseries\slshape ls}}. Uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Isotopy}}:=\texttt{true}/\texttt{false} Compute the full autotopy group of \mbox{\texttt{\mdseries\slshape ls}}. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Paratopy}}:=\texttt{true}/\texttt{false} Compute the full autoparatopy group of \mbox{\texttt{\mdseries\slshape ls}}.
+\end{itemize}
+ Any other components will be forwarded to the \texttt{BlockDesignAut} (\ref{BlockDesignAut}) function; see its documentation. }
 
  
 
 \subsection{\textcolor{Chapter }{MOLSFilter}}
-\logpage{[ 2, 5, 6 ]}\nobreak
+\logpage{[ 2, 5, 10 ]}\nobreak
 \hyperdef{L}{X826116DB845FC8E8}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOLSFilter({\mdseries\slshape ls[, opt]})\index{MOLSFilter@\texttt{MOLSFilter}}
 \label{MOLSFilter}
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns representatives of isotopism, paratopism, or isomorphism classes of
-MOLS sets in the list \mbox{\texttt{\mdseries\slshape ls}}. A record with options can be supplied. By default, isotopism class
-representatives are returned. If \mbox{\texttt{\mdseries\slshape opt.Paratopism}} is defined, paratopism class representatives (main class representatives) are
-returned. If \mbox{\texttt{\mdseries\slshape opt.Isomorphism}} is defined, isomorphism class representatives are returned. }
+ Eliminates isotopic/paratopic copies from a list of MOLS sets \mbox{\texttt{\mdseries\slshape ls}}. Uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Paratopy}}:=\texttt{true}/\texttt{false} Eliminate paratopic MOLS sets. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Isotopy}}:=\texttt{true}/\texttt{false} Eliminate isotopic MOLS sets.
+\end{itemize}
+ Any other components will be forwarded to the \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}) function; see its documentation. }
 
  
 
-\subsection{\textcolor{Chapter }{IsotopismToPerm}}
-\logpage{[ 2, 5, 7 ]}\nobreak
-\hyperdef{L}{X81091786799E1D18}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsotopismToPerm({\mdseries\slshape n, l})\index{IsotopismToPerm@\texttt{IsotopismToPerm}}
-\label{IsotopismToPerm}
+\subsection{\textcolor{Chapter }{IsAutotopyGroup}}
+\logpage{[ 2, 5, 11 ]}\nobreak
+\hyperdef{L}{X85D053247FA1924B}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsAutotopyGroup({\mdseries\slshape n, s, G})\index{IsAutotopyGroup@\texttt{IsAutotopyGroup}}
+\label{IsAutotopyGroup}
 }\hfill{\scriptsize (function)}}\\
 
 
- Transforms an isotopism, i.e. a list \mbox{\texttt{\mdseries\slshape l}} of three permutations of degree \mbox{\texttt{\mdseries\slshape n}}, to a single permutation of degree $3$\mbox{\texttt{\mdseries\slshape n}}. }
-
- 
-
-\subsection{\textcolor{Chapter }{PermToIsotopism}}
-\logpage{[ 2, 5, 8 ]}\nobreak
-\hyperdef{L}{X80287D6B8140E827}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PermToIsotopism({\mdseries\slshape n, p})\index{PermToIsotopism@\texttt{PermToIsotopism}}
-\label{PermToIsotopism}
-}\hfill{\scriptsize (function)}}\\
-
-
- Transforms a permutation \mbox{\texttt{\mdseries\slshape p}} of degree $3$\mbox{\texttt{\mdseries\slshape n}} to an isotopism, i.e. a list of three permutations of degree \mbox{\texttt{\mdseries\slshape n}}. }
+ Check if \mbox{\texttt{\mdseries\slshape G}} is an autotopy group for transversal designs with \mbox{\texttt{\mdseries\slshape s}}$+2$ point classes of order \mbox{\texttt{\mdseries\slshape n}}. }
 
  
 
 \subsection{\textcolor{Chapter }{MOLSSubsetOrbitRep}}
-\logpage{[ 2, 5, 9 ]}\nobreak
+\logpage{[ 2, 5, 12 ]}\nobreak
 \hyperdef{L}{X782EAB457FC77498}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOLSSubsetOrbitRep({\mdseries\slshape n, s, G})\index{MOLSSubsetOrbitRep@\texttt{MOLSSubsetOrbitRep}}
 \label{MOLSSubsetOrbitRep}
 }\hfill{\scriptsize (function)}}\\
 
 
- Computes representatives of pairs and $($\mbox{\texttt{\mdseries\slshape s}}$+2)$-tuples for the construction of MOLS of order \mbox{\texttt{\mdseries\slshape n}} with prescribed autotopism group \mbox{\texttt{\mdseries\slshape G}}. A list containing pairs representatives in the first component and tuples
-representatives in the second component is returned. }
-
- 
-
-\subsection{\textcolor{Chapter }{TuplesToMOLS}}
-\logpage{[ 2, 5, 10 ]}\nobreak
-\hyperdef{L}{X7F19D770838101F2}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TuplesToMOLS({\mdseries\slshape n, s, T})\index{TuplesToMOLS@\texttt{TuplesToMOLS}}
-\label{TuplesToMOLS}
-}\hfill{\scriptsize (function)}}\\
-
-
- Transforms a set of $($\mbox{\texttt{\mdseries\slshape s}}$+2)$-tuples \mbox{\texttt{\mdseries\slshape T}} to a set of MOLS of order \mbox{\texttt{\mdseries\slshape n}}. }
+ Computes representatives of pairs and transversals of the \mbox{\texttt{\mdseries\slshape s}}$+2$ point classes for the construction of MOLS of order \mbox{\texttt{\mdseries\slshape n}} with prescribed autotopy group \mbox{\texttt{\mdseries\slshape G}}. A list containing pair representatives in the first component and
+transversal representatives in the second component is returned. }
 
  
 
 \subsection{\textcolor{Chapter }{KramerMesnerMOLS}}
-\logpage{[ 2, 5, 11 ]}\nobreak
+\logpage{[ 2, 5, 13 ]}\nobreak
 \hyperdef{L}{X87FD64DB7C954BA1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMOLS({\mdseries\slshape n, s, G[, opt]})\index{KramerMesnerMOLS@\texttt{KramerMesnerMOLS}}
 \label{KramerMesnerMOLS}
 }\hfill{\scriptsize (function)}}\\
 
 
- Search for MOLS sets of order \mbox{\texttt{\mdseries\slshape n}} and size \mbox{\texttt{\mdseries\slshape s}} with prescribed autotopism group \mbox{\texttt{\mdseries\slshape G}}. A record \mbox{\texttt{\mdseries\slshape opt}} with options can be supplied. By default, A.Wassermann's LLL solver \texttt{solvediophant} is used and all constructed MOLS are returned, i.e. no filtering is performed.
-Available options are: 
+ If the function \texttt{IsAutotopyGroup} (\ref{IsAutotopyGroup})(\mbox{\texttt{\mdseries\slshape G}}) returns \texttt{true} for the group \mbox{\texttt{\mdseries\slshape G}}, call \texttt{KramerMesnerMOLSAutotopy} (\ref{KramerMesnerMOLSAutotopy}); otherwise call \texttt{KramerMesnerMOLSAutoparatopy} (\ref{KramerMesnerMOLSAutoparatopy}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{KramerMesnerMOLSAutotopy}}
+\logpage{[ 2, 5, 14 ]}\nobreak
+\hyperdef{L}{X7861AB617AC13AF5}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMOLSAutotopy({\mdseries\slshape n, s, G[, opt]})\index{KramerMesnerMOLSAutotopy@\texttt{KramerMesnerMOLSAutotopy}}
+\label{KramerMesnerMOLSAutotopy}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Search for MOLS sets of order \mbox{\texttt{\mdseries\slshape n}} and size \mbox{\texttt{\mdseries\slshape s}} with prescribed autotopy group \mbox{\texttt{\mdseries\slshape G}}. By default, A.Wassermann's LLL solver \texttt{solvediophant} is used for \mbox{\texttt{\mdseries\slshape s}}$=1$, and the backtracking solver \texttt{solvecm} is used for \mbox{\texttt{\mdseries\slshape s}}$>1$. This can be changed by setting options in the record \mbox{\texttt{\mdseries\slshape opt}}. Available options are: 
 \begin{itemize}
-\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} The backtracing solver \texttt{solvecm} is used.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Isotopism"} Non-isotopic MOLS are returned.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Paratopism"} Non-paratopic MOLS are returned.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Isomorphism"} Non-isomorphic MOLS are returned.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} Use \texttt{solvecm}.
+\item \mbox{\texttt{\mdseries\slshape Paratopy}}:=\texttt{true}/\texttt{false} Eliminate paratopic solutions. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Isotopy}}:=\texttt{true}/\texttt{false} Eliminate isotopic solutions. All solutions are returned if either option is
+set to \texttt{false}.
 \end{itemize}
  }
 
  
 
-\subsection{\textcolor{Chapter }{KramerMesnerMOLSParatopism}}
-\logpage{[ 2, 5, 12 ]}\nobreak
-\hyperdef{L}{X79190696821CB0EC}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMOLSParatopism({\mdseries\slshape n, s, G[, opt]})\index{KramerMesnerMOLSParatopism@\texttt{KramerMesnerMOLSParatopism}}
-\label{KramerMesnerMOLSParatopism}
+\subsection{\textcolor{Chapter }{KramerMesnerMOLSAutoparatopy}}
+\logpage{[ 2, 5, 15 ]}\nobreak
+\hyperdef{L}{X87AFFFA97D37406B}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMOLSAutoparatopy({\mdseries\slshape n, s, G[, opt]})\index{KramerMesnerMOLSAutoparatopy@\texttt{KramerMesnerMOLSAutoparatopy}}
+\label{KramerMesnerMOLSAutoparatopy}
 }\hfill{\scriptsize (function)}}\\
 
 
- Search for MOLS sets of order \mbox{\texttt{\mdseries\slshape n}} and size \mbox{\texttt{\mdseries\slshape s}} with prescribed autoparatopism group \mbox{\texttt{\mdseries\slshape G}}. A record \mbox{\texttt{\mdseries\slshape opt}} with options can be supplied. By default, A.Wassermann's LLL solver \texttt{solvediophant} is used and all constructed MOLS are returned, i.e. no filtering is performed.
-Available options are: 
+ Search for MOLS sets of order \mbox{\texttt{\mdseries\slshape n}} and size \mbox{\texttt{\mdseries\slshape s}} with prescribed autoparatopy group \mbox{\texttt{\mdseries\slshape G}}. By default, A.Wassermann's LLL solver \texttt{solvediophant} is used for \mbox{\texttt{\mdseries\slshape s}}$=1$, and the backtracking solver \texttt{solvecm} is used for \mbox{\texttt{\mdseries\slshape s}}$>1$. This can be changed by setting options in the record \mbox{\texttt{\mdseries\slshape opt}}. Available options are: 
 \begin{itemize}
-\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} The backtracing solver \texttt{solvecm} is used.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Isotopism"} Non-isotopic MOLS are returned.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Paratopism"} Non-paratopic MOLS are returned.
-\item \mbox{\texttt{\mdseries\slshape Filter}}:=\texttt{"Isomorphism"} Non-isomorphic MOLS are returned.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} Use \texttt{solvecm}.
+\item \mbox{\texttt{\mdseries\slshape Paratopy}}:=\texttt{true}/\texttt{false} Eliminate paratopic solutions. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Isotopy}}:=\texttt{true}/\texttt{false} Eliminate isotopic solutions. All solutions are returned if either option is
+set to \texttt{false}.
 \end{itemize}
  }
 
@@ -1298,24 +1654,24 @@ Available options are:
 \subsection{\textcolor{Chapter }{DifferenceCube}}
 \logpage{[ 2, 6, 1 ]}\nobreak
 \hyperdef{L}{X796E426D877E220A}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DifferenceCube({\mdseries\slshape G, ds, d})\index{DifferenceCube@\texttt{DifferenceCube}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DifferenceCube({\mdseries\slshape G, ds, n})\index{DifferenceCube@\texttt{DifferenceCube}}
 \label{DifferenceCube}
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns the \mbox{\texttt{\mdseries\slshape d}}-dimenional difference cube constructed from a difference set \mbox{\texttt{\mdseries\slshape ds}} in the group \mbox{\texttt{\mdseries\slshape G}}. }
+ Returns the \mbox{\texttt{\mdseries\slshape n}}-dimenional difference cube constructed from a difference set \mbox{\texttt{\mdseries\slshape ds}} in the group \mbox{\texttt{\mdseries\slshape G}}. }
 
  
 
 \subsection{\textcolor{Chapter }{GroupCube}}
 \logpage{[ 2, 6, 2 ]}\nobreak
 \hyperdef{L}{X7D20EEDC8566D8BF}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{GroupCube({\mdseries\slshape G, dds, d})\index{GroupCube@\texttt{GroupCube}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{GroupCube({\mdseries\slshape G, dds, n})\index{GroupCube@\texttt{GroupCube}}
 \label{GroupCube}
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns the \mbox{\texttt{\mdseries\slshape d}}-dimenional group cube constructed from a symmetric design \mbox{\texttt{\mdseries\slshape dds}} such that the blocks are difference sets in the group \mbox{\texttt{\mdseries\slshape G}}. }
+ Returns the \mbox{\texttt{\mdseries\slshape n}}-dimenional group cube constructed from a symmetric design \mbox{\texttt{\mdseries\slshape dds}} such that the blocks are difference sets in the group \mbox{\texttt{\mdseries\slshape G}}. }
 
  
 
@@ -1327,7 +1683,7 @@ Available options are:
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns a 2-dimensional slice of the cube \mbox{\texttt{\mdseries\slshape C}} obtained by varying coordinates in positions \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}, and taking fixed values for the remaining coordinates given in a list \mbox{\texttt{\mdseries\slshape fixed}}. }
+ Returns a 2-dimensional slice of the incidence cube \mbox{\texttt{\mdseries\slshape C}} obtained by varying coordinates in positions \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}, and taking fixed values for the remaining coordinates given in a list \mbox{\texttt{\mdseries\slshape fixed}}. }
 
  
 
@@ -1339,12 +1695,12 @@ Available options are:
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns 2-dimensional slices of the cube \mbox{\texttt{\mdseries\slshape C}}. Optional arguments are the varying coordinates \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}, and values of the fixed coordinates in a list \mbox{\texttt{\mdseries\slshape fixed}}. If optional arguments are not given, all possibilities will be supplied. For
-a $d$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the following calls will return: 
+ Returns 2-dimensional slices of the incidence cube \mbox{\texttt{\mdseries\slshape C}}. Optional arguments are the varying coordinates \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}, and values of the fixed coordinates in a list \mbox{\texttt{\mdseries\slshape fixed}}. If optional arguments are not given, all possibilities will be supplied. For
+an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the following calls will return: 
 \begin{itemize}
-\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}} ) $\ldots v^{d-2}$ slices obtained by varying values of the fixed coordinates.
-\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}}, \mbox{\texttt{\mdseries\slshape fixed}} ) $\ldots {d\choose 2}$ slices obtained by varying the non-fixed coordinates $x < y$.
-\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}} ) $\ldots {d\choose 2}\cdot v^{d-2}$ slices obtained by varying both the non-fixed coordinates $x < y$ and values of the fixed coordinates.
+\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}} ) $\ldots v^{n-2}$ slices obtained by varying values of the fixed coordinates.
+\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}}, \mbox{\texttt{\mdseries\slshape fixed}} ) $\ldots {n\choose 2}$ slices obtained by varying the non-fixed coordinates $x < y$.
+\item CubeSlices( \mbox{\texttt{\mdseries\slshape C}} ) $\ldots {n\choose 2}\cdot v^{n-2}$ slices obtained by varying both the non-fixed coordinates $x < y$ and values of the fixed coordinates.
 \end{itemize}
  }
 
@@ -1365,12 +1721,12 @@ a $d$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fol
 \subsection{\textcolor{Chapter }{OrthogonalArrayToCube}}
 \logpage{[ 2, 6, 6 ]}\nobreak
 \hyperdef{L}{X87C8CFE97ECDC3DA}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrthogonalArrayToCube({\mdseries\slshape OA})\index{OrthogonalArrayToCube@\texttt{OrthogonalArrayToCube}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrthogonalArrayToCube({\mdseries\slshape oa})\index{OrthogonalArrayToCube@\texttt{OrthogonalArrayToCube}}
 \label{OrthogonalArrayToCube}
 }\hfill{\scriptsize (function)}}\\
 
 
- Transforms the orthogonal array \mbox{\texttt{\mdseries\slshape OA}} to an equivalent incidence cube. }
+ Transforms the orthogonal array \mbox{\texttt{\mdseries\slshape oa}} to an equivalent incidence cube. }
 
  
 
@@ -1389,12 +1745,12 @@ a $d$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fol
 \subsection{\textcolor{Chapter }{TransversalDesignToCube}}
 \logpage{[ 2, 6, 8 ]}\nobreak
 \hyperdef{L}{X7D717F98781699EF}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TransversalDesignToCube({\mdseries\slshape TD})\index{TransversalDesignToCube@\texttt{TransversalDesignToCube}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TransversalDesignToCube({\mdseries\slshape td})\index{TransversalDesignToCube@\texttt{TransversalDesignToCube}}
 \label{TransversalDesignToCube}
 }\hfill{\scriptsize (function)}}\\
 
 
- Transforms the transversal design \mbox{\texttt{\mdseries\slshape TD}} to an equivalent incidence cube. }
+ Transforms the transversal design \mbox{\texttt{\mdseries\slshape td}} to an equivalent incidence cube. }
 
  
 
@@ -1422,15 +1778,15 @@ a $d$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fol
 
  
 
-\subsection{\textcolor{Chapter }{CubeInvariant}}
+\subsection{\textcolor{Chapter }{SliceInvariant}}
 \logpage{[ 2, 6, 11 ]}\nobreak
-\hyperdef{L}{X7E1717C57A5F7865}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeInvariant({\mdseries\slshape C})\index{CubeInvariant@\texttt{CubeInvariant}}
-\label{CubeInvariant}
+\hyperdef{L}{X781264CA816BE32E}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SliceInvariant({\mdseries\slshape C})\index{SliceInvariant@\texttt{SliceInvariant}}
+\label{SliceInvariant}
 }\hfill{\scriptsize (function)}}\\
 
 
- Computes an equivalence invariant of the cube \mbox{\texttt{\mdseries\slshape C}} based on automorphism group sizes of its slices. Cubes equivalent under
+ Computes a paratopy invariant of the cube \mbox{\texttt{\mdseries\slshape C}} based on automorphism group sizes of parallel slices. Cubes equivalent under
 paratopy have the same invariant. }
 
  
@@ -1466,6 +1822,32 @@ paratopy have the same invariant. }
 \item \mbox{\texttt{\mdseries\slshape Isotopy}}:=\texttt{true}/\texttt{false} Eliminate isotopic cubes.
 \end{itemize}
  Any other components will be forwarded to the \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}) function; see its documentation. }
+
+ 
+
+\subsection{\textcolor{Chapter }{SDPSeriesGroup}}
+\logpage{[ 2, 6, 14 ]}\nobreak
+\hyperdef{L}{X853C796F7AE3EAB3}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesGroup({\mdseries\slshape m})\index{SDPSeriesGroup@\texttt{SDPSeriesGroup}}
+\label{SDPSeriesGroup}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a group for the designs of \texttt{SDPSeriesDesign} (\ref{SDPSeriesDesign}). This is the elementary Abelian group of order $4^m$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{SDPSeriesDesign}}
+\logpage{[ 2, 6, 15 ]}\nobreak
+\hyperdef{L}{X840763A67E94AE26}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesDesign({\mdseries\slshape m, i})\index{SDPSeriesDesign@\texttt{SDPSeriesDesign}}
+\label{SDPSeriesDesign}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a symmetric block design with parameters $(4^m,2^{m-1}(2^m-1),2^{m-1}(2^{m-1}-1))$. The argument \mbox{\texttt{\mdseries\slshape i}} must be 1, 2, or 3. If \mbox{\texttt{\mdseries\slshape i}}$=1$, the design is the symplectic design of Kantor \cite{WK75}. This design has the symmetric difference property (SDP). If \mbox{\texttt{\mdseries\slshape i}}$=2$ or \mbox{\texttt{\mdseries\slshape i}}$=3$, two other non-isomorphic designs with the same parameters are returned. They
+are not SDP designs, but have the property that all their blocks are
+difference sets in the group returned by \texttt{SDPSeriesGroup} (\ref{SDPSeriesGroup}). Developments of these blocks are isomorphic to the design for \mbox{\texttt{\mdseries\slshape i}}$=1$, so the two other designs are not developments of their blocks. }
 
  }
 
@@ -1508,6 +1890,18 @@ default is \texttt{false}.
 themselves.
 \end{itemize}
  }
+
+ 
+
+\subsection{\textcolor{Chapter }{SDPSeriesHadamardMat}}
+\logpage{[ 2, 7, 3 ]}\nobreak
+\hyperdef{L}{X805C567178DC9FD8}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesHadamardMat({\mdseries\slshape m, i})\index{SDPSeriesHadamardMat@\texttt{SDPSeriesHadamardMat}}
+\label{SDPSeriesHadamardMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a Hadamard matrix of order $4^m$ for the SDP series of designs. The argument \mbox{\texttt{\mdseries\slshape i}} must be 1, 2, or 3. See documentation for the \texttt{SDPSeriesDesign} (\ref{SDPSeriesDesign}) function. }
 
  }
 

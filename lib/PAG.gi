@@ -201,6 +201,24 @@ end );
 
 #############################################################################
 #
+#  ExtendedPermRepresentation( <G> ) 
+#
+#  Returns the extended permutation representation of a group <A>G</A>,
+#  that includes right multiplication, left multiplication, and group
+#  automorphisms. 
+#
+#
+InstallGlobalFunction( ExtendedPermRepresentation, function( g )
+local l;
+
+  l:=SortedList(Elements(g));
+  return Group(Concatenation(List(GeneratorsOfGroup(AutomorphismGroup(g)),x->Sortex(List(l,y->y^x))),GeneratorsOfGroup(PermRepresentationRight(g))));
+
+end );
+
+
+#############################################################################
+#
 #  OrbitFilter1( <G>, <obj>, <action> )  
 #
 #  Takes a list of objects <A>obj</A> and returns one representative
@@ -1135,12 +1153,14 @@ end );
 #
 #  Performs a search for <A>t</A>-(<A>v</A>,<A>k</A>,<A>lambda</A>) designs
 #  with presrcribed automorphism group <A>G</A> by the Kramer-Mesner method.
-#  A record with options can be supplied. By default, a list of base blocks
-#  for the constructed designs is returned. If <A>opt.Design</A> is defined,
-#  the designs are returned in the <Package>Design</Package> package format 
-#  <Ref Chap="Design" BookName="DESIGN"/>. If <A>opt.NonIsomorphic</A> is 
-#  defined, the designs are returned in <Package>Design</Package> format and 
-#  isomorph-rejection is performed. Other available options are:
+#  A record with options can be supplied. By default, designs are returned 
+#  in the <Package>Design</Package> package format 
+#  <Ref Chap="Design" BookName="DESIGN"/> and isomorph-rejection is performed
+#  by calling <Ref Func="BlockDesignFilter" Style="Text"/>. This can be turned
+#  off by setting <A>opt.NonIsomorphic</A>:=<C>false</C>. By setting 
+#  <A>opt.BaseBlocks</A>:=<C>true</C>, base blocks are returned instead
+#  of designs (this automatically turns off isomorph-rejection). Other available 
+#  options are:
 #  <List>
 #  <Item><A>SmallLambda</A>:=<C>true</C>/<C>false</C>. Perform the <Q>small 
 #  lambda filter</Q>, i.e. remove <A>k</A>-orbits covering some of the 
@@ -1230,13 +1250,17 @@ local tsub,b,ksub,m,bb,d,output,smalllambda,lin,cm;
       else
         bb:=BaseBlocks(ksub,SolveKramerMesner(m,cm));
       fi;
-      output:=1;
+      output:=3;
       if Size(opt)>=1 then
-        if IsBound(opt[1].Design) then
-          output:=2;
+        if IsBound(opt[1].BaseBlocks) then
+          if opt[1].BaseBlocks then
+            output:=1;
+          fi;
         fi;
         if IsBound(opt[1].NonIsomorphic) then
-          output:=3;
+          if not opt[1].NonIsomorphic then
+            output:=2;
+          fi;
         fi;
       fi;
       if output=1 then
@@ -1247,7 +1271,7 @@ local tsub,b,ksub,m,bb,d,output,smalllambda,lin,cm;
           if PAGGlobalOptions.Silent=false then
             Print("Performing isomorph rejection...\n");
           fi;
-          d:=BlockDesignIsomorphismClassRepresentatives(d);
+          d:=BlockDesignFilter(d);
           if PAGGlobalOptions.Silent=false then
             Print(Size(d),"\n");
           fi;
@@ -1346,107 +1370,167 @@ end );
 
 #############################################################################
 #
-#  MOLSAut( <ls>[, <opt>] ) 
+#  MOLSToOrthogonalArray( <ls> ) 
 #
-#  Compute autotopism, autoparatopism, or automorphism groups of MOLS sets 
-#  in the list <A>ls</A>. A record with options can be supplied. By default, 
-#  autotopism groups are computed. If <A>opt.Paratopism</A> is defined, 
-#  autoparastrophisms are allowed, i.e. autoparatopism groups are computed.
-#  If <A>opt.Isomorphism</A> is defined, automorphism groups are computed.
+#  Transforms the set of MOLS <A>ls</A> to an equivalent orthogonal array.
 #
-InstallGlobalFunction( MOLSAut, function( ls, opt... )
-local single,r,c,s,lsfile,input,output,command,str,first,last,res,stropt;
+InstallGlobalFunction( MOLSToOrthogonalArray, function( ls )
+local n;
 
-    if NestingDepthA(ls)=2 then
-      single:=true;
-      ls:=[[ls]];
-    else
-      single:=false;
-    fi;
-    if NestingDepthA(ls)=3 then
-      ls:=List(ls,x->[x]);
-    fi;
-    s:=Size(ls[1]);
-    r:=Size(ls[1][1]);
-    c:=Size(ls[1][1][1]);
-    stropt:="";
-    if Size(opt)>0 then
-      if IsBound(opt[1].Paratopism) then
-        stropt:="-c";
-      fi; 
-      if IsBound(opt[1].Isomorphism) then
-        stropt:="-i";
-      fi; 
-    fi;
-
-    lsfile := Filename(PAGGlobalOptions.TempDir,"molsaut.in");
-    WriteMOLS(lsfile,ls); 
-    input:=InputTextFile(lsfile);
-    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"molsaut.out"), false);
-    command:=Filename(DirectoriesPackagePrograms("PAG"), "molsaut");
-    Process(PAGGlobalOptions.TempDir, command, input, output, [stropt]); 
-    CloseStream(input);
-    CloseStream(output);
-    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"molsaut.out") );
-    str:=ReadAll(input);
-    CloseStream(input);
-    NormalizeWhitespace(str);
-    str:=ReplacedString(str,"()","(())");
-    str:=ReplacedString(str,", );",");");
-    first:=Positions(str,'=');
-    last:=Positions(str,';');
-    res:=List([1..Size(ls)],i->GeneratorsOfGroup(EvalString(str{[first[i]+1..last[i]]})));
-    res:=List(res,x->List(x,y->RestrictedPerm(y,[1..r+(s+1)*c])));
-    res:=List(res,Group);
-    if single then
-      res:=res[1];
-    fi;
-    return res;
+  n:=Size(ls[1]);
+  return Concatenation(List([1..n],i->List([1..n],j->Concatenation([i,j],List(ls,x->x[i][j])))));
 end );
 
 
 #############################################################################
 #
-#  MOLSFilter( <ls>[, <opt>] ) 
+#  OrthogonalArrayToMOLS( <oa> ) 
 #
-#  Returns representatives of isotopism, paratopism, or isomorphism classes of MOLS
-#  sets in the list <A>ls</A>. A record with options can be supplied. By default, 
-#  isotopism class representatives are returned. If <A>opt.Paratopism</A> is defined, 
-#  main (paratopism) class representatives are returned. If <A>opt.Isomorphism</A> 
-#  is defined, isomorphism class representatives are returned.
+#  Transforms the orthogonal array <A>oa</A> to an equivalent set of MOLS.
+#
+InstallGlobalFunction( OrthogonalArrayToMOLS, function( oa )
+local n,s,ls,tup,i;
+
+  s:=Size(oa[1])-2;
+  n:=Maximum(Union(oa));
+  ls:=List([1..s],k->List([1..n],i->List([1..n],j->0)));
+  for tup in oa do
+    for i in [1..s] do
+      ls[i][tup[1]][tup[2]]:=tup[i+2];
+    od; 
+  od;
+  return ls;
+end );
+
+
+#############################################################################
+#
+#  MOLSToTransversalDesign( <ls> ) 
+#
+#  Transforms the set of MOLS <A>ls</A> to an equivalent transversal design.
+#
+InstallGlobalFunction( MOLSToTransversalDesign, function( ls )
+local n,s,a;
+
+  n:=Size(ls[1]);
+  s:=Size(ls)+2;
+  a:=List([0..s-1],i->n*i);
+  return BlockDesign(n*s,List(MOLSToOrthogonalArray(ls),x->x+a));
+end );
+
+
+#############################################################################
+#
+#  TransversalDesignToMOLS( <td> ) 
+#
+#  Transforms the transversal design <A>td</A> to an equivalent set of MOLS.
+#
+InstallGlobalFunction( TransversalDesignToMOLS, function( td )
+local b,n,s,a;
+
+  b:=td.blocks;
+  s:=Size(b[1]);
+  n:=(td.v)/s;
+  a:=List([0..s-1],i->n*i);
+  return OrthogonalArrayToMOLS(List(b,x->x-a));
+end );
+
+
+#############################################################################
+#
+#  MOLSAut( <ls>[, <opt>] ) 
+#
+#  Compute the full auto(para)topy group of a set of MOLS <A>ls</A>. The
+#  optional argument <A>opt</A> is a record for options. Possible components 
+#  are:
+#  <List>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Compute the full autotopy
+#  group of <A>ls</A>. This is the default.</Item>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
+#  autoparatopy group of <A>ls</A>.</Item>
+#  </List>
+#
+InstallGlobalFunction( MOLSAut, function( ls, opt... )
+local opt2,n;
+
+  if NestingDepthA(ls)=2 then
+    ls:=[ls];
+  fi;
+  n:=Size(ls[1]);
+  if Size(opt)>=1 then
+    opt2:=StructuralCopy(opt[1]); 
+    if IsBound(opt[1].Paratopy) then
+         if not opt[1].Paratopy then
+           opt2.PointClasses:=n;
+         fi;
+    else
+      opt2.PointClasses:=n;
+      if IsBound(opt[1].Isotopy) then
+         if not opt[1].Isotopy then
+           Unbind(opt2.PointClasses);
+         fi;
+      fi;
+    fi;
+  else
+    opt2:=rec(PointClasses:=n);
+  fi;
+
+  return BlockDesignAut(MOLSToTransversalDesign(ls),opt2);
+end );
+
+
+#############################################################################
+#
+#  MOLSFilter( <ls>[, opt] )  
+#
+#  Eliminates isotopic/paratopic copies from a list of MOLS sets <A>ls</A>. 
+#  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+#  The optional argument <A>opt</A> is a record for options. Possible 
+#  components are:
+#  <List>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic MOLS sets. 
+#  This is the default.</Item>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic MOLS sets.</Item>
+#  </List>
+#  Any other components will be forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+#  function; see its documentation.
 #
 InstallGlobalFunction( MOLSFilter, function( ls, opt... )
-local r,c,s,lsfile,input,output,command,str,first,last,res,stropt;
+local opt2,n,pos;
 
-    if NestingDepthA(ls)=2 then
-      ls:=[[ls]];
-    fi;
+  if ls=[] then return [];
+  else
     if NestingDepthA(ls)=3 then
       ls:=List(ls,x->[x]);
     fi;
-    s:=Size(ls[1]);
-    r:=Size(ls[1][1]);
-    c:=Size(ls[1][1][1]);
-    stropt:="";
-    if Size(opt)>0 then
-      if IsBound(opt[1].Paratopism) then
-        stropt:="-c";
-      fi; 
-      if IsBound(opt[1].Isomorphism) then
-        stropt:="-i";
-      fi; 
+    n:=Size(ls[1][1]);
+    pos:=false;
+    if Size(opt)>=1 then
+      opt2:=StructuralCopy(opt[1]); 
+      if IsBound(opt[1].Paratopy) then
+         if not opt[1].Paratopy then
+           opt2.PointClasses:=n;
+         fi;
+      fi;
+      if IsBound(opt[1].Isotopy) then
+        if opt[1].Isotopy then 
+          opt2.PointClasses:=n;
+        fi;
+      fi;
+      if IsBound(opt[1].Positions) then
+        pos:=opt[1].Positions; 
+      fi;
+    else
+      opt2:=rec();
     fi;
+    opt2.Positions:=true;
 
-    lsfile := Filename(PAGGlobalOptions.TempDir,"molsfilter.in");
-    WriteMOLS(lsfile,ls); 
-    input:=InputTextFile(lsfile);
-    lsfile := Filename(PAGGlobalOptions.TempDir,"molsfilter.out");
-    output:=OutputTextFile( lsfile, false);
-    command:=Filename(DirectoriesPackagePrograms("PAG"), "molsfilter");
-    Process(PAGGlobalOptions.TempDir, command, input, output, [stropt]); 
-    CloseStream(input);
-    CloseStream(output);
-    return ReadMOLS(lsfile);
+    if pos then
+      return BlockDesignFilter(List(ls,MOLSToTransversalDesign),opt2);
+    else
+      return ls{BlockDesignFilter(List(ls,MOLSToTransversalDesign),opt2)};
+    fi;
+  fi;
 end );
 
 
@@ -1465,26 +1549,17 @@ end );
 
 #############################################################################
 #
-#  IsotopismToPerm( <n>, <l> ) 
+#  IsAutotopyGroup( <n>, <s>, <G> ) 
 #
-#  Transforms an isotopism, i.e. a list <A>l</A> of three permutations of 
-#  degree <A>n</A>, to a single permutation of degree <M>3</M><A>n</A>. 
+#  Check if <A>G</A> is an autotopy group for transversal designs with
+#  <A>s</A><M>+2</M> point classes of order <A>n</A>.
 #
-InstallGlobalFunction( IsotopismToPerm, function( n, l )
-    return l[1]*MovePerm(l[2],[1..n],[(n+1)..(2*n)])*MovePerm(l[3],[1..n],[(2*n+1)..(3*n)]);
-end );
+InstallGlobalFunction( IsAutotopyGroup, function( n, s, g )
+local pcl,o;
 
-
-#############################################################################
-#
-#  PermToIsotopism( <n>, <l> ) 
-#
-#  Transforms a permutation <A>p</A> of degree <M>3</M><A>n</A> to an
-#  isotopism, i.e. a list of three permutations of degree <A>n</A>. 
-#
-InstallGlobalFunction( PermToIsotopism, function( n, p )
-    return [ RestrictedPerm(p,[1..n]), MovePerm(RestrictedPerm(p,[(n+1)..(2*n)]),[(n+1)..(2*n)],[1..n]),
-      MovePerm(RestrictedPerm(p,[(2*n+1)..(3*n)]),[(2*n+1)..(3*n)],[1..n]) ];
+    pcl:=List([0..s+1],i->[1..n]+n*i);
+    o:=Orbits(g);
+    return AsSet(List(o,y->Sum(List(pcl,x->IversonBracket(IsSubset(x,y))))))=[1];
 end );
 
 
@@ -1492,10 +1567,10 @@ end );
 #
 #  MOLSSubsetOrbitRep( <n>, <s>, <G> ) 
 #
-#  Computes representatives of pairs and <M>(</M><A>s</A><M>+2)</M>-tuples
-#  for the construction of MOLS of order <A>n</A> with prescribed autotopism
-#  group <A>G</A>. A list containing pairs representatives in the first 
-#  component and tuples representatives in the second component is returned.
+#  Computes representatives of pairs and transversals of the <A>s</A><M>+2</M>
+#  point classes for the construction of MOLS of order <A>n</A> with prescribed autotopy
+#  group <A>G</A>. A list containing pair representatives in the first component and 
+#  transversal representatives in the second component is returned.
 #
 InstallGlobalFunction( MOLSSubsetOrbitRep, function( n, s, g )
 local gen,rep,pairs,o1;
@@ -1527,7 +1602,7 @@ local gen,rep,pairs,o1;
     rep:=[];
     gen(n,s,g,[],0);
     if not PAGGlobalOptions.Silent then
-      Print("Tuples: ",Size(rep),"\n");
+      Print("Transversals: ",Size(rep),"\n");
     fi;
     return [pairs,rep];
 end );
@@ -1535,54 +1610,88 @@ end );
 
 #############################################################################
 #
-#  TuplesToMOLS( <n>, <s>, <T> ) 
+#  KramerMesnerMOLS( <n>, <s>, <G>[, <opt>] ) 
 #
-#  Transforms a set of <M>(</M><A>s</A><M>+2)</M>-tuples <A>T</A> to a 
-#  set of MOLS of order <A>n</A>.
+#  If <Ref Func="IsAutotopyGroup"/>(<A>G</A>) returns <C>true</C>,
+#  call <Ref Func="KramerMesnerMOLSAutotopy"/>; otherwise call
+#  <Ref Func="KramerMesnerMOLSAutoparatopy"/>.
 #
-InstallGlobalFunction( TuplesToMOLS, function( n, s, tup )
-local i,x,ls;
-    ls:=List([1..s],z->List([1..n],x->List([1..n],y->0)));
-    for i in [1..s] do
-      for x in tup do
-        ls[i][x[1]][x[2]-n]:=x[i+2]-(i+1)*n;
-      od;
-    od;
-    return ls;
+InstallGlobalFunction( KramerMesnerMOLS, function( n, s, g, opt... )
+
+    if IsAutotopyGroup(n,s,g) then
+      if opt=[] then
+        return KramerMesnerMOLSAutotopy(n,s,g);
+      else
+        return KramerMesnerMOLSAutotopy(n,s,g,opt[1]);
+      fi;
+    else
+      if opt=[] then
+        return KramerMesnerMOLSAutoparatopy(n,s,g);
+      else
+        return KramerMesnerMOLSAutoparatopy(n,s,g,opt[1]);
+      fi;
+    fi;
 end );
 
 
 #############################################################################
 #
-#  KramerMesnerMOLS( <n>, <s>, <G>[, <opt>] ) 
+#  KramerMesnerMOLSAutotopy( <n>, <s>, <G>[, <opt>] ) 
 #
 #  Search for MOLS sets of order <A>n</A> and size <A>s</A> with prescribed
-#  autotopism group <A>G</A>. A record <A>opt</A> with options can be supplied.
-#  By default, A.Wassermann's LLL solver <C>solvediophant</C> is used and
-#  all constructed MOLS are returned, i.e. no filtering is performed. Available 
-#  options are:
+#  autotopy group <A>G</A>. By default, A.Wassermann's LLL solver 
+#  <C>solvediophant</C> is used for <A>s</A><M>=1</M>, and the backtracking
+#  solver <C>solvecm</C> is used for <A>s</A><M>&gt;1</M>. This can be changed
+#  by setting options in the record <A>opt</A>. Available options are:
 #  <List>
-#  <Item><A>Solver</A>:=<C>"solvecm"</C> The backtracing solver <C>solvecm</C> 
-#  is used.</Item>
-#  <Item><A>Filter</A>:=<C>"Isotopism"</C> Non-isotopic MOLS are returned.</Item>
-#  <Item><A>Filter</A>:=<C>"Paratopism"</C> Non-paratopic MOLS are returned.</Item>
-#  <Item><A>Filter</A>:=<C>"Isomorphism"</C> Non-isomorphic MOLS are returned.</Item>
+#  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>.</Item>
+#  <Item><A>Solver</A>:=<C>"solvecm"</C> Use <C>solvecm</C>.</Item>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic solutions. 
+#  This is the default.</Item>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic solutions.
+#  All solutions are returned if either option is set to <C>false</C>.</Item>
 #  </List>
 #
-InstallGlobalFunction( KramerMesnerMOLS, function( n, s, g, opt... )
-local rep,m,row,bb,inc,rez;
+InstallGlobalFunction( KramerMesnerMOLSAutotopy, function( n, s, g, opt... )
+local rep,m,row,bb,inc,rez,output;
+   
+    output:=1; 
     if opt=[] then
-      opt:=[rec(Filter:=false)];
+      if s=1 then
+        opt:=[rec(Solver:="solvediophant")];
+      else
+        opt:=[rec(Solver:="solvecm")];
+      fi;
     fi;
-    if not IsBound(opt[1].Filter) then
-      opt[1].Filter:=false;
+    if IsBound(opt[1].Paratopy) then
+      if opt[1].Paratopy then
+        output:=1;
+      else
+        output:=3;
+      fi;
     fi; 
+    if IsBound(opt[1].Isotopy) then
+      if opt[1].Isotopy then
+        output:=2;
+      else
+        output:=3;
+      fi;
+    fi; 
+    if PAGGlobalOptions.Silent=false then
+      Print("Computing orbit representatives...\n");
+    fi;
     rep:=MOLSSubsetOrbitRep(n,s,g);
     if rep[2]<>[] then
+      if PAGGlobalOptions.Silent=false then
+        Print("Computing the Kramer-Mesner matrix...\n");
+      fi;
       m:=KramerMesnerMat(g,rep[1],rep[2],1);
-      if not PAGGlobalOptions.Silent then
-        Print("KM matrix: ",DimensionsMat(m),"\n");
-      fi; 
+      if PAGGlobalOptions.Silent=false then
+        Print(DimensionsMat(m),"\n");
+      fi;
+      if PAGGlobalOptions.Silent=false then
+        Print("Starting solver...\n");
+      fi;
       if IsBound(opt[1].Solver) then
         if opt[1].Solver="solvecm" then
           row:=List(rep[2],x->Size(Orbit(g,x,OnSets)));
@@ -1591,28 +1700,25 @@ local rep,m,row,bb,inc,rez;
         fi;
       fi;
       bb:=BaseBlocks(rep[2],AsSet(SolveKramerMesner(m,opt[1])));
-      if not PAGGlobalOptions.Silent then
-        Print("Solutions: ",Size(bb),"\n");
-      fi;
       if bb<>[] then
         inc:=List(bb,y->Concatenation(List(y,x->Orbit(g,x,OnSets))));
-        rez:=List(inc,x->TuplesToMOLS(n,s,x));
-        if opt[1].Filter="Isotopism" then
-          rez:=MOLSFilter(rez);
-          if not PAGGlobalOptions.Silent then
-            Print("Nonisotopic: ",Size(rez),"\n");
+        rez:=List(inc,x->TransversalDesignToMOLS(BlockDesign(n*(s+2),x)));
+        if output=1 then
+          if PAGGlobalOptions.Silent=false then
+            Print("Performing paratopy rejection...\n");
+          fi;
+          rez:=MOLSFilter(rez,rec(Paratopy:=true));
+          if PAGGlobalOptions.Silent=false then
+            Print(Size(rez),"\n");
           fi;
         fi;
-        if opt[1].Filter="Paratopism" then
-          rez:=MOLSFilter(rez,rec(Paratopism:=true));
-          if not PAGGlobalOptions.Silent then
-            Print("Nonparatopic: ",Size(rez),"\n");
+        if output=2 then
+          if PAGGlobalOptions.Silent=false then
+            Print("Performing isotopy rejection...\n");
           fi;
-        fi;
-        if opt[1].Filter="Isomorphism" then
-          rez:=MOLSFilter(rez,rec(Isomorphism:=true));
-          if not PAGGlobalOptions.Silent then
-            Print("Nonisomorphic: ",Size(rez),"\n");
+          rez:=MOLSFilter(rez,rec(Isotopy:=true));
+          if PAGGlobalOptions.Silent=false then
+            Print(Size(rez),"\n");
           fi;
         fi;
         return rez;
@@ -1627,29 +1733,50 @@ end );
 
 #############################################################################
 #
-#  KramerMesnerMOLSParatopism( <n>, <s>, <G>[, <opt>] ) 
+#  KramerMesnerMOLSAutoparatopy( <n>, <s>, <G>[, <opt>] ) 
 #
 #  Search for MOLS sets of order <A>n</A> and size <A>s</A> with prescribed
-#  autoparatopism group <A>G</A>. A record <A>opt</A> with options can be supplied.
-#  By default, A.Wassermann's LLL solver <C>solvediophant</C> is used and
-#  all constructed MOLS are returned, i.e. no filtering is performed. Available 
-#  options are:
+#  autoparatopy group <A>G</A>. By default, A.Wassermann's LLL solver 
+#  <C>solvediophant</C> is used for <A>s</A><M>=1</M>, and the backtracking
+#  solver <C>solvecm</C> is used for <A>s</A><M>&gt;1</M>. This can be changed
+#  by setting options in the record <A>opt</A>. Available options are:
 #  <List>
-#  <Item><A>Solver</A>:=<C>"solvecm"</C> The backtracing solver <C>solvecm</C> 
-#  is used.</Item>
-#  <Item><A>Filter</A>:=<C>"Isotopism"</C> Non-isotopic MOLS are returned.</Item>
-#  <Item><A>Filter</A>:=<C>"Paratopism"</C> Non-paratopic MOLS are returned.</Item>
-#  <Item><A>Filter</A>:=<C>"Isomorphism"</C> Non-isomorphic MOLS are returned.</Item>
+#  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>.</Item>
+#  <Item><A>Solver</A>:=<C>"solvecm"</C> Use <C>solvecm</C>.</Item>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic solutions. 
+#  This is the default.</Item>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic solutions.
+#  All solutions are returned if either option is set to <C>false</C>.</Item>
 #  </List>
 #
-InstallGlobalFunction( KramerMesnerMOLSParatopism, function( n, s, g, opt... )
-local rep,m,row,bb,inc,rez,r,grp;
+InstallGlobalFunction( KramerMesnerMOLSAutoparatopy, function( n, s, g, opt... )
+local rep,m,row,bb,inc,rez,r,grp,output;
+
+    output:=1; 
     if opt=[] then
-      opt:=[rec(Filter:=false)];
+      if s=1 then
+        opt:=[rec(Solver:="solvediophant")];
+      else
+        opt:=[rec(Solver:="solvecm")];
+      fi;
     fi;
-    if not IsBound(opt[1].Filter) then
-      opt[1].Filter:=false;
+    if IsBound(opt[1].Paratopy) then
+      if opt[1].Paratopy then
+        output:=1;
+      else
+        output:=3;
+      fi;
     fi; 
+    if IsBound(opt[1].Isotopy) then
+      if opt[1].Isotopy then
+        output:=2;
+      else
+        output:=3;
+      fi;
+    fi; 
+    if PAGGlobalOptions.Silent=false then
+      Print("Computing orbit representatives...\n");
+    fi;
     grp:=List([0..s+1],i->[1..n]+n*i);
     rep:=[1,2];
     r:=SubsetOrbitRep(g,n*(s+2),2);
@@ -1660,13 +1787,19 @@ local rep,m,row,bb,inc,rez,r,grp;
     r:=SubsetOrbitRep(g,n*(s+2),s+2);
     rep[2]:=Filtered(r,y->AsSet(List(grp,x->Size(Intersection(x,y))))=[1]);
     if not PAGGlobalOptions.Silent then
-      Print("Pairs: ",Size(rep[2]),"\n");
+      Print("Transversals: ",Size(rep[2]),"\n");
     fi;
     if rep[2]<>[] then
+      if PAGGlobalOptions.Silent=false then
+        Print("Computing the Kramer-Mesner matrix...\n");
+      fi;
       m:=KramerMesnerMat(g,rep[1],rep[2],1);
-      if not PAGGlobalOptions.Silent then
-        Print("KM matrix: ",DimensionsMat(m),"\n");
-      fi; 
+      if PAGGlobalOptions.Silent=false then
+        Print(DimensionsMat(m),"\n");
+      fi;
+      if PAGGlobalOptions.Silent=false then
+        Print("Starting solver...\n");
+      fi;
       if IsBound(opt[1].Solver) then
         if opt[1].Solver="solvecm" then
           row:=List(rep[2],x->Size(Orbit(g,x,OnSets)));
@@ -1675,28 +1808,25 @@ local rep,m,row,bb,inc,rez,r,grp;
         fi;
       fi;
       bb:=BaseBlocks(rep[2],AsSet(SolveKramerMesner(m,opt[1])));
-      if not PAGGlobalOptions.Silent then
-        Print("Solutions: ",Size(bb),"\n");
-      fi;
       if bb<>[] then
         inc:=List(bb,y->Concatenation(List(y,x->Orbit(g,x,OnSets))));
-        rez:=List(inc,x->TuplesToMOLS(n,s,x));
-        if opt[1].Filter="Isotopism" then
-          rez:=MOLSFilter(rez);
-          if not PAGGlobalOptions.Silent then
-            Print("Nonisotopic: ",Size(rez),"\n");
+        rez:=List(inc,x->TransversalDesignToMOLS(BlockDesign(n*(s+2),x)));
+        if output=1 then
+          if PAGGlobalOptions.Silent=false then
+            Print("Performing paratopy rejection...\n");
+          fi;
+          rez:=MOLSFilter(rez,rec(Paratopy:=true));
+          if PAGGlobalOptions.Silent=false then
+            Print(Size(rez),"\n");
           fi;
         fi;
-        if opt[1].Filter="Paratopism" then
-          rez:=MOLSFilter(rez,rec(Paratopism:=true));
-          if not PAGGlobalOptions.Silent then
-            Print("Nonparatopic: ",Size(rez),"\n");
+        if output=2 then
+          if PAGGlobalOptions.Silent=false then
+            Print("Performing isotopy rejection...\n");
           fi;
-        fi;
-        if opt[1].Filter="Isomorphism" then
-          rez:=MOLSFilter(rez,rec(Isomorphism:=true));
-          if not PAGGlobalOptions.Silent then
-            Print("Nonisomorphic: ",Size(rez),"\n");
+          rez:=MOLSFilter(rez,rec(Isotopy:=true));
+          if PAGGlobalOptions.Silent=false then
+            Print(Size(rez),"\n");
           fi;
         fi;
         return rez;
@@ -1748,7 +1878,18 @@ InstallGlobalFunction( IversonBracket, function( P )
   if P then return 1;
   else return 0;
   fi;
+end );
 
+
+#############################################################################
+#
+#  SymmetricDifference( <X>, <Y> ) 
+#
+#  Returns the symmetric difference of two sets <A>X</A> and <A>Y</A>. 
+#
+InstallGlobalFunction( SymmetricDifference, function( x, y )
+
+  return Difference(Union(x,y),Intersection(x,y));  
 end );
 
 
@@ -1905,9 +2046,9 @@ end );
 
 #############################################################################
 #
-#  OrthogonalArrayToCube( <OA> ) 
+#  OrthogonalArrayToCube( <oa> ) 
 #
-#  Transforms the orthogonal array <A>OA</A> to an equivalent incidence cube.
+#  Transforms the orthogonal array <A>oa</A> to an equivalent incidence cube.
 #
 InstallGlobalFunction( OrthogonalArrayToCube, function( oa )
 local v,d,cr;
@@ -2003,18 +2144,33 @@ end );
 
 #############################################################################
 #
-#  CubeInvariant( <C> ) 
+#  SliceInvariant( <C> ) 
 #
-#  Computes an equivalence invariant of the cube <A>C</A>
+#  Computes a paratopy invariant of the cube <A>C</A>
 #  based on automorphism group sizes of its slices. Cubes 
 #  equivalent under paratopy have the same invariant.
 #
-InstallGlobalFunction( CubeInvariant, function( c )
-local v,d;
+InstallGlobalFunction( SliceInvariant, function( c )
+local v,n,toaut,insert,paral;
 
   v:=Size(c);
-  d:=NestingDepthA(c);
-  return Collected(List(Combinations([1..d],2),x->Collected(List(CubeSlices(c,x[1],x[2]),y->Size(BlockDesignAut(BlockDesign(v,List(y,z->Positions(z,1)))))))));
+  n:=NestingDepthA(c);
+  toaut:=m->Size(BlockDesignAut(BlockDesign(v,List(m,x->Positions(x,1)))));
+    if n=2 then
+    return [toaut(c)];
+  fi;
+  if n=3 then
+    return Collected(List(Combinations([1..n],2),x->Collected(List(CubeSlices(c,x[1],x[2]),y->toaut(y)))));
+  fi;
+  if n>3 then
+    insert:=function(l,el)
+      return List([0..Size(l)],pos->Concatenation(l{[1..pos]},[el],l{[pos+1..Size(l)]}));
+    end;
+    paral:=List(Cartesian(List([1..n-3],x->[1..v])),y->List(y,z->[z]));
+    paral:=Concatenation(List(paral,x->insert(x,[1..3])));
+    paral:=List(paral,Cartesian);
+    return Collected(List(Combinations([1..n],2),p->Collected(List(paral,y->Collected(List(y,x->toaut(CubeSlice(c,p[1],p[2],x))))))));
+  fi;
 end );
 
 
@@ -2078,11 +2234,12 @@ end );
 #  function; see its documentation.
 #
 InstallGlobalFunction( CubeFilter, function( cl, opt... )
-local opt2,v;
+local opt2,v,pos;
 
   if cl=[] then return [];
   else
     v:=Size(cl[1]);
+    pos:=false;
     if Size(opt)>=1 then
       opt2:=StructuralCopy(opt[1]); 
       if IsBound(opt[1].Paratopy) then
@@ -2095,13 +2252,135 @@ local opt2,v;
           opt2.PointClasses:=v;
         fi;
       fi;
+      if IsBound(opt[1].Positions) then
+        pos:=opt[1].Positions; 
+      fi;
     else
       opt2:=rec();
     fi;
     opt2.Positions:=true;
 
-    return cl{BlockDesignFilter(List(cl,CubeToTransversalDesign),opt2)};
+    if pos then
+      return BlockDesignFilter(List(cl,CubeToTransversalDesign),opt2);
+    else
+      return cl{BlockDesignFilter(List(cl,CubeToTransversalDesign),opt2)};
+    fi;
   fi;
+end );
+
+
+#############################################################################
+#
+#  SDPSeriesGroup( <m> ) 
+#
+#  Returns a group for the designs of <Ref Func="SDPSeriesDesign"/>.
+#  This is the elementary Abelian group of order <M>4^m</M>. 
+#
+InstallGlobalFunction( SDPSeriesGroup, function( m )
+
+  if m=1 then
+    return Group((1,2),(3,4));
+  else
+    return DirectProduct(SDPSeriesGroup(m-1),SDPSeriesGroup(1));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  SDPSeriesHadamardMat( <m>, <i> ) 
+#
+#  Returns a Hadamard matrix of order <M>4^m</M> for the SDP series 
+#  of designs. The argument <A>i</A> must be 1, 2, or 3. See documentation
+#  for the <Ref Func="SDPSeriesDesign"/> function.
+#
+InstallGlobalFunction( SDPSeriesHadamardMat, function( m, i )
+
+  if m=1 then
+    return [ [ -1, 1, 1, 1 ], [ 1, -1, 1, 1 ], [ 1, 1, -1, 1 ], [ 1, 1, 1, -1 ] ];
+  fi;
+  if m=2 then
+    if i=1 then return 
+[ [ -1, 1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1 ], 
+  [ 1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1 ], 
+  [ 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1 ], 
+  [ -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1 ], 
+  [ -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1 ], 
+  [ -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1 ], 
+  [ -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1 ] ];
+    fi;
+    if i=2 then return 
+[ [ -1, 1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1 ], 
+  [ 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1 ], 
+  [ 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1 ], 
+  [ -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1 ], 
+  [ -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1 ], 
+  [ -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1 ], 
+  [ 1, -1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1 ], 
+  [ -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, -1, -1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1 ] ];
+    fi;
+    if i=3 then return 
+[ [ -1, 1, -1, -1, 1, -1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1 ], 
+  [ 1, -1, -1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1 ], 
+  [ 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1 ], 
+  [ -1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1 ], 
+  [ -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, 1 ], 
+  [ 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1 ], 
+  [ -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1, -1, -1, 1, -1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1 ], 
+  [ 1, -1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1 ], 
+  [ -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, -1, -1 ], 
+  [ -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1 ], 
+  [ -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1, 1, -1 ] ];
+    fi;
+  fi;
+  if m>2 then
+    return KroneckerProduct(SDPSeriesHadamardMat(m-1,i),SDPSeriesHadamardMat(1,i));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  SDPSeriesDesign( <m>, <i> ) 
+#
+#  Returns a symmetric block design with parameters 
+#  <M>(4^m,2^{m-1}(2^m-1),2^{m-1}(2^{m-1}-1))</M>. 
+#  The argument <A>i</A> must be 1, 2, or 3. 
+#  If <A>i</A><M>=1</M>, the design is the symplectic design
+#  of Kantor <Cite Key='WK75'/>. This design has the symmetric
+#  difference property (SDP). If <A>i</A><M>=2</M> or <A>i</A><M>=3</M>,
+#  two other non-isomorphic designs with the same parameters
+#  are returned. They are not SDP designs, but have the property that 
+#  all their blocks are difference sets in the group returned by
+#  <Ref Func="SDPSeriesGroup"/>. Developments of these blocks are
+#  isomorphic to the design for <A>i</A><M>=1</M>, so the two other 
+#  designs are not developments of their blocks.
+#
+InstallGlobalFunction( SDPSeriesDesign, function( m, i )
+
+  return List((SDPSeriesHadamardMat(m,i)*(-1)^IversonBracket(m=1)+1)/2,x->Positions(x,1));
 end );
 
 

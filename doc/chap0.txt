@@ -6,10 +6,10 @@
                         [1X Prescribed Automorphism Groups [101X
   
   
-                                     0.2.0
+                                     0.2.1
   
   
-                                 27 March 2023
+                                 14 April 2023
   
   
                                 Vedran Krcadinac
@@ -77,6 +77,7 @@
       2.1-10 AllSubgroupsConjugation
       2.1-11 PermRepresentationRight
       2.1-12 PermRepresentationLeft
+      2.1-13 ExtendedPermRepresentation
     2.2 [33X[0;0YGenerating Orbits[133X
       2.2-1 SubsetOrbitRep
       2.2-2 SubsetOrbitRepShort1
@@ -101,19 +102,23 @@
       2.4-4 BlockScheme
       2.4-5 TDesignB
       2.4-6 IversonBracket
+      2.4-7 SymmetricDifference
     2.5 [33X[0;0YLatin Squares[133X
       2.5-1 ReadMOLS
       2.5-2 WriteMOLS
       2.5-3 CayleyTableOfGroup
       2.5-4 FieldToMOLS
-      2.5-5 MOLSAut
-      2.5-6 MOLSFilter
-      2.5-7 IsotopismToPerm
-      2.5-8 PermToIsotopism
-      2.5-9 MOLSSubsetOrbitRep
-      2.5-10 TuplesToMOLS
-      2.5-11 KramerMesnerMOLS
-      2.5-12 KramerMesnerMOLSParatopism
+      2.5-5 MOLSToOrthogonalArray
+      2.5-6 OrthogonalArrayToMOLS
+      2.5-7 MOLSToTransversalDesign
+      2.5-8 TransversalDesignToMOLS
+      2.5-9 MOLSAut
+      2.5-10 MOLSFilter
+      2.5-11 IsAutotopyGroup
+      2.5-12 MOLSSubsetOrbitRep
+      2.5-13 KramerMesnerMOLS
+      2.5-14 KramerMesnerMOLSAutotopy
+      2.5-15 KramerMesnerMOLSAutoparatopy
     2.6 [33X[0;0YCubes of Symmetric Designs[133X
       2.6-1 DifferenceCube
       2.6-2 GroupCube
@@ -125,12 +130,15 @@
       2.6-8 TransversalDesignToCube
       2.6-9 LatinSquareToCube
       2.6-10 CubeTest
-      2.6-11 CubeInvariant
+      2.6-11 SliceInvariant
       2.6-12 CubeAut
       2.6-13 CubeFilter
+      2.6-14 SDPSeriesGroup
+      2.6-15 SDPSeriesDesign
     2.7 [33X[0;0YHadamard Matrices[133X
       2.7-1 HadamardMatAut
       2.7-2 HadamardMatFilter
+      2.7-3 SDPSeriesHadamardMat
     2.8 [33X[0;0YGlobal Options[133X
       2.8-1 PAGGlobalOptions
   

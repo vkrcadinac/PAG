@@ -1,4 +1,30 @@
-\begin{thebibliography}{KVK21}
+\begin{thebibliography}{SVW12}
+
+\bibitem[CD07]{CD07}
+C.~J. Colbourn and J.~H. Dinitz, editors.
+\newblock {\em Handbook of combinatorial designs. Second edition}.
+\newblock Chapman \& Hall/CRC, 2007.
+
+\bibitem[Fal12]{RF12}
+R.~M. Falcon.
+\newblock Cycle structures of autotopisms of the latin squares of order up to
+  11.
+\newblock {\em Ars Combin.}, 103:239{\textendash}256, 2012.
+
+\bibitem[Kan75]{WK75}
+W.~M. Kantor.
+\newblock Symplectic groups, symmetric designs, and line ovals.
+\newblock {\em J. Algebra}, 33:43{\textendash}58, 1975.
+
+\bibitem[KD15]{KD15}
+A.~D. Keedwell and J.~Denes.
+\newblock {\em Latin squares and their applications. Second edition}.
+\newblock Elsevier/North-Holland, 2015.
+
+\bibitem[KM76]{KM76}
+E.~S. Kramer and D.~M. Mesner.
+\newblock t-designs on hypergraphs.
+\newblock {\em Discrete Math.}, 15(3):263{\textendash}296, 1976.
 
 \bibitem[KNP11]{KNP11}
 V.~Krcadinac, A.~Nakic, and M.~O. Pavcevic.
@@ -10,9 +36,9 @@ V.~Krcadinac, A.~Nakic, and M.~O. Pavcevic.
 V.~Krcadinac, M.~O. Pavcevic, and K.~Tabak.
 \newblock Cubes of symmetric designs.
 \newblock {\em preprint}, 2023.
-\newblock \href {https://arxiv.org/abs/...}
-  {\texttt{https://arxiv.org/}\discretionary {}{}{}\texttt{abs/}\discretionary
-  {}{}{}\texttt{...}}
+\newblock \href {http://arxiv.org/abs/2304.05446}
+  {\texttt{http://arxiv.org/}\discretionary {}{}{}\texttt{abs/}\discretionary
+  {}{}{}\texttt{2304.05446}}.
 
 \bibitem[Krc18]{VK18}
 V.~Krcadinac.
@@ -49,6 +75,11 @@ B.~Schmalz.
 \newblock The $t$-designs with prescribed automorphism group, new simple
   6-designs.
 \newblock {\em J. Combin. Des.}, 1(2):125{\textendash}170, 1993.
+
+\bibitem[SVW12]{SVW12}
+D.~S. Stones, P.~Vojtechovsky, and I.~M. Wanless.
+\newblock Cycle structure of autotopisms of quasigroups and latin squares.
+\newblock {\em J. Combin. Des.}, 20(5):227{\textendash}263, 2012.
 
 \bibitem[Was98]{AW98}
 A.~Wassermann.
