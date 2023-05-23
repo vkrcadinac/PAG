@@ -4,7 +4,7 @@ GAPARCH=@GAPARCH@
 CFLAGS= -O6 -Wall -malign-double -ffast-math -funroll-all-loops -fomit-frame-pointer -finline-functions
 NAUTYPATH=src/nauty2_8_6
 
-all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter
+all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter
 
 bin/$(GAPARCH):
 	        mkdir -p bin/$(GAPARCH)
@@ -20,6 +20,12 @@ bin/$(GAPARCH)/togapmat: src/togapmat.c bin/$(GAPARCH)
 
 bin/$(GAPARCH)/blockint: src/blockint.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/blockint src/blockint.c $(CFLAGS)
+
+bin/$(GAPARCH)/blockintmat: src/blockintmat.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/blockintmat src/blockintmat.c $(CFLAGS)
+
+bin/$(GAPARCH)/pointpairmat: src/pointpairmat.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/pointpairmat src/pointpairmat.c $(CFLAGS)
 
 bin/$(GAPARCH)/delgen: src/delgen.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/delgen src/delgen.c $(CFLAGS)

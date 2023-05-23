@@ -8,8 +8,8 @@
 SetPackageInfo( rec(
 PackageName := "PAG",
 Subtitle := "Prescribed Automorphism Groups",
-Version := "0.2.1",
-Date := "14/04/2023",
+Version := "0.2.2",
+Date := "23/05/2023",
 License := "GPL-2.0-or-later",
 PackageWWWHome :=
   Concatenation( "https://vkrcadinac.github.io/", ~.PackageName ),

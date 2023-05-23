@@ -3,49 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: alpha.bst
 Database file #1: bib.xml.bib
-Repeated entry---line 25 of file bib.xml.bib
- : @article{ KV16
- :               ,
-I'm skipping whatever remains of this entry
-You've used 16 entries,
+You've used 20 entries,
             2543 wiz_defined-function locations,
-            672 strings with 6414 characters,
-and the built_in function-call counts, 7183 in all, are:
-= -- 719
-> -- 246
-< -- 7
-+ -- 79
-- -- 77
-* -- 577
-:= -- 1140
-add.period$ -- 49
-call.type$ -- 16
-change.case$ -- 90
-chr.to.int$ -- 16
-cite$ -- 16
-duplicate$ -- 233
-empty$ -- 598
-format.name$ -- 100
-if$ -- 1470
-int.to.chr$ -- 1
+            696 strings with 6997 characters,
+and the built_in function-call counts, 8800 in all, are:
+= -- 878
+> -- 312
+< -- 9
++ -- 102
+- -- 99
+* -- 698
+:= -- 1407
+add.period$ -- 62
+call.type$ -- 20
+change.case$ -- 113
+chr.to.int$ -- 19
+cite$ -- 20
+duplicate$ -- 291
+empty$ -- 724
+format.name$ -- 128
+if$ -- 1796
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 84
-num.names$ -- 49
-pop$ -- 63
+missing$ -- 22
+newline$ -- 105
+num.names$ -- 61
+pop$ -- 84
 preamble$ -- 1
-purify$ -- 108
+purify$ -- 136
 quote$ -- 0
-skip$ -- 189
+skip$ -- 232
 stack$ -- 0
-substring$ -- 807
-swap$ -- 16
-text.length$ -- 7
-text.prefix$ -- 7
+substring$ -- 943
+swap$ -- 20
+text.length$ -- 9
+text.prefix$ -- 9
 top$ -- 0
-type$ -- 120
+type$ -- 148
 warning$ -- 0
-while$ -- 54
-width$ -- 18
-write$ -- 209
-(There was 1 error message)
+while$ -- 66
+width$ -- 23
+write$ -- 261

@@ -819,6 +819,9 @@ end );
 InstallGlobalFunction( BlockDesignAut, function( d, opt... )
 local input,output,command,str,n,l1,l2,ng,clo,g,abl,cmd;
 
+  if IsBound(d.autGroup) then
+    return d.autGroup;
+  else
     clo:=[];
     abl:=false;
     cmd:=3;
@@ -908,12 +911,14 @@ local input,output,command,str,n,l1,l2,ng,clo,g,abl,cmd;
       ng:=Size(l1)/n-1;
       l2:=List([0..ng],i->l1{[n*i+1..n*(i+1)]});
       g:=Group(List(l2,PermList));
-   fi;
+    fi;
 
-   if not abl then
-     g:=RestrictedGroup(g,[1..NrBlockDesignPoints(d)]);
-   fi;
-   return g;
+    if not abl then
+      g:=RestrictedGroup(g,[1..NrBlockDesignPoints(d)]);
+    fi;
+    d.autGroup:=g;
+    return g;
+  fi; 
 end );
 
 
@@ -1135,15 +1140,210 @@ end );
 
 #############################################################################
 #
-#  BlockScheme( <d> )  
+#  Paley1Mat( <q> )  
+#    
+#  Returns a Paley type I Hadamard matrix of order <M><A>q</A>+1</M> constructed 
+#  from the squares in <M>GF(<A>q</A>)</M>. The argument should be a prime power 
+#  <M><A>q</A>\equiv 3 \pmod{4}</M>.
 #
-#  Returns the block intersection scheme of a schematic block design <A>d</A>.
-#  If <A>d</A> is not schematic, returns <C>fail</C>. Uses the package 
-#  <Package>AssociationSchemes</Package>.
-#
-InstallGlobalFunction( BlockScheme, function( d )
+InstallGlobalFunction( Paley1Mat, function( q )
+local pg1,qr,mat,chi;
 
-    return HomogeneousCoherentConfiguration(List(d.blocks,y->List(d.blocks,x->Size(Intersection(x,y)))));
+    pg1:=Union([infinity],Elements(GF(q)));
+    qr:=AsSet(List(Elements(GF(q)),x->x^2));
+    chi:=function(x)
+       if x in qr then return 1;
+       else return -1; fi;
+    end;
+    mat:=function(x,y)
+       if x=infinity and y=infinity then return -1;
+       else if x=infinity or y=infinity or x=y then return 1;
+       else return chi(y-x); fi; fi; 
+    end;
+    return List(pg1,x->List(pg1,y->mat(x,y)));
+end );
+
+
+#############################################################################
+#
+#  Paley2Mat( <q> )  
+#    
+#  Returns a Paley type II Hadamard matrix of order <M>2(<A>q</A>+1)</M> 
+#  constructed from the squares in <M>GF(<A>q</A>)</M>. The argument should 
+#  be a prime power <M><A>q</A>\equiv 1 \pmod{4}</M>.
+#
+InstallGlobalFunction( Paley2Mat, function( q )
+local gf,qr,chi,mat,joinmat,S;
+
+    gf:=Elements(GF(q));
+    qr:=AsSet(List(gf,x->x^2));
+    chi:=function(x)
+       if x in qr then return 1;
+       else return -1; fi;
+    end;
+    mat:=function(i,j)
+       if i=j then return 0;
+          else if i=1 or j=1 then return 1;
+          else return chi(gf[i-1]-gf[j-1]);
+       fi; fi;
+    end;
+    S:=List([1..q+1],i->List([1..q+1],j->mat(i,j)));
+    joinmat:=function(a,b)
+       return List([1..Size(a)],i->Concatenation(a[i],b[i]));
+    end;
+    return Concatenation(joinmat(S+IdentityMat(q+1),S-IdentityMat(q+1)),joinmat(S-IdentityMat(q+1),-S-IdentityMat(q+1)));
+end );
+
+
+#############################################################################
+#
+#  Paley3DMat( <v> )  
+#    
+#  Returns a three-dimensional Hadamard matrix of order <A>v</A> obtained by 
+#  the Paley-like construction introduced in <Cite Key='KPT23b'/>. The argument 
+#  should be an even number <A>v</A> such that <M><A>v</A>-1</M> is a prime 
+#  power.
+#
+InstallGlobalFunction( Paley3DMat, function( v )
+local pg1,qr,mat,chi;
+
+    pg1:=Union([infinity],Elements(GF(v-1)));
+    qr:=AsSet(List(Elements(GF(v-1)),x->x^2));
+    chi:=function(x)
+       if x in qr then return 1;
+       else return -1; fi;
+    end;
+    mat:=function(x,y,z)
+       if x=y and y=z then return -1;
+       else if x=y or x=z or y=z then return 1;
+       else if x=infinity then return chi(z-y);
+       else if y=infinity then return chi(x-z);
+       else if z=infinity then return chi(y-x);
+       else return chi((x-y)*(y-z)*(z-x));
+       fi; fi; fi; fi; fi;
+    end;
+    return List(pg1,x->List(pg1,y->List(pg1,z->mat(x,y,z))));
+end );
+
+
+#############################################################################
+#
+#  AllOnesMat( <v>[, <n>] )  
+#    
+#  Returns the <A>n</A>-dimensional matrix of order <A>v</A> with all
+#  entries <M>1</M>. By default, <A>n</A><M>=2</M>.
+#
+InstallGlobalFunction( AllOnesMat, function( v, n... )
+    if n=[] then n:=2;
+    else n:=n[1]; 
+    fi;
+    if n=0 then return 1;
+    else return List([1..v],i->AllOnesMat(v,n-1));
+    fi;
+end );
+
+
+#############################################################################
+#
+#  HadamardToIncidence( <M> )  
+#    
+#  Transforms the Hadamard matrix <A>M</A> to an incidence matrix by
+#  replacing all <M>-1</M> entries by <M>0</M>.
+#
+InstallGlobalFunction( HadamardToIncidence, function( m )
+    return (m+1)/2;
+end );
+
+
+#############################################################################
+#
+#  IncidenceToHadamard( <M> )  
+#    
+#  Transforms the incidence matrix <A>M</A> to a <M>(1,-1)</M>-matrix 
+#  by replacing all <M>0</M> entries by <M>-1</M>.
+#
+InstallGlobalFunction( IncidenceToHadamard, function( m )
+    return 2*m-1;
+end );
+
+
+#############################################################################
+#
+#  ProductConstructionMat( <H>, <n> )  
+#    
+#  Given a <M>2</M>-dimensional Hadamard matrix <A>H</A>, returns the 
+#  <A>n</A>-dimensional proper Hadamard matrix obtained by the product
+#  construction of Yang <Cite Key='YXY86'/>.
+#
+InstallGlobalFunction( ProductConstructionMat, function( h, n )
+local v,rek;
+    v:=Size(h);
+
+    rek:=function(i,l)
+      if i=n then 
+      return Product(List(Combinations([1..n],2),x->h[l[x[1]]][l[x[2]]]));
+      else return List([1..v],x->rek(i+1,Concatenation(l,[x])));
+      fi;
+    end;
+
+    return rek(0,[]);
+
+end );
+
+
+#############################################################################
+#
+#  CyclicDimensionIncrease( <H> )  
+#    
+#  Given an <M>n</M>-dimensional Hadamard matrix <A>H</A>, returns the 
+#  <M>(n+1)</M>-dimensional Hadamard matrix obtained by Theorem 6.1.5
+#  of <Cite Key='YNX10'/>. The construction also works for cyclic cubes 
+#  of symmetric designs.
+#
+InstallGlobalFunction( CyclicDimensionIncrease, function( h )
+local v;
+
+    v:=Size(h);
+    return List([1..v],i->List([1..v],j->h[1+((i+j-2) mod v)]));
+end );
+
+
+#############################################################################
+#
+#  IsHadamardMat( <H> )  
+#    
+#  Returns <C>true</C> if <A>H</A> is an <M>n</M>-dimensional Hadamard
+#  matrix, and <C>false</C> otherwise.
+#
+InstallGlobalFunction( IsHadamardMat, function( h )
+local v,n,ok,i,a;
+
+    v:=Size(h);
+    n:=NestingDepthA(h);
+    ok:=true;
+    i:=1;
+    while ok and i<=n do
+      a:=List(CubeLayers(h,i),Flat);
+      ok:=AsSet(List(Combinations(a,2),x->x[1]*x[2]))=[0];
+      i:=i+1;
+    od;
+    return ok;
+end );
+
+
+#############################################################################
+#
+#  IsProperHadamardMat( <H> )  
+#    
+#  Returns <C>true</C> if <A>H</A> is a proper <M>n</M>-dimensional 
+#  Hadamard matrix, and <C>false</C> otherwise.
+#
+InstallGlobalFunction( IsProperHadamardMat, function( h )
+local sl,tst;
+
+    tst:=IdentityMat(Size(h))*Size(h);
+    sl:=CubeSlices(h);
+    return AsSet(List(sl,x->x*TransposedMat(x)=tst))=[true];
 end );
 
 
@@ -2015,6 +2215,43 @@ local v,d;
   if Size(arg)=4 then
     return CubeSlice(arg[1],arg[2],arg[3],arg[4]);
   fi;
+
+end );
+
+
+#############################################################################
+#
+#  CubeLayer( <C>, <x>, <fixed> ) 
+#
+#  Returns an <M>(n-1)</M>-dimensional layer of the <M>n</M>-dimensional
+#  cube <A>C</A> obtained by setting coordinate <A>x</A> to the value 
+#  <A>fixed</A> and varying the remaining coordinates. 
+#
+InstallGlobalFunction( CubeLayer, function( c, x, fix )
+local n,rek;
+
+  rek:=function(c,x,fix,n)
+    if x=n then return c[fix];
+    else return List(c,l->rek(l,x,fix,n-1));
+    fi;
+  end;
+
+  n:=NestingDepthA(c);
+  return rek(c,n+1-x,fix,n);
+
+end );
+
+
+#############################################################################
+#
+#  CubeLayers( <C>, <x> ) 
+#
+#  Returns the <M>(n-1)</M>-dimensional layers of the <M>n</M>-dimensional
+#  cube <A>C</A> obtained by fixing coordinate <A>x</A>.
+#
+InstallGlobalFunction( CubeLayers, function( c, x )
+
+return List([1..Size(c)],fix->CubeLayer(c,x,fix));
 
 end );
 

@@ -8,3 +8,9 @@ Version 0.2: 27/03/2023
   Experimental release on GitHub.
 Version 0.2.1: 14/04/2023
   First public release on GitHub.
+Version 0.2.2: 23/05/2023
+  Added functions for higher-dimensional Hadamard matrices.
+  Upgraded function BlockDesignAut. Upgraded function BlockScheme and added 
+  PointPairScheme. Moved these two functions to separate installation files 
+  that are loaded depending on whether the package AssociationSchemes is 
+  available or not.

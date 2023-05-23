@@ -499,7 +499,7 @@ true
 
 <h4>1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></h4>
 
-<p>Cubes of symmetric designs are studied in the paper <a href="chapBib_mj.html#biBKPT23">[KPT23]</a>. Here is an example.</p>
+<p>Cubes of symmetric designs are studied in the paper <a href="chapBib_mj.html#biBKPT23">[KPT23a]</a>. Here is an example.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);</span>
@@ -622,7 +622,7 @@ true
 [ [ 3, 2, 1 ] ]
 </pre></div>
 
-<p>The function <code class="func">CubeTest</code> (<a href="chap2_mj.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-10</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">\((v,k,\lambda)\)</span> designs. In the next example we construct all <span class="SimpleMath">\(3\)</span>-dimensional difference cubes of order <span class="SimpleMath">\(21\)</span>.</p>
+<p>The function <code class="func">CubeTest</code> (<a href="chap2_mj.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-12</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">\((v,k,\lambda)\)</span> designs. In the next example we construct all <span class="SimpleMath">\(3\)</span>-dimensional difference cubes of order <span class="SimpleMath">\(21\)</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=AllSmallGroups(21);;</span>
@@ -640,7 +640,7 @@ true
 2646
 </pre></div>
 
-<p>The function <code class="func">CubeAut</code> (<a href="chap2_mj.html#X7E96F84678D23676"><span class="RefLink">2.6-12</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib_mj.html#biBKPT23">[KPT23]</a>. First we search for all <span class="SimpleMath">\((21,5,1)\)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">\(21\)</span>.</p>
+<p>The function <code class="func">CubeAut</code> (<a href="chap2_mj.html#X7E96F84678D23676"><span class="RefLink">2.6-14</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib_mj.html#biBKPT23">[KPT23a]</a>. First we search for all <span class="SimpleMath">\((21,5,1)\)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">\(21\)</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=Filtered(Combinations([1..21],5),x-&gt;IsDifferenceSet(g[1],x));;</span>
@@ -676,7 +676,7 @@ true
 1
 </pre></div>
 
-<p>The function <code class="func">CubeFilter</code> (<a href="chap2_mj.html#X810B22E286D857C1"><span class="RefLink">2.6-13</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">\((21,5,1)\)</span> difference cubes.</p>
+<p>The function <code class="func">CubeFilter</code> (<a href="chap2_mj.html#X810B22E286D857C1"><span class="RefLink">2.6-15</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">\((21,5,1)\)</span> difference cubes.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c3:=cc[1];;</span>
@@ -688,7 +688,7 @@ true
 441
 </pre></div>
 
-<p>However, the three cubes have the same slice invariant; see <a href="chapBib_mj.html#biBKPT23">[KPT23]</a> for the definition.</p>
+<p>However, the three cubes have the same slice invariant; see <a href="chapBib_mj.html#biBKPT23">[KPT23a]</a> for the definition.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([c1,c2,c3],SliceInvariant);</span>

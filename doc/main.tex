@@ -98,8 +98,8 @@
 {\Huge \textbf{ Prescribed Automorphism Groups \mbox{}}}\\
 \vfill
 
-{\Huge  0.2.1 \mbox{}}\\[1cm]
-{ 14 April 2023 \mbox{}}\\[1cm]
+{\Huge  0.2.2 \mbox{}}\\[1cm]
+{ 23 May 2023 \mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Vedran Krcadinac\\
     \mbox{}}}\\
@@ -1206,7 +1206,7 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
 }\hfill{\scriptsize (function)}}\\
 
 
- Performs a search for \mbox{\texttt{\mdseries\slshape t}}-(\mbox{\texttt{\mdseries\slshape v}},\mbox{\texttt{\mdseries\slshape k}},\mbox{\texttt{\mdseries\slshape lambda}}) designs with presrcribed automorphism group \mbox{\texttt{\mdseries\slshape G}} by the Kramer-Mesner method. A record with options can be supplied. By
+ Performs a search for \mbox{\texttt{\mdseries\slshape t}}-(\mbox{\texttt{\mdseries\slshape v}},\mbox{\texttt{\mdseries\slshape k}},\mbox{\texttt{\mdseries\slshape lambda}}) designs with prescribed automorphism group \mbox{\texttt{\mdseries\slshape G}} by the Kramer-Mesner method. A record with options can be supplied. By
 default, designs are returned in the \textsf{Design} package format  (\textbf{DESIGN: Design}) and isomorph-rejection is performed by calling \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}). It can be turned off by setting \mbox{\texttt{\mdseries\slshape opt.NonIsomorphic}}:=\texttt{false}. By setting \mbox{\texttt{\mdseries\slshape opt.BaseBlocks}}:=\texttt{true}, base blocks are returned instead of designs. This automatically turns off
 isomorph-rejection. Other available options are: 
 \begin{itemize}
@@ -1383,17 +1383,33 @@ class.
 \subsection{\textcolor{Chapter }{BlockScheme}}
 \logpage{[ 2, 4, 4 ]}\nobreak
 \hyperdef{L}{X824E5FCE8742EB70}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BlockScheme({\mdseries\slshape d})\index{BlockScheme@\texttt{BlockScheme}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BlockScheme({\mdseries\slshape d[, opt]})\index{BlockScheme@\texttt{BlockScheme}}
 \label{BlockScheme}
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns the block intersection scheme of a schematic block design \mbox{\texttt{\mdseries\slshape d}}. If \mbox{\texttt{\mdseries\slshape d}} is not schematic, returns \texttt{fail}. Uses the package \textsf{AssociationSchemes}. }
+ Returns the block intersection association scheme of a block design \mbox{\texttt{\mdseries\slshape d}}, or \texttt{fail} if \mbox{\texttt{\mdseries\slshape d}} is not block schematic. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. If it contains the component \mbox{\texttt{\mdseries\slshape Matrix}}:=\texttt{true}, the block intersection matrix is returned instead. Uses the package \textsf{AssociationSchemes}. If the package is not available, \texttt{BlockScheme} always returns the block intersection matrix and does not check if it defines
+an association scheme. }
+
+ 
+
+\subsection{\textcolor{Chapter }{PointPairScheme}}
+\logpage{[ 2, 4, 5 ]}\nobreak
+\hyperdef{L}{X7EC3783778774F14}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PointPairScheme({\mdseries\slshape d[, opt]})\index{PointPairScheme@\texttt{PointPairScheme}}
+\label{PointPairScheme}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the point pair association scheme of a block design \mbox{\texttt{\mdseries\slshape d}}, or \texttt{fail} if \mbox{\texttt{\mdseries\slshape d}} is not point pair schematic. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. If it contains the component \mbox{\texttt{\mdseries\slshape Matrix}}:=\texttt{true}, the point pair inclusion matrix is returned instead. The point pair scheme
+was defined by Cameron \cite{PC75} for Steiner $3$-designs. This command is a slight generalisation that works for arbitrary
+designs. Uses the package \textsf{AssociationSchemes}. If the package is not available, \texttt{PointPairScheme} always returns the point pair inclusion matrix and does not check if it
+defines an association scheme. }
 
  
 
 \subsection{\textcolor{Chapter }{TDesignB}}
-\logpage{[ 2, 4, 5 ]}\nobreak
+\logpage{[ 2, 4, 6 ]}\nobreak
 \hyperdef{L}{X858A707E81380706}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TDesignB({\mdseries\slshape t, v, k, lambda})\index{TDesignB@\texttt{TDesignB}}
 \label{TDesignB}
@@ -1405,7 +1421,7 @@ class.
  
 
 \subsection{\textcolor{Chapter }{IversonBracket}}
-\logpage{[ 2, 4, 6 ]}\nobreak
+\logpage{[ 2, 4, 7 ]}\nobreak
 \hyperdef{L}{X8386E2DC7CDC30D2}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IversonBracket({\mdseries\slshape P})\index{IversonBracket@\texttt{IversonBracket}}
 \label{IversonBracket}
@@ -1417,7 +1433,7 @@ class.
  
 
 \subsection{\textcolor{Chapter }{SymmetricDifference}}
-\logpage{[ 2, 4, 7 ]}\nobreak
+\logpage{[ 2, 4, 8 ]}\nobreak
 \hyperdef{L}{X86F40A1A87BF4E96}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SymmetricDifference({\mdseries\slshape X, Y})\index{SymmetricDifference@\texttt{SymmetricDifference}}
 \label{SymmetricDifference}
@@ -1706,8 +1722,32 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
 
  
 
-\subsection{\textcolor{Chapter }{CubeToOrthogonalArray}}
+\subsection{\textcolor{Chapter }{CubeLayer}}
 \logpage{[ 2, 6, 5 ]}\nobreak
+\hyperdef{L}{X82DB78EE7AB9C8AB}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeLayer({\mdseries\slshape C, x, fixed})\index{CubeLayer@\texttt{CubeLayer}}
+\label{CubeLayer}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns an $(n-1)$-dimensional layer of the $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} obtained by setting coordinate \mbox{\texttt{\mdseries\slshape x}} to the value \mbox{\texttt{\mdseries\slshape fixed}} and varying the remaining coordinates. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CubeLayers}}
+\logpage{[ 2, 6, 6 ]}\nobreak
+\hyperdef{L}{X789FE9C6869F2208}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeLayers({\mdseries\slshape C, x})\index{CubeLayers@\texttt{CubeLayers}}
+\label{CubeLayers}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the $(n-1)$-dimensional layers of the $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} obtained by fixing coordinate \mbox{\texttt{\mdseries\slshape x}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CubeToOrthogonalArray}}
+\logpage{[ 2, 6, 7 ]}\nobreak
 \hyperdef{L}{X8214B28081B21BDE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeToOrthogonalArray({\mdseries\slshape C})\index{CubeToOrthogonalArray@\texttt{CubeToOrthogonalArray}}
 \label{CubeToOrthogonalArray}
@@ -1719,7 +1759,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{OrthogonalArrayToCube}}
-\logpage{[ 2, 6, 6 ]}\nobreak
+\logpage{[ 2, 6, 8 ]}\nobreak
 \hyperdef{L}{X87C8CFE97ECDC3DA}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrthogonalArrayToCube({\mdseries\slshape oa})\index{OrthogonalArrayToCube@\texttt{OrthogonalArrayToCube}}
 \label{OrthogonalArrayToCube}
@@ -1731,7 +1771,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{CubeToTransversalDesign}}
-\logpage{[ 2, 6, 7 ]}\nobreak
+\logpage{[ 2, 6, 9 ]}\nobreak
 \hyperdef{L}{X8281E4697AA795A3}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeToTransversalDesign({\mdseries\slshape C})\index{CubeToTransversalDesign@\texttt{CubeToTransversalDesign}}
 \label{CubeToTransversalDesign}
@@ -1743,7 +1783,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{TransversalDesignToCube}}
-\logpage{[ 2, 6, 8 ]}\nobreak
+\logpage{[ 2, 6, 10 ]}\nobreak
 \hyperdef{L}{X7D717F98781699EF}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TransversalDesignToCube({\mdseries\slshape td})\index{TransversalDesignToCube@\texttt{TransversalDesignToCube}}
 \label{TransversalDesignToCube}
@@ -1755,7 +1795,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{LatinSquareToCube}}
-\logpage{[ 2, 6, 9 ]}\nobreak
+\logpage{[ 2, 6, 11 ]}\nobreak
 \hyperdef{L}{X8699117579A6173C}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{LatinSquareToCube({\mdseries\slshape L})\index{LatinSquareToCube@\texttt{LatinSquareToCube}}
 \label{LatinSquareToCube}
@@ -1767,7 +1807,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{CubeTest}}
-\logpage{[ 2, 6, 10 ]}\nobreak
+\logpage{[ 2, 6, 12 ]}\nobreak
 \hyperdef{L}{X7B79A7857DAD2FFE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeTest({\mdseries\slshape C})\index{CubeTest@\texttt{CubeTest}}
 \label{CubeTest}
@@ -1779,7 +1819,7 @@ an $n$-dimensional cube \mbox{\texttt{\mdseries\slshape C}} of order $v$, the fo
  
 
 \subsection{\textcolor{Chapter }{SliceInvariant}}
-\logpage{[ 2, 6, 11 ]}\nobreak
+\logpage{[ 2, 6, 13 ]}\nobreak
 \hyperdef{L}{X781264CA816BE32E}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SliceInvariant({\mdseries\slshape C})\index{SliceInvariant@\texttt{SliceInvariant}}
 \label{SliceInvariant}
@@ -1792,7 +1832,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{CubeAut}}
-\logpage{[ 2, 6, 12 ]}\nobreak
+\logpage{[ 2, 6, 14 ]}\nobreak
 \hyperdef{L}{X7E96F84678D23676}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeAut({\mdseries\slshape C[, opt]})\index{CubeAut@\texttt{CubeAut}}
 \label{CubeAut}
@@ -1809,7 +1849,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{CubeFilter}}
-\logpage{[ 2, 6, 13 ]}\nobreak
+\logpage{[ 2, 6, 15 ]}\nobreak
 \hyperdef{L}{X810B22E286D857C1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeFilter({\mdseries\slshape cl[, opt]})\index{CubeFilter@\texttt{CubeFilter}}
 \label{CubeFilter}
@@ -1826,7 +1866,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{SDPSeriesGroup}}
-\logpage{[ 2, 6, 14 ]}\nobreak
+\logpage{[ 2, 6, 16 ]}\nobreak
 \hyperdef{L}{X853C796F7AE3EAB3}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesGroup({\mdseries\slshape m})\index{SDPSeriesGroup@\texttt{SDPSeriesGroup}}
 \label{SDPSeriesGroup}
@@ -1838,7 +1878,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{SDPSeriesDesign}}
-\logpage{[ 2, 6, 15 ]}\nobreak
+\logpage{[ 2, 6, 17 ]}\nobreak
 \hyperdef{L}{X840763A67E94AE26}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesDesign({\mdseries\slshape m, i})\index{SDPSeriesDesign@\texttt{SDPSeriesDesign}}
 \label{SDPSeriesDesign}
@@ -1858,8 +1898,117 @@ difference sets in the group returned by \texttt{SDPSeriesGroup} (\ref{SDPSeries
 {
   
 
-\subsection{\textcolor{Chapter }{HadamardMatAut}}
+\subsection{\textcolor{Chapter }{IsHadamardMat}}
 \logpage{[ 2, 7, 1 ]}\nobreak
+\hyperdef{L}{X7EE0947D870E2E21}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsHadamardMat({\mdseries\slshape H})\index{IsHadamardMat@\texttt{IsHadamardMat}}
+\label{IsHadamardMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns \texttt{true} if \mbox{\texttt{\mdseries\slshape H}} is an $n$-dimensional Hadamard matrix and \texttt{false} otherwise. }
+
+ 
+
+\subsection{\textcolor{Chapter }{IsProperHadamardMat}}
+\logpage{[ 2, 7, 2 ]}\nobreak
+\hyperdef{L}{X7F18513082BE7819}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsProperHadamardMat({\mdseries\slshape H})\index{IsProperHadamardMat@\texttt{IsProperHadamardMat}}
+\label{IsProperHadamardMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns \texttt{true} if \mbox{\texttt{\mdseries\slshape H}} is a proper $n$-dimensional Hadamard matrix and \texttt{false} otherwise. }
+
+ 
+
+\subsection{\textcolor{Chapter }{Paley1Mat}}
+\logpage{[ 2, 7, 3 ]}\nobreak
+\hyperdef{L}{X7E519C817CB5DEE9}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Paley1Mat({\mdseries\slshape q})\index{Paley1Mat@\texttt{Paley1Mat}}
+\label{Paley1Mat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a Paley type I Hadamard matrix of order $\mbox{\texttt{\mdseries\slshape q}}+1$ constructed from the squares in $GF(\mbox{\texttt{\mdseries\slshape q}})$. The argument should be a prime power $\mbox{\texttt{\mdseries\slshape q}}\equiv 3 \pmod{4}$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{Paley2Mat}}
+\logpage{[ 2, 7, 4 ]}\nobreak
+\hyperdef{L}{X7F7AC67F84DC99C3}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Paley2Mat({\mdseries\slshape q})\index{Paley2Mat@\texttt{Paley2Mat}}
+\label{Paley2Mat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a Paley type II Hadamard matrix of order $2(\mbox{\texttt{\mdseries\slshape q}}+1)$ constructed from the squares in $GF(\mbox{\texttt{\mdseries\slshape q}})$. The argument should be a prime power $\mbox{\texttt{\mdseries\slshape q}}\equiv 1 \pmod{4}$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{Paley3DMat}}
+\logpage{[ 2, 7, 5 ]}\nobreak
+\hyperdef{L}{X7E3E2A2878247A97}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Paley3DMat({\mdseries\slshape v})\index{Paley3DMat@\texttt{Paley3DMat}}
+\label{Paley3DMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a three-dimensional Hadamard matrix of order \mbox{\texttt{\mdseries\slshape v}} obtained by the Paley-like construction introduced in \cite{KPT23b}. The argument should be an even number \mbox{\texttt{\mdseries\slshape v}} such that $\mbox{\texttt{\mdseries\slshape v}}-1$ is a prime power. }
+
+ 
+
+\subsection{\textcolor{Chapter }{SDPSeriesHadamardMat}}
+\logpage{[ 2, 7, 6 ]}\nobreak
+\hyperdef{L}{X805C567178DC9FD8}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesHadamardMat({\mdseries\slshape m, i})\index{SDPSeriesHadamardMat@\texttt{SDPSeriesHadamardMat}}
+\label{SDPSeriesHadamardMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a Hadamard matrix of order $4^m$ for the SDP series of designs. The argument \mbox{\texttt{\mdseries\slshape i}} must be 1, 2, or 3. See documentation for the \texttt{SDPSeriesDesign} (\ref{SDPSeriesDesign}) function. }
+
+ 
+
+\subsection{\textcolor{Chapter }{AllOnesMat}}
+\logpage{[ 2, 7, 7 ]}\nobreak
+\hyperdef{L}{X81AFF9727988A159}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AllOnesMat({\mdseries\slshape v[, n]})\index{AllOnesMat@\texttt{AllOnesMat}}
+\label{AllOnesMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the \mbox{\texttt{\mdseries\slshape n}}-dimensional matrix of order \mbox{\texttt{\mdseries\slshape v}} with all entries $1$. By default, \mbox{\texttt{\mdseries\slshape n}}$=2$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{ProductConstructionMat}}
+\logpage{[ 2, 7, 8 ]}\nobreak
+\hyperdef{L}{X7D28C82B845911B1}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ProductConstructionMat({\mdseries\slshape H, n})\index{ProductConstructionMat@\texttt{ProductConstructionMat}}
+\label{ProductConstructionMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a $2$-dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}}, returns the \mbox{\texttt{\mdseries\slshape n}}-dimensional proper Hadamard matrix obtained by the product construction of
+Yang \cite{YXY86}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CyclicDimensionIncrease}}
+\logpage{[ 2, 7, 9 ]}\nobreak
+\hyperdef{L}{X79485FB081E50D5B}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CyclicDimensionIncrease({\mdseries\slshape H})\index{CyclicDimensionIncrease@\texttt{CyclicDimensionIncrease}}
+\label{CyclicDimensionIncrease}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given an $n$-dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}}, returns the $(n+1)$-dimensional Hadamard matrix obtained by Theorem 6.1.5 of \cite{YNX10}. The construction also works for cyclic cubes of symmetric designs. }
+
+ 
+
+\subsection{\textcolor{Chapter }{HadamardMatAut}}
+\logpage{[ 2, 7, 10 ]}\nobreak
 \hyperdef{L}{X801DEB1E7D5668E9}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatAut({\mdseries\slshape H[, opt]})\index{HadamardMatAut@\texttt{HadamardMatAut}}
 \label{HadamardMatAut}
@@ -1875,7 +2024,7 @@ difference sets in the group returned by \texttt{SDPSeriesGroup} (\ref{SDPSeries
  
 
 \subsection{\textcolor{Chapter }{HadamardMatFilter}}
-\logpage{[ 2, 7, 2 ]}\nobreak
+\logpage{[ 2, 7, 11 ]}\nobreak
 \hyperdef{L}{X7E0014F67EC9FC23}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatFilter({\mdseries\slshape hl[, opt]})\index{HadamardMatFilter@\texttt{HadamardMatFilter}}
 \label{HadamardMatFilter}
@@ -1893,15 +2042,27 @@ themselves.
 
  
 
-\subsection{\textcolor{Chapter }{SDPSeriesHadamardMat}}
-\logpage{[ 2, 7, 3 ]}\nobreak
-\hyperdef{L}{X805C567178DC9FD8}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesHadamardMat({\mdseries\slshape m, i})\index{SDPSeriesHadamardMat@\texttt{SDPSeriesHadamardMat}}
-\label{SDPSeriesHadamardMat}
+\subsection{\textcolor{Chapter }{HadamardToIncidence}}
+\logpage{[ 2, 7, 12 ]}\nobreak
+\hyperdef{L}{X7FC368717A9EC3AE}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardToIncidence({\mdseries\slshape M})\index{HadamardToIncidence@\texttt{HadamardToIncidence}}
+\label{HadamardToIncidence}
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns a Hadamard matrix of order $4^m$ for the SDP series of designs. The argument \mbox{\texttt{\mdseries\slshape i}} must be 1, 2, or 3. See documentation for the \texttt{SDPSeriesDesign} (\ref{SDPSeriesDesign}) function. }
+ Transforms the Hadamard matrix \mbox{\texttt{\mdseries\slshape M}} to an incidence matrix by replacing all $-1$ entries by $0$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{IncidenceToHadamard}}
+\logpage{[ 2, 7, 13 ]}\nobreak
+\hyperdef{L}{X7B745CE37816C093}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IncidenceToHadamard({\mdseries\slshape M})\index{IncidenceToHadamard@\texttt{IncidenceToHadamard}}
+\label{IncidenceToHadamard}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms the incidence matrix \mbox{\texttt{\mdseries\slshape M}} to a $(1,-1)$-matrix by replacing all $0$ entries by $-1$. }
 
  }
 

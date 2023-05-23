@@ -6,10 +6,10 @@
                         [1X Prescribed Automorphism Groups [101X
   
   
-                                     0.2.1
+                                     0.2.2
   
   
-                                 14 April 2023
+                                  23 May 2023
   
   
                                 Vedran Krcadinac
@@ -100,9 +100,10 @@
       2.4-2 BlockDesignFilter
       2.4-3 IntersectionNumbers
       2.4-4 BlockScheme
-      2.4-5 TDesignB
-      2.4-6 IversonBracket
-      2.4-7 SymmetricDifference
+      2.4-5 PointPairScheme
+      2.4-6 TDesignB
+      2.4-7 IversonBracket
+      2.4-8 SymmetricDifference
     2.5 [33X[0;0YLatin Squares[133X
       2.5-1 ReadMOLS
       2.5-2 WriteMOLS
@@ -124,21 +125,33 @@
       2.6-2 GroupCube
       2.6-3 CubeSlice
       2.6-4 CubeSlices
-      2.6-5 CubeToOrthogonalArray
-      2.6-6 OrthogonalArrayToCube
-      2.6-7 CubeToTransversalDesign
-      2.6-8 TransversalDesignToCube
-      2.6-9 LatinSquareToCube
-      2.6-10 CubeTest
-      2.6-11 SliceInvariant
-      2.6-12 CubeAut
-      2.6-13 CubeFilter
-      2.6-14 SDPSeriesGroup
-      2.6-15 SDPSeriesDesign
+      2.6-5 CubeLayer
+      2.6-6 CubeLayers
+      2.6-7 CubeToOrthogonalArray
+      2.6-8 OrthogonalArrayToCube
+      2.6-9 CubeToTransversalDesign
+      2.6-10 TransversalDesignToCube
+      2.6-11 LatinSquareToCube
+      2.6-12 CubeTest
+      2.6-13 SliceInvariant
+      2.6-14 CubeAut
+      2.6-15 CubeFilter
+      2.6-16 SDPSeriesGroup
+      2.6-17 SDPSeriesDesign
     2.7 [33X[0;0YHadamard Matrices[133X
-      2.7-1 HadamardMatAut
-      2.7-2 HadamardMatFilter
-      2.7-3 SDPSeriesHadamardMat
+      2.7-1 IsHadamardMat
+      2.7-2 IsProperHadamardMat
+      2.7-3 Paley1Mat
+      2.7-4 Paley2Mat
+      2.7-5 Paley3DMat
+      2.7-6 SDPSeriesHadamardMat
+      2.7-7 AllOnesMat
+      2.7-8 ProductConstructionMat
+      2.7-9 CyclicDimensionIncrease
+      2.7-10 HadamardMatAut
+      2.7-11 HadamardMatFilter
+      2.7-12 HadamardToIncidence
+      2.7-13 IncidenceToHadamard
     2.8 [33X[0;0YGlobal Options[133X
       2.8-1 PAGGlobalOptions
   

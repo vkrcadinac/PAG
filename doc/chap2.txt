@@ -178,7 +178,7 @@
   
   [33X[1;0Y[29X[2XKramerMesnerSearch[102X( [3Xt[103X, [3Xv[103X, [3Xk[103X, [3Xlambda[103X, [3XG[103X[, [3Xopt[103X] ) [32X function[133X
   
-  [33X[0;0YPerforms  a  search for [3Xt[103X-([3Xv[103X,[3Xk[103X,[3Xlambda[103X) designs with presrcribed automorphism
+  [33X[0;0YPerforms  a  search  for [3Xt[103X-([3Xv[103X,[3Xk[103X,[3Xlambda[103X) designs with prescribed automorphism
   group  [3XG[103X by the Kramer-Mesner method. A record with options can be supplied.
   By  default,  designs  are  returned  in  the [5XDesign[105X package format [14X'DESIGN:
   Design'[114X  and  isomorph-rejection  is  performed by calling [2XBlockDesignFilter[102X
@@ -333,24 +333,41 @@
   
   [1X2.4-4 BlockScheme[101X
   
-  [33X[1;0Y[29X[2XBlockScheme[102X( [3Xd[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XBlockScheme[102X( [3Xd[103X[, [3Xopt[103X] ) [32X function[133X
   
-  [33X[0;0YReturns the block intersection scheme of a schematic block design [3Xd[103X. If [3Xd[103X is
-  not schematic, returns [10Xfail[110X. Uses the package [5XAssociationSchemes[105X.[133X
+  [33X[0;0YReturns  the  block  intersection association scheme of a block design [3Xd[103X, or
+  [10Xfail[110X  if [3Xd[103X is not block schematic. The optional argument [3Xopt[103X is a record for
+  options.  If  it contains the component [3XMatrix[103X:=[10Xtrue[110X, the block intersection
+  matrix  is  returned  instead.  Uses  the package [5XAssociationSchemes[105X. If the
+  package  is not available, [10XBlockScheme[110X always returns the block intersection
+  matrix and does not check if it defines an association scheme.[133X
   
-  [1X2.4-5 TDesignB[101X
+  [1X2.4-5 PointPairScheme[101X
+  
+  [33X[1;0Y[29X[2XPointPairScheme[102X( [3Xd[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns  the point pair association scheme of a block design [3Xd[103X, or [10Xfail[110X if [3Xd[103X
+  is  not  point  pair  schematic.  The  optional argument [3Xopt[103X is a record for
+  options. If it contains the component [3XMatrix[103X:=[10Xtrue[110X, the point pair inclusion
+  matrix  is  returned  instead.  The point pair scheme was defined by Cameron
+  [Cam75]  for Steiner [22X3[122X-designs. This command is a slight generalisation that
+  works  for  arbitrary  designs.  Uses the package [5XAssociationSchemes[105X. If the
+  package  is  not  available,  [10XPointPairScheme[110X  always returns the point pair
+  inclusion matrix and does not check if it defines an association scheme.[133X
+  
+  [1X2.4-6 TDesignB[101X
   
   [33X[1;0Y[29X[2XTDesignB[102X( [3Xt[103X, [3Xv[103X, [3Xk[103X, [3Xlambda[103X ) [32X function[133X
   
   [33X[0;0YThe number of blocks of a [3Xt[103X-([3Xv[103X,[3Xk[103X,[3Xlambda[103X) design.[133X
   
-  [1X2.4-6 IversonBracket[101X
+  [1X2.4-7 IversonBracket[101X
   
   [33X[1;0Y[29X[2XIversonBracket[102X( [3XP[103X ) [32X function[133X
   
   [33X[0;0YReturns 1 if [3XP[103X is true, and 0 otherwise.[133X
   
-  [1X2.4-7 SymmetricDifference[101X
+  [1X2.4-8 SymmetricDifference[101X
   
   [33X[1;0Y[29X[2XSymmetricDifference[102X( [3XX[103X, [3XY[103X ) [32X function[133X
   
@@ -551,37 +568,52 @@
   [30X    [33X[0;6YCubeSlices(  [3XC[103X  ) [22X... nchoose 2⋅ v^n-2[122X slices obtained by varying both
         the non-fixed coordinates [22Xx < y[122X and values of the fixed coordinates.[133X
   
-  [1X2.6-5 CubeToOrthogonalArray[101X
+  [1X2.6-5 CubeLayer[101X
+  
+  [33X[1;0Y[29X[2XCubeLayer[102X( [3XC[103X, [3Xx[103X, [3Xfixed[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  an  [22X(n-1)[122X-dimensional layer of the [22Xn[122X-dimensional cube [3XC[103X obtained by
+  setting   coordinate  [3Xx[103X  to  the  value  [3Xfixed[103X  and  varying  the  remaining
+  coordinates.[133X
+  
+  [1X2.6-6 CubeLayers[101X
+  
+  [33X[1;0Y[29X[2XCubeLayers[102X( [3XC[103X, [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0YReturns the [22X(n-1)[122X-dimensional layers of the [22Xn[122X-dimensional cube [3XC[103X obtained by
+  fixing coordinate [3Xx[103X.[133X
+  
+  [1X2.6-7 CubeToOrthogonalArray[101X
   
   [33X[1;0Y[29X[2XCubeToOrthogonalArray[102X( [3XC[103X ) [32X function[133X
   
   [33X[0;0YTransforms the incidence cube [3XC[103X to an equivalent orthogonal array.[133X
   
-  [1X2.6-6 OrthogonalArrayToCube[101X
+  [1X2.6-8 OrthogonalArrayToCube[101X
   
   [33X[1;0Y[29X[2XOrthogonalArrayToCube[102X( [3Xoa[103X ) [32X function[133X
   
   [33X[0;0YTransforms the orthogonal array [3Xoa[103X to an equivalent incidence cube.[133X
   
-  [1X2.6-7 CubeToTransversalDesign[101X
+  [1X2.6-9 CubeToTransversalDesign[101X
   
   [33X[1;0Y[29X[2XCubeToTransversalDesign[102X( [3XC[103X ) [32X function[133X
   
   [33X[0;0YTransforms the incidence cube [3XC[103X to an equivalent transversal design.[133X
   
-  [1X2.6-8 TransversalDesignToCube[101X
+  [1X2.6-10 TransversalDesignToCube[101X
   
   [33X[1;0Y[29X[2XTransversalDesignToCube[102X( [3Xtd[103X ) [32X function[133X
   
   [33X[0;0YTransforms the transversal design [3Xtd[103X to an equivalent incidence cube.[133X
   
-  [1X2.6-9 LatinSquareToCube[101X
+  [1X2.6-11 LatinSquareToCube[101X
   
   [33X[1;0Y[29X[2XLatinSquareToCube[102X( [3XL[103X ) [32X function[133X
   
   [33X[0;0YTransforms the Latin square [3XL[103X to an equivalent incidence cube.[133X
   
-  [1X2.6-10 CubeTest[101X
+  [1X2.6-12 CubeTest[101X
   
   [33X[1;0Y[29X[2XCubeTest[102X( [3XC[103X ) [32X function[133X
   
@@ -589,7 +621,7 @@
   should  be  [10X[[v,k,lambda]][110X. Anything else means that [3XC[103X is not a [22X(v,k,lambda)[122X
   cube.[133X
   
-  [1X2.6-11 SliceInvariant[101X
+  [1X2.6-13 SliceInvariant[101X
   
   [33X[1;0Y[29X[2XSliceInvariant[102X( [3XC[103X ) [32X function[133X
   
@@ -597,7 +629,7 @@
   sizes  of  parallel  slices.  Cubes  equivalent under paratopy have the same
   invariant.[133X
   
-  [1X2.6-12 CubeAut[101X
+  [1X2.6-14 CubeAut[101X
   
   [33X[1;0Y[29X[2XCubeAut[102X( [3XC[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -613,7 +645,7 @@
   [33X[0;0YAny  other  components  will  be  forwarded  to  the  [2XBlockDesignAut[102X ([14X2.4-1[114X)
   function; see its documentation.[133X
   
-  [1X2.6-13 CubeFilter[101X
+  [1X2.6-15 CubeFilter[101X
   
   [33X[1;0Y[29X[2XCubeFilter[102X( [3Xcl[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -628,14 +660,14 @@
   [33X[0;0YAny  other  components  will  be  forwarded to the [2XBlockDesignFilter[102X ([14X2.4-2[114X)
   function; see its documentation.[133X
   
-  [1X2.6-14 SDPSeriesGroup[101X
+  [1X2.6-16 SDPSeriesGroup[101X
   
   [33X[1;0Y[29X[2XSDPSeriesGroup[102X( [3Xm[103X ) [32X function[133X
   
-  [33X[0;0YReturns  a  group  for  the designs of [2XSDPSeriesDesign[102X ([14X2.6-15[114X). This is the
+  [33X[0;0YReturns  a  group  for  the designs of [2XSDPSeriesDesign[102X ([14X2.6-17[114X). This is the
   elementary Abelian group of order [22X4^m[122X.[133X
   
-  [1X2.6-15 SDPSeriesDesign[101X
+  [1X2.6-17 SDPSeriesDesign[101X
   
   [33X[1;0Y[29X[2XSDPSeriesDesign[102X( [3Xm[103X, [3Xi[103X ) [32X function[133X
   
@@ -645,14 +677,79 @@
   the   symmetric  difference  property  (SDP).  If  [3Xi[103X[22X=2[122X  or  [3Xi[103X[22X=3[122X,  two  other
   non-isomorphic  designs  with the same parameters are returned. They are not
   SDP designs, but have the property that all their blocks are difference sets
-  in  the  group  returned  by  [2XSDPSeriesGroup[102X ([14X2.6-14[114X). Developments of these
+  in  the  group  returned  by  [2XSDPSeriesGroup[102X ([14X2.6-16[114X). Developments of these
   blocks  are  isomorphic  to the design for [3Xi[103X[22X=1[122X, so the two other designs are
   not developments of their blocks.[133X
   
   
   [1X2.7 [33X[0;0YHadamard Matrices[133X[101X
   
-  [1X2.7-1 HadamardMatAut[101X
+  [1X2.7-1 IsHadamardMat[101X
+  
+  [33X[1;0Y[29X[2XIsHadamardMat[102X( [3XH[103X ) [32X function[133X
+  
+  [33X[0;0YReturns [10Xtrue[110X if [3XH[103X is an [22Xn[122X-dimensional Hadamard matrix and [10Xfalse[110X otherwise.[133X
+  
+  [1X2.7-2 IsProperHadamardMat[101X
+  
+  [33X[1;0Y[29X[2XIsProperHadamardMat[102X( [3XH[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  [10Xtrue[110X  if  [3XH[103X  is  a  proper  [22Xn[122X-dimensional Hadamard matrix and [10Xfalse[110X
+  otherwise.[133X
+  
+  [1X2.7-3 Paley1Mat[101X
+  
+  [33X[1;0Y[29X[2XPaley1Mat[102X( [3Xq[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  Paley  type  I Hadamard matrix of order [22X[3Xq[103X+1[122X constructed from the
+  squares in [22XGF([3Xq[103X)[122X. The argument should be a prime power [22X[3Xq[103X≡ 3 mod 4[122X.[133X
+  
+  [1X2.7-4 Paley2Mat[101X
+  
+  [33X[1;0Y[29X[2XPaley2Mat[102X( [3Xq[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a Paley type II Hadamard matrix of order [22X2([3Xq[103X+1)[122X constructed from the
+  squares in [22XGF([3Xq[103X)[122X. The argument should be a prime power [22X[3Xq[103X≡ 1 mod 4[122X.[133X
+  
+  [1X2.7-5 Paley3DMat[101X
+  
+  [33X[1;0Y[29X[2XPaley3DMat[102X( [3Xv[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  three-dimensional  Hadamard  matrix  of  order [3Xv[103X obtained by the
+  Paley-like  construction  introduced  in [KPT23b]. The argument should be an
+  even number [3Xv[103X such that [22X[3Xv[103X-1[122X is a prime power.[133X
+  
+  [1X2.7-6 SDPSeriesHadamardMat[101X
+  
+  [33X[1;0Y[29X[2XSDPSeriesHadamardMat[102X( [3Xm[103X, [3Xi[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  Hadamard  matrix of order [22X4^m[122X for the SDP series of designs. The
+  argument  [3Xi[103X  must  be  1, 2, or 3. See documentation for the [2XSDPSeriesDesign[102X
+  ([14X2.6-17[114X) function.[133X
+  
+  [1X2.7-7 AllOnesMat[101X
+  
+  [33X[1;0Y[29X[2XAllOnesMat[102X( [3Xv[103X[, [3Xn[103X] ) [32X function[133X
+  
+  [33X[0;0YReturns  the [3Xn[103X-dimensional matrix of order [3Xv[103X with all entries [22X1[122X. By default,
+  [3Xn[103X[22X=2[122X.[133X
+  
+  [1X2.7-8 ProductConstructionMat[101X
+  
+  [33X[1;0Y[29X[2XProductConstructionMat[102X( [3XH[103X, [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YGiven  a  [22X2[122X-dimensional  Hadamard matrix [3XH[103X, returns the [3Xn[103X-dimensional proper
+  Hadamard matrix obtained by the product construction of Yang [Yan86].[133X
+  
+  [1X2.7-9 CyclicDimensionIncrease[101X
+  
+  [33X[1;0Y[29X[2XCyclicDimensionIncrease[102X( [3XH[103X ) [32X function[133X
+  
+  [33X[0;0YGiven  an  [22Xn[122X-dimensional  Hadamard  matrix  [3XH[103X, returns the [22X(n+1)[122X-dimensional
+  Hadamard  matrix obtained by Theorem 6.1.5 of [YNX10]. The construction also
+  works for cyclic cubes of symmetric designs.[133X
+  
+  [1X2.7-10 HadamardMatAut[101X
   
   [33X[1;0Y[29X[2XHadamardMatAut[102X( [3XH[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -664,7 +761,7 @@
   [30X    [33X[0;6Y[3XDual[103X:=[10Xtrue[110X/[10Xfalse[110X  If  set to [10Xtrue[110X, dual automorphisms (transpositions)
         are also allowed. The default is [10Xfalse[110X.[133X
   
-  [1X2.7-2 HadamardMatFilter[101X
+  [1X2.7-11 HadamardMatFilter[101X
   
   [33X[1;0Y[29X[2XHadamardMatFilter[102X( [3Xhl[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -679,13 +776,19 @@
   [30X    [33X[0;6Y[3XPositions[103X:=[10Xtrue[110X/[10Xfalse[110X   Return   positions  of  inequivalent  Hadamard
         matrices instead of the matrices themselves.[133X
   
-  [1X2.7-3 SDPSeriesHadamardMat[101X
+  [1X2.7-12 HadamardToIncidence[101X
   
-  [33X[1;0Y[29X[2XSDPSeriesHadamardMat[102X( [3Xm[103X, [3Xi[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XHadamardToIncidence[102X( [3XM[103X ) [32X function[133X
   
-  [33X[0;0YReturns  a  Hadamard  matrix of order [22X4^m[122X for the SDP series of designs. The
-  argument  [3Xi[103X  must  be  1, 2, or 3. See documentation for the [2XSDPSeriesDesign[102X
-  ([14X2.6-15[114X) function.[133X
+  [33X[0;0YTransforms  the Hadamard matrix [3XM[103X to an incidence matrix by replacing all [22X-1[122X
+  entries by [22X0[122X.[133X
+  
+  [1X2.7-13 IncidenceToHadamard[101X
+  
+  [33X[1;0Y[29X[2XIncidenceToHadamard[102X( [3XM[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms  the  incidence  matrix  [3XM[103X  to a [22X(1,-1)[122X-matrix by replacing all [22X0[122X
+  entries by [22X-1[122X.[133X
   
   
   [1X2.8 [33X[0;0YGlobal Options[133X[101X

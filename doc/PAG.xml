@@ -977,6 +977,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="BlockScheme">
 
+<#Include Label="PointPairScheme">
+
 <#Include Label="TDesignB">
 
 <#Include Label="IversonBracket">
@@ -1031,6 +1033,10 @@ The following functions are available in the PAG package.
 
 <#Include Label="CubeSlices">
 
+<#Include Label="CubeLayer">
+
+<#Include Label="CubeLayers">
+
 <#Include Label="CubeToOrthogonalArray">
 
 <#Include Label="OrthogonalArrayToCube">
@@ -1058,11 +1064,31 @@ The following functions are available in the PAG package.
 <Section Label="Hadamard Matrices">
 <Heading>Hadamard Matrices</Heading>
 
+<#Include Label="IsHadamardMat">
+
+<#Include Label="IsProperHadamardMat">
+
+<#Include Label="Paley1Mat">
+
+<#Include Label="Paley2Mat">
+
+<#Include Label="Paley3DMat">
+
+<#Include Label="SDPSeriesHadamardMat">
+
+<#Include Label="AllOnesMat">
+
+<#Include Label="ProductConstructionMat">
+
+<#Include Label="CyclicDimensionIncrease">
+
 <#Include Label="HadamardMatAut">
 
 <#Include Label="HadamardMatFilter">
 
-<#Include Label="SDPSeriesHadamardMat">
+<#Include Label="HadamardToIncidence">
+
+<#Include Label="IncidenceToHadamard">
 
 </Section>
 

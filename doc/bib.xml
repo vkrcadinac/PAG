@@ -20,20 +20,7 @@
     <name><first>Vedran</first><last>Krcadinac</last></name>
     <name><first>Renata</first><last>Vlahovic</last></name>
   </author>
-  <title>New quasi-symmetric designs by the Kramer-Mesner method</title>
-  <journal>Discrete Math.</journal>
-  <year>2016</year>
-  <volume>339</volume>
-  <number>12</number>
-  <pages>2884&ndash;2890</pages>
-</article></entry>
-
-<entry id="KV16"><article>
-  <author>
-    <name><first>Vedran</first><last>Krcadinac</last></name>
-    <name><first>Renata</first><last>Vlahovic</last></name>
-  </author>
-  <title>New quasi-symmetric designs by the Kramer-Mesner method</title>
+  <title><C>New quasi-symmetric designs by the Kramer-Mesner method</C></title>
   <journal>Discrete Math.</journal>
   <year>2016</year>
   <volume>339</volume>
@@ -137,13 +124,25 @@
   <note><URL>http://arxiv.org/abs/2304.05446</URL></note>
 </article></entry>
 
+<entry id="KPT23b"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Mario Osvin</first><last>Pavcevic</last></name>
+    <name><first>Kristijan</first><last>Tabak</last></name>
+  </author>
+  <title><C>Three-dimensional Hadamard matrices of Paley type</C></title>
+  <journal>preprint</journal>
+  <year>2023</year>
+  <note><URL>https://arxiv.org/abs/2305.12415</URL></note>
+</article></entry>
+
 <entry id="SVW12"><article>
   <author>
     <name><first>Douglas S.</first><last>Stones</last></name>
     <name><first>Petr</first><last>Vojtechovsky</last></name>
     <name><first>Ian M.</first><last>Wanless</last></name>
   </author>
-  <title>Cycle structure of autotopisms of quasigroups and Latin squares</title>
+  <title><C>Cycle structure of autotopisms of quasigroups and Latin squares</C></title>
   <journal>J. Combin. Des.</journal>
   <year>2012</year>
   <volume>20</volume>
@@ -207,6 +206,41 @@
   <volume>33</volume>
   <pages>43&ndash;58</pages>
 </article></entry>
+
+<entry id="YXY86"><article>
+  <author>
+    <name><first>Yi Xian</first><last>Yang</last></name>
+  </author>
+  <title><C>Proofs of some conjectures about higher-dimensional Hadamard matrices (Chinese)</C></title>
+  <journal>Kexue Tongbao</journal>
+  <year>1986</year>
+  <volume>31</volume>
+  <number>2</number>
+  <pages>85&ndash;88</pages>
+</article></entry>
+
+<entry id="PC75"><article>
+  <author>
+    <name><first>P. J.</first><last>Cameron</last></name>
+  </author>
+  <title><C>Two remarks on Steiner systems</C></title>
+  <journal>Geometriae Dedicata</journal>
+  <year>1975</year>
+  <volume>4</volume>
+  <pages>403&ndash;418</pages>
+</article></entry>
+
+<entry id="YNX10"><book>
+  <author>
+    <name><first>Yi Xian</first><last>Yang</last></name>
+    <name><first>Xin Xin</first><last>Niu</last></name>
+    <name><first>Cheng Qing</first><last>Xu</last></name>
+  </author>
+  <title>Theory and applications of higher-dimensional Hadamard matrices. Second edition</title>
+  <publisher>CRC Press</publisher>
+  <year>2010</year>
+  <location>Boca Raton, FL</location>
+</book></entry>
 
 </file>
 

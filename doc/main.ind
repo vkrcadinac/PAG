@@ -1,5 +1,6 @@
 \begin{theindex}
 
+  \item \texttt  {AllOnesMat}, \hyperpage{34}
   \item \texttt  {AllSubgroupsConjugation}, \hyperpage{21}
 
   \indexspace
@@ -13,13 +14,16 @@
 
   \item \texttt  {CayleyTableOfGroup}, \hyperpage{27}
   \item \texttt  {CompatibilityMat}, \hyperpage{24}
-  \item \texttt  {CubeAut}, \hyperpage{31}
+  \item \texttt  {CubeAut}, \hyperpage{32}
   \item \texttt  {CubeFilter}, \hyperpage{32}
+  \item \texttt  {CubeLayer}, \hyperpage{31}
+  \item \texttt  {CubeLayers}, \hyperpage{31}
   \item \texttt  {CubeSlice}, \hyperpage{30}
   \item \texttt  {CubeSlices}, \hyperpage{30}
-  \item \texttt  {CubeTest}, \hyperpage{31}
-  \item \texttt  {CubeToOrthogonalArray}, \hyperpage{30}
+  \item \texttt  {CubeTest}, \hyperpage{32}
+  \item \texttt  {CubeToOrthogonalArray}, \hyperpage{31}
   \item \texttt  {CubeToTransversalDesign}, \hyperpage{31}
+  \item \texttt  {CyclicDimensionIncrease}, \hyperpage{34}
   \item \texttt  {CyclicPerm}, \hyperpage{20}
 
   \indexspace
@@ -41,15 +45,19 @@
 
   \indexspace
 
-  \item \texttt  {HadamardMatAut}, \hyperpage{32}
-  \item \texttt  {HadamardMatFilter}, \hyperpage{33}
+  \item \texttt  {HadamardMatAut}, \hyperpage{34}
+  \item \texttt  {HadamardMatFilter}, \hyperpage{34}
+  \item \texttt  {HadamardToIncidence}, \hyperpage{35}
 
   \indexspace
 
+  \item \texttt  {IncidenceToHadamard}, \hyperpage{35}
   \item \texttt  {IntersectionNumbers}, \hyperpage{26}
-  \item \texttt  {IsAutotopyGroup}, \hyperpage{28}
+  \item \texttt  {IsAutotopyGroup}, \hyperpage{29}
   \item \texttt  {IsGoodSubsetOrbit}, \hyperpage{22}
-  \item \texttt  {IversonBracket}, \hyperpage{26}
+  \item \texttt  {IsHadamardMat}, \hyperpage{33}
+  \item \texttt  {IsProperHadamardMat}, \hyperpage{33}
+  \item \texttt  {IversonBracket}, \hyperpage{27}
 
   \indexspace
 
@@ -70,7 +78,7 @@
   \item \texttt  {MOLSAut}, \hyperpage{28}
   \item \texttt  {MOLSFilter}, \hyperpage{28}
   \item \texttt  {MOLSSubsetOrbitRep}, \hyperpage{29}
-  \item \texttt  {MOLSToOrthogonalArray}, \hyperpage{27}
+  \item \texttt  {MOLSToOrthogonalArray}, \hyperpage{28}
   \item \texttt  {MOLSToTransversalDesign}, \hyperpage{28}
   \item \texttt  {MoveGroup}, \hyperpage{20}
   \item \texttt  {MovePerm}, \hyperpage{20}
@@ -81,16 +89,21 @@
 
   \item \texttt  {OrbitFilter1}, \hyperpage{23}
   \item \texttt  {OrbitFilter2}, \hyperpage{23}
-  \item \texttt  {OrthogonalArrayToCube}, \hyperpage{30}
-  \item \texttt  {OrthogonalArrayToMOLS}, \hyperpage{27}
+  \item \texttt  {OrthogonalArrayToCube}, \hyperpage{31}
+  \item \texttt  {OrthogonalArrayToMOLS}, \hyperpage{28}
 
   \indexspace
 
   \item PAG, \hyperpage{4}
-  \item \texttt  {PAGGlobalOptions}, \hyperpage{33}
+  \item \texttt  {PAGGlobalOptions}, \hyperpage{35}
+  \item \texttt  {Paley1Mat}, \hyperpage{33}
+  \item \texttt  {Paley2Mat}, \hyperpage{33}
+  \item \texttt  {Paley3DMat}, \hyperpage{33}
   \item \texttt  {PermRepresentationLeft}, \hyperpage{21}
   \item \texttt  {PermRepresentationRight}, \hyperpage{21}
+  \item \texttt  {PointPairScheme}, \hyperpage{26}
   \item \texttt  {PrimitiveGroupsOfDegree}, \hyperpage{21}
+  \item \texttt  {ProductConstructionMat}, \hyperpage{34}
 
   \indexspace
 
@@ -100,10 +113,10 @@
 
   \indexspace
 
-  \item \texttt  {SDPSeriesDesign}, \hyperpage{32}
+  \item \texttt  {SDPSeriesDesign}, \hyperpage{33}
   \item \texttt  {SDPSeriesGroup}, \hyperpage{32}
-  \item \texttt  {SDPSeriesHadamardMat}, \hyperpage{33}
-  \item \texttt  {SliceInvariant}, \hyperpage{31}
+  \item \texttt  {SDPSeriesHadamardMat}, \hyperpage{34}
+  \item \texttt  {SliceInvariant}, \hyperpage{32}
   \item \texttt  {SmallLambdaFilter}, \hyperpage{23}
   \item \texttt  {SolveKramerMesner}, \hyperpage{24}
   \item \texttt  {SubsetOrbitRep}, \hyperpage{22}
@@ -113,7 +126,7 @@
 
   \indexspace
 
-  \item \texttt  {TDesignB}, \hyperpage{26}
+  \item \texttt  {TDesignB}, \hyperpage{27}
   \item \texttt  {ToGroup}, \hyperpage{20}
   \item \texttt  {TransitiveGroupsOfDegree}, \hyperpage{21}
   \item \texttt  {TransversalDesignToCube}, \hyperpage{31}

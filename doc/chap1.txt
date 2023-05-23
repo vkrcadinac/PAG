@@ -490,7 +490,7 @@
   
   [1X1.5 [33X[0;0YExamples: Cubes of Symmetric Designs[133X[101X
   
-  [33X[0;0YCubes  of  symmetric  designs  are  studied in the paper [KPT23]. Here is an
+  [33X[0;0YCubes  of  symmetric  designs  are studied in the paper [KPT23a]. Here is an
   example.[133X
   
   [4X[32X  Example  [32X[104X
@@ -623,7 +623,7 @@
     [4X[28X[ [ 3, 2, 1 ] ][128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe  function  [2XCubeTest[102X  ([14X2.6-10[114X) looks at all possible slices and checks if
+  [33X[0;0YThe  function  [2XCubeTest[102X  ([14X2.6-12[114X) looks at all possible slices and checks if
   they  are  incidence  matrices  of  [22X(v,k,λ)[122X  designs. In the next example we
   construct all [22X3[122X-dimensional difference cubes of order [22X21[122X.[133X
   
@@ -643,10 +643,10 @@
     [4X[28X2646[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe function [2XCubeAut[102X ([14X2.6-12[114X) computes the full autotopy group of a cube. By
+  [33X[0;0YThe function [2XCubeAut[102X ([14X2.6-14[114X) computes the full autotopy group of a cube. By
   setting  options, full autoparatopy groups can also be obtained. We can make
   a  non-difference  cube by the "group cube" construction of Theorem 4.1 from
-  [KPT23].  First  we  search  for  all  [22X(21,5,1)[122X  designs  with  blocks being
+  [KPT23a].  First  we  search  for  all  [22X(21,5,1)[122X  designs  with blocks being
   difference sets in the Frobenius group of order [22X21[122X.[133X
   
   [4X[32X  Example  [32X[104X
@@ -686,7 +686,7 @@
     [4X[28X1[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe function [2XCubeFilter[102X ([14X2.6-13[114X) eliminates equivalent copies from a list of
+  [33X[0;0YThe function [2XCubeFilter[102X ([14X2.6-15[114X) eliminates equivalent copies from a list of
   cubes.  Our  new  cube  is  not  equivalent with the two [22X(21,5,1)[122X difference
   cubes.[133X
   
@@ -700,7 +700,7 @@
     [4X[28X441[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YHowever,  the three cubes have the same slice invariant; see [KPT23] for the
+  [33X[0;0YHowever, the three cubes have the same slice invariant; see [KPT23a] for the
   definition.[133X
   
   [4X[32X  Example  [32X[104X

@@ -631,20 +631,218 @@ DeclareGlobalFunction( "HadamardMatFilter" );
 
 #############################################################################
 ##
-#F  BlockScheme( <d> )  
+#F  AllOnesMat( <v>[, <n>] )  
+##
+##  <#GAPDoc Label="AllOnesMat">
+##  <ManSection>
+##  <Func Name="AllOnesMat" Arg="v[, n]"/>
+##  
+##  <Description>
+##  Returns the <A>n</A>-dimensional matrix of order <A>v</A> with all
+##  entries <M>1</M>. By default, <A>n</A><M>=2</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AllOnesMat" );
+
+#############################################################################
+##
+#F  Paley1Mat( <q> )  
+##
+##  <#GAPDoc Label="Paley1Mat">
+##  <ManSection>
+##  <Func Name="Paley1Mat" Arg="q"/>
+##  
+##  <Description>
+##  Returns a Paley type I Hadamard matrix of order <M><A>q</A>+1</M> constructed 
+##  from the squares in <M>GF(<A>q</A>)</M>. The argument should be a prime power 
+##  <M><A>q</A>\equiv 3 \pmod{4}</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Paley1Mat" );
+
+#############################################################################
+##
+#F  Paley2Mat( <q> )  
+##
+##  <#GAPDoc Label="Paley2Mat">
+##  <ManSection>
+##  <Func Name="Paley2Mat" Arg="q"/>
+##  
+##  <Description>
+##  Returns a Paley type II Hadamard matrix of order <M>2(<A>q</A>+1)</M> 
+##  constructed from the squares in <M>GF(<A>q</A>)</M>. The argument should 
+##  be a prime power <M><A>q</A>\equiv 1 \pmod{4}</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Paley2Mat" );
+
+#############################################################################
+##
+#F  Paley3DMat( <v> )  
+##
+##  <#GAPDoc Label="Paley3DMat">
+##  <ManSection>
+##  <Func Name="Paley3DMat" Arg="v"/>
+##  
+##  <Description>
+##  Returns a three-dimensional Hadamard matrix of order <A>v</A> obtained by 
+##  the Paley-like construction introduced in <Cite Key='KPT23b'/>. The argument 
+##  should be an even number <A>v</A> such that <M><A>v</A>-1</M> is a prime 
+##  power.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Paley3DMat" );
+
+#############################################################################
+##
+#F  HadamardToIncidence( <M> )  
+##
+##  <#GAPDoc Label="HadamardToIncidence">
+##  <ManSection>
+##  <Func Name="HadamardToIncidence" Arg="M"/>
+##  
+##  <Description>
+##  Transforms the Hadamard matrix <A>M</A> to an incidence matrix by
+##  replacing all <M>-1</M> entries by <M>0</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "HadamardToIncidence" );
+
+#############################################################################
+##
+#F  IncidenceToHadamard( <M> )  
+##
+##  <#GAPDoc Label="IncidenceToHadamard">
+##  <ManSection>
+##  <Func Name="IncidenceToHadamard" Arg="M"/>
+##  
+##  <Description>
+##  Transforms the incidence matrix <A>M</A> to a <M>(1,-1)</M>-matrix 
+##  by replacing all <M>0</M> entries by <M>-1</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "IncidenceToHadamard" );
+
+#############################################################################
+##
+#F  ProductConstructionMat( <H>, <n> )  
+##
+##  <#GAPDoc Label="ProductConstructionMat">
+##  <ManSection>
+##  <Func Name="ProductConstructionMat" Arg="H, n"/>
+##  
+##  <Description>
+##  Given a <M>2</M>-dimensional Hadamard matrix <A>H</A>, returns the 
+##  <A>n</A>-dimensional proper Hadamard matrix obtained by the product
+##  construction of Yang <Cite Key='YXY86'/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ProductConstructionMat" );
+
+#############################################################################
+##
+#F  CyclicDimensionIncrease( <H> )  
+##
+##  <#GAPDoc Label="CyclicDimensionIncrease">
+##  <ManSection>
+##  <Func Name="CyclicDimensionIncrease" Arg="H"/>
+##  
+##  <Description>
+##  Given an <M>n</M>-dimensional Hadamard matrix <A>H</A>, returns the 
+##  <M>(n+1)</M>-dimensional Hadamard matrix obtained by Theorem 6.1.5
+##  of <Cite Key='YNX10'/>. The construction also works for cyclic cubes 
+##  of symmetric designs.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CyclicDimensionIncrease" );
+
+#############################################################################
+##
+#F  IsHadamardMat( <H> )  
+##
+##  <#GAPDoc Label="IsHadamardMat">
+##  <ManSection>
+##  <Func Name="IsHadamardMat" Arg="H"/>
+##  
+##  <Description>
+##  Returns <C>true</C> if <A>H</A> is an <M>n</M>-dimensional Hadamard
+##  matrix and <C>false</C> otherwise.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "IsHadamardMat" );
+
+#############################################################################
+##
+#F  IsProperHadamardMat( <H> )  
+##
+##  <#GAPDoc Label="IsProperHadamardMat">
+##  <ManSection>
+##  <Func Name="IsProperHadamardMat" Arg="H"/>
+##  
+##  <Description>
+##  Returns <C>true</C> if <A>H</A> is a proper <M>n</M>-dimensional 
+##  Hadamard matrix and <C>false</C> otherwise.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "IsProperHadamardMat" );
+
+#############################################################################
+##
+#F  BlockScheme( <d>[, <opt>] )  
 ##
 ##  <#GAPDoc Label="BlockScheme">
 ##  <ManSection>
-##  <Func Name="BlockScheme" Arg="d"/>
+##  <Func Name="BlockScheme" Arg="d[, opt]"/>
 ##  
 ##  <Description>
-##  Returns the block intersection scheme of a schematic block design <A>d</A>.
-##  If <A>d</A> is not schematic, returns <C>fail</C>. Uses the package 
-##  <Package>AssociationSchemes</Package>.
+##  Returns the block intersection association scheme of a block design 
+##  <A>d</A>, or <C>fail</C> if <A>d</A> is not block schematic. 
+##  The optional argument <A>opt</A> is a record for options. If 
+##  it contains the component <A>Matrix</A>:=<C>true</C>, the 
+##  block intersection matrix is returned instead. 
+##  Uses the package <Package>AssociationSchemes</Package>. If the 
+##  package is not available, <C>BlockScheme</C> always returns the 
+##  block intersection matrix and does not check if it defines an 
+##  association scheme.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "BlockScheme" );
+
+#############################################################################
+##
+#F  PointPairScheme( <d>[, <opt>] )  
+##
+##  <#GAPDoc Label="PointPairScheme">
+##  <ManSection>
+##  <Func Name="PointPairScheme" Arg="d[, opt]"/>
+##  
+##  <Description>
+##  Returns the point pair association scheme of a block design <A>d</A>, 
+##  or <C>fail</C> if <A>d</A> is not point pair schematic. The optional 
+##  argument <A>opt</A> is a record for options. If it contains the component 
+##  <A>Matrix</A>:=<C>true</C>, the point pair inclusion matrix is returned 
+##  instead. The point pair scheme was defined by Cameron <Cite Key='PC75'/> 
+##  for Steiner <M>3</M>-designs. This command is a slight generalisation 
+##  that works for arbitrary designs.
+##  Uses the package <Package>AssociationSchemes</Package>. If the 
+##  package is not available, <C>PointPairScheme</C> always returns the 
+##  point pair inclusion matrix and does not check if it defines an 
+##  association scheme.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "PointPairScheme" );
 
 #############################################################################
 ##
@@ -656,7 +854,7 @@ DeclareGlobalFunction( "BlockScheme" );
 ##  
 ##  <Description>
 ##  Performs a search for <A>t</A>-(<A>v</A>,<A>k</A>,<A>lambda</A>) designs
-##  with presrcribed automorphism group <A>G</A> by the Kramer-Mesner method.
+##  with prescribed automorphism group <A>G</A> by the Kramer-Mesner method.
 ##  A record with options can be supplied. By default, designs are returned 
 ##  in the <Package>Design</Package> package format 
 ##  <Ref Chap="Design" BookName="DESIGN"/> and isomorph-rejection is performed
@@ -1103,6 +1301,39 @@ DeclareGlobalFunction( "CubeSlice" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeSlices" );
+
+#############################################################################
+##
+#F  CubeLayer( <C>, <x>, <fixed> ) 
+##
+##  <#GAPDoc Label="CubeLayer">
+##  <ManSection>
+##  <Func Name="CubeLayer" Arg="C, x, fixed"/>
+##
+##  <Description>
+##  Returns an <M>(n-1)</M>-dimensional layer of the <M>n</M>-dimensional
+##  cube <A>C</A> obtained by setting coordinate <A>x</A> to the value 
+##  <A>fixed</A> and varying the remaining coordinates. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CubeLayer" );
+
+#############################################################################
+##
+#F  CubeLayers( <C>, <x> ) 
+##
+##  <#GAPDoc Label="CubeLayers">
+##  <ManSection>
+##  <Func Name="CubeLayers" Arg="C, x"/>
+##
+##  <Description>
+##  Returns the <M>(n-1)</M>-dimensional layers of the <M>n</M>-dimensional
+##  cube <A>C</A> obtained by fixing coordinate <A>x</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CubeLayers" );
 
 #############################################################################
 ##

@@ -2,32 +2,29 @@
   
   [1XReferences[101X
   
-  [[20XCD07[120X]  ([1m[31mColbourn,  C. J. and Dinitz, J. H.[15X, Eds.), [17XHandbook of combinatorial designs. Second edition[117X, Chapman & Hall/CRC
-  (2007).
+  [[20XCam75[120X] [16XCameron, P. J.[116X, [17XTwo remarks on Steiner systems[117X, [18XGeometriae Dedicata[118X, [19X4[119X (1975), 403–418.
   
-  [[20XFal12[120X]  [16XFalcon,  R. M.[116X, [17XCycle structures of autotopisms of the Latin squares of order up to 11[117X, [18XArs Combin.[118X, [19X103[119X (2012),
-  239–256.
+  [[20XCD07[120X] ([1m[31mColbourn, C. J. and Dinitz, J. H.[15X, Eds.), [17XHandbook of combinatorial designs. Second edition[117X, Chapman & Hall/CRC (2007).
+  
+  [[20XFal12[120X] [16XFalcon, R. M.[116X, [17XCycle structures of autotopisms of the Latin squares of order up to 11[117X, [18XArs Combin.[118X, [19X103[119X (2012), 239–256.
   
   [[20XKan75[120X] [16XKantor, W. M.[116X, [17XSymplectic groups, symmetric designs, and line ovals[117X, [18X J. Algebra[118X, [19X33[119X (1975), 43–58.
   
-  [[20XKD15[120X]  [16XKeedwell,  A.  D.  and  Denes,  J.[116X,  [17XLatin squares and their applications. Second edition[117X, Elsevier/North-Holland
-  (2015).
+  [[20XKD15[120X] [16XKeedwell, A. D. and Denes, J.[116X, [17XLatin squares and their applications. Second edition[117X, Elsevier/North-Holland (2015).
   
   [[20XKM76[120X] [16XKramer, E. S. and Mesner, D. M.[116X, [17Xt-designs on hypergraphs[117X, [18XDiscrete Math.[118X, [19X15[119X, 3 (1976), 263–296.
   
-  [[20XKNP11[120X]  [16XKrcadinac,  V.,  Nakic,  A. and Pavcevic, M. O.[116X, [17XThe Kramer-Mesner method with tactical decompositions: some new
-  unitals on 65 points[117X, [18XJ. Combin. Des.[118X, [19X19[119X, 4 (2011), 290–303.
+  [[20XKNP11[120X] [16XKrcadinac, V., Nakic, A. and Pavcevic, M. O.[116X, [17XThe Kramer-Mesner method with tactical decompositions: some new unitals on 65 points[117X, [18XJ. Combin. Des.[118X, [19X19[119X, 4 (2011), 290–303.
   
-  [[20XKPT23[120X]   [16XKrcadinac,   V.,   Pavcevic,   M.   O.   and   Tabak,   K.[116X,   [17XCubes  of  symmetric  designs[117X,  [18Xpreprint[118X  (2023),
-  ((http://arxiv.org/abs/2304.05446)).
+  [[20XKPT23a[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XCubes of symmetric designs[117X, [18Xpreprint[118X (2023), ((http://arxiv.org/abs/2304.05446)).
+  
+  [[20XKPT23b[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XThree-dimensional Hadamard matrices of Paley type[117X, [18Xpreprint[118X (2023), ((https://arxiv.org/abs/2305.12415)).
   
   [[20XKrc18[120X] [16XKrcadinac, V.[116X, [17XSome new designs with prescribed automorphism groups[117X, [18XJ. Combin. Des.[118X, [19X26[119X, 4 (2018), 193–200.
   
-  [[20XKV16[120X]  [16XKrcadinac,  V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X, [18XDiscrete Math.[118X, [19X339[119X, 12
-  (2016), 2884–2890.
+  [[20XKV16[120X] [16XKrcadinac, V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X, [18XDiscrete Math.[118X, [19X339[119X, 12 (2016), 2884–2890.
   
-  [[20XKVK21[120X]  [16XKrcadinac,  V.  and  Vlahovic  Kruc, R.[116X, [17XQuasi-symmetric designs on 56 points[117X, [18XAdv. Math. Commun.[118X, [19X15[119X, 4 (2021),
-  633–646.
+  [[20XKVK21[120X] [16XKrcadinac, V. and Vlahovic Kruc, R.[116X, [17XQuasi-symmetric designs on 56 points[117X, [18XAdv. Math. Commun.[118X, [19X15[119X, 4 (2021), 633–646.
   
   [[20XMcK79[120X] [16XMcKay, B.[116X, [17XHadamard equivalence via graph isomorphism[117X, [18XDiscrete Math.[118X, [19X27[119X (1979), 213–214.
   
@@ -35,13 +32,15 @@
   
   [[20XNak21[120X] [16XNakic, A.[116X, [17XThe first example of a simple 2-(81,6,2) design[117X, [18XExamples and Counterexamples[118X, [19X1[119X (2021), 100005.
   
-  [[20XSch93[120X]  [16XSchmalz,  B.[116X,  [17XThe  t-designs  with  prescribed  automorphism group, new simple 6-designs[117X, [18XJ. Combin. Des.[118X, [19X1[119X, 2
-  (1993), 125–170.
+  [[20XSch93[120X] [16XSchmalz, B.[116X, [17XThe t-designs with prescribed automorphism group, new simple 6-designs[117X, [18XJ. Combin. Des.[118X, [19X1[119X, 2 (1993), 125–170.
   
-  [[20XSVW12[120X]  [16XStones,  D.  S.,  Vojtechovsky,  P.  and Wanless, I. M.[116X, [17XCycle structure of autotopisms of quasigroups and Latin
-  squares[117X, [18XJ. Combin. Des.[118X, [19X20[119X, 5 (2012), 227–263.
+  [[20XSVW12[120X] [16XStones, D. S., Vojtechovsky, P. and Wanless, I. M.[116X, [17XCycle structure of autotopisms of quasigroups and Latin squares[117X, [18XJ. Combin. Des.[118X, [19X20[119X, 5 (2012), 227–263.
   
   [[20XWas98[120X] [16XWassermann, A.[116X, [17XFinding simple t-designs with enumeration techniques[117X, [18XJ. Combin. Des.[118X, [19X6[119X, 2 (1998), 79–90.
+  
+  [[20XYan86[120X] [16XYang, Y. X.[116X, [17XProofs of some conjectures about higher-dimensional Hadamard matrices (Chinese)[117X, [18XKexue Tongbao[118X, [19X31[119X, 2 (1986), 85–88.
+  
+  [[20XYNX10[120X] [16XYang, Y. X., Niu, X. X. and Xu, C. Q.[116X, [17XTheory and applications of higher-dimensional Hadamard matrices. Second edition[117X, CRC Press (2010).
   
   
   
