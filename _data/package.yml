@@ -46,7 +46,7 @@ packageinfo: https://vkrcadinac.github.io/PAG/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/vkrcadinac/PAG/releases/download/v0.2.2/PAG-0.2.2.tar.gz
+      url: https://github.com/vkrcadinac/PAG/archive/refs/tags/v0.2.2.tar.gz
 
 abstract: |
     The <span class="pkgname">PAG</span> package contains functions for    constructing combinatorial objects with prescribed automorphism groups.
