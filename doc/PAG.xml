@@ -116,6 +116,7 @@ a limited number of &PAG; functions.
 	<Item><Package>AssociationSchemes</Package> 2.0</Item>
 	<Item><Package>DifSets</Package> 2.3.1</Item>
 	<Item><Package>GUAVA</Package> 3.15</Item>
+	<Item><Package>FinInG</Package> 1.4.1</Item>
 </List>
 The current installation file for &PAG; is available at 
 <URL>https://vkrcadinac.github.io/PAG/</URL>.
@@ -885,6 +886,205 @@ our web page:
 
 </Section>
 
+<Section Label="Examples: Mosaics of Combinatorial Designs">
+<Heading>Examples: Mosaics of Combinatorial Designs</Heading>
+
+Mosaics of combinatorial designs were introduced in <Cite Key='GGP18'/> 
+and a contruction from resolvable designs was proved. This construction 
+of mosaics is implemented in &PAG; for affine designs.
+
+<Example><![CDATA[gap> ag123:=AffineMosaic(1,2,3);
+[ [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 ], 
+  [ 2, 3, 1, 1, 2, 3, 2, 3, 1, 2, 3, 1 ], 
+  [ 3, 1, 2, 1, 2, 3, 3, 1, 2, 3, 1, 2 ], 
+  [ 1, 2, 3, 2, 3, 1, 3, 1, 2, 2, 3, 1 ], 
+  [ 2, 3, 1, 2, 3, 1, 1, 2, 3, 3, 1, 2 ], 
+  [ 3, 1, 2, 2, 3, 1, 2, 3, 1, 1, 2, 3 ], 
+  [ 1, 2, 3, 3, 1, 2, 2, 3, 1, 3, 1, 2 ], 
+  [ 2, 3, 1, 3, 1, 2, 3, 1, 2, 1, 2, 3 ], 
+  [ 3, 1, 2, 3, 1, 2, 1, 2, 3, 2, 3, 1 ] ]
+gap> MosaicParameters(ag123);
+"2-(9,3,1) + 2-(9,3,1) + 2-(9,3,1)"
+gap> ag232:=AffineMosaic(2,3,2);
+[ [ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ], 
+  [ 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1 ], 
+  [ 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1 ], 
+  [ 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2 ], 
+  [ 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1 ], 
+  [ 2, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2 ], 
+  [ 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2 ], 
+  [ 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1 ] ]
+gap> MosaicParameters(ag232);
+"3-(8,4,1) + 3-(8,4,1)"
+]]></Example>
+
+The command <C>AffineMosaic</C> uses the <Package>FinInG</Package> package 
+and does not work if the package is not present. Tilings of groups with 
+difference sets <Cite Key='CKZ15'/> give rise to mosaics of symmetric
+designs. Here is an example of a <M>(31,6,1)</M> tiling and the corresponding
+mosaic.
+
+<Example><![CDATA[gap> t:=[ [ 1, 5, 11, 24, 25, 27 ], 
+> [ 2, 10, 17, 19, 22, 23 ], 
+> [ 3, 4, 7, 13, 15, 20 ], 
+> [ 6, 8, 9, 14, 26, 30 ], 
+> [ 12, 16, 18, 21, 28, 29 ] ];;
+gap> m:=DifferenceMosaic(CyclicGroup(31), t);;
+gap> MosaicParameters(m);
+"2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1)"
+]]></Example>
+
+The paper <Cite Key='VK24'/> gives some interesting small examples of mosaics. 
+Files containing these examples are available on the web page 
+
+<P/>
+
+<URL>https://web.math.pmf.unizg.hr/~krcko/results/mosaics.html</URL> 
+
+<Example><![CDATA[gap> m:=ReadMat("13-346ex.txt")[1];
+[ [ 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2 ], 
+  [ 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1 ], 
+  [ 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2 ], 
+  [ 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3 ], 
+  [ 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3 ], 
+  [ 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3 ], 
+  [ 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1 ], 
+  [ 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3 ], 
+  [ 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3 ], 
+  [ 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2 ], 
+  [ 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2 ], 
+  [ 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3 ], 
+  [ 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1 ] ]
+gap> MosaicParameters(m);
+"2-(13,3,1) + 2-(13,4,2) + 2-(13,6,5)"
+]]></Example>
+
+This is the first example of an inhomogenous mosaic, containing designs
+with distinct parameters.
+
+<Example><![CDATA[gap> m1:=ReadMat("9-3-2ex1.txt")[1];
+[ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 2, 2, 3, 2, 3, 2 ], 
+  [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 3, 3, 2, 2, 2, 2, 3 ], 
+  [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2 ], 
+  [ 1, 3, 2, 2, 3, 3, 1, 2, 1, 3, 3, 1, 2, 1, 2, 2, 2, 3, 1, 3, 1, 1, 3, 2 ], 
+  [ 2, 1, 3, 3, 2, 3, 1, 1, 2, 1, 3, 3, 2, 2, 1, 3, 2, 2, 1, 1, 3, 2, 1, 3 ], 
+  [ 3, 2, 1, 3, 3, 2, 2, 1, 1, 3, 1, 3, 1, 2, 2, 2, 3, 2, 3, 1, 1, 3, 2, 1 ], 
+  [ 2, 3, 3, 1, 3, 2, 3, 2, 2, 2, 2, 1, 1, 3, 3, 2, 1, 1, 1, 2, 3, 3, 1, 1 ], 
+  [ 3, 2, 3, 2, 1, 3, 2, 3, 2, 1, 2, 2, 3, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1 ], 
+  [ 3, 3, 2, 3, 2, 1, 2, 2, 3, 2, 1, 2, 3, 3, 1, 1, 1, 2, 2, 3, 1, 1, 1, 3 ] ]
+gap> MosaicParameters(m1);
+"2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+gap> m2:=ReadMat("9-3-2ex2.txt")[1];
+[ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 3, 2, 2, 3, 2, 2 ], 
+  [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 3, 2, 1, 3, 3, 1, 2, 2, 3, 2, 2, 3, 2 ], 
+  [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 1, 2, 2, 3, 2, 2, 3 ], 
+  [ 1, 3, 2, 3, 3, 1, 2, 2, 1, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 1, 1, 3, 1 ], 
+  [ 2, 1, 3, 1, 3, 3, 1, 2, 2, 3, 2, 1, 2, 3, 3, 2, 2, 3, 1, 1, 2, 1, 1, 3 ], 
+  [ 3, 2, 1, 3, 1, 3, 2, 1, 2, 1, 3, 2, 3, 2, 3, 3, 2, 2, 2, 1, 1, 3, 1, 1 ], 
+  [ 2, 3, 3, 2, 3, 2, 2, 3, 1, 1, 2, 2, 1, 1, 2, 3, 1, 1, 1, 3, 3, 3, 1, 2 ], 
+  [ 3, 2, 3, 2, 2, 3, 1, 2, 3, 2, 1, 2, 2, 1, 1, 1, 3, 1, 3, 1, 3, 2, 3, 1 ], 
+  [ 3, 3, 2, 3, 2, 2, 3, 1, 2, 2, 2, 1, 1, 2, 1, 1, 1, 3, 3, 3, 1, 1, 2, 3 ] ]
+gap> MosaicParameters(m2);
+"2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+]]></Example>
+
+These two mosaics cannot be obtained by the construction from <Cite Key='GGP18'/>.  
+The first mosaic contains three isomorphic copies of a <M>2</M>-<M>(9,3,2)</M> design 
+that is not resolvable.
+
+<Example><![CDATA[gap> d1:=BlockDesignFilter(MosaicToBlockDesigns(m1));
+[ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 7 ], [ 1, 3, 6 ], [ 1, 3, 9 ], 
+          [ 1, 4, 5 ], [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 8 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 9 ], [ 2, 7, 9 ], 
+          [ 3, 4, 6 ], [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+          [ 4, 6, 9 ], [ 4, 8, 9 ], [ 5, 6, 8 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+      isBlockDesign := true, v := 9 ) ]
+gap> MakeResolutionsComponent(d1[1]);
+gap> d1[1].resolutions.list;
+[  ]
+]]></Example>
+
+The second mosaic contains three non-isomorphic designs, one resolvable and two
+not resolvable.
+
+<Example><![CDATA[gap> d2:=BlockDesignFilter(MosaicToBlockDesigns(m2));
+[ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 5 ], [ 1, 3, 4 ], [ 1, 3, 6 ], 
+          [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 7, 9 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 6 ], [ 2, 4, 8 ], [ 2, 6, 9 ], [ 2, 7, 8 ], [ 2, 7, 9 ], 
+          [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 3, 8, 9 ], [ 4, 5, 7 ], 
+          [ 4, 5, 9 ], [ 4, 6, 8 ], [ 4, 6, 9 ], [ 5, 6, 7 ], [ 5, 6, 8 ] ], 
+      isBlockDesign := true, v := 9 ), 
+  rec( blocks := [ [ 1, 2, 5 ], [ 1, 2, 7 ], [ 1, 3, 4 ], [ 1, 3, 9 ], 
+          [ 1, 4, 7 ], [ 1, 5, 6 ], [ 1, 6, 8 ], [ 1, 8, 9 ], [ 2, 3, 6 ], 
+          [ 2, 3, 8 ], [ 2, 4, 6 ], [ 2, 4, 9 ], [ 2, 5, 8 ], [ 2, 7, 9 ], 
+          [ 3, 4, 5 ], [ 3, 5, 7 ], [ 3, 6, 9 ], [ 3, 7, 8 ], [ 4, 5, 8 ], 
+          [ 4, 6, 7 ], [ 4, 8, 9 ], [ 5, 6, 9 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+      isBlockDesign := true, v := 9 ), 
+  rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 8 ], [ 1, 3, 6 ], [ 1, 3, 7 ], 
+          [ 1, 4, 5 ], [ 1, 5, 9 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 9 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 7 ], [ 2, 7, 9 ], 
+          [ 3, 4, 6 ], [ 3, 4, 8 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+          [ 4, 6, 9 ], [ 4, 7, 9 ], [ 5, 6, 8 ], [ 5, 7, 8 ], [ 6, 8, 9 ] ], 
+      isBlockDesign := true, v := 9 ) ]
+gap> MakeResolutionsComponent(d2[1]);
+gap> MakeResolutionsComponent(d2[2]);
+gap> MakeResolutionsComponent(d2[3]);
+gap> d2[1].resolutions.list;
+[ rec( autGroup := Group([ (1,5,8)(2,6,9)(3,4,7), (1,7,6)(2,8,4)(3,9,5), (1,2)
+          (4,5)(7,9) ]), 
+      partition := 
+        [ 
+          rec( blocks := [ [ 1, 2, 4 ], [ 3, 8, 9 ], [ 5, 6, 7 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 2, 5 ], [ 3, 7, 8 ], [ 4, 6, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 3, 4 ], [ 2, 7, 9 ], [ 5, 6, 8 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 3, 6 ], [ 2, 7, 8 ], [ 4, 5, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 5, 8 ], [ 2, 6, 9 ], [ 3, 4, 7 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 6, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 7, 9 ], [ 2, 3, 5 ], [ 4, 6, 8 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 8, 9 ], [ 2, 3, 6 ], [ 4, 5, 7 ] ], 
+              isBlockDesign := true, v := 9 ) ] ) ]
+gap> d2[2].resolutions.list;
+[  ]
+gap> d2[3].resolutions.list;
+[  ]
+]]></Example>
+
+Finally, here is a mosaic of projective planes of order <M>3</M> from <Cite Key='VK24'/>. 
+
+<Example><![CDATA[gap> m:=ReadMat("13-4-1.txt")[1];
+[ [ 0, 1, 2, 1, 3, 2, 3, 1, 1, 3, 3, 2, 2 ], 
+  [ 3, 0, 2, 3, 2, 1, 2, 1, 2, 3, 1, 1, 3 ], 
+  [ 3, 1, 0, 2, 1, 3, 3, 3, 2, 2, 1, 2, 1 ], 
+  [ 3, 3, 1, 0, 1, 1, 2, 2, 1, 2, 3, 3, 2 ], 
+  [ 2, 1, 1, 2, 0, 2, 2, 3, 3, 1, 3, 1, 3 ], 
+  [ 2, 3, 2, 3, 3, 0, 1, 3, 1, 2, 2, 1, 1 ], 
+  [ 1, 2, 2, 2, 3, 3, 0, 2, 1, 1, 1, 3, 3 ], 
+  [ 3, 2, 3, 1, 3, 1, 2, 0, 3, 1, 2, 2, 1 ], 
+  [ 1, 1, 3, 2, 2, 1, 1, 3, 0, 3, 2, 3, 2 ], 
+  [ 1, 3, 3, 1, 1, 2, 3, 2, 2, 0, 2, 1, 3 ], 
+  [ 1, 2, 1, 3, 2, 2, 3, 1, 3, 2, 0, 3, 1 ], 
+  [ 2, 2, 3, 3, 1, 3, 1, 1, 2, 1, 3, 0, 2 ], 
+  [ 2, 3, 1, 1, 2, 3, 1, 2, 3, 3, 1, 2, 0 ] ]
+gap> MosaicParameters(m);
+"2-(13,4,1) + 2-(13,4,1) + 2-(13,4,1)"
+gap> aut:=MatAut(m);
+Group([ (1,3,2)(4,6,5)(7,9,8)(10,12,11)(14,16,15)(17,19,18)(20,22,21)
+  (23,25,24)(28,30,29) ])
+gap> Size(aut);
+3
+]]></Example>
+
+The full automorphism group of this mosaic is of order <M>3</M>, so it cannot
+be obtained by tiling groups with <M>(13,4,1)</M> difference sets.
+
+</Section>
 </Chapter>
 
 
@@ -985,6 +1185,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="SymmetricDifference">
 
+<#Include Label="AddWeights">
+
 </Section>
 
 <Section Label="Latin Squares">
@@ -1080,6 +1282,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="ProductConstructionMat">
 
+<#Include Label="DigitConstructionMat">
+
 <#Include Label="CyclicDimensionIncrease">
 
 <#Include Label="HadamardMatAut">
@@ -1089,6 +1293,33 @@ The following functions are available in the PAG package.
 <#Include Label="HadamardToIncidence">
 
 <#Include Label="IncidenceToHadamard">
+
+</Section>
+
+<Section Label="Mosaics of Combinatorial Designs">
+<Heading>Mosaics of Combinatorial Designs</Heading>
+
+<#Include Label="MosaicParameters">
+
+<#Include Label="BlocksToIncidenceMat">
+
+<#Include Label="IncidenceMatToBlocks">
+
+<#Include Label="MosaicToBlockDesigns">
+
+<#Include Label="ReadMat">
+
+<#Include Label="WriteMat">
+
+<#Include Label="AffineMosaic">
+
+<#Include Label="DifferenceMosaic">
+
+<#Include Label="PowersMosaic">
+
+<#Include Label="MatAut">
+
+<#Include Label="MatFilter">
 
 </Section>
 

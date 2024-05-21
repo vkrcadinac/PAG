@@ -819,7 +819,7 @@ end );
 InstallGlobalFunction( BlockDesignAut, function( d, opt... )
 local input,output,command,str,n,l1,l2,ng,clo,g,abl,cmd;
 
-  if IsBound(d.autGroup) then
+  if IsBound(d.autGroup) and Size(opt)=0 then
     return d.autGroup;
   else
     clo:=[];
@@ -916,7 +916,9 @@ local input,output,command,str,n,l1,l2,ng,clo,g,abl,cmd;
     if not abl then
       g:=RestrictedGroup(g,[1..NrBlockDesignPoints(d)]);
     fi;
-    d.autGroup:=g;
+    if Size(opt)=0 then
+      d.autGroup:=g;
+    fi;
     return g;
   fi; 
 end );
@@ -924,7 +926,7 @@ end );
 
 #############################################################################
 #
-# HadamardMatAut( <H>[, <opt>] )  
+#  HadamardMatAut( <H>[, <opt>] )  
 #
 #  Computes the full automorphism group of a Hadamard matrix <A>H</A>.
 #  Represents the matrix by a colored graph (see <Cite Key='BM79'/>) and
@@ -984,6 +986,59 @@ local input,output,command,str,n,l1,l2,ng,clo,g;
    fi;
 
    return g;
+end );
+
+
+#############################################################################
+#
+#  MatAut( <M> )  
+#
+#  Computes the full automorphism group of a matrix <A>M</A>. It is
+#  assumed that the entries of <A>M</A> are consecutive integers. 
+#  Permutations of rows, columns and symbols are allowed.
+#  Represents the matrix by a colored graph and uses 
+#  <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+#
+InstallGlobalFunction( MatAut, function( m )
+local input,output,command,str,n,l1,l2,ng,g,e;
+
+    e:=Union(m);
+    m:=m-Minimum(e);
+    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.in"), false );
+    PrintTo(output, Size(m), " ", Size(m[1]), " ", Size(e), "\n");
+    PrintTo(output, m);
+    CloseStream(output);
+
+    command:=Filename(DirectoriesPackagePrograms("PAG"), "mataut");
+    
+    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.in") );
+    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.out"), false);
+    Process(PAGGlobalOptions.TempDir, command, input, output, [] ); 
+    CloseStream(output);
+    CloseStream(input);
+
+    command:=Filename(DirectoriesPackagePrograms("PAG"), "delgen");
+    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.out") );
+    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.out2"), false);
+    Process(PAGGlobalOptions.TempDir, command, input, output, []); 
+    CloseStream(output);
+    CloseStream(input);
+    
+    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"mataut.out2") );
+    str:=ReadAll(input);
+    CloseStream(input);
+    if str=fail then
+      g:=Group(());
+    else
+      NormalizeWhitespace(str);
+      l1:=List(SplitString(str," "),EvalString)+1;
+      n:=Size(m)+Size(m[1])+Size(e)+Size(m)*Size(m[1]);
+      ng:=Size(l1)/n-1;
+      l2:=List([0..ng],i->l1{[n*i+1..n*(i+1)]});
+      g:=Group(List(l2,PermList));
+   fi;
+
+   return RestrictedGroup(g,[1..Size(m)+Size(m[1])+Size(e)]);
 end );
 
 
@@ -1140,6 +1195,66 @@ end );
 
 #############################################################################
 #
+#  MatFilter( <ml>[, opt] )  
+#
+#  Eliminates equivalent copies from a list of matrices <A>ml</A>. 
+#  It is assumed that all of the matrices have the same set of consecutive 
+#  integers as entries. Two matrices are equivalent if one can be transformed 
+#  into the other by permutating rows, columns and symbols. Represents the 
+#  matrices by colored graphs and uses <C>nauty/Traces 2.8</C> by B.D.McKay 
+#  and A.Piperno <Cite Key='MP14'/>. The optional argument <A>opt</A> is a 
+#  record for options. Possible components of <A>opt</A> are:
+#  <List>
+#  <Item><A>Positions</A>:=<C>true</C>/<C>false</C> Return positions 
+#  of inequivalent matrices instead of the matrices themselves.</Item>
+#  </List>
+#
+InstallGlobalFunction( MatFilter, function( ml, opt... )
+local input,output,command,str,l,pos,e;
+
+  if ml=[] then return ml;
+  else
+    pos:=false;
+    if Size(opt)>=1 then
+      if IsBound(opt[1].Positions) then
+         if opt[1].Positions then
+           pos:=true;
+         fi;
+      fi;
+    fi;
+
+    e:=Union(ml[1]);
+    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"matfilter.in"), false );
+    PrintTo(output, Size(ml[1]), " ", Size(ml[1][1]), " ", Size(e), "\n");
+    PrintTo(output, ml-Minimum(e));
+    CloseStream(output);
+
+    command:=Filename(DirectoriesPackagePrograms("PAG"), "matfilter");
+    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"matfilter.in") );
+    output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"matfilter.out"), false);
+    Process(PAGGlobalOptions.TempDir, command, input, output, []); 
+    CloseStream(output);
+    CloseStream(input);
+
+    input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"matfilter.out") );
+    str:=ReadAll(input);
+    CloseStream(input);
+    if str=fail then
+      l:=[]; 
+    else
+      NormalizeWhitespace(str);
+      l:=List(SplitString(str," "),EvalString);
+   fi;
+
+   if pos then return l;
+   else return ml{l};
+   fi;
+ fi;
+end );
+
+
+#############################################################################
+#
 #  Paley1Mat( <q> )  
 #    
 #  Returns a Paley type I Hadamard matrix of order <M><A>q</A>+1</M> constructed 
@@ -1288,6 +1403,41 @@ local v,rek;
 
     return rek(0,[]);
 
+end );
+
+
+#############################################################################
+#
+#  DigitConstructionMat( <H>, <n> )  
+#    
+#  Given a <M>2</M>-dimensional Hadamard matrix <A>H</A> of order 
+#  <M>(2t)^<A>s</A></M>, returns the <M>2<A>s</A></M>-dimensional 
+#  Hadamard matrix of order <M>2t</M>  obtained by Theorem 6.1.4 
+#  of <Cite Key='YNX10'/>.
+#
+InstallGlobalFunction( DigitConstructionMat, function( h, s )
+local t,rek,toint;
+  t:=RootInt(Size(h),s);
+  if t^s<>Size(h) or (t mod 2)=1 then
+    ErrorNoReturn("order of the given Hadamard matrix must be of the form (2t)^s.\n");
+  else
+    toint:=function(digits,base)
+      local i,x;
+      i:=0;
+      for x in digits do
+        i:=i*base+x;
+      od;
+      return i;
+    end;
+    rek:=function(ind,lev)
+      local i;
+      if lev=0 then return h[toint(ind{[1..s]},t)+1][toint(ind{[s+1..2*s]},t)+1];
+      else
+        return List([0..t-1],i->rek(Concatenation(ind,[i]),lev-1));
+      fi;
+    end;
+    return rek([],2*s);
+  fi;
 end );
 
 
@@ -2045,10 +2195,20 @@ end );
 #
 #  Returns a block design that is the development of the difference 
 #  set <A>ds</A> by right multiplication in the group <A>G</A>.
+#  If <A>ds</A> is a tiling of the group <A>G</A> or a list of disjoint 
+#  difference sets, a mosaic of symmetric designs is returned.
 #
 InstallGlobalFunction( RightDevelopment, function( g, ds )
+local e,de,be;
 
-    return BlockDesign(Size(g),[ds],PermRepresentationRight(g));
+    if NestingDepthA(ds)=1 then
+      return BlockDesign(Size(g),[ds],PermRepresentationRight(g));
+    else
+      e:=Elements(g);
+      de:=List(ds,x->e{x});
+      be:=List(e,x->de*x);
+      return BlocksToIncidenceMat(be);
+    fi;
 
 end );
 
@@ -2059,10 +2219,20 @@ end );
 #
 #  Returns a block design that is the development of the difference 
 #  set <A>ds</A> by left multiplication in the group <A>G</A>.
+#  If <A>ds</A> is a tiling of the group <A>G</A> or a list of disjoint 
+#  difference sets, a mosaic of symmetric designs is returned.
 #
 InstallGlobalFunction( LeftDevelopment, function( g, ds )
+local e,de,be;
 
-    return BlockDesign(Size(g),[ds],PermRepresentationLeft(g));
+    if NestingDepthA(ds)=1 then
+      return BlockDesign(Size(g),[ds],PermRepresentationLeft(g));
+    else
+      e:=Elements(g);
+      de:=List(ds,x->e{x});
+      be:=List(e,x->x*de);
+      return BlocksToIncidenceMat(be);
+    fi;
 
 end );
 
@@ -2090,6 +2260,22 @@ end );
 InstallGlobalFunction( SymmetricDifference, function( x, y )
 
   return Difference(Union(x,y),Intersection(x,y));  
+end );
+
+
+#############################################################################
+#
+#  AddWeights( <wd> ) 
+#
+#  Makes a weight distribudion <A>wd</A> more readable by adding the weights
+#  and skipping zero components. The argument <A>wd</A> is the weight 
+#  distribution of a code returned by the <C>WeightDistribution</C> command
+#  from the package <Package>GUAVA</Package>. 
+#
+InstallGlobalFunction( AddWeights, function( wd )
+
+  return Filtered(List([1..Size(wd)],i->[i-1,wd[i]]),x->x[2]>0);
+
 end );
 
 
@@ -2618,6 +2804,203 @@ end );
 InstallGlobalFunction( SDPSeriesDesign, function( m, i )
 
   return List((SDPSeriesHadamardMat(m,i)*(-1)^IversonBracket(m=1)+1)/2,x->Positions(x,1));
+end );
+
+
+#############################################################################
+#
+#  IncidenceMatToBlocks( <M> )  
+#
+#  Transforms an incidence matrix <A>M</A> to a list of blocks.
+#  Rows correspond to points, and columns to blocks.
+#
+InstallGlobalFunction( IncidenceMatToBlocks, function( m )
+local s;
+
+  s:=Difference(Union(m),[0]);
+  if Size(s)=1 then
+    s:=s[1];
+    return List(TransposedMat(m),x->Positions(x,s));
+  else
+    return List(TransposedMat(m),x->List(s,y->Positions(x,y)));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  BlocksToIncidenceMat( <d> )  
+#
+#  Transforms a list of blocks <A>d</A> to an incidence matrix.
+#  Points correspond to rows, and blocks to columns.
+#
+InstallGlobalFunction( BlocksToIncidenceMat, function( d )
+
+  if NestingDepthA(d)=2 then
+    return List(Union(d),y->List(d,x->IversonBracket(y in x)));
+  else
+    return List(Union(Concatenation(d)),y->List(d,x->Sum([1..Size(x)],i->i*IversonBracket(y in x[i]))));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  ReadMat( <filename> )  
+#
+#  Read a list of integer matrices from a file. The file starts with the number
+#  of rows <M>m</M> and columns <M>n</M> followed by the matrix entries. Integers
+#  in the file are separated by whitespaces.
+#
+InstallGlobalFunction( ReadMat, function( filename )
+local input,output,command;
+
+    command:=Filename(DirectoriesPackagePrograms("PAG"), "togapmat");
+    input:=InputTextFile( filename );
+    if input=fail then
+      Print("Cannot open file.\n");
+      return ;
+    else
+      output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"readmat.g"), false);
+      Process(PAGGlobalOptions.TempDir, command, input, output, ["-S"]); 
+      CloseStream(output);
+      CloseStream(input);
+      return ReadAsFunction( Filename(PAGGlobalOptions.TempDir,"readmat.g") )();
+    fi;
+end );
+
+
+#############################################################################
+#
+#  WriteMat( <filename>, <list> ) 
+#
+#  Write a list of <M>m\times n</M> integer matrices to a file. The number of 
+#  rows <M>m</M> and columns <M>n</M> is written first, followed by the matrix 
+#  entries. Integers are separated by whitespaces.
+#
+InstallGlobalFunction( WriteMat, function( filename, list )
+local output, mat, row, entry, str;
+
+    if NestingDepthA(list)=2 then
+      WriteMat(filename,[list]);
+    else 
+      mat:=DimensionsMat(list[1]);
+      output:=OutputTextFile( filename, false); 
+      str:=Concatenation(String(mat[1])," ",String(mat[2]),"\n");
+      WriteLine(output,str);
+      for mat in list do
+        for row in mat do
+          str:="";
+          for entry in row do
+            str:=Concatenation(str,String(entry)," ");
+          od;
+          WriteLine(output,str);  
+        od;
+        WriteLine(output,"");
+      od;
+      CloseStream(output);
+    fi;
+    return ;
+end );
+
+
+#############################################################################
+#
+#  MosaicParameters( <M> ) 
+#
+#  Returns a string with the parameters of the mosaic of combinatorial 
+#  designs <A>M</A>. See <Cite Key='GGP18'/> for the definition. Entries
+#  <M>0</M> in the matrix <A>M</A> are considered empty, and other integers
+#  are considered as incidences of distinct designs.
+#
+InstallGlobalFunction( MosaicParameters, function( m )
+local v,d,c,par,i,b,p,k;
+
+  if NestingDepthA(m)=3 then
+    return MosaicParameters( BlocksToIncidenceMat(m) );
+  else
+    v:=Size(m);
+    d:=IncidenceMatToBlocks(m);
+    if NestingDepthA(d)=2 then
+      d:=List(d,x->[x]);
+    fi;
+    c:=Size(d[1]);
+    par:="";
+    for i in [1..c] do
+      if par<>"" then
+        par:=Concatenation(par," + ");
+      fi;
+      b:=BlockDesign(v,List(d,x->x[i]));
+      p:=AllTDesignLambdas(b);
+      k:=BlockSizes(b);
+      if Size(k)=1 then
+        k:=k[1];
+      fi;
+      par:=Concatenation(par,String(Size(p)-1),"-(",String(v),",",String(k),",",String(p[Size(p)]),")"); 
+    od; 
+    return par;
+  fi;
+end );
+
+
+#############################################################################
+#
+#  MosaicToBlockDesigns( <M> ) 
+#
+#  Transforms a mosaic of combinatorial designs <A>M</A> with <M>c</M> 
+#  colors to a list of <M>c</M> block designs in the 
+#  <Package>Design</Package> package format.
+#
+InstallGlobalFunction( MosaicToBlockDesigns, function( m )
+local v,b,c;
+
+  v:=Size(m);
+  b:=IncidenceMatToBlocks(m);
+  c:=Size(b[1]);
+  return List([1..c],i->BlockDesign(v,List(b,x->x[i])));
+end );
+
+
+#############################################################################
+#
+#  DifferenceMosaic( <G>, <dds> )  
+#
+#  Returns the mosaic of symmetric designs obtained from a list
+#  of disjoint difference sets <A>dds</A> in the group <G>. 
+#
+InstallGlobalFunction( DifferenceMosaic, function( g, dds )
+local e,to0,m;
+
+  to0:=function ( x )
+    if x = fail then
+        return 0;
+    else
+        return x;
+    fi;
+  end;
+  e:=Elements(g);
+  m:=List(e,y->y*List(dds,x->e{x}));
+  return List(m,z->List(e,y->to0(Position(List(z,x->y in x),true))));
+end );
+
+
+#############################################################################
+#
+#  PowersMosaic( <q>, <n> )  
+#
+#  Returns the mosaic of symmetric designs constructed from <A>n</A>-th
+#  powers in the field <M>GF(</M><A>q</A><M>)</M>.
+#
+InstallGlobalFunction( PowersMosaic, function( q, n  )
+local e,nze,p,ds,dds,g;
+
+  e:=Elements(GF(q));
+  nze:=e{[2..q]};
+  p:=AsSet(List(nze,x->x^n));
+  ds:=AsSet(List(nze,x->AsSet(x*p)));
+  dds:=List(ds,y->List(y,x->Position(e,x)));
+  g:=Group(GeneratorsSmallest(Group(List(nze,y->Sortex(List(e,x->x+y))))));
+  return DifferenceMosaic(g,dds);
 end );
 
 

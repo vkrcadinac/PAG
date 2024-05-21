@@ -247,14 +247,16 @@
   [33X[1;0Y[29X[2XRightDevelopment[102X( [3XG[103X, [3Xds[103X ) [32X function[133X
   
   [33X[0;0YReturns  a  block design that is the development of the difference set [3Xds[103X by
-  right multiplication in the group [3XG[103X.[133X
+  right  multiplication  in the group [3XG[103X. If [3Xds[103X is a tiling of the group [3XG[103X or a
+  list of disjoint difference sets, a mosaic of symmetric designs is returned.[133X
   
   [1X2.3-8 LeftDevelopment[101X
   
   [33X[1;0Y[29X[2XLeftDevelopment[102X( [3XG[103X, [3Xds[103X ) [32X function[133X
   
   [33X[0;0YReturns  a  block design that is the development of the difference set [3Xds[103X by
-  left multiplication in the group [3XG[103X.[133X
+  left  multiplication  in  the group [3XG[103X. If [3Xds[103X is a tiling of the group [3XG[103X or a
+  list of disjoint difference sets, a mosaic of symmetric designs is returned.[133X
   
   
   [1X2.4 [33X[0;0YInspecting Objects and Other Functions[133X[101X
@@ -372,6 +374,14 @@
   [33X[1;0Y[29X[2XSymmetricDifference[102X( [3XX[103X, [3XY[103X ) [32X function[133X
   
   [33X[0;0YReturns the symmetric difference of two sets [3XX[103X and [3XY[103X.[133X
+  
+  [1X2.4-9 AddWeights[101X
+  
+  [33X[1;0Y[29X[2XAddWeights[102X( [3Xwd[103X ) [32X function[133X
+  
+  [33X[0;0YMakes  a  weight  distribudion  [3Xwd[103X  more  readable by adding the weights and
+  skipping  zero  components.  The argument [3Xwd[103X is the weight distribution of a
+  code returned by the [10XWeightDistribution[110X command from the [5XGUAVA[105X package.[133X
   
   
   [1X2.5 [33X[0;0YLatin Squares[133X[101X
@@ -741,7 +751,15 @@
   [33X[0;0YGiven  a  [22X2[122X-dimensional  Hadamard matrix [3XH[103X, returns the [3Xn[103X-dimensional proper
   Hadamard matrix obtained by the product construction of Yang [Yan86].[133X
   
-  [1X2.7-9 CyclicDimensionIncrease[101X
+  [1X2.7-9 DigitConstructionMat[101X
+  
+  [33X[1;0Y[29X[2XDigitConstructionMat[102X( [3XH[103X, [3Xs[103X ) [32X function[133X
+  
+  [33X[0;0YGiven  a  [22X2[122X-dimensional  Hadamard  matrix  [3XH[103X  of  order  [22X(2t)^s[122X, returns the
+  [22X2s[122X-dimensional  Hadamard  matrix  of  order  [22X2t[122X obtained by Theorem 6.1.4 of
+  [YNX10].[133X
+  
+  [1X2.7-10 CyclicDimensionIncrease[101X
   
   [33X[1;0Y[29X[2XCyclicDimensionIncrease[102X( [3XH[103X ) [32X function[133X
   
@@ -749,7 +767,7 @@
   Hadamard  matrix obtained by Theorem 6.1.5 of [YNX10]. The construction also
   works for cyclic cubes of symmetric designs.[133X
   
-  [1X2.7-10 HadamardMatAut[101X
+  [1X2.7-11 HadamardMatAut[101X
   
   [33X[1;0Y[29X[2XHadamardMatAut[102X( [3XH[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -761,7 +779,7 @@
   [30X    [33X[0;6Y[3XDual[103X:=[10Xtrue[110X/[10Xfalse[110X  If  set to [10Xtrue[110X, dual automorphisms (transpositions)
         are also allowed. The default is [10Xfalse[110X.[133X
   
-  [1X2.7-11 HadamardMatFilter[101X
+  [1X2.7-12 HadamardMatFilter[101X
   
   [33X[1;0Y[29X[2XHadamardMatFilter[102X( [3Xhl[103X[, [3Xopt[103X] ) [32X function[133X
   
@@ -776,14 +794,14 @@
   [30X    [33X[0;6Y[3XPositions[103X:=[10Xtrue[110X/[10Xfalse[110X   Return   positions  of  inequivalent  Hadamard
         matrices instead of the matrices themselves.[133X
   
-  [1X2.7-12 HadamardToIncidence[101X
+  [1X2.7-13 HadamardToIncidence[101X
   
   [33X[1;0Y[29X[2XHadamardToIncidence[102X( [3XM[103X ) [32X function[133X
   
   [33X[0;0YTransforms  the Hadamard matrix [3XM[103X to an incidence matrix by replacing all [22X-1[122X
   entries by [22X0[122X.[133X
   
-  [1X2.7-13 IncidenceToHadamard[101X
+  [1X2.7-14 IncidenceToHadamard[101X
   
   [33X[1;0Y[29X[2XIncidenceToHadamard[102X( [3XM[103X ) [32X function[133X
   
@@ -791,9 +809,103 @@
   entries by [22X-1[122X.[133X
   
   
-  [1X2.8 [33X[0;0YGlobal Options[133X[101X
+  [1X2.8 [33X[0;0YMosaics of Combinatorial Designs[133X[101X
   
-  [1X2.8-1 PAGGlobalOptions[101X
+  [1X2.8-1 MosaicParameters[101X
+  
+  [33X[1;0Y[29X[2XMosaicParameters[102X( [3XM[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a string with the parameters of the mosaic of combinatorial designs
+  [3XM[103X.  See [GGP18] for the definition. Entries [22X0[122X in the matrix [3XM[103X are considered
+  empty, and other integers are considered as incidences of distinct designs.[133X
+  
+  [1X2.8-2 BlocksToIncidenceMat[101X
+  
+  [33X[1;0Y[29X[2XBlocksToIncidenceMat[102X( [3Xd[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms  a  list of blocks [3Xd[103X to an incidence matrix. Points correspond to
+  rows, and blocks to columns.[133X
+  
+  [1X2.8-3 IncidenceMatToBlocks[101X
+  
+  [33X[1;0Y[29X[2XIncidenceMatToBlocks[102X( [3XM[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms  an  incidence  matrix  [3XM[103X to a list of blocks. Rows correspond to
+  points, and columns to blocks.[133X
+  
+  [1X2.8-4 MosaicToBlockDesigns[101X
+  
+  [33X[1;0Y[29X[2XMosaicToBlockDesigns[102X( [3XM[103X ) [32X function[133X
+  
+  [33X[0;0YTransforms  a mosaic of combinatorial designs [3XM[103X with [22Xc[122X colors to a list of [22Xc[122X
+  block designs in the [5XDesign[105X package format.[133X
+  
+  [1X2.8-5 ReadMat[101X
+  
+  [33X[1;0Y[29X[2XReadMat[102X( [3Xfilename[103X ) [32X function[133X
+  
+  [33X[0;0YReads  a list of [22Xm× n[122X integer matrices from a file. The file starts with the
+  number  of  rows [22Xm[122X and columns [22Xn[122X followed by the matrix entries. Integers in
+  the file are separated by whitespaces.[133X
+  
+  [1X2.8-6 WriteMat[101X
+  
+  [33X[1;0Y[29X[2XWriteMat[102X( [3Xfilename[103X, [3Xlist[103X ) [32X function[133X
+  
+  [33X[0;0YWrites  a  list of [22Xm× n[122X integer matrices to a file. The number of rows [22Xm[122X and
+  columns  [22Xn[122X  is  written  first, followed by the matrix entries. Integers are
+  separated by whitespaces.[133X
+  
+  [1X2.8-7 AffineMosaic[101X
+  
+  [33X[1;0Y[29X[2XAffineMosaic[102X( [3Xk[103X, [3Xn[103X, [3Xq[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  mosaic  of designs with blocks being [3Xk[103X-dimensional subspaces of the
+  affine  space  [22XAG([122X[3Xn[103X[22X,[122X[3Xq[103X[22X)[122X.  Uses  the  [5XFinInG[105X  package.  If  the package is not
+  available, the function is not loaded.[133X
+  
+  [1X2.8-8 DifferenceMosaic[101X
+  
+  [33X[1;0Y[29X[2XDifferenceMosaic[102X( [3XG[103X, [3Xdds[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  mosaic  of  symmetric designs obtained from a list of disjoint
+  difference sets [3Xdds[103X in the group [3XG[103X.[133X
+  
+  [1X2.8-9 PowersMosaic[101X
+  
+  [33X[1;0Y[29X[2XPowersMosaic[102X( [3Xq[103X, [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the mosaic of symmetric designs constructed from [3Xn[103X-th powers in the
+  field [22XGF([122X[3Xq[103X[22X)[122X.[133X
+  
+  [1X2.8-10 MatAut[101X
+  
+  [33X[1;0Y[29X[2XMatAut[102X( [3XM[103X ) [32X function[133X
+  
+  [33X[0;0YComputes  the  full automorphism group of a matrix [3XM[103X. It is assumed that the
+  entries  of  [3XM[103X  are  consecutive integers. Permutations of rows, columns and
+  symbols  are  allowed.  Represents  the  matrix  by a colored graph and uses
+  [10Xnauty/Traces 2.8[110X by B.D.McKay and A.Piperno [MP14].[133X
+  
+  [1X2.8-11 MatFilter[101X
+  
+  [33X[1;0Y[29X[2XMatFilter[102X( [3Xml[103X[, [3Xopt[103X] ) [32X function[133X
+  
+  [33X[0;0YEliminates  equivalent copies from a list of matrices [3Xml[103X. It is assumed that
+  all  of  the  matrices have the same set of consecutive integers as entries.
+  Two  matrices  are  equivalent  if  one can be transformed into the other by
+  permutating  rows,  columns  and symbols. Represents the matrices by colored
+  graphs  and  uses  [10Xnauty/Traces  2.8[110X  by B.D.McKay and A.Piperno [MP14]. The
+  optional  argument  [3Xopt[103X  is a record for options. Possible components of [3Xopt[103X
+  are:[133X
+  
+  [30X    [33X[0;6Y[3XPositions[103X:=[10Xtrue[110X/[10Xfalse[110X   Return   positions  of  inequivalent  matrices
+        instead of the matrices themselves.[133X
+  
+  
+  [1X2.9 [33X[0;0YGlobal Options[133X[101X
+  
+  [1X2.9-1 PAGGlobalOptions[101X
   
   [33X[1;0Y[29X[2XPAGGlobalOptions[102X [32X global variable[133X
   

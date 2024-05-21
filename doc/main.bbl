@@ -10,11 +10,21 @@ C.~J. Colbourn and J.~H. Dinitz, editors.
 \newblock {\em Handbook of combinatorial designs. Second edition}.
 \newblock Chapman \& Hall/CRC, 2007.
 
+\bibitem[CKZ15]{CKZ15}
+A.~Custic, V.~Krcadinac, and Y.~Zhou.
+\newblock Tiling groups with difference sets.
+\newblock {\em Electron. J. Combin.}, 22(2):P2.56, 2015.
+
 \bibitem[Fal12]{RF12}
 R.~M. Falcon.
 \newblock Cycle structures of autotopisms of the latin squares of order up to
   11.
 \newblock {\em Ars Combin.}, 103:239{\textendash}256, 2012.
+
+\bibitem[GGP18]{GGP18}
+O.~W. Gnilke, M.~Greferath, and M.~O. Pavcevic.
+\newblock Mosaics of combinatorial designs.
+\newblock {\em Des. Codes Cryptogr.}, 86(1):85{\textendash}95, 2018.
 
 \bibitem[Kan75]{WK75}
 W.~M. Kantor.
@@ -40,7 +50,7 @@ V.~Krcadinac, A.~Nakic, and M.~O. Pavcevic.
 \bibitem[KPT23a]{KPT23}
 V.~Krcadinac, M.~O. Pavcevic, and K.~Tabak.
 \newblock Cubes of symmetric designs.
-\newblock {\em preprint}, 2023.
+\newblock {\em Preprint}, 2023.
 \newblock \href {http://arxiv.org/abs/2304.05446}
   {\texttt{http://arxiv.org/}\discretionary {}{}{}\texttt{abs/}\discretionary
   {}{}{}\texttt{2304.05446}}.
@@ -48,15 +58,20 @@ V.~Krcadinac, M.~O. Pavcevic, and K.~Tabak.
 \bibitem[KPT23b]{KPT23b}
 V.~Krcadinac, M.~O. Pavcevic, and K.~Tabak.
 \newblock {Three-dimensional Hadamard matrices of Paley type}.
-\newblock {\em preprint}, 2023.
-\newblock \href {https://arxiv.org/abs/2305.12415}
-  {\texttt{https://arxiv.org/}\discretionary {}{}{}\texttt{abs/}\discretionary
-  {}{}{}\texttt{2305.12415}}.
+\newblock {\em Finite Fields Appl.}, 92:102306, 2023.
 
 \bibitem[Krc18]{VK18}
 V.~Krcadinac.
 \newblock Some new designs with prescribed automorphism groups.
 \newblock {\em J. Combin. Des.}, 26(4):193{\textendash}200, 2018.
+
+\bibitem[Krc24]{VK24}
+V.~Krcadinac.
+\newblock Small examples of mosaics of combinatorial designs.
+\newblock {\em Preprint}, 2024.
+\newblock \href {https://arxiv.org/abs/...}
+  {\texttt{https://arxiv.org/}\discretionary {}{}{}\texttt{abs/}\discretionary
+  {}{}{}\texttt{...}}
 
 \bibitem[KV16]{KV16}
 V.~Krcadinac and R.~Vlahovic.

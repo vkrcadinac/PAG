@@ -2,12 +2,15 @@
   
   [1XIndex[101X
   
+  [2XAddWeights[102X 2.4-9 
+  [2XAffineMosaic[102X 2.8-7 
   [2XAllOnesMat[102X 2.7-7 
   [2XAllSubgroupsConjugation[102X 2.1-10 
   [2XBaseBlocks[102X 2.3-5 
   [2XBlockDesignAut[102X 2.4-1 
   [2XBlockDesignFilter[102X 2.4-2 
   [2XBlockScheme[102X 2.4-4 
+  [2XBlocksToIncidenceMat[102X 2.8-2 
   [2XCayleyTableOfGroup[102X 2.5-3 
   [2XCompatibilityMat[102X 2.3-3 
   [2XCubeAut[102X 2.6-14 
@@ -19,17 +22,20 @@
   [2XCubeTest[102X 2.6-12 
   [2XCubeToOrthogonalArray[102X 2.6-7 
   [2XCubeToTransversalDesign[102X 2.6-9 
-  [2XCyclicDimensionIncrease[102X 2.7-9 
+  [2XCyclicDimensionIncrease[102X 2.7-10 
   [2XCyclicPerm[102X 2.1-1 
   [2XDifferenceCube[102X 2.6-1 
+  [2XDifferenceMosaic[102X 2.8-8 
+  [2XDigitConstructionMat[102X 2.7-9 
   [2XExpandMatRHS[102X 2.3-6 
   [2XExtendedPermRepresentation[102X 2.1-13 
   [2XFieldToMOLS[102X 2.5-4 
   [2XGroupCube[102X 2.6-2 
-  [2XHadamardMatAut[102X 2.7-10 
-  [2XHadamardMatFilter[102X 2.7-11 
-  [2XHadamardToIncidence[102X 2.7-12 
-  [2XIncidenceToHadamard[102X 2.7-13 
+  [2XHadamardMatAut[102X 2.7-11 
+  [2XHadamardMatFilter[102X 2.7-12 
+  [2XHadamardToIncidence[102X 2.7-13 
+  [2XIncidenceMatToBlocks[102X 2.8-3 
+  [2XIncidenceToHadamard[102X 2.7-14 
   [2XIntersectionNumbers[102X 2.4-3 
   [2XIsAutotopyGroup[102X 2.5-11 
   [2XIsGoodSubsetOrbit[102X 2.2-4 
@@ -44,11 +50,15 @@
   [2XLatinSquareToCube[102X 2.6-11 
   [2XLeftDevelopment[102X 2.3-8 
   License .-2 
+  [2XMatAut[102X 2.8-10 
+  [2XMatFilter[102X 2.8-11 
   [2XMOLSAut[102X 2.5-9 
   [2XMOLSFilter[102X 2.5-10 
   [2XMOLSSubsetOrbitRep[102X 2.5-12 
   [2XMOLSToOrthogonalArray[102X 2.5-5 
   [2XMOLSToTransversalDesign[102X 2.5-7 
+  [2XMosaicParameters[102X 2.8-1 
+  [2XMosaicToBlockDesigns[102X 2.8-4 
   [2XMoveGroup[102X 2.1-4 
   [2XMovePerm[102X 2.1-3 
   [2XMultiGroup[102X 2.1-6 
@@ -58,15 +68,17 @@
   [2XOrthogonalArrayToCube[102X 2.6-8 
   [2XOrthogonalArrayToMOLS[102X 2.5-6 
   PAG 1. 
-  [2XPAGGlobalOptions[102X 2.8-1 
+  [2XPAGGlobalOptions[102X 2.9-1 
   [2XPaley1Mat[102X 2.7-3 
   [2XPaley2Mat[102X 2.7-4 
   [2XPaley3DMat[102X 2.7-5 
   [2XPermRepresentationLeft[102X 2.1-12 
   [2XPermRepresentationRight[102X 2.1-11 
   [2XPointPairScheme[102X 2.4-5 
+  [2XPowersMosaic[102X 2.8-9 
   [2XPrimitiveGroupsOfDegree[102X 2.1-8 
   [2XProductConstructionMat[102X 2.7-8 
+  [2XReadMat[102X 2.8-5 
   [2XReadMOLS[102X 2.5-1 
   [2XRestrictedGroup[102X 2.1-7 
   [2XRightDevelopment[102X 2.3-7 
@@ -85,6 +97,7 @@
   [2XTransitiveGroupsOfDegree[102X 2.1-9 
   [2XTransversalDesignToCube[102X 2.6-10 
   [2XTransversalDesignToMOLS[102X 2.5-8 
+  [2XWriteMat[102X 2.8-6 
   [2XWriteMOLS[102X 2.5-2 
   
   

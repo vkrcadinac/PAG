@@ -3,7 +3,7 @@
 
     Trasform list of integer matrices to GAP format.
 
-    Vedran Krcadinac (krcko@math.hr), 24.7.2022.
+    Vedran Krcadinac (krcko@math.hr), 4.12.2023.
 
     Department of Mathematics, University of Zagreb, Croatia
 
@@ -11,6 +11,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+/****************/
+/* Global stuff */
+/****************/
+
+int mask=1;  /* An integer mask for options */
+/* Meaning of the bits and options to put them on/off are:
+   1  Read sets of matrices: -s for yes, -S for no (default yes)
+*/
+
+
 
 /****************/
 /* Main program */
@@ -26,13 +37,14 @@ int main(int argc,char *argv[])
   for(i=1; i<argc; ++i)
   { j = 0;
     while (argv[i][j] != '\0')
-    { /* if (argv[i][j] == 'p') mask |= 1;
-      if (argv[i][j] == 'P') mask &= ~1; */
+    { if (argv[i][j] == 's') mask |= 1;
+      if (argv[i][j] == 'S') mask &= ~1; 
     
       /* Help */
       if ((argv[i][j] == 'h') || (argv[i][j] == 'H') || (argv[i][j] == '?'))
-      { printf("Usage: togapmat\n");
-        printf("Matrices are taken from stdin.");
+      { printf("Usage: togapmat [options]\n");
+        printf("Matrices are taken from stdin. Options:\n");
+	printf("-s, -S  Read sets of matrices (default yes)\n");
         printf("\n");
 	exit(0);
       }
@@ -42,10 +54,11 @@ int main(int argc,char *argv[])
 
   ok=scanf("%d",&m)==1;
   ok&=scanf("%d",&n)==1;
-  ok&=scanf("%d",&s)==1;
+  if (mask & 1) ok&=scanf("%d",&s)==1;
+  if (!(mask & 1)) s=1;
 
   if ((m<=0) || (n<=0) || (!ok) || (s<=0))
-  { printf("Number of rows and columns must be entered first!\n");
+  { printf("Number of rows, columns and size of sets must be entered first!\n");
     exit(0);
   }
 
@@ -67,7 +80,7 @@ int main(int argc,char *argv[])
       ++count;
       printf("[");
       for (k=0; k<s; ++k)
-      { printf("[");
+      { if (mask & 1) printf("[");
         for (i=0; i<m; ++i)
         { printf("["); 
 	  for (j=0; j<n; ++j) 
@@ -79,7 +92,7 @@ int main(int argc,char *argv[])
 	  else printf("]");
         }
 	if (k<s-1) printf(",\n");
-	else printf("]");
+	else if (mask & 1) printf("]");
       }
     } 
   }

@@ -49,6 +49,9 @@
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X7B532D6B81CC1FC2">1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></a>
 </span>
 </div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X80F5A3C186D623A2">1.6 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></a>
+</span>
+</div>
 </div>
 
 <h3>1 <span class="Heading">The PAG Package</span></h3>
@@ -171,6 +174,9 @@ true
 
 </li>
 <li><p><strong class="pkg">GUAVA</strong> 3.15</p>
+
+</li>
+<li><p><strong class="pkg">FinInG</strong> 1.4.1</p>
 
 </li>
 </ul>
@@ -442,7 +448,7 @@ Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5)
 true
 </pre></div>
 
-<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.11.1/pkg/guava-3.15/doc/chap7_mj.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib_mj.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">\(L\)</span> of order 10. Self-orthogonal means that <span class="SimpleMath">\(L\)</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">\(\{L,L^t\}\)</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
+<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.11.1/pkg/guava-3.19/doc/chap7_mj.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib_mj.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">\(L\)</span> of order 10. Self-orthogonal means that <span class="SimpleMath">\(L\)</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">\(\{L,L^t\}\)</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=Sortex(Concatenation([11..20],[1..10],[31..40],[21..30]));</span>
@@ -868,6 +874,198 @@ Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
 <p>More examples of difference and non-difference group cubes are available on our web page:</p>
 
 <p><span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/cubes.html">https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</a></span></p>
+
+<p><a id="X80F5A3C186D623A2" name="X80F5A3C186D623A2"></a></p>
+
+<h4>1.6 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></h4>
+
+<p>Mosaics of combinatorial designs were introduced in <a href="chapBib_mj.html#biBGGP18">[GGP18]</a> and a contruction from resolvable designs was proved. This construction of mosaics is implemented in <strong class="pkg">PAG</strong> for affine designs.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ag123:=AffineMosaic(1,2,3);</span>
+[ [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 ], 
+  [ 2, 3, 1, 1, 2, 3, 2, 3, 1, 2, 3, 1 ], 
+  [ 3, 1, 2, 1, 2, 3, 3, 1, 2, 3, 1, 2 ], 
+  [ 1, 2, 3, 2, 3, 1, 3, 1, 2, 2, 3, 1 ], 
+  [ 2, 3, 1, 2, 3, 1, 1, 2, 3, 3, 1, 2 ], 
+  [ 3, 1, 2, 2, 3, 1, 2, 3, 1, 1, 2, 3 ], 
+  [ 1, 2, 3, 3, 1, 2, 2, 3, 1, 3, 1, 2 ], 
+  [ 2, 3, 1, 3, 1, 2, 3, 1, 2, 1, 2, 3 ], 
+  [ 3, 1, 2, 3, 1, 2, 1, 2, 3, 2, 3, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(ag123);</span>
+"2-(9,3,1) + 2-(9,3,1) + 2-(9,3,1)"
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ag232:=AffineMosaic(2,3,2);</span>
+[ [ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ], 
+  [ 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1 ], 
+  [ 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1 ], 
+  [ 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2 ], 
+  [ 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1 ], 
+  [ 2, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2 ], 
+  [ 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2 ], 
+  [ 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(ag232);</span>
+"3-(8,4,1) + 3-(8,4,1)"
+</pre></div>
+
+<p>The command <code class="code">AffineMosaic</code> uses the <strong class="pkg">FinInG</strong> package and does not work if the package is not present. Tilings of groups with difference sets <a href="chapBib_mj.html#biBCKZ15">[CKZ15]</a> give rise to mosaics of symmetric designs. Here is an example of a <span class="SimpleMath">\((31,6,1)\)</span> tiling and the corresponding mosaic.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">t:=[ [ 1, 5, 11, 24, 25, 27 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[ 2, 10, 17, 19, 22, 23 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[ 3, 4, 7, 13, 15, 20 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[ 6, 8, 9, 14, 26, 30 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[ 12, 16, 18, 21, 28, 29 ] ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=DifferenceMosaic(CyclicGroup(31), t);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(m);</span>
+"2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1)"
+</pre></div>
+
+<p>The paper <a href="chapBib_mj.html#biBVK24">[Krc24]</a> gives some interesting small examples of mosaics. Files containing these examples are available on the web page</p>
+
+<p><span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/mosaics.html">https://web.math.pmf.unizg.hr/~krcko/results/mosaics.html</a></span></p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=ReadMat("13-346ex.txt")[1];</span>
+[ [ 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2 ], 
+  [ 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1 ], 
+  [ 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2 ], 
+  [ 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3 ], 
+  [ 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3 ], 
+  [ 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3 ], 
+  [ 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1 ], 
+  [ 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3 ], 
+  [ 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3 ], 
+  [ 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2 ], 
+  [ 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2 ], 
+  [ 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3 ], 
+  [ 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(m);</span>
+"2-(13,3,1) + 2-(13,4,2) + 2-(13,6,5)"
+</pre></div>
+
+<p>This is the first example of an inhomogenous mosaic, containing designs with distinct parameters.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m1:=ReadMat("9-3-2ex1.txt")[1];</span>
+[ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 2, 2, 3, 2, 3, 2 ], 
+  [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 3, 3, 2, 2, 2, 2, 3 ], 
+  [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2 ], 
+  [ 1, 3, 2, 2, 3, 3, 1, 2, 1, 3, 3, 1, 2, 1, 2, 2, 2, 3, 1, 3, 1, 1, 3, 2 ], 
+  [ 2, 1, 3, 3, 2, 3, 1, 1, 2, 1, 3, 3, 2, 2, 1, 3, 2, 2, 1, 1, 3, 2, 1, 3 ], 
+  [ 3, 2, 1, 3, 3, 2, 2, 1, 1, 3, 1, 3, 1, 2, 2, 2, 3, 2, 3, 1, 1, 3, 2, 1 ], 
+  [ 2, 3, 3, 1, 3, 2, 3, 2, 2, 2, 2, 1, 1, 3, 3, 2, 1, 1, 1, 2, 3, 3, 1, 1 ], 
+  [ 3, 2, 3, 2, 1, 3, 2, 3, 2, 1, 2, 2, 3, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1 ], 
+  [ 3, 3, 2, 3, 2, 1, 2, 2, 3, 2, 1, 2, 3, 3, 1, 1, 1, 2, 2, 3, 1, 1, 1, 3 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(m1);</span>
+"2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m2:=ReadMat("9-3-2ex2.txt")[1];</span>
+[ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 3, 2, 2, 3, 2, 2 ], 
+  [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 3, 2, 1, 3, 3, 1, 2, 2, 3, 2, 2, 3, 2 ], 
+  [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 1, 2, 2, 3, 2, 2, 3 ], 
+  [ 1, 3, 2, 3, 3, 1, 2, 2, 1, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 1, 1, 3, 1 ], 
+  [ 2, 1, 3, 1, 3, 3, 1, 2, 2, 3, 2, 1, 2, 3, 3, 2, 2, 3, 1, 1, 2, 1, 1, 3 ], 
+  [ 3, 2, 1, 3, 1, 3, 2, 1, 2, 1, 3, 2, 3, 2, 3, 3, 2, 2, 2, 1, 1, 3, 1, 1 ], 
+  [ 2, 3, 3, 2, 3, 2, 2, 3, 1, 1, 2, 2, 1, 1, 2, 3, 1, 1, 1, 3, 3, 3, 1, 2 ], 
+  [ 3, 2, 3, 2, 2, 3, 1, 2, 3, 2, 1, 2, 2, 1, 1, 1, 3, 1, 3, 1, 3, 2, 3, 1 ], 
+  [ 3, 3, 2, 3, 2, 2, 3, 1, 2, 2, 2, 1, 1, 2, 1, 1, 1, 3, 3, 3, 1, 1, 2, 3 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(m2);</span>
+"2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+</pre></div>
+
+<p>These two mosaics cannot be obtained by the construction from <a href="chapBib_mj.html#biBGGP18">[GGP18]</a>. The first mosaic contains three isomorphic copies of a <span class="SimpleMath">\(2\)</span>-<span class="SimpleMath">\((9,3,2)\)</span> design that is not resolvable.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d1:=BlockDesignFilter(MosaicToBlockDesigns(m1));</span>
+[ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 7 ], [ 1, 3, 6 ], [ 1, 3, 9 ], 
+          [ 1, 4, 5 ], [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 8 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 9 ], [ 2, 7, 9 ], 
+          [ 3, 4, 6 ], [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+          [ 4, 6, 9 ], [ 4, 8, 9 ], [ 5, 6, 8 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+      isBlockDesign := true, v := 9 ) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MakeResolutionsComponent(d1[1]);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d1[1].resolutions.list;</span>
+[  ]
+</pre></div>
+
+<p>The second mosaic contains three non-isomorphic designs, one resolvable and two not resolvable.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d2:=BlockDesignFilter(MosaicToBlockDesigns(m2));</span>
+[ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 5 ], [ 1, 3, 4 ], [ 1, 3, 6 ], 
+          [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 7, 9 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 6 ], [ 2, 4, 8 ], [ 2, 6, 9 ], [ 2, 7, 8 ], [ 2, 7, 9 ], 
+          [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 3, 8, 9 ], [ 4, 5, 7 ], 
+          [ 4, 5, 9 ], [ 4, 6, 8 ], [ 4, 6, 9 ], [ 5, 6, 7 ], [ 5, 6, 8 ] ], 
+      isBlockDesign := true, v := 9 ), 
+  rec( blocks := [ [ 1, 2, 5 ], [ 1, 2, 7 ], [ 1, 3, 4 ], [ 1, 3, 9 ], 
+          [ 1, 4, 7 ], [ 1, 5, 6 ], [ 1, 6, 8 ], [ 1, 8, 9 ], [ 2, 3, 6 ], 
+          [ 2, 3, 8 ], [ 2, 4, 6 ], [ 2, 4, 9 ], [ 2, 5, 8 ], [ 2, 7, 9 ], 
+          [ 3, 4, 5 ], [ 3, 5, 7 ], [ 3, 6, 9 ], [ 3, 7, 8 ], [ 4, 5, 8 ], 
+          [ 4, 6, 7 ], [ 4, 8, 9 ], [ 5, 6, 9 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+      isBlockDesign := true, v := 9 ), 
+  rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 8 ], [ 1, 3, 6 ], [ 1, 3, 7 ], 
+          [ 1, 4, 5 ], [ 1, 5, 9 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+          [ 2, 3, 9 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 7 ], [ 2, 7, 9 ], 
+          [ 3, 4, 6 ], [ 3, 4, 8 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+          [ 4, 6, 9 ], [ 4, 7, 9 ], [ 5, 6, 8 ], [ 5, 7, 8 ], [ 6, 8, 9 ] ], 
+      isBlockDesign := true, v := 9 ) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MakeResolutionsComponent(d2[1]);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MakeResolutionsComponent(d2[2]);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MakeResolutionsComponent(d2[3]);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d2[1].resolutions.list;</span>
+[ rec( autGroup := Group([ (1,5,8)(2,6,9)(3,4,7), (1,7,6)(2,8,4)(3,9,5), (1,2)
+          (4,5)(7,9) ]), 
+      partition := 
+        [ 
+          rec( blocks := [ [ 1, 2, 4 ], [ 3, 8, 9 ], [ 5, 6, 7 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 2, 5 ], [ 3, 7, 8 ], [ 4, 6, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 3, 4 ], [ 2, 7, 9 ], [ 5, 6, 8 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 3, 6 ], [ 2, 7, 8 ], [ 4, 5, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 5, 8 ], [ 2, 6, 9 ], [ 3, 4, 7 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 6, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 7, 9 ], [ 2, 3, 5 ], [ 4, 6, 8 ] ], 
+              isBlockDesign := true, v := 9 ), 
+          rec( blocks := [ [ 1, 8, 9 ], [ 2, 3, 6 ], [ 4, 5, 7 ] ], 
+              isBlockDesign := true, v := 9 ) ] ) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d2[2].resolutions.list;</span>
+[  ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d2[3].resolutions.list;</span>
+[  ]
+</pre></div>
+
+<p>Finally, here is a mosaic of projective planes of order <span class="SimpleMath">\(3\)</span> from <a href="chapBib_mj.html#biBVK24">[Krc24]</a>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=ReadMat("13-4-1.txt")[1];</span>
+[ [ 0, 1, 2, 1, 3, 2, 3, 1, 1, 3, 3, 2, 2 ], 
+  [ 3, 0, 2, 3, 2, 1, 2, 1, 2, 3, 1, 1, 3 ], 
+  [ 3, 1, 0, 2, 1, 3, 3, 3, 2, 2, 1, 2, 1 ], 
+  [ 3, 3, 1, 0, 1, 1, 2, 2, 1, 2, 3, 3, 2 ], 
+  [ 2, 1, 1, 2, 0, 2, 2, 3, 3, 1, 3, 1, 3 ], 
+  [ 2, 3, 2, 3, 3, 0, 1, 3, 1, 2, 2, 1, 1 ], 
+  [ 1, 2, 2, 2, 3, 3, 0, 2, 1, 1, 1, 3, 3 ], 
+  [ 3, 2, 3, 1, 3, 1, 2, 0, 3, 1, 2, 2, 1 ], 
+  [ 1, 1, 3, 2, 2, 1, 1, 3, 0, 3, 2, 3, 2 ], 
+  [ 1, 3, 3, 1, 1, 2, 3, 2, 2, 0, 2, 1, 3 ], 
+  [ 1, 2, 1, 3, 2, 2, 3, 1, 3, 2, 0, 3, 1 ], 
+  [ 2, 2, 3, 3, 1, 3, 1, 1, 2, 1, 3, 0, 2 ], 
+  [ 2, 3, 1, 1, 2, 3, 1, 2, 3, 3, 1, 2, 0 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MosaicParameters(m);</span>
+"2-(13,4,1) + 2-(13,4,1) + 2-(13,4,1)"
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">aut:=MatAut(m);</span>
+Group([ (1,3,2)(4,6,5)(7,9,8)(10,12,11)(14,16,15)(17,19,18)(20,22,21)
+  (23,25,24)(28,30,29) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(aut);</span>
+3
+</pre></div>
+
+<p>The full automorphism group of this mosaic is of order <span class="SimpleMath">\(3\)</span>, so it cannot be obtained by tiling groups with <span class="SimpleMath">\((13,4,1)\)</span> difference sets.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>

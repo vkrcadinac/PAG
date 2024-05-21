@@ -14,3 +14,7 @@ Version 0.2.2: 23/05/2023
   PointPairScheme. Moved these two functions to separate installation files 
   that are loaded depending on whether the package AssociationSchemes is 
   available or not.
+Version 0.2.3: 21/05/2024
+  Corrected function BlockDesignAut and added function AddWeights. 
+  Added functions for mosaics of combinatorial designs. 
+

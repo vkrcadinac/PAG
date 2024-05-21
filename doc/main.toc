@@ -8,96 +8,111 @@
 \contentsline {subsection}{\numberline {1.3.4}\textcolor {Chapter }{Quasi-symmetric 2-(56,16,18) Designs}}{9}{subsection.1.3.4}%
 \contentsline {section}{\numberline {1.4}\textcolor {Chapter }{Examples: Latin Squares}}{10}{section.1.4}%
 \contentsline {section}{\numberline {1.5}\textcolor {Chapter }{Examples: Cubes of Symmetric Designs}}{12}{section.1.5}%
-\contentsline {chapter}{\numberline {2}\textcolor {Chapter }{The PAG Functions}}{20}{chapter.2}%
-\contentsline {section}{\numberline {2.1}\textcolor {Chapter }{Working With Permutation Groups}}{20}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}\textcolor {Chapter }{CyclicPerm}}{20}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}\textcolor {Chapter }{ToGroup}}{20}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}\textcolor {Chapter }{MovePerm}}{20}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}\textcolor {Chapter }{MoveGroup}}{20}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}\textcolor {Chapter }{MultiPerm}}{21}{subsection.2.1.5}%
-\contentsline {subsection}{\numberline {2.1.6}\textcolor {Chapter }{MultiGroup}}{21}{subsection.2.1.6}%
-\contentsline {subsection}{\numberline {2.1.7}\textcolor {Chapter }{RestrictedGroup}}{21}{subsection.2.1.7}%
-\contentsline {subsection}{\numberline {2.1.8}\textcolor {Chapter }{PrimitiveGroupsOfDegree}}{21}{subsection.2.1.8}%
-\contentsline {subsection}{\numberline {2.1.9}\textcolor {Chapter }{TransitiveGroupsOfDegree}}{21}{subsection.2.1.9}%
-\contentsline {subsection}{\numberline {2.1.10}\textcolor {Chapter }{AllSubgroupsConjugation}}{21}{subsection.2.1.10}%
-\contentsline {subsection}{\numberline {2.1.11}\textcolor {Chapter }{PermRepresentationRight}}{21}{subsection.2.1.11}%
-\contentsline {subsection}{\numberline {2.1.12}\textcolor {Chapter }{PermRepresentationLeft}}{21}{subsection.2.1.12}%
-\contentsline {subsection}{\numberline {2.1.13}\textcolor {Chapter }{ExtendedPermRepresentation}}{22}{subsection.2.1.13}%
-\contentsline {section}{\numberline {2.2}\textcolor {Chapter }{Generating Orbits}}{22}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}\textcolor {Chapter }{SubsetOrbitRep}}{22}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}\textcolor {Chapter }{SubsetOrbitRepShort1}}{22}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}\textcolor {Chapter }{SubsetOrbitRepIN}}{22}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}\textcolor {Chapter }{IsGoodSubsetOrbit}}{22}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}\textcolor {Chapter }{SmallLambdaFilter}}{23}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}\textcolor {Chapter }{OrbitFilter1}}{23}{subsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.7}\textcolor {Chapter }{OrbitFilter2}}{23}{subsection.2.2.7}%
-\contentsline {section}{\numberline {2.3}\textcolor {Chapter }{Constructing Objects}}{23}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}\textcolor {Chapter }{KramerMesnerSearch}}{23}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}\textcolor {Chapter }{KramerMesnerMat}}{24}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}\textcolor {Chapter }{CompatibilityMat}}{24}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}\textcolor {Chapter }{SolveKramerMesner}}{24}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}\textcolor {Chapter }{BaseBlocks}}{24}{subsection.2.3.5}%
-\contentsline {subsection}{\numberline {2.3.6}\textcolor {Chapter }{ExpandMatRHS}}{24}{subsection.2.3.6}%
-\contentsline {subsection}{\numberline {2.3.7}\textcolor {Chapter }{RightDevelopment}}{24}{subsection.2.3.7}%
-\contentsline {subsection}{\numberline {2.3.8}\textcolor {Chapter }{LeftDevelopment}}{25}{subsection.2.3.8}%
-\contentsline {section}{\numberline {2.4}\textcolor {Chapter }{Inspecting Objects and Other Functions}}{25}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}\textcolor {Chapter }{BlockDesignAut}}{25}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}\textcolor {Chapter }{BlockDesignFilter}}{26}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}\textcolor {Chapter }{IntersectionNumbers}}{26}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}\textcolor {Chapter }{BlockScheme}}{26}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}\textcolor {Chapter }{PointPairScheme}}{26}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}\textcolor {Chapter }{TDesignB}}{27}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}\textcolor {Chapter }{IversonBracket}}{27}{subsection.2.4.7}%
-\contentsline {subsection}{\numberline {2.4.8}\textcolor {Chapter }{SymmetricDifference}}{27}{subsection.2.4.8}%
-\contentsline {section}{\numberline {2.5}\textcolor {Chapter }{Latin Squares}}{27}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}\textcolor {Chapter }{ReadMOLS}}{27}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}\textcolor {Chapter }{WriteMOLS}}{27}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}\textcolor {Chapter }{CayleyTableOfGroup}}{27}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}\textcolor {Chapter }{FieldToMOLS}}{27}{subsection.2.5.4}%
-\contentsline {subsection}{\numberline {2.5.5}\textcolor {Chapter }{MOLSToOrthogonalArray}}{28}{subsection.2.5.5}%
-\contentsline {subsection}{\numberline {2.5.6}\textcolor {Chapter }{OrthogonalArrayToMOLS}}{28}{subsection.2.5.6}%
-\contentsline {subsection}{\numberline {2.5.7}\textcolor {Chapter }{MOLSToTransversalDesign}}{28}{subsection.2.5.7}%
-\contentsline {subsection}{\numberline {2.5.8}\textcolor {Chapter }{TransversalDesignToMOLS}}{28}{subsection.2.5.8}%
-\contentsline {subsection}{\numberline {2.5.9}\textcolor {Chapter }{MOLSAut}}{28}{subsection.2.5.9}%
-\contentsline {subsection}{\numberline {2.5.10}\textcolor {Chapter }{MOLSFilter}}{28}{subsection.2.5.10}%
-\contentsline {subsection}{\numberline {2.5.11}\textcolor {Chapter }{IsAutotopyGroup}}{29}{subsection.2.5.11}%
-\contentsline {subsection}{\numberline {2.5.12}\textcolor {Chapter }{MOLSSubsetOrbitRep}}{29}{subsection.2.5.12}%
-\contentsline {subsection}{\numberline {2.5.13}\textcolor {Chapter }{KramerMesnerMOLS}}{29}{subsection.2.5.13}%
-\contentsline {subsection}{\numberline {2.5.14}\textcolor {Chapter }{KramerMesnerMOLSAutotopy}}{29}{subsection.2.5.14}%
-\contentsline {subsection}{\numberline {2.5.15}\textcolor {Chapter }{KramerMesnerMOLSAutoparatopy}}{29}{subsection.2.5.15}%
-\contentsline {section}{\numberline {2.6}\textcolor {Chapter }{Cubes of Symmetric Designs}}{30}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}\textcolor {Chapter }{DifferenceCube}}{30}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}\textcolor {Chapter }{GroupCube}}{30}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}\textcolor {Chapter }{CubeSlice}}{30}{subsection.2.6.3}%
-\contentsline {subsection}{\numberline {2.6.4}\textcolor {Chapter }{CubeSlices}}{30}{subsection.2.6.4}%
-\contentsline {subsection}{\numberline {2.6.5}\textcolor {Chapter }{CubeLayer}}{31}{subsection.2.6.5}%
-\contentsline {subsection}{\numberline {2.6.6}\textcolor {Chapter }{CubeLayers}}{31}{subsection.2.6.6}%
-\contentsline {subsection}{\numberline {2.6.7}\textcolor {Chapter }{CubeToOrthogonalArray}}{31}{subsection.2.6.7}%
-\contentsline {subsection}{\numberline {2.6.8}\textcolor {Chapter }{OrthogonalArrayToCube}}{31}{subsection.2.6.8}%
-\contentsline {subsection}{\numberline {2.6.9}\textcolor {Chapter }{CubeToTransversalDesign}}{31}{subsection.2.6.9}%
-\contentsline {subsection}{\numberline {2.6.10}\textcolor {Chapter }{TransversalDesignToCube}}{31}{subsection.2.6.10}%
-\contentsline {subsection}{\numberline {2.6.11}\textcolor {Chapter }{LatinSquareToCube}}{31}{subsection.2.6.11}%
-\contentsline {subsection}{\numberline {2.6.12}\textcolor {Chapter }{CubeTest}}{32}{subsection.2.6.12}%
-\contentsline {subsection}{\numberline {2.6.13}\textcolor {Chapter }{SliceInvariant}}{32}{subsection.2.6.13}%
-\contentsline {subsection}{\numberline {2.6.14}\textcolor {Chapter }{CubeAut}}{32}{subsection.2.6.14}%
-\contentsline {subsection}{\numberline {2.6.15}\textcolor {Chapter }{CubeFilter}}{32}{subsection.2.6.15}%
-\contentsline {subsection}{\numberline {2.6.16}\textcolor {Chapter }{SDPSeriesGroup}}{32}{subsection.2.6.16}%
-\contentsline {subsection}{\numberline {2.6.17}\textcolor {Chapter }{SDPSeriesDesign}}{33}{subsection.2.6.17}%
-\contentsline {section}{\numberline {2.7}\textcolor {Chapter }{Hadamard Matrices}}{33}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}\textcolor {Chapter }{IsHadamardMat}}{33}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}\textcolor {Chapter }{IsProperHadamardMat}}{33}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}\textcolor {Chapter }{Paley1Mat}}{33}{subsection.2.7.3}%
-\contentsline {subsection}{\numberline {2.7.4}\textcolor {Chapter }{Paley2Mat}}{33}{subsection.2.7.4}%
-\contentsline {subsection}{\numberline {2.7.5}\textcolor {Chapter }{Paley3DMat}}{33}{subsection.2.7.5}%
-\contentsline {subsection}{\numberline {2.7.6}\textcolor {Chapter }{SDPSeriesHadamardMat}}{34}{subsection.2.7.6}%
-\contentsline {subsection}{\numberline {2.7.7}\textcolor {Chapter }{AllOnesMat}}{34}{subsection.2.7.7}%
-\contentsline {subsection}{\numberline {2.7.8}\textcolor {Chapter }{ProductConstructionMat}}{34}{subsection.2.7.8}%
-\contentsline {subsection}{\numberline {2.7.9}\textcolor {Chapter }{CyclicDimensionIncrease}}{34}{subsection.2.7.9}%
-\contentsline {subsection}{\numberline {2.7.10}\textcolor {Chapter }{HadamardMatAut}}{34}{subsection.2.7.10}%
-\contentsline {subsection}{\numberline {2.7.11}\textcolor {Chapter }{HadamardMatFilter}}{34}{subsection.2.7.11}%
-\contentsline {subsection}{\numberline {2.7.12}\textcolor {Chapter }{HadamardToIncidence}}{35}{subsection.2.7.12}%
-\contentsline {subsection}{\numberline {2.7.13}\textcolor {Chapter }{IncidenceToHadamard}}{35}{subsection.2.7.13}%
-\contentsline {section}{\numberline {2.8}\textcolor {Chapter }{Global Options}}{35}{section.2.8}%
-\contentsline {subsection}{\numberline {2.8.1}\textcolor {Chapter }{PAGGlobalOptions}}{35}{subsection.2.8.1}%
-\contentsline {chapter}{References}{37}{chapter*.5}%
-\contentsline {chapter}{Index}{38}{section*.6}%
+\contentsline {section}{\numberline {1.6}\textcolor {Chapter }{Examples: Mosaics of Combinatorial Designs}}{19}{section.1.6}%
+\contentsline {chapter}{\numberline {2}\textcolor {Chapter }{The PAG Functions}}{23}{chapter.2}%
+\contentsline {section}{\numberline {2.1}\textcolor {Chapter }{Working With Permutation Groups}}{23}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}\textcolor {Chapter }{CyclicPerm}}{23}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}\textcolor {Chapter }{ToGroup}}{23}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}\textcolor {Chapter }{MovePerm}}{23}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}\textcolor {Chapter }{MoveGroup}}{23}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}\textcolor {Chapter }{MultiPerm}}{24}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.1.6}\textcolor {Chapter }{MultiGroup}}{24}{subsection.2.1.6}%
+\contentsline {subsection}{\numberline {2.1.7}\textcolor {Chapter }{RestrictedGroup}}{24}{subsection.2.1.7}%
+\contentsline {subsection}{\numberline {2.1.8}\textcolor {Chapter }{PrimitiveGroupsOfDegree}}{24}{subsection.2.1.8}%
+\contentsline {subsection}{\numberline {2.1.9}\textcolor {Chapter }{TransitiveGroupsOfDegree}}{24}{subsection.2.1.9}%
+\contentsline {subsection}{\numberline {2.1.10}\textcolor {Chapter }{AllSubgroupsConjugation}}{24}{subsection.2.1.10}%
+\contentsline {subsection}{\numberline {2.1.11}\textcolor {Chapter }{PermRepresentationRight}}{24}{subsection.2.1.11}%
+\contentsline {subsection}{\numberline {2.1.12}\textcolor {Chapter }{PermRepresentationLeft}}{24}{subsection.2.1.12}%
+\contentsline {subsection}{\numberline {2.1.13}\textcolor {Chapter }{ExtendedPermRepresentation}}{25}{subsection.2.1.13}%
+\contentsline {section}{\numberline {2.2}\textcolor {Chapter }{Generating Orbits}}{25}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}\textcolor {Chapter }{SubsetOrbitRep}}{25}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}\textcolor {Chapter }{SubsetOrbitRepShort1}}{25}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}\textcolor {Chapter }{SubsetOrbitRepIN}}{25}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}\textcolor {Chapter }{IsGoodSubsetOrbit}}{25}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}\textcolor {Chapter }{SmallLambdaFilter}}{26}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}\textcolor {Chapter }{OrbitFilter1}}{26}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}\textcolor {Chapter }{OrbitFilter2}}{26}{subsection.2.2.7}%
+\contentsline {section}{\numberline {2.3}\textcolor {Chapter }{Constructing Objects}}{26}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}\textcolor {Chapter }{KramerMesnerSearch}}{26}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}\textcolor {Chapter }{KramerMesnerMat}}{27}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}\textcolor {Chapter }{CompatibilityMat}}{27}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}\textcolor {Chapter }{SolveKramerMesner}}{27}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}\textcolor {Chapter }{BaseBlocks}}{27}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}\textcolor {Chapter }{ExpandMatRHS}}{27}{subsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.3.7}\textcolor {Chapter }{RightDevelopment}}{27}{subsection.2.3.7}%
+\contentsline {subsection}{\numberline {2.3.8}\textcolor {Chapter }{LeftDevelopment}}{28}{subsection.2.3.8}%
+\contentsline {section}{\numberline {2.4}\textcolor {Chapter }{Inspecting Objects and Other Functions}}{28}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}\textcolor {Chapter }{BlockDesignAut}}{28}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}\textcolor {Chapter }{BlockDesignFilter}}{29}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}\textcolor {Chapter }{IntersectionNumbers}}{29}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}\textcolor {Chapter }{BlockScheme}}{29}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}\textcolor {Chapter }{PointPairScheme}}{29}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}\textcolor {Chapter }{TDesignB}}{30}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}\textcolor {Chapter }{IversonBracket}}{30}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.8}\textcolor {Chapter }{SymmetricDifference}}{30}{subsection.2.4.8}%
+\contentsline {subsection}{\numberline {2.4.9}\textcolor {Chapter }{AddWeights}}{30}{subsection.2.4.9}%
+\contentsline {section}{\numberline {2.5}\textcolor {Chapter }{Latin Squares}}{30}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}\textcolor {Chapter }{ReadMOLS}}{30}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}\textcolor {Chapter }{WriteMOLS}}{30}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}\textcolor {Chapter }{CayleyTableOfGroup}}{30}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}\textcolor {Chapter }{FieldToMOLS}}{31}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.5}\textcolor {Chapter }{MOLSToOrthogonalArray}}{31}{subsection.2.5.5}%
+\contentsline {subsection}{\numberline {2.5.6}\textcolor {Chapter }{OrthogonalArrayToMOLS}}{31}{subsection.2.5.6}%
+\contentsline {subsection}{\numberline {2.5.7}\textcolor {Chapter }{MOLSToTransversalDesign}}{31}{subsection.2.5.7}%
+\contentsline {subsection}{\numberline {2.5.8}\textcolor {Chapter }{TransversalDesignToMOLS}}{31}{subsection.2.5.8}%
+\contentsline {subsection}{\numberline {2.5.9}\textcolor {Chapter }{MOLSAut}}{31}{subsection.2.5.9}%
+\contentsline {subsection}{\numberline {2.5.10}\textcolor {Chapter }{MOLSFilter}}{32}{subsection.2.5.10}%
+\contentsline {subsection}{\numberline {2.5.11}\textcolor {Chapter }{IsAutotopyGroup}}{32}{subsection.2.5.11}%
+\contentsline {subsection}{\numberline {2.5.12}\textcolor {Chapter }{MOLSSubsetOrbitRep}}{32}{subsection.2.5.12}%
+\contentsline {subsection}{\numberline {2.5.13}\textcolor {Chapter }{KramerMesnerMOLS}}{32}{subsection.2.5.13}%
+\contentsline {subsection}{\numberline {2.5.14}\textcolor {Chapter }{KramerMesnerMOLSAutotopy}}{32}{subsection.2.5.14}%
+\contentsline {subsection}{\numberline {2.5.15}\textcolor {Chapter }{KramerMesnerMOLSAutoparatopy}}{33}{subsection.2.5.15}%
+\contentsline {section}{\numberline {2.6}\textcolor {Chapter }{Cubes of Symmetric Designs}}{33}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}\textcolor {Chapter }{DifferenceCube}}{33}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}\textcolor {Chapter }{GroupCube}}{33}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}\textcolor {Chapter }{CubeSlice}}{33}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}\textcolor {Chapter }{CubeSlices}}{33}{subsection.2.6.4}%
+\contentsline {subsection}{\numberline {2.6.5}\textcolor {Chapter }{CubeLayer}}{34}{subsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.6.6}\textcolor {Chapter }{CubeLayers}}{34}{subsection.2.6.6}%
+\contentsline {subsection}{\numberline {2.6.7}\textcolor {Chapter }{CubeToOrthogonalArray}}{34}{subsection.2.6.7}%
+\contentsline {subsection}{\numberline {2.6.8}\textcolor {Chapter }{OrthogonalArrayToCube}}{34}{subsection.2.6.8}%
+\contentsline {subsection}{\numberline {2.6.9}\textcolor {Chapter }{CubeToTransversalDesign}}{34}{subsection.2.6.9}%
+\contentsline {subsection}{\numberline {2.6.10}\textcolor {Chapter }{TransversalDesignToCube}}{34}{subsection.2.6.10}%
+\contentsline {subsection}{\numberline {2.6.11}\textcolor {Chapter }{LatinSquareToCube}}{34}{subsection.2.6.11}%
+\contentsline {subsection}{\numberline {2.6.12}\textcolor {Chapter }{CubeTest}}{35}{subsection.2.6.12}%
+\contentsline {subsection}{\numberline {2.6.13}\textcolor {Chapter }{SliceInvariant}}{35}{subsection.2.6.13}%
+\contentsline {subsection}{\numberline {2.6.14}\textcolor {Chapter }{CubeAut}}{35}{subsection.2.6.14}%
+\contentsline {subsection}{\numberline {2.6.15}\textcolor {Chapter }{CubeFilter}}{35}{subsection.2.6.15}%
+\contentsline {subsection}{\numberline {2.6.16}\textcolor {Chapter }{SDPSeriesGroup}}{35}{subsection.2.6.16}%
+\contentsline {subsection}{\numberline {2.6.17}\textcolor {Chapter }{SDPSeriesDesign}}{36}{subsection.2.6.17}%
+\contentsline {section}{\numberline {2.7}\textcolor {Chapter }{Hadamard Matrices}}{36}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}\textcolor {Chapter }{IsHadamardMat}}{36}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}\textcolor {Chapter }{IsProperHadamardMat}}{36}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}\textcolor {Chapter }{Paley1Mat}}{36}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}\textcolor {Chapter }{Paley2Mat}}{36}{subsection.2.7.4}%
+\contentsline {subsection}{\numberline {2.7.5}\textcolor {Chapter }{Paley3DMat}}{36}{subsection.2.7.5}%
+\contentsline {subsection}{\numberline {2.7.6}\textcolor {Chapter }{SDPSeriesHadamardMat}}{37}{subsection.2.7.6}%
+\contentsline {subsection}{\numberline {2.7.7}\textcolor {Chapter }{AllOnesMat}}{37}{subsection.2.7.7}%
+\contentsline {subsection}{\numberline {2.7.8}\textcolor {Chapter }{ProductConstructionMat}}{37}{subsection.2.7.8}%
+\contentsline {subsection}{\numberline {2.7.9}\textcolor {Chapter }{DigitConstructionMat}}{37}{subsection.2.7.9}%
+\contentsline {subsection}{\numberline {2.7.10}\textcolor {Chapter }{CyclicDimensionIncrease}}{37}{subsection.2.7.10}%
+\contentsline {subsection}{\numberline {2.7.11}\textcolor {Chapter }{HadamardMatAut}}{37}{subsection.2.7.11}%
+\contentsline {subsection}{\numberline {2.7.12}\textcolor {Chapter }{HadamardMatFilter}}{38}{subsection.2.7.12}%
+\contentsline {subsection}{\numberline {2.7.13}\textcolor {Chapter }{HadamardToIncidence}}{38}{subsection.2.7.13}%
+\contentsline {subsection}{\numberline {2.7.14}\textcolor {Chapter }{IncidenceToHadamard}}{38}{subsection.2.7.14}%
+\contentsline {section}{\numberline {2.8}\textcolor {Chapter }{Mosaics of Combinatorial Designs}}{38}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}\textcolor {Chapter }{MosaicParameters}}{38}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}\textcolor {Chapter }{BlocksToIncidenceMat}}{38}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}\textcolor {Chapter }{IncidenceMatToBlocks}}{38}{subsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.8.4}\textcolor {Chapter }{MosaicToBlockDesigns}}{39}{subsection.2.8.4}%
+\contentsline {subsection}{\numberline {2.8.5}\textcolor {Chapter }{ReadMat}}{39}{subsection.2.8.5}%
+\contentsline {subsection}{\numberline {2.8.6}\textcolor {Chapter }{WriteMat}}{39}{subsection.2.8.6}%
+\contentsline {subsection}{\numberline {2.8.7}\textcolor {Chapter }{AffineMosaic}}{39}{subsection.2.8.7}%
+\contentsline {subsection}{\numberline {2.8.8}\textcolor {Chapter }{DifferenceMosaic}}{39}{subsection.2.8.8}%
+\contentsline {subsection}{\numberline {2.8.9}\textcolor {Chapter }{PowersMosaic}}{39}{subsection.2.8.9}%
+\contentsline {subsection}{\numberline {2.8.10}\textcolor {Chapter }{MatAut}}{39}{subsection.2.8.10}%
+\contentsline {subsection}{\numberline {2.8.11}\textcolor {Chapter }{MatFilter}}{40}{subsection.2.8.11}%
+\contentsline {section}{\numberline {2.9}\textcolor {Chapter }{Global Options}}{40}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}\textcolor {Chapter }{PAGGlobalOptions}}{40}{subsection.2.9.1}%
+\contentsline {chapter}{References}{42}{chapter*.5}%
+\contentsline {chapter}{Index}{43}{section*.6}%

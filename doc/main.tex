@@ -98,8 +98,8 @@
 {\Huge \textbf{ Prescribed Automorphism Groups \mbox{}}}\\
 \vfill
 
-{\Huge  0.2.2 \mbox{}}\\[1cm]
-{ 23 May 2023 \mbox{}}\\[1cm]
+{\Huge  0.2.3 \mbox{}}\\[1cm]
+{ 21 May 2024 \mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Vedran Krcadinac\\
     \mbox{}}}\\
@@ -252,6 +252,7 @@ limited number of \textsf{PAG} functions.
 \item \textsf{AssociationSchemes} 2.0
 \item \textsf{DifSets} 2.3.1
 \item \textsf{GUAVA} 3.15
+\item \textsf{FinInG} 1.4.1
 \end{itemize}
  The current installation file for \textsf{PAG} is available at \href{https://vkrcadinac.github.io/PAG/} {\texttt{https://vkrcadinac.github.io/PAG/}}. To install \textsf{PAG}, unpack it to the \texttt{pkg} directory of your local \textsf{GAP} installation. The package uses external binaries. To compile them on UNIX-like
 environments, change to the \texttt{pkg/PAG-*} directory and call 
@@ -916,6 +917,190 @@ our web page:
 
  \href{https://web.math.pmf.unizg.hr/~krcko/results/cubes.html} {\texttt{https://web.math.pmf.unizg.hr/\texttt{\symbol{126}}krcko/results/cubes.html}} }
 
+ 
+\section{\textcolor{Chapter }{Examples: Mosaics of Combinatorial Designs}}\label{Examples: Mosaics of Combinatorial Designs}
+\logpage{[ 1, 6, 0 ]}
+\hyperdef{L}{X80F5A3C186D623A2}{}
+{
+  Mosaics of combinatorial designs were introduced in \cite{GGP18} and a contruction from resolvable designs was proved. This construction of
+mosaics is implemented in \textsf{PAG} for affine designs. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@ag123:=AffineMosaic(1,2,3);|
+  [ [ 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 ], 
+    [ 2, 3, 1, 1, 2, 3, 2, 3, 1, 2, 3, 1 ], 
+    [ 3, 1, 2, 1, 2, 3, 3, 1, 2, 3, 1, 2 ], 
+    [ 1, 2, 3, 2, 3, 1, 3, 1, 2, 2, 3, 1 ], 
+    [ 2, 3, 1, 2, 3, 1, 1, 2, 3, 3, 1, 2 ], 
+    [ 3, 1, 2, 2, 3, 1, 2, 3, 1, 1, 2, 3 ], 
+    [ 1, 2, 3, 3, 1, 2, 2, 3, 1, 3, 1, 2 ], 
+    [ 2, 3, 1, 3, 1, 2, 3, 1, 2, 1, 2, 3 ], 
+    [ 3, 1, 2, 3, 1, 2, 1, 2, 3, 2, 3, 1 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(ag123);|
+  "2-(9,3,1) + 2-(9,3,1) + 2-(9,3,1)"
+  !gapprompt@gap>| !gapinput@ag232:=AffineMosaic(2,3,2);|
+  [ [ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ], 
+    [ 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1 ], 
+    [ 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1 ], 
+    [ 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2 ], 
+    [ 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1 ], 
+    [ 2, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2 ], 
+    [ 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 1, 2 ], 
+    [ 2, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(ag232);|
+  "3-(8,4,1) + 3-(8,4,1)"
+\end{Verbatim}
+ The command \texttt{AffineMosaic} uses the \textsf{FinInG} package and does not work if the package is not present. Tilings of groups
+with difference sets \cite{CKZ15} give rise to mosaics of symmetric designs. Here is an example of a $(31,6,1)$ tiling and the corresponding mosaic. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@t:=[ [ 1, 5, 11, 24, 25, 27 ], |
+  !gapprompt@>| !gapinput@[ 2, 10, 17, 19, 22, 23 ], |
+  !gapprompt@>| !gapinput@[ 3, 4, 7, 13, 15, 20 ], |
+  !gapprompt@>| !gapinput@[ 6, 8, 9, 14, 26, 30 ], |
+  !gapprompt@>| !gapinput@[ 12, 16, 18, 21, 28, 29 ] ];;|
+  !gapprompt@gap>| !gapinput@m:=DifferenceMosaic(CyclicGroup(31), t);;|
+  !gapprompt@gap>| !gapinput@MosaicParameters(m);|
+  "2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1) + 2-(31,6,1)"
+\end{Verbatim}
+ The paper \cite{VK24} gives some interesting small examples of mosaics. Files containing these
+examples are available on the web page 
+
+ \href{https://web.math.pmf.unizg.hr/~krcko/results/mosaics.html} {\texttt{https://web.math.pmf.unizg.hr/\texttt{\symbol{126}}krcko/results/mosaics.html}} 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@m:=ReadMat("13-346ex.txt")[1];|
+  [ [ 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2 ], 
+    [ 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1 ], 
+    [ 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2 ], 
+    [ 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 1, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3 ], 
+    [ 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3, 3 ], 
+    [ 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 2, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1, 3 ], 
+    [ 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 2, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3, 1 ], 
+    [ 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3, 3 ], 
+    [ 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2, 3 ], 
+    [ 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 3, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2, 2 ], 
+    [ 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 3, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3, 2 ], 
+    [ 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1, 3 ], 
+    [ 3, 3, 3, 2, 3, 2, 2, 3, 1, 3, 2, 1, 1, 3, 2, 2, 3, 3, 1, 3, 3, 3, 2, 1, 2, 1 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(m);|
+  "2-(13,3,1) + 2-(13,4,2) + 2-(13,6,5)"
+\end{Verbatim}
+ This is the first example of an inhomogenous mosaic, containing designs with
+distinct parameters. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@m1:=ReadMat("9-3-2ex1.txt")[1];|
+  [ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 2, 2, 3, 2, 3, 2 ], 
+    [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 2, 2, 1, 3, 3, 1, 3, 3, 2, 2, 2, 2, 3 ], 
+    [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 2, 3, 1, 3, 2, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2 ], 
+    [ 1, 3, 2, 2, 3, 3, 1, 2, 1, 3, 3, 1, 2, 1, 2, 2, 2, 3, 1, 3, 1, 1, 3, 2 ], 
+    [ 2, 1, 3, 3, 2, 3, 1, 1, 2, 1, 3, 3, 2, 2, 1, 3, 2, 2, 1, 1, 3, 2, 1, 3 ], 
+    [ 3, 2, 1, 3, 3, 2, 2, 1, 1, 3, 1, 3, 1, 2, 2, 2, 3, 2, 3, 1, 1, 3, 2, 1 ], 
+    [ 2, 3, 3, 1, 3, 2, 3, 2, 2, 2, 2, 1, 1, 3, 3, 2, 1, 1, 1, 2, 3, 3, 1, 1 ], 
+    [ 3, 2, 3, 2, 1, 3, 2, 3, 2, 1, 2, 2, 3, 1, 3, 1, 2, 1, 3, 1, 2, 1, 3, 1 ], 
+    [ 3, 3, 2, 3, 2, 1, 2, 2, 3, 2, 1, 2, 3, 3, 1, 1, 1, 2, 2, 3, 1, 1, 1, 3 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(m1);|
+  "2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+  !gapprompt@gap>| !gapinput@m2:=ReadMat("9-3-2ex2.txt")[1];|
+  [ [ 1, 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 3, 2, 2, 3, 2, 2 ], 
+    [ 1, 1, 2, 1, 1, 2, 3, 1, 3, 3, 1, 3, 2, 1, 3, 3, 1, 2, 2, 3, 2, 2, 3, 2 ], 
+    [ 2, 1, 1, 2, 1, 1, 3, 3, 1, 3, 3, 1, 3, 2, 1, 2, 3, 1, 2, 2, 3, 2, 2, 3 ], 
+    [ 1, 3, 2, 3, 3, 1, 2, 2, 1, 2, 1, 3, 3, 3, 2, 2, 3, 2, 1, 2, 1, 1, 3, 1 ], 
+    [ 2, 1, 3, 1, 3, 3, 1, 2, 2, 3, 2, 1, 2, 3, 3, 2, 2, 3, 1, 1, 2, 1, 1, 3 ], 
+    [ 3, 2, 1, 3, 1, 3, 2, 1, 2, 1, 3, 2, 3, 2, 3, 3, 2, 2, 2, 1, 1, 3, 1, 1 ], 
+    [ 2, 3, 3, 2, 3, 2, 2, 3, 1, 1, 2, 2, 1, 1, 2, 3, 1, 1, 1, 3, 3, 3, 1, 2 ], 
+    [ 3, 2, 3, 2, 2, 3, 1, 2, 3, 2, 1, 2, 2, 1, 1, 1, 3, 1, 3, 1, 3, 2, 3, 1 ], 
+    [ 3, 3, 2, 3, 2, 2, 3, 1, 2, 2, 2, 1, 1, 2, 1, 1, 1, 3, 3, 3, 1, 1, 2, 3 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(m2);|
+  "2-(9,3,2) + 2-(9,3,2) + 2-(9,3,2)"
+\end{Verbatim}
+ These two mosaics cannot be obtained by the construction from \cite{GGP18}. The first mosaic contains three isomorphic copies of a $2$-$(9,3,2)$ design that is not resolvable. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@d1:=BlockDesignFilter(MosaicToBlockDesigns(m1));|
+  [ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 7 ], [ 1, 3, 6 ], [ 1, 3, 9 ], 
+            [ 1, 4, 5 ], [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+            [ 2, 3, 8 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 9 ], [ 2, 7, 9 ], 
+            [ 3, 4, 6 ], [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+            [ 4, 6, 9 ], [ 4, 8, 9 ], [ 5, 6, 8 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+        isBlockDesign := true, v := 9 ) ]
+  !gapprompt@gap>| !gapinput@MakeResolutionsComponent(d1[1]);|
+  !gapprompt@gap>| !gapinput@d1[1].resolutions.list;|
+  [  ]
+\end{Verbatim}
+ The second mosaic contains three non-isomorphic designs, one resolvable and
+two not resolvable. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@d2:=BlockDesignFilter(MosaicToBlockDesigns(m2));|
+  [ rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 5 ], [ 1, 3, 4 ], [ 1, 3, 6 ], 
+            [ 1, 5, 8 ], [ 1, 6, 7 ], [ 1, 7, 9 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+            [ 2, 3, 6 ], [ 2, 4, 8 ], [ 2, 6, 9 ], [ 2, 7, 8 ], [ 2, 7, 9 ], 
+            [ 3, 4, 7 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 3, 8, 9 ], [ 4, 5, 7 ], 
+            [ 4, 5, 9 ], [ 4, 6, 8 ], [ 4, 6, 9 ], [ 5, 6, 7 ], [ 5, 6, 8 ] ], 
+        isBlockDesign := true, v := 9 ), 
+    rec( blocks := [ [ 1, 2, 5 ], [ 1, 2, 7 ], [ 1, 3, 4 ], [ 1, 3, 9 ], 
+            [ 1, 4, 7 ], [ 1, 5, 6 ], [ 1, 6, 8 ], [ 1, 8, 9 ], [ 2, 3, 6 ], 
+            [ 2, 3, 8 ], [ 2, 4, 6 ], [ 2, 4, 9 ], [ 2, 5, 8 ], [ 2, 7, 9 ], 
+            [ 3, 4, 5 ], [ 3, 5, 7 ], [ 3, 6, 9 ], [ 3, 7, 8 ], [ 4, 5, 8 ], 
+            [ 4, 6, 7 ], [ 4, 8, 9 ], [ 5, 6, 9 ], [ 5, 7, 9 ], [ 6, 7, 8 ] ], 
+        isBlockDesign := true, v := 9 ), 
+    rec( blocks := [ [ 1, 2, 4 ], [ 1, 2, 8 ], [ 1, 3, 6 ], [ 1, 3, 7 ], 
+            [ 1, 4, 5 ], [ 1, 5, 9 ], [ 1, 6, 7 ], [ 1, 8, 9 ], [ 2, 3, 5 ], 
+            [ 2, 3, 9 ], [ 2, 4, 8 ], [ 2, 5, 6 ], [ 2, 6, 7 ], [ 2, 7, 9 ], 
+            [ 3, 4, 6 ], [ 3, 4, 8 ], [ 3, 5, 9 ], [ 3, 7, 8 ], [ 4, 5, 7 ], 
+            [ 4, 6, 9 ], [ 4, 7, 9 ], [ 5, 6, 8 ], [ 5, 7, 8 ], [ 6, 8, 9 ] ], 
+        isBlockDesign := true, v := 9 ) ]
+  !gapprompt@gap>| !gapinput@MakeResolutionsComponent(d2[1]);|
+  !gapprompt@gap>| !gapinput@MakeResolutionsComponent(d2[2]);|
+  !gapprompt@gap>| !gapinput@MakeResolutionsComponent(d2[3]);|
+  !gapprompt@gap>| !gapinput@d2[1].resolutions.list;|
+  [ rec( autGroup := Group([ (1,5,8)(2,6,9)(3,4,7), (1,7,6)(2,8,4)(3,9,5), (1,2)
+            (4,5)(7,9) ]), 
+        partition := 
+          [ 
+            rec( blocks := [ [ 1, 2, 4 ], [ 3, 8, 9 ], [ 5, 6, 7 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 2, 5 ], [ 3, 7, 8 ], [ 4, 6, 9 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 3, 4 ], [ 2, 7, 9 ], [ 5, 6, 8 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 3, 6 ], [ 2, 7, 8 ], [ 4, 5, 9 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 5, 8 ], [ 2, 6, 9 ], [ 3, 4, 7 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 6, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 7, 9 ], [ 2, 3, 5 ], [ 4, 6, 8 ] ], 
+                isBlockDesign := true, v := 9 ), 
+            rec( blocks := [ [ 1, 8, 9 ], [ 2, 3, 6 ], [ 4, 5, 7 ] ], 
+                isBlockDesign := true, v := 9 ) ] ) ]
+  !gapprompt@gap>| !gapinput@d2[2].resolutions.list;|
+  [  ]
+  !gapprompt@gap>| !gapinput@d2[3].resolutions.list;|
+  [  ]
+\end{Verbatim}
+ Finally, here is a mosaic of projective planes of order $3$ from \cite{VK24}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@m:=ReadMat("13-4-1.txt")[1];|
+  [ [ 0, 1, 2, 1, 3, 2, 3, 1, 1, 3, 3, 2, 2 ], 
+    [ 3, 0, 2, 3, 2, 1, 2, 1, 2, 3, 1, 1, 3 ], 
+    [ 3, 1, 0, 2, 1, 3, 3, 3, 2, 2, 1, 2, 1 ], 
+    [ 3, 3, 1, 0, 1, 1, 2, 2, 1, 2, 3, 3, 2 ], 
+    [ 2, 1, 1, 2, 0, 2, 2, 3, 3, 1, 3, 1, 3 ], 
+    [ 2, 3, 2, 3, 3, 0, 1, 3, 1, 2, 2, 1, 1 ], 
+    [ 1, 2, 2, 2, 3, 3, 0, 2, 1, 1, 1, 3, 3 ], 
+    [ 3, 2, 3, 1, 3, 1, 2, 0, 3, 1, 2, 2, 1 ], 
+    [ 1, 1, 3, 2, 2, 1, 1, 3, 0, 3, 2, 3, 2 ], 
+    [ 1, 3, 3, 1, 1, 2, 3, 2, 2, 0, 2, 1, 3 ], 
+    [ 1, 2, 1, 3, 2, 2, 3, 1, 3, 2, 0, 3, 1 ], 
+    [ 2, 2, 3, 3, 1, 3, 1, 1, 2, 1, 3, 0, 2 ], 
+    [ 2, 3, 1, 1, 2, 3, 1, 2, 3, 3, 1, 2, 0 ] ]
+  !gapprompt@gap>| !gapinput@MosaicParameters(m);|
+  "2-(13,4,1) + 2-(13,4,1) + 2-(13,4,1)"
+  !gapprompt@gap>| !gapinput@aut:=MatAut(m);|
+  Group([ (1,3,2)(4,6,5)(7,9,8)(10,12,11)(14,16,15)(17,19,18)(20,22,21)
+    (23,25,24)(28,30,29) ])
+  !gapprompt@gap>| !gapinput@Size(aut);|
+  3
+\end{Verbatim}
+ The full automorphism group of this mosaic is of order $3$, so it cannot be obtained by tiling groups with $(13,4,1)$ difference sets. }
+
  }
 
   
@@ -1290,7 +1475,8 @@ isomorph-rejection. Other available options are:
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns a block design that is the development of the difference set \mbox{\texttt{\mdseries\slshape ds}} by right multiplication in the group \mbox{\texttt{\mdseries\slshape G}}. }
+ Returns a block design that is the development of the difference set \mbox{\texttt{\mdseries\slshape ds}} by right multiplication in the group \mbox{\texttt{\mdseries\slshape G}}. If \mbox{\texttt{\mdseries\slshape ds}} is a tiling of the group \mbox{\texttt{\mdseries\slshape G}} or a list of disjoint difference sets, a mosaic of symmetric designs is
+returned. }
 
  
 
@@ -1302,7 +1488,8 @@ isomorph-rejection. Other available options are:
 }\hfill{\scriptsize (function)}}\\
 
 
- Returns a block design that is the development of the difference set \mbox{\texttt{\mdseries\slshape ds}} by left multiplication in the group \mbox{\texttt{\mdseries\slshape G}}. }
+ Returns a block design that is the development of the difference set \mbox{\texttt{\mdseries\slshape ds}} by left multiplication in the group \mbox{\texttt{\mdseries\slshape G}}. If \mbox{\texttt{\mdseries\slshape ds}} is a tiling of the group \mbox{\texttt{\mdseries\slshape G}} or a list of disjoint difference sets, a mosaic of symmetric designs is
+returned. }
 
  }
 
@@ -1441,6 +1628,18 @@ defines an association scheme. }
 
 
  Returns the symmetric difference of two sets \mbox{\texttt{\mdseries\slshape X}} and \mbox{\texttt{\mdseries\slshape Y}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{AddWeights}}
+\logpage{[ 2, 4, 9 ]}\nobreak
+\hyperdef{L}{X7F9A590781405EAC}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AddWeights({\mdseries\slshape wd})\index{AddWeights@\texttt{AddWeights}}
+\label{AddWeights}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Makes a weight distribudion \mbox{\texttt{\mdseries\slshape wd}} more readable by adding the weights and skipping zero components. The argument \mbox{\texttt{\mdseries\slshape wd}} is the weight distribution of a code returned by the \texttt{WeightDistribution} command from the \textsf{GUAVA} package. }
 
  }
 
@@ -1995,8 +2194,20 @@ Yang \cite{YXY86}. }
 
  
 
-\subsection{\textcolor{Chapter }{CyclicDimensionIncrease}}
+\subsection{\textcolor{Chapter }{DigitConstructionMat}}
 \logpage{[ 2, 7, 9 ]}\nobreak
+\hyperdef{L}{X80B7220F81182392}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DigitConstructionMat({\mdseries\slshape H, s})\index{DigitConstructionMat@\texttt{DigitConstructionMat}}
+\label{DigitConstructionMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a $2$-dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}} of order $(2t)^s$, returns the $2s$-dimensional Hadamard matrix of order $2t$ obtained by Theorem 6.1.4 of \cite{YNX10}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CyclicDimensionIncrease}}
+\logpage{[ 2, 7, 10 ]}\nobreak
 \hyperdef{L}{X79485FB081E50D5B}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CyclicDimensionIncrease({\mdseries\slshape H})\index{CyclicDimensionIncrease@\texttt{CyclicDimensionIncrease}}
 \label{CyclicDimensionIncrease}
@@ -2008,7 +2219,7 @@ Yang \cite{YXY86}. }
  
 
 \subsection{\textcolor{Chapter }{HadamardMatAut}}
-\logpage{[ 2, 7, 10 ]}\nobreak
+\logpage{[ 2, 7, 11 ]}\nobreak
 \hyperdef{L}{X801DEB1E7D5668E9}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatAut({\mdseries\slshape H[, opt]})\index{HadamardMatAut@\texttt{HadamardMatAut}}
 \label{HadamardMatAut}
@@ -2024,7 +2235,7 @@ Yang \cite{YXY86}. }
  
 
 \subsection{\textcolor{Chapter }{HadamardMatFilter}}
-\logpage{[ 2, 7, 11 ]}\nobreak
+\logpage{[ 2, 7, 12 ]}\nobreak
 \hyperdef{L}{X7E0014F67EC9FC23}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatFilter({\mdseries\slshape hl[, opt]})\index{HadamardMatFilter@\texttt{HadamardMatFilter}}
 \label{HadamardMatFilter}
@@ -2043,7 +2254,7 @@ themselves.
  
 
 \subsection{\textcolor{Chapter }{HadamardToIncidence}}
-\logpage{[ 2, 7, 12 ]}\nobreak
+\logpage{[ 2, 7, 13 ]}\nobreak
 \hyperdef{L}{X7FC368717A9EC3AE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardToIncidence({\mdseries\slshape M})\index{HadamardToIncidence@\texttt{HadamardToIncidence}}
 \label{HadamardToIncidence}
@@ -2055,7 +2266,7 @@ themselves.
  
 
 \subsection{\textcolor{Chapter }{IncidenceToHadamard}}
-\logpage{[ 2, 7, 13 ]}\nobreak
+\logpage{[ 2, 7, 14 ]}\nobreak
 \hyperdef{L}{X7B745CE37816C093}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IncidenceToHadamard({\mdseries\slshape M})\index{IncidenceToHadamard@\texttt{IncidenceToHadamard}}
 \label{IncidenceToHadamard}
@@ -2067,14 +2278,165 @@ themselves.
  }
 
  
-\section{\textcolor{Chapter }{Global Options}}\label{Global Options}
+\section{\textcolor{Chapter }{Mosaics of Combinatorial Designs}}\label{Mosaics of Combinatorial Designs}
 \logpage{[ 2, 8, 0 ]}
+\hyperdef{L}{X7C28F4067B055F95}{}
+{
+  
+
+\subsection{\textcolor{Chapter }{MosaicParameters}}
+\logpage{[ 2, 8, 1 ]}\nobreak
+\hyperdef{L}{X79C359E6869912F3}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MosaicParameters({\mdseries\slshape M})\index{MosaicParameters@\texttt{MosaicParameters}}
+\label{MosaicParameters}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns a string with the parameters of the mosaic of combinatorial designs \mbox{\texttt{\mdseries\slshape M}}. See \cite{GGP18} for the definition. Entries $0$ in the matrix \mbox{\texttt{\mdseries\slshape M}} are considered empty, and other integers are considered as incidences of
+distinct designs. }
+
+ 
+
+\subsection{\textcolor{Chapter }{BlocksToIncidenceMat}}
+\logpage{[ 2, 8, 2 ]}\nobreak
+\hyperdef{L}{X7A0635F97CC4262D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BlocksToIncidenceMat({\mdseries\slshape d})\index{BlocksToIncidenceMat@\texttt{BlocksToIncidenceMat}}
+\label{BlocksToIncidenceMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms a list of blocks \mbox{\texttt{\mdseries\slshape d}} to an incidence matrix. Points correspond to rows, and blocks to columns. }
+
+ 
+
+\subsection{\textcolor{Chapter }{IncidenceMatToBlocks}}
+\logpage{[ 2, 8, 3 ]}\nobreak
+\hyperdef{L}{X7E75EC0D81178BF2}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IncidenceMatToBlocks({\mdseries\slshape M})\index{IncidenceMatToBlocks@\texttt{IncidenceMatToBlocks}}
+\label{IncidenceMatToBlocks}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms an incidence matrix \mbox{\texttt{\mdseries\slshape M}} to a list of blocks. Rows correspond to points, and columns to blocks. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MosaicToBlockDesigns}}
+\logpage{[ 2, 8, 4 ]}\nobreak
+\hyperdef{L}{X7D72F1C687094EA0}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MosaicToBlockDesigns({\mdseries\slshape M})\index{MosaicToBlockDesigns@\texttt{MosaicToBlockDesigns}}
+\label{MosaicToBlockDesigns}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms a mosaic of combinatorial designs \mbox{\texttt{\mdseries\slshape M}} with $c$ colors to a list of $c$ block designs in the \textsf{Design} package format. }
+
+ 
+
+\subsection{\textcolor{Chapter }{ReadMat}}
+\logpage{[ 2, 8, 5 ]}\nobreak
+\hyperdef{L}{X7F3B822084A1C217}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ReadMat({\mdseries\slshape filename})\index{ReadMat@\texttt{ReadMat}}
+\label{ReadMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Reads a list of $m\times n$ integer matrices from a file. The file starts with the number of rows $m$ and columns $n$ followed by the matrix entries. Integers in the file are separated by
+whitespaces. }
+
+ 
+
+\subsection{\textcolor{Chapter }{WriteMat}}
+\logpage{[ 2, 8, 6 ]}\nobreak
+\hyperdef{L}{X823C926682A2BD3F}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{WriteMat({\mdseries\slshape filename, list})\index{WriteMat@\texttt{WriteMat}}
+\label{WriteMat}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Writes a list of $m\times n$ integer matrices to a file. The number of rows $m$ and columns $n$ is written first, followed by the matrix entries. Integers are separated by
+whitespaces. }
+
+ 
+
+\subsection{\textcolor{Chapter }{AffineMosaic}}
+\logpage{[ 2, 8, 7 ]}\nobreak
+\hyperdef{L}{X79530F4B84CCA74C}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AffineMosaic({\mdseries\slshape k, n, q})\index{AffineMosaic@\texttt{AffineMosaic}}
+\label{AffineMosaic}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns mosaic of designs with blocks being \mbox{\texttt{\mdseries\slshape k}}-dimensional subspaces of the affine space $AG($\mbox{\texttt{\mdseries\slshape n}}$,$\mbox{\texttt{\mdseries\slshape q}}$)$. Uses the \textsf{FinInG} package. If the package is not available, the function is not loaded. }
+
+ 
+
+\subsection{\textcolor{Chapter }{DifferenceMosaic}}
+\logpage{[ 2, 8, 8 ]}\nobreak
+\hyperdef{L}{X7A82B85786098648}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DifferenceMosaic({\mdseries\slshape G, dds})\index{DifferenceMosaic@\texttt{DifferenceMosaic}}
+\label{DifferenceMosaic}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the mosaic of symmetric designs obtained from a list of disjoint
+difference sets \mbox{\texttt{\mdseries\slshape dds}} in the group \mbox{\texttt{\mdseries\slshape G}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{PowersMosaic}}
+\logpage{[ 2, 8, 9 ]}\nobreak
+\hyperdef{L}{X87882FFF7D015028}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PowersMosaic({\mdseries\slshape q, n})\index{PowersMosaic@\texttt{PowersMosaic}}
+\label{PowersMosaic}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the mosaic of symmetric designs constructed from \mbox{\texttt{\mdseries\slshape n}}-th powers in the field $GF($\mbox{\texttt{\mdseries\slshape q}}$)$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MatAut}}
+\logpage{[ 2, 8, 10 ]}\nobreak
+\hyperdef{L}{X7889941180ECF9AA}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MatAut({\mdseries\slshape M})\index{MatAut@\texttt{MatAut}}
+\label{MatAut}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes the full automorphism group of a matrix \mbox{\texttt{\mdseries\slshape M}}. It is assumed that the entries of \mbox{\texttt{\mdseries\slshape M}} are consecutive integers. Permutations of rows, columns and symbols are
+allowed. Represents the matrix by a colored graph and uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MatFilter}}
+\logpage{[ 2, 8, 11 ]}\nobreak
+\hyperdef{L}{X7AD4C75087D3DFDA}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MatFilter({\mdseries\slshape ml[, opt]})\index{MatFilter@\texttt{MatFilter}}
+\label{MatFilter}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Eliminates equivalent copies from a list of matrices \mbox{\texttt{\mdseries\slshape ml}}. It is assumed that all of the matrices have the same set of consecutive
+integers as entries. Two matrices are equivalent if one can be transformed
+into the other by permutating rows, columns and symbols. Represents the
+matrices by colored graphs and uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Positions}}:=\texttt{true}/\texttt{false} Return positions of inequivalent matrices instead of the matrices themselves.
+\end{itemize}
+ }
+
+ }
+
+ 
+\section{\textcolor{Chapter }{Global Options}}\label{Global Options}
+\logpage{[ 2, 9, 0 ]}
 \hyperdef{L}{X78E96F5385881B1B}{}
 {
   
 
 \subsection{\textcolor{Chapter }{PAGGlobalOptions}}
-\logpage{[ 2, 8, 1 ]}\nobreak
+\logpage{[ 2, 9, 1 ]}\nobreak
 \hyperdef{L}{X8626782884DAC536}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PAGGlobalOptions\index{PAGGlobalOptions@\texttt{PAGGlobalOptions}}
 \label{PAGGlobalOptions}

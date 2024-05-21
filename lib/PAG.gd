@@ -573,6 +573,25 @@ DeclareGlobalFunction( "HadamardMatAut" );
 
 #############################################################################
 ##
+#F  MatAut( <M> )  
+##
+##  <#GAPDoc Label="MatAut">
+##  <ManSection>
+##  <Func Name="MatAut" Arg="M"/>
+##  
+##  <Description>
+##  Computes the full automorphism group of a matrix <A>M</A>. It is
+##  assumed that the entries of <A>M</A> are consecutive integers. 
+##  Permutations of rows, columns and symbols are allowed.
+##  Represents the matrix by a colored graph and uses 
+##  <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MatAut" );
+
+#############################################################################
+##
 #F  BlockDesignFilter( <dl>[, <opt>] )  
 ##
 ##  <#GAPDoc Label="BlockDesignFilter">
@@ -628,6 +647,31 @@ DeclareGlobalFunction( "BlockDesignFilter" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "HadamardMatFilter" );
+
+#############################################################################
+##
+#F  MatFilter( <hl>[, <opt>] )  
+##
+##  <#GAPDoc Label="MatFilter">
+##  <ManSection>
+##  <Func Name="MatFilter" Arg="ml[, opt]"/>
+##  
+##  <Description>
+##  Eliminates equivalent copies from a list of matrices <A>ml</A>. 
+##  It is assumed that all of the matrices have the same set of consecutive 
+##  integers as entries. Two matrices are equivalent if one can be transformed 
+##  into the other by permutating rows, columns and symbols. Represents the 
+##  matrices by colored graphs and uses <C>nauty/Traces 2.8</C> by B.D.McKay 
+##  and A.Piperno <Cite Key='MP14'/>. The optional argument <A>opt</A> is a 
+##  record for options. Possible components of <A>opt</A> are:
+##  <List>
+##  <Item><A>Positions</A>:=<C>true</C>/<C>false</C> Return positions 
+##  of inequivalent matrices instead of the matrices themselves.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MatFilter" );
 
 #############################################################################
 ##
@@ -745,6 +789,23 @@ DeclareGlobalFunction( "IncidenceToHadamard" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "ProductConstructionMat" );
+
+#############################################################################
+##
+#F  DigitConstructionMat( <H>, <s> )  
+##
+##  <#GAPDoc Label="DigitConstructionMat">
+##  <ManSection>
+##  <Func Name="DigitConstructionMat" Arg="H, s"/>
+##  
+##  <Description>
+##  Given a <M>2</M>-dimensional Hadamard matrix <A>H</A> of order 
+##  <M>(2t)^s</M>, returns the <M>2s</M>-dimensional Hadamard matrix 
+##  of order <M>2t</M>  obtained by Theorem 6.1.4 of <Cite Key='YNX10'/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "DigitConstructionMat" );
 
 #############################################################################
 ##
@@ -1172,6 +1233,8 @@ DeclareGlobalFunction( "KramerMesnerMOLSAutoparatopy" );
 ##  <Description>
 ##  Returns a block design that is the development of the difference 
 ##  set <A>ds</A> by right multiplication in the group <A>G</A>.
+##  If <A>ds</A> is a tiling of the group <A>G</A> or a list of disjoint 
+##  difference sets, a mosaic of symmetric designs is returned.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -1188,6 +1251,8 @@ DeclareGlobalFunction( "RightDevelopment" );
 ##  <Description>
 ##  Returns a block design that is the development of the difference 
 ##  set <A>ds</A> by left multiplication in the group <A>G</A>.
+##  If <A>ds</A> is a tiling of the group <A>G</A> or a list of disjoint 
+##  difference sets, a mosaic of symmetric designs is returned.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -1222,6 +1287,24 @@ DeclareGlobalFunction( "IversonBracket" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SymmetricDifference" );
+
+#############################################################################
+##
+#F  AddWeights( <wd> ) 
+##
+##  <#GAPDoc Label="AddWeights">
+##  <ManSection>
+##  <Func Name="AddWeights" Arg="wd"/>
+##
+##  <Description>
+##  Makes a weight distribudion <A>wd</A> more readable by adding the weights
+##  and skipping zero components. The argument <A>wd</A> is the weight
+##  distribution of a code returned by the <C>WeightDistribution</C> command
+##  from the <Package>GUAVA</Package> package. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AddWeights" );
 
 #############################################################################
 ##
@@ -1553,6 +1636,157 @@ DeclareGlobalFunction( "SDPSeriesHadamardMat" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SDPSeriesDesign" );
+
+#############################################################################
+##
+#F  IncidenceMatToBlocks( <M> )  
+##
+##  <#GAPDoc Label="IncidenceMatToBlocks">
+##  <ManSection>
+##  <Func Name="IncidenceMatToBlocks" Arg="M"/>
+##  
+##  <Description>
+##  Transforms an incidence matrix <A>M</A> to a list of blocks.
+##  Rows correspond to points, and columns to blocks.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "IncidenceMatToBlocks" );
+
+#############################################################################
+##
+#F  BlocksToIncidenceMat( <d> )  
+##
+##  <#GAPDoc Label="BlocksToIncidenceMat">
+##  <ManSection>
+##  <Func Name="BlocksToIncidenceMat" Arg="d"/>
+##  
+##  <Description>
+##  Transforms a list of blocks <A>d</A> to an incidence matrix.
+##  Points correspond to rows, and blocks to columns.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "BlocksToIncidenceMat" );
+
+#############################################################################
+##
+#F  ReadMat( <filename> ) 
+##
+##  <#GAPDoc Label="ReadMat">
+##  <ManSection>
+##  <Func Name="ReadMat" Arg="filename"/>
+##
+##  <Description>
+##  Reads a list of <M>m\times n</M> integer matrices from a file. The file starts with 
+##  the number of rows <M>m</M> and columns <M>n</M> followed by the matrix entries. 
+##  Integers in the file are separated by whitespaces.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ReadMat" );
+
+#############################################################################
+##
+#F  WriteMat( <filename>, <list> ) 
+##
+##  <#GAPDoc Label="WriteMat">
+##  <ManSection>
+##  <Func Name="WriteMat" Arg="filename, list"/>
+##
+##  <Description>
+##  Writes a list of <M>m\times n</M> integer matrices to a file. The number of 
+##  rows <M>m</M> and columns <M>n</M> is written first, followed by the matrix 
+##  entries. Integers are separated by whitespaces.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "WriteMat" );
+
+#############################################################################
+##
+#F  MosaicParameters( <M> ) 
+##
+##  <#GAPDoc Label="MosaicParameters">
+##  <ManSection>
+##  <Func Name="MosaicParameters" Arg="M"/>
+##
+##  <Description>
+##  Returns a string with the parameters of the mosaic of combinatorial 
+##  designs <A>M</A>. See <Cite Key='GGP18'/> for the definition. Entries
+##  <M>0</M> in the matrix <A>M</A> are considered empty, and other integers
+##  are considered as incidences of distinct designs.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MosaicParameters" );
+
+#############################################################################
+##
+#F  MosaicToBlockDesigns( <M> )  
+##
+##  <#GAPDoc Label="MosaicToBlockDesigns">
+##  <ManSection>
+##  <Func Name="MosaicToBlockDesigns" Arg="M"/>
+##  
+##  <Description>
+##  Transforms a mosaic of combinatorial designs <A>M</A> with <M>c</M> 
+##  colors to a list of <M>c</M> block designs in the 
+##  <Package>Design</Package> package format.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MosaicToBlockDesigns" );
+
+#############################################################################
+##
+#F  AffineMosaic( <k>, <n>, <q> ) 
+##
+##  <#GAPDoc Label="AffineMosaic">
+##  <ManSection>
+##  <Func Name="AffineMosaic" Arg="k, n, q"/>
+##
+##  <Description>
+##  Returns mosaic of designs with blocks being <A>k</A>-dimensional subspaces 
+##  of the affine space <M>AG(</M><A>n</A><M>,</M><A>q</A><M>)</M>. 
+##  Uses the <Package>FinInG</Package> package. If the package is not 
+##  available, the function is not loaded. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AffineMosaic" );
+
+#############################################################################
+##
+#F  DifferenceMosaic( <G>, <dds> ) 
+##
+##  <#GAPDoc Label="DifferenceMosaic">
+##  <ManSection>
+##  <Func Name="DifferenceMosaic" Arg="G, dds"/>
+##
+##  <Description>
+##  Returns the mosaic of symmetric designs obtained from a list
+##  of disjoint difference sets <A>dds</A> in the group <A>G</A>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "DifferenceMosaic" );
+
+#############################################################################
+##
+#F  PowersMosaic( <q>, <n> ) 
+##
+##  <#GAPDoc Label="PowersMosaic">
+##  <ManSection>
+##  <Func Name="PowersMosaic" Arg="q, n"/>
+##
+##  <Description>
+##  Returns the mosaic of symmetric designs constructed from <A>n</A>-th
+##  powers in the field <M>GF(</M><A>q</A><M>)</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "PowersMosaic" );
 
 #############################################################################
 ##
