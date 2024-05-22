@@ -1,7 +1,7 @@
 name: PAG
-version: "0.2.2"
+version: "0.2.3"
 license: "GPL-2.0-or-later"
-date: 2023-05-23
+date: 2024-05-21
 description: |
     Prescribed Automorphism Groups
 
@@ -39,6 +39,9 @@ suggested-pkgs:
     - name: "DifSets"
       version: "2.3.1"
       url: "https://dylanpeifer.github.io/difsets"
+    - name: "FinInG"
+      version: "1.4.1"
+      url: "http://www.fining.org"
 
 www: https://vkrcadinac.github.io/PAG
 readme: README.txt
@@ -46,7 +49,7 @@ packageinfo: https://vkrcadinac.github.io/PAG/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/vkrcadinac/PAG/archive/refs/tags/v0.2.2.tar.gz
+      url: https://github.com/vkrcadinac/PAG/releases/download/v0.2.3/PAG-0.2.3.tar.gz
 
 abstract: |
     The <span class="pkgname">PAG</span> package contains functions for    constructing combinatorial objects with prescribed automorphism groups.
@@ -58,24 +61,24 @@ keywords: |
     automorphism group, block design, latin square, Hadamard matrix.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Krc23</span>]   <b class='BibAuthor'>Krcadinac, V.</b>,
+    [<span class='BibKey'>Krc24</span>]   <b class='BibAuthor'>Krcadinac, V.</b>,
      <i class='BibTitle'>PAG, Prescribed Automorphism Groups,
-             Version 0.2.2</i>
-     (<span class='BibYear'>2023</span>)<br />
+             Version 0.2.3</i>
+     (<span class='BibYear'>2024</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://vkrcadinac.github.io/PAG">https://vkrcadinac.github.io/PAG</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ PAG0.2.2,
+    @misc{ PAG0.2.3,
       author =           {Krcadinac, V.},
-      title =            {{PAG}, Prescribed Automorphism Groups, {V}ersion 0.2.2},
+      title =            {{PAG}, Prescribed Automorphism Groups, {V}ersion 0.2.3},
       month =            {May},
-      year =             {2023},
+      year =             {2024},
       note =             {GAP package},
       howpublished =     {\href {https://vkrcadinac.github.io/PAG} {\texttt{https://vkrcadinac.github.io/}\discretionary {}{}{}\texttt{PAG}}},
       keywords =         {automorphism group; block design; latin square; Hadamard matrix},
-      printedkey =       {Krc23}
+      printedkey =       {Krc24}
     }
 

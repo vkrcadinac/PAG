@@ -8,8 +8,8 @@
 SetPackageInfo( rec(
 PackageName := "PAG",
 Subtitle := "Prescribed Automorphism Groups",
-Version := "0.2.2",
-Date := "23/05/2023",
+Version := "0.2.3",
+Date := "21/05/2024",
 License := "GPL-2.0-or-later",
 PackageWWWHome :=
   Concatenation( "https://vkrcadinac.github.io/", ~.PackageName ),
@@ -73,7 +73,8 @@ Dependencies := rec(
                           ["DESIGN", "1.7"]],
   SuggestedOtherPackages := [["AssociationSchemes", "2.0"],
                              ["GUAVA", "3.15"],
-                             ["DifSets", "2.3.1"]],
+                             ["DifSets", "2.3.1"],
+                             ["FinInG", "1.4.1"]],
 
   ExternalConditions := []
                       
