@@ -919,7 +919,7 @@ gap> MosaicParameters(ag232);
 ]]></Example>
 
 The command <C>AffineMosaic</C> uses the <Package>FinInG</Package> package 
-and does not work if the package is not present. Tilings of groups with 
+and is not loaded if the package is not present. Tilings of groups with 
 difference sets <Cite Key='CKZ15'/> give rise to mosaics of symmetric
 designs. Here is an example of a <M>(31,6,1)</M> tiling and the corresponding
 mosaic.

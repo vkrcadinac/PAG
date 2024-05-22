@@ -939,7 +939,7 @@
     [4X[28X"3-(8,4,1) + 3-(8,4,1)"[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe  command  [10XAffineMosaic[110X  uses the [5XFinInG[105X package and does not work if the
+  [33X[0;0YThe  command  [10XAffineMosaic[110X  uses the [5XFinInG[105X package and is not loaded if the
   package  is not present. Tilings of groups with difference sets [CKZ15] give
   rise  to  mosaics  of  symmetric  designs.  Here is an example of a [22X(31,6,1)[122X
   tiling and the corresponding mosaic.[133X

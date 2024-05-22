@@ -26,7 +26,7 @@
   
   [[20XKrc18[120X] [16XKrcadinac, V.[116X, [17XSome new designs with prescribed automorphism groups[117X, [18XJ. Combin. Des.[118X, [19X26[119X, 4 (2018), 193–200.
   
-  [[20XKrc24[120X] [16XKrcadinac, V.[116X, [17XSmall examples of mosaics of combinatorial designs[117X, [18XPreprint[118X (2024), ((https://arxiv.org/abs/...)).
+  [[20XKrc24[120X] [16XKrcadinac, V.[116X, [17XSmall examples of mosaics of combinatorial designs[117X, [18XPreprint[118X (2024), ((https://arxiv.org/abs/2405.12672)).
   
   [[20XKV16[120X] [16XKrcadinac, V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X, [18XDiscrete Math.[118X, [19X339[119X, 12 (2016), 2884–2890.
   
