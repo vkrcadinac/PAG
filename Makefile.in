@@ -4,7 +4,7 @@ GAPARCH=@GAPARCH@
 CFLAGS= -O6 -Wall -malign-double -ffast-math -funroll-all-loops -fomit-frame-pointer -finline-functions
 NAUTYPATH=src/nauty2_8_6
 
-all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter
+all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter bin/$(GAPARCH)/matfilter bin/$(GAPARCH)/mataut
 
 bin/$(GAPARCH):
 	        mkdir -p bin/$(GAPARCH)
@@ -57,6 +57,12 @@ $(NAUTYPATH)/bdfiltertr.c: src/bdfiltertr.c
 $(NAUTYPATH)/hadfilter.c: src/hadfilter.c
 	        cp src/hadfilter.c $(NAUTYPATH)
 
+$(NAUTYPATH)/matfilter.c: src/hadfilter.c
+	        cp src/matfilter.c $(NAUTYPATH)
+
+$(NAUTYPATH)/mataut.c: src/mataut.c
+	        cp src/mataut.c $(NAUTYPATH)
+
 $(NAUTYPATH)/nauty.a: $(NAUTYPATH)/configure 
 	        cd $(NAUTYPATH) && ./configure
 	        cd $(NAUTYPATH) && make
@@ -81,6 +87,12 @@ bin/$(GAPARCH)/bdfiltertr: $(NAUTYPATH)/bdfiltertr.c $(NAUTYPATH)/nauty.a bin/$(
 
 bin/$(GAPARCH)/hadfilter: $(NAUTYPATH)/hadfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/hadfilter $(NAUTYPATH)/hadfilter.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/matfilter: $(NAUTYPATH)/matfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/matfilter $(NAUTYPATH)/matfilter.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/mataut: $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/mataut $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a 
 
 clean:
 	        rm -rf bin
