@@ -1,0 +1,62 @@
+# Example: compute all set partitions of a 4-element ground set
+
+# Rows: The ground set
+
+r 1
+r 2
+r 3
+r 4
+
+# Columns: The 15 nonempty subsets of the ground set
+
+c 4
+c 3
+c 34
+c 2
+c 24
+c 23
+c 234
+c 1
+c 14
+c 13
+c 134
+c 12
+c 124
+c 123
+c 1234
+
+# Entries: each subset (column) covers the ground set elements
+#          (rows) occurring in it
+
+e 4 4
+e 3 3
+e 3 34
+e 4 34
+e 2 2
+e 2 24
+e 4 24
+e 2 23
+e 3 23
+e 2 234
+e 3 234
+e 4 234
+e 1 1
+e 1 14
+e 4 14
+e 1 13
+e 3 13
+e 1 134
+e 3 134
+e 4 134
+e 1 12
+e 2 12
+e 1 124
+e 2 124
+e 4 124
+e 1 123
+e 2 123
+e 3 123
+e 1 1234
+e 2 1234
+e 3 1234
+e 4 1234

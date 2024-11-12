@@ -1,0 +1,76 @@
+
+libexact v1.0
+=============
+
+
+libexact is a software library for solving combinatorial 
+exact covering problems; a detailed User's Guide can
+be found in the accompanying PDF file "guide.pdf".
+
+
+Getting the latest version
+--------------------------
+
+The latest version of libexact can be downloaded from 
+the web page <http://www.cs.helsinki.fi/u/pkaski/libexact/>.
+
+
+Compiling
+---------
+
+The library and the accompanying executables should compile 
+on most modern UNIX (Linux) systems simply by running 
+the command "make". An honest attempt has been made 
+to make the library source code conform to the 
+ISO/IEC 9899:1999 standard (C99). 
+
+To compile manually, the main library routines reside in 
+the file "exact.c", which must be linked with the utility 
+functions in "util.c" to obtain a functional library. 
+The public interface to the library is declared in "exact.h". 
+
+
+Testing the library
+-------------------
+
+After compilation, it is strongly recommended that the
+library is tested by running the test executable "test".
+Please note that some of the tests take some time to 
+complete.
+
+
+Examples
+--------
+
+Example code illustrating the use of the library 
+can be found in the directory "examples". 
+
+
+Command-line interface
+----------------------
+
+The executable "solve", documented in the User's Guide, 
+provides a plain command-line interface to the library. 
+
+
+License
+-------
+
+Copyright (C) 2008 Petteri Kaski <petteri.kaski@cs.helsinki.fi>
+                   Olli Pottonen <olli.pottonen@tkk.fi>
+
+The libexact library is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.
+
+The libexact library is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with the libexact library (see the file LICENSE); if not, write
+to the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+Floor, Boston, MA 02110-1301, USA.
+
