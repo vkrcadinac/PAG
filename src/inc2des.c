@@ -12,7 +12,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 
-#define MAXV 1000  /* Maximal number of rows */
+#define MAXV 2000  /* Maximal number of rows */
 #define MAXB 5000  /* Maximal number of columns */
 
 

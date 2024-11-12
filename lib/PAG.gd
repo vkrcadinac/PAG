@@ -41,6 +41,24 @@ DeclareGlobalFunction( "TransitiveGroupsOfDegree" );
 
 #############################################################################
 ##
+#F  Homogeneity( <G> ) 
+##
+##  <#GAPDoc Label="Homogeneity">
+##  <ManSection>
+##  <Func Name="Homogeneity" Arg="G"/>
+##
+##  <Description>
+##  Returns the degree of homogeneity of the permutation group <A>G</A>, i.e. the largest
+##  integer <M>k</M> such that <A>G</A> is <M>k</M>-homogeneous. This means that every
+##  <M>k</M>-subset of points can be mapped to every other. Kantor <Cite Key='WK72'/>
+##  classified all groups that are <M>k</M>-homogenous but not <M>k</M>-transitive.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Homogeneity" );
+
+#############################################################################
+##
 #F  CyclicPerm( <n> ) 
 ##
 ##  <#GAPDoc Label="CyclicPerm">
@@ -435,6 +453,10 @@ DeclareGlobalFunction( "ExpandMatRHS" );
 ##  <Item><A>Solver</A>:=<C>"solvediophant"</C> If defined, <C>solvediophant</C> 
 ##  is used.</Item>
 ##  <Item><A>Solver</A>:=<C>"solvecm"</C> If defined, <C>solvecm</C> is used.</Item>
+##  <Item><A>Solver</A>:=<C>"libexact"</C> If defined, <C>libexact</C> is used.
+##  This is P. Kaski and  O. Pottonen's implementation of the Dancing Links
+##  algorithm, see <Cite Key='KP08'/>. For this solver the coefficients of
+##  <A>mat</A> must be in <M>\{0,1\}</M>!</Item>
 ##  </List>
 ##  </Description>
 ##  </ManSection>
@@ -580,7 +602,7 @@ DeclareGlobalFunction( "HadamardMatAut" );
 ##  <Func Name="MatAut" Arg="M"/>
 ##  
 ##  <Description>
-##  Computes the full automorphism group of a matrix <A>M</A>. It is
+##  Computes the full autotopy group of a matrix <A>M</A>. It is
 ##  assumed that the entries of <A>M</A> are consecutive integers. 
 ##  Permutations of rows, columns and symbols are allowed.
 ##  Represents the matrix by a colored graph and uses 
@@ -659,11 +681,11 @@ DeclareGlobalFunction( "HadamardMatFilter" );
 ##  <Description>
 ##  Eliminates equivalent copies from a list of matrices <A>ml</A>. 
 ##  It is assumed that all of the matrices have the same set of consecutive 
-##  integers as entries. Two matrices are equivalent if one can be transformed 
-##  into the other by permutating rows, columns and symbols. Represents the 
-##  matrices by colored graphs and uses <C>nauty/Traces 2.8</C> by B.D.McKay 
-##  and A.Piperno <Cite Key='MP14'/>. The optional argument <A>opt</A> is a 
-##  record for options. Possible components of <A>opt</A> are:
+##  integers as entries. Two matrices are equivalent (isotopic) if one can be 
+##  transformed into the other by permutating rows, columns and symbols. 
+##  Represents the matrices by colored graphs and uses <C>nauty/Traces 2.8</C> 
+##  by B.D.McKay and A.Piperno <Cite Key='MP14'/>. The optional argument 
+##  <A>opt</A> is a record for options. Possible components of <A>opt</A> are:
 ##  <List>
 ##  <Item><A>Positions</A>:=<C>true</C>/<C>false</C> Return positions 
 ##  of inequivalent matrices instead of the matrices themselves.</Item>
@@ -975,22 +997,6 @@ DeclareGlobalFunction( "WriteMOLS" );
 
 #############################################################################
 ##
-#F  CayleyTableOfGroup( <G> ) 
-##
-##  <#GAPDoc Label="CayleyTableOfGroup">
-##  <ManSection>
-##  <Func Name="CayleyTableOfGroup" Arg="G"/>
-##
-##  <Description>
-##  Returns a Cayley table of the group <A>G</A>. The elements
-##  are integers <M>1,\ldots,</M><C>Order(</C><A>G</A><C>)</C>.
-##  </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-DeclareGlobalFunction( "CayleyTableOfGroup" );
-
-#############################################################################
-##
 #F  MOLSToOrthogonalArray( <ls> ) 
 ##
 ##  <#GAPDoc Label="MOLSToOrthogonalArray">
@@ -1068,7 +1074,7 @@ DeclareGlobalFunction( "TransversalDesignToMOLS" );
 ##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
 ##  autoparatopy group of <A>ls</A>.</Item>
 ##  </List>
-##  Any other components will be forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
+##  Any other components are forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
 ##  function; see its documentation.
 ##  </Description>
 ##  </ManSection>
@@ -1093,7 +1099,7 @@ DeclareGlobalFunction( "MOLSAut" );
 ##  This is the default.</Item>
 ##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic MOLS sets.</Item>
 ##  </List>
-##  Any other components will be forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+##  Any other components are forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
 ##  function; see its documentation.
 ##  </Description>
 ##  </ManSection>
@@ -1260,6 +1266,169 @@ DeclareGlobalFunction( "LeftDevelopment" );
 
 #############################################################################
 ##
+#F  CameronSeidelSet( <m> ) 
+##
+##  <#GAPDoc Label="CameronSeidelSet">
+##  <ManSection>
+##  <Func Name="CameronSeidelSet" Arg="m"/>
+##
+##  <Description>
+##  Returns a list of <M>2^{m/2}</M> symplectic <M>m\times m</M> matrices 
+##  over <M>GF(2)</M> such that the difference of any two of them is
+##  a regular matrix. Here <A>m</A> is an even integer. The construction
+##  is described on page 6 of the paper <Cite Key='CS73'/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CameronSeidelSet" );
+
+#############################################################################
+##
+#F  OrthogonalNormalBasis( <k> ) 
+##
+##  <#GAPDoc Label="OrthogonalNormalBasis">
+##  <ManSection>
+##  <Func Name="OrthogonalNormalBasis" Arg="k"/>
+##
+##  <Description>
+##  Attempts to find a basis for the field <M>GF(2^k)</M> over <M>GF(2)</M>
+##  that is orthogonal with respect to the trace inner product <M>Tr(xy)</M>.
+##  This should work for odd integers <A>k</A>, but might fail for even
+##  integers.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalNormalBasis" );
+
+#############################################################################
+##
+#F  KerdockSet( <m> ) 
+##
+##  <#GAPDoc Label="KerdockSet">
+##  <ManSection>
+##  <Func Name="KerdockSet" Arg="m"/>
+##
+##  <Description>
+##  Returns a Kerdock set of <M>2^{m-1}</M> symplectic <M>m\times m</M> matrices 
+##  over <M>GF(2)</M> such that the difference of any two of them is a regular 
+##  matrix. Here <A>m</A> is an even integer. The construction is based on
+##  Example 2.4 in the paper <Cite Key='WK95'/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "KerdockSet" );
+
+#############################################################################
+##
+#F  SingerDifferenceSets( <q>, <n> ) 
+##
+##  <#GAPDoc Label="SingerDifferenceSets">
+##  <ManSection>
+##  <Func Name="SingerDifferenceSets" Arg="q, n"/>
+##
+##  <Description>
+##  Returns the classical Singer difference sets in the cyclic group
+##  of order <M>v=(q^n-1)/(q-1)</M>, e.g. <C>Group(CyclicPerm(v))</C>.
+##  The difference sets are subsets of <C>[1..v]</C> to make them compatible
+##  with the <Package>DifSets</Package> package. For each <M>D</M> returned,
+##  <M>D-1</M> is a difference set in the integers modulo <M>v</M> (a subset
+##  of <C>[0..v-1]</C>).
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SingerDifferenceSets" );
+
+#############################################################################
+##
+#F  NormalizedSingerDifferenceSets( <q>, <n> ) 
+##
+##  <#GAPDoc Label="NormalizedSingerDifferenceSets">
+##  <ManSection>
+##  <Func Name="NormalizedSingerDifferenceSets" Arg="q, n"/>
+##
+##  <Description>
+##  Returns the classical Singer difference sets in the cyclic group
+##  of order <M>v=(q^n-1)/(q-1)</M> that are normalized. If <M>D</M>
+##  is a difference set, this means that the elements of 
+##  <M>D-1</M> sum up to <M>0</M> modulo <M>v</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "NormalizedSingerDifferenceSets" );
+
+#############################################################################
+##
+#F  PaleyDifferenceSet( <q> ) 
+##
+##  <#GAPDoc Label="PaleyDifferenceSet">
+##  <ManSection>
+##  <Func Name="PaleyDifferenceSet" Arg="q"/>
+##
+##  <Description>
+##  Returns the <A>q</A>-dimensional Paley difference set in <M>GF(q)</M>.
+##  This is a <M>(q,(q-1)/2,(q-3)/4)</M> difference set in the additive 
+##  group of <M>GF(q)</M>. See <Cite Key='KR24'/> for more details.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "PaleyDifferenceSet" );
+
+#############################################################################
+##
+#F  PowerDifferenceSet( <q>, <m> ) 
+##
+##  <#GAPDoc Label="PowerDifferenceSet">
+##  <ManSection>
+##  <Func Name="PowerDifferenceSet" Arg="q, m"/>
+##
+##  <Description>
+##  Returns the <A>q</A>-dimensional difference set constructed from
+##  the <A>m</A>-th powers in <M>GF(q)</M>. Paley difference sets are
+##  power difference sets for <M>m=2</M>. See <Cite Key='KR24'/> for
+##  more details.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "PowerDifferenceSet" );
+
+#############################################################################
+##
+#F  TwinPrimePowerDifferenceSet( <q> ) 
+##
+##  <#GAPDoc Label="TwinPrimePowerDifferenceSet">
+##  <ManSection>
+##  <Func Name="TwinPrimePowerDifferenceSet" Arg="q"/>
+##
+##  <Description>
+##  Returns the <A>q</A>-dimensional twin prime power difference set. 
+##  For <M>n=(q+1)^2/4</M>, this is a <M>(4n-1,2n-1,n-1)</M> difference 
+##  set in the direct product <M>GF(q)\times GF(q+2)</M>. Both <A>q</A> 
+##  and <A>q</A><M>+2</M> must be powers of primes. See <Cite Key='KR24'/> 
+##  for more details.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "TwinPrimePowerDifferenceSet" );
+
+#############################################################################
+##
+#F  EquivalentDifferenceSets( <g>, <D> ) 
+##
+##  <#GAPDoc Label="EquivalentDifferenceSets">
+##  <ManSection>
+##  <Func Name="EquivalentDifferenceSets" Arg="g, D"/>
+##
+##  <Description>
+##  Given a difference set or list of difference sets <A>D</A>
+##  in a group <A>g</A>, returns the set of all difference sets 
+##  equivalent to the ones in <A>D</A>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "EquivalentDifferenceSets" );
+
+#############################################################################
+##
 #F  IversonBracket( <P> ) 
 ##
 ##  <#GAPDoc Label="IversonBracket">
@@ -1305,6 +1474,89 @@ DeclareGlobalFunction( "SymmetricDifference" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "AddWeights" );
+
+#############################################################################
+##
+#F  AdjacencyMat( <g> ) 
+##
+##  <#GAPDoc Label="AdjacencyMat">
+##  <ManSection>
+##  <Func Name="AdjacencyMat" Arg="g"/>
+##
+##  <Description>
+##  Returns the adjacency matrix of the graph <A>g</A> in 
+##  <Package>GRAPE</Package> format. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AdjacencyMat" );
+
+#############################################################################
+##
+#F  Cliquer( <g>[, <opt>] )  
+##
+##  <#GAPDoc Label="Cliquer">
+##  <ManSection>
+##  <Func Name="Cliquer" Arg="g[, opt]"/>
+##
+##  <Description>
+##  Searches for cliques in the graph <A>g</A>. Uses <C>Cliquer</C> by 
+##  S.Niskanen and P.Ostergard <Cite Key='NO03'/>. The graph can either
+##  be given in <Package>GRAPE</Package> format, or as a list <C>[v,elist]</C>
+##  where <C>v</C> is the number of vertices and <C>elist</C> is a list of
+##  edges (<M>2</M>-element subsets of <C>[1..v]</C>). The optional argument 
+##  <A>opt</A> is a record for options. Possible components are:
+##  <List>
+##  <Item><A>Silent</A>:=<C>true</C>/<C>false</C> Work silently, or report
+##  progress. The default is taken from <C>PAGGlobalOptions</C>.</Item>
+##  <Item><A>FindAll</A>:=<C>true</C>/<C>false</C> Find all cliques, or
+##  search for a single clique. The default is <C>true</C>.</Item>
+##  <Item><A>CliqueSize</A>:=<C>n</C> or <C>[min,max]</C> Search for cliques
+##  of size <C>n</C>, or size from <C>min</C> to <C>max</C>. By default, 
+##  searches for cliques of maximum size.</Item>
+##  <Item><A>Order</A>:=<C>n</C> Reorder vertices by ordering function
+##  number <C>n</C>. Available functions are <C>n</C><M>=1</M> <C>ident</C>, 
+##  <C>n</C><M>=2</M> <C>reverse</C>, <C>n</C><M>=3</M> <C>degree</C>, 
+##  <C>n</C><M>=4</M> <C>random</C>, and <C>n</C><M>=5</M> <C>greedy</C> 
+##  (default).</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Cliquer" );
+
+#############################################################################
+##
+#F  DisjointCliques( <L>[, <opt>] )  
+##
+##  <#GAPDoc Label="DisjointCliques">
+##  <ManSection>
+##  <Func Name="DisjointCliques" Arg="L[, opt]"/>
+##
+##  <Description>
+##  Given a list <A>L</A> of <M>k</M>-sets of integers, searches for
+##  cliques of mutually disjoint <M>k</M>-sets from the list. The sets 
+##  must be of equal size <M>k</M>. Uses <C>Cliquer</C> by S.Niskanen 
+##  and P.Ostergard <Cite Key='NO03'/>. The optional argument <A>opt</A> 
+##  is a record for options with possible components:
+##  <List>
+##  <Item><A>Silent</A>:=<C>true</C>/<C>false</C> Work silently, or report
+##  progress. The default is taken from <C>PAGGlobalOptions</C>.</Item>
+##  <Item><A>FindAll</A>:=<C>true</C>/<C>false</C> Find all cliques, or
+##  search for a single clique. The default is <C>true</C>.</Item>
+##  <Item><A>CliqueSize</A>:=<C>n</C> or <C>[min,max]</C> Search for cliques
+##  of size <C>n</C>, or size from <C>min</C> to <C>max</C>. By default, 
+##  searches for cliques of maximum size.</Item>
+##  <Item><A>Order</A>:=<C>n</C> Reorder vertices by ordering function
+##  number <C>n</C>. Available functions are <C>n</C><M>=1</M> <C>ident</C>, 
+##  <C>n</C><M>=2</M> <C>reverse</C>, <C>n</C><M>=3</M> <C>degree</C>, 
+##  <C>n</C><M>=4</M> <C>random</C>, and <C>n</C><M>=5</M> <C>greedy</C> 
+##  (default).</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "DisjointCliques" );
 
 #############################################################################
 ##
@@ -1369,7 +1621,7 @@ DeclareGlobalFunction( "CubeSlice" );
 ##  Returns 2-dimensional slices of the incidence cube <A>C</A>. Optional 
 ##  arguments are the varying coordinates <A>x</A> and <A>y</A>, and values of the 
 ##  fixed coordinates in a list <A>fixed</A>. If optional arguments are not given, 
-##  all possibilities will be supplied. For an <M>n</M>-dimensional cube <A>C</A>
+##  all possibilities are supplied. For an <M>n</M>-dimensional cube <A>C</A>
 ##  of order <M>v</M>, the following calls will return:
 ##  <List>
 ##  <Item>CubeSlices( <A>C</A>, <A>x</A>, <A>y</A> ) <M>\ldots v^{n-2}</M> slices 
@@ -1420,6 +1672,71 @@ DeclareGlobalFunction( "CubeLayers" );
 
 #############################################################################
 ##
+#F  CubeProjection( <C>, <p> ) 
+##
+##  <#GAPDoc Label="CubeProjection">
+##  <ManSection>
+##  <Func Name="CubeProjection" Arg="C, p"/>
+##
+##  <Description>
+##  Returns the projection of the <M>n</M>-dimensional cube <A>C</A> 
+##  on a pair of coordinates <A>p</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CubeProjection" );
+
+#############################################################################
+##
+#F  CubeProjections( <C> ) 
+##
+##  <#GAPDoc Label="CubeProjections">
+##  <ManSection>
+##  <Func Name="CubeProjections" Arg="C"/>
+##
+##  <Description>
+##  Returns the projections of the <M>n</M>-dimensional cube <A>C</A> 
+##  on all pairs of coordinates.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CubeProjections" );
+
+#############################################################################
+##
+#F  OrthogonalArrayProjection( <oa>, <t> ) 
+##
+##  <#GAPDoc Label="OrthogonalArrayProjection">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayProjection" Arg="oa, t"/>
+##
+##  <Description>
+##  Returns the projection of the orthogonal array <A>oa</A> 
+##  on a tuple of coordinates <A>t</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayProjection" );
+
+#############################################################################
+##
+#F  OrthogonalArrayProjections( <oa>[, <k>] ) 
+##
+##  <#GAPDoc Label="OrthogonalArrayProjections">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayProjections" Arg="oa[, k]"/>
+##
+##  <Description>
+##  Returns the projections of the orthogonal array <A>oa</A> 
+##  on all <A>k</A>-tuples of coordinates. If the second argument
+##  is not given, <A>k</A><M>=2</M> is assumed.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayProjections" );
+
+#############################################################################
+##
 #F  CubeToOrthogonalArray( <C> ) 
 ##
 ##  <#GAPDoc Label="CubeToOrthogonalArray">
@@ -1465,6 +1782,21 @@ DeclareGlobalFunction( "CubeToTransversalDesign" );
 
 #############################################################################
 ##
+#F  OrthogonalArrayToTransversalDesign( <oa> ) 
+##
+##  <#GAPDoc Label="OrthogonalArrayToTransversalDesign">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayToTransversalDesign" Arg="oa"/>
+##
+##  <Description>
+##  Transforms the orthogonal array <A>oa</A> to an equivalent transversal design.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayToTransversalDesign" );
+
+#############################################################################
+##
 #F  TransversalDesignToCube( <td> ) 
 ##
 ##  <#GAPDoc Label="TransversalDesignToCube">
@@ -1495,6 +1827,26 @@ DeclareGlobalFunction( "LatinSquareToCube" );
 
 #############################################################################
 ##
+#F  DifferenceSetToOrthogonalArray( [<G>,] <ds> ) 
+##
+##  <#GAPDoc Label="DifferenceSetToOrthogonalArray">
+##  <ManSection>
+##  <Func Name="DifferenceSetToOrthogonalArray" Arg="[G, ]ds"/>
+##
+##  <Description>
+##  Transforms a (higher-dimensional) difference set to an orthogonal array. 
+##  The argument <A>G</A> is a group and <A>ds</A> is a difference set in 
+##  the <Package>DifSets</Package> package format, with positive integers
+##  as elements. If the first argument is not given, <A>ds</A> contains 
+##  finite field elements and the operation is addition. This is used 
+##  for Paley difference sets and twin prime power difference sets.  
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "DifferenceSetToOrthogonalArray" );
+
+#############################################################################
+##
 #F  CubeTest( <C> ) 
 ##
 ##  <#GAPDoc Label="CubeTest">
@@ -1504,11 +1856,47 @@ DeclareGlobalFunction( "LatinSquareToCube" );
 ##  <Description>
 ##  Test whether an incidence cube <A>C</A> is a cube of symmetric designs.
 ##  The result should be <C>[[v,k,lambda]]</C>. Anything else means that
-##  <A>C</A> is not a <M>(v,k,lambda)</M> cube.
+##  <A>C</A> is not a <M>(v,k,\lambda)</M> cube.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeTest" );
+
+#############################################################################
+##
+#F  CubeProjectionTest( <C> ) 
+##
+##  <#GAPDoc Label="CubeProjectionTest">
+##  <ManSection>
+##  <Func Name="CubeProjectionTest" Arg="C"/>
+##
+##  <Description>
+##  Test whether an incidence cube <A>C</A> is a projection cube of symmetric 
+##  designs. The result should be <C>[[v,k,lambda]]</C>. Anything else means that
+##  <A>C</A> is not a <M>(v,k,\lambda)</M> projection cube. The function 
+##  <Ref Func="OrthogonalArrayProjectionTest"/> is usually much faster.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "CubeProjectionTest" );
+
+#############################################################################
+##
+#F  OrthogonalArrayProjectionTest( <oa> ) 
+##
+##  <#GAPDoc Label="OrthogonalArrayProjectionTest">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayProjectionTest" Arg="oa"/>
+##
+##  <Description>
+##  Test whether an orthogonal array <A>oa</A> corresponds to a projection 
+##  cube of symmetric <M>(v,k,\lambda)</M> designs. The result should be 
+##  <C>[[v,k,lambda]]</C>. Anything else means that  <A>oa</A> does not 
+##  correspond to a projection cube.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayProjectionTest" );
 
 #############################################################################
 ##
@@ -1546,12 +1934,38 @@ DeclareGlobalFunction( "SliceInvariant" );
 ##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
 ##  autoparatopy group of <A>C</A>.</Item>
 ##  </List>
-##  Any other components will be forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
+##  Any other components are forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
 ##  function; see its documentation.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeAut" );
+
+#############################################################################
+##
+#F  OrthogonalArrayAut( <C>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrthogonalArrayAut">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayAut" Arg="oa[, opt]"/>
+##  
+##  <Description>
+##  Computes the full auto(para)topy group of an orthogonal array <A>oa</A>. 
+##  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+##  The optional argument <A>opt</A> is a record for options. Possible 
+##  components are:
+##  <List>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Compute the full autotopy
+##  group of <A>oa</A>. This is the default.</Item>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
+##  autoparatopy group of <A>oa</A>.</Item>
+##  </List>
+##  Any other components are forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
+##  function; see its documentation.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayAut" );
 
 #############################################################################
 ##
@@ -1571,12 +1985,38 @@ DeclareGlobalFunction( "CubeAut" );
 ##  This is the default.</Item>
 ##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic cubes.</Item>
 ##  </List>
-##  Any other components will be forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+##  Any other components are forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
 ##  function; see its documentation.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeFilter" );
+
+#############################################################################
+##
+#F  OrthogonalArrayFilter( <oal>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrthogonalArrayFilter">
+##  <ManSection>
+##  <Func Name="OrthogonalArrayFilter" Arg="oal[, opt]"/>
+##  
+##  <Description>
+##  Eliminates equivalent copies from a list of orthogonal arrays <A>oal</A>. 
+##  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+##  The optional argument <A>opt</A> is a record for options. Possible 
+##  components are:
+##  <List>
+##  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic orthogonal 
+##  arrays. This is the default.</Item>
+##  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic orthogonal
+##  arrays.</Item>
+##  </List>
+##  Any other components are forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+##  function; see its documentation.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrthogonalArrayFilter" );
 
 #############################################################################
 ##
@@ -1747,7 +2187,7 @@ DeclareGlobalFunction( "MosaicToBlockDesigns" );
 ##  <Func Name="AffineMosaic" Arg="k, n, q"/>
 ##
 ##  <Description>
-##  Returns mosaic of designs with blocks being <A>k</A>-dimensional subspaces 
+##  Returns a mosaic of designs with blocks being <A>k</A>-dimensional subspaces 
 ##  of the affine space <M>AG(</M><A>n</A><M>,</M><A>q</A><M>)</M>. 
 ##  Uses the <Package>FinInG</Package> package. If the package is not 
 ##  available, the function is not loaded. 

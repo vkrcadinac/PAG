@@ -17,4 +17,8 @@ Version 0.2.2: 23/05/2023
 Version 0.2.3: 21/05/2024
   Corrected function BlockDesignAut and added function AddWeights. 
   Added functions for mosaics of combinatorial designs. 
+Version 0.2.4: 12/11/2024
+  Added functions Homogeneity, SingerDifferenceSets, NormalizedSingerDifferenceSets,
+  EquivalentDifferenceSets, Cliquer, DisjointCliques, AdjacencyMat. Added functions
+  for projection cubes of symmetric designs.
 

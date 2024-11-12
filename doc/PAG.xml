@@ -18,7 +18,7 @@ The package is loaded by
 
 <Example><![CDATA[gap> LoadPackage("PAG"); ]]></Example>
 
-Let us present a small example from the paper <Cite Key='VK18'/>. 
+Let us start with a small example from the paper <Cite Key='VK18'/>. 
 In Theorem 8.1, a simple 5-(16,7,10) design with the following
 automorphism group was constructed.
 
@@ -355,7 +355,7 @@ See&nbsp;<Cite Key='KD15'/> for an introduction to Latin squares and definitions
 of isotopy, paratopy, etc. Multiplication tables of groups are examples of Latin 
 squares.
 
-<Example><![CDATA[gap> CayleyTableOfGroup(CyclicGroup(7));
+<Example><![CDATA[gap> MultiplicationTable(CyclicGroup(7));
 [ [ 1, 2, 3, 4, 5, 6, 7 ], 
   [ 2, 3, 4, 5, 6, 7, 1 ], 
   [ 3, 4, 5, 6, 7, 1, 2 ], 
@@ -371,7 +371,7 @@ for sets of <M>s</M> mutually orthogonal Latin squares (MOLS)
 of order <M>n</M> and a given permutation group as autotopy or 
 autoparatopy group. The group must act on the <M>s+2</M> point
 classes of the corresponding transversal design.
-By&nbsp;<Cite Key='RF12'/> and&nbsp;<Cite Key='SVW12'/>, an autotopism
+By&nbsp;<Cite Key='RF12'/> and&nbsp;<Cite Key='SVW12'/>, an autotopy
 of order 5 of a Latin square of order 7 must have the following cycle
 structure. 
 
@@ -435,7 +435,7 @@ and the two Latin squares.
 31)(22,32)(23,33)(24,34)(25,35)(26,36)(27,37)(28,38)(29,39)(30,40)
 ]]></Example>
 
-Furthermore, the example from&nbsp;<Cite Key='CD07'/> has an autotopism of order 9.
+Furthermore, the example from&nbsp;<Cite Key='CD07'/> has an autotopy of order 9.
 
 <Example><![CDATA[gap> a:=MultiPerm(CyclicPerm(9),[1..10],4);
 (1,2,3,4,5,6,7,8,9)(11,12,13,14,15,16,17,18,19)(21,22,23,24,25,26,
@@ -758,16 +758,14 @@ sets in <M>&ZZ;_9\rtimes &ZZ;_3</M> (group ID 4) are paratopic, but not isotopic
 <P/>
 
 We will now construct some non-difference group cubes in <M>&ZZ;_9\rtimes &ZZ;_3</M>.
-Here is an efficient way to get all difference sets, including equivalent ones.
+Here is an way to get all difference sets, including equivalent ones.
 
 <Example><![CDATA[gap> g:=SmallGroup(v,4);
 <pc group of size 27 with 3 generators>
-gap> ge:=ExtendedPermRepresentation(g);
-<permutation group with 7 generators>
 gap> ds:=LoadDifferenceSets(v,4);
 [ [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ], 
   [ 1, 2, 3, 4, 5, 7, 8, 9, 13, 15, 18, 19, 23 ] ]
-gap> allds:=Union(List(ds,x->Orbit(ge,x,OnSets)));;
+gap> allds:=EquivalentDifferenceSets(g,ds);;
 gap> Size(allds);
 972
 ]]></Example>
@@ -776,7 +774,9 @@ For parameters <M>(21,5,1)</M> we could search for all designs with difference s
 This would take too much time for <M>(27,13,6)</M>, so we prescribe an automorphism group of
 order&nbsp;3.  
 		
-<Example><![CDATA[gap> sub:=AllSubgroupsConjugation(ge);;
+<Example><![CDATA[gap> ge:=ExtendedPermRepresentation(g);
+<permutation group with 7 generators>
+gap> sub:=AllSubgroupsConjugation(ge);;
 gap> h:=sub[4];
 Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
   (11,25,19)(13,26,21)(18,27,24) ])
@@ -885,6 +885,245 @@ our web page:
 <URL>https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</URL> 
 
 </Section>
+
+<Section Label="Examples: Projection Cubes of Symmetric Designs">
+<Heading>Examples: Projection Cubes of Symmetric Designs</Heading>
+
+Projection cubes of symmetric designs are introduced and studied in <Cite Key='KR24'/>.
+They are <M>n</M>-dimensional matrices of zeros and ones such that all <M>2</M>-dimensional
+projections are incidence matrices of symmetric <M>(v,k,\lambda)</M> designs. The set of
+all such matrices is denoted <M>P^n(v,k,\lambda)</M>. Here are two pictures of 
+<M>P^3(7,3,1)</M>-cubes. 
+
+<P/>
+
+<Alt Only="LaTeX">\begin{center}\includegraphics[width=7.5cm]{c1.jpg}\hskip 4mm
+\includegraphics[width=7.5cm]{c3.jpg}\end{center}</Alt>
+<Alt Only="HTML">&lt;div&gt;&lt;img src="c1.jpg" style="float: left; width:50%; margin-bottom: 0px; 
+margin-left: 0px;" alt="C1" /&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="c3.jpg" style="float: left; width:50%; margin-bottom: 0px; margin-left: 0px;" 
+alt="C3" /&gt;&lt;/div&lt; &lt;div style="clear:both;"&gt;&lt;/div&gt;</Alt>
+<Alt Only="Text">(See images in HTML and PDF versions of the manual.)</Alt>
+
+<P/>
+
+These are the cubes <M>C_1</M> and <M>C_3</M> from <Cite Key='KR24'/>. Incidence cubes
+can be represented as sets of indices of the <M>1</M>-entries. The two cubes above
+have the following ``orthogonal array representations''.
+
+<Example><![CDATA[gap> C1:=[[1,2,3],[1,4,5],[1,6,7],[2,3,1],[2,4,6],[2,7,5],[3,1,2],[3,6,5],
+> [3,7,4],[4,3,7],[4,5,1],[4,6,2],[5,1,4],[5,2,7],[5,3,6],[6,2,4],[6,5,3],
+> [6,7,1],[7,1,6],[7,4,3],[7,5,2]];;
+gap> C3:=[[1,2,4],[1,4,6],[1,6,2],[2,3,7],[2,4,3],[2,7,4],[3,1,6],[3,6,7],
+> [3,7,1],[4,3,6],[4,5,3],[4,6,5],[5,1,2],[5,2,3],[5,3,1],[6,2,7],[6,5,2],
+> [6,7,5],[7,1,4],[7,4,5],[7,5,1]];;
+]]></Example>
+
+We can switch between this representation and <M>n</M>-dimensional matrices with the 
+functions <Ref Func="OrthogonalArrayToCube"/> and <Ref Func="CubeToOrthogonalArray"/>. 
+
+<Example><![CDATA[gap> C1c:=OrthogonalArrayToCube(C1);
+[ [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ] ], 
+  [ [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ], 
+      [ 0, 0, 0, 1, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 1, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 1, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ] ]
+gap> CubeProjectionTest(C1c);
+[ [ 7, 3, 1 ] ]
+]]></Example>
+
+The function <Ref Func="CubeProjectionTest"/> checks if an <M>n</M>-dimensional matrix 
+is a <M>P^n(v,k,\lambda)</M>-cube. The result should be <C>[[v,k,lambda]]</C>.
+Anything else means it does not satisfy the requirements. There is a faster function
+<Ref Func="OrthogonalArrayProjectionTest"/> that works directly with the orthogonal 
+array representation.
+
+<Example><![CDATA[gap> OrthogonalArrayProjectionTest(C3);
+[ [ 7, 3, 1 ] ]
+]]></Example>
+
+Functions <Ref Func="CubeFilter"/> and <Ref Func="CubeAut"/> also have versions 
+that work with orthogonal arrays.
+
+<Example><![CDATA[gap> Size(OrthogonalArrayFilter([C1,C3]));
+2
+]]></Example>
+
+This means that <M>C_1</M> and <M>C_3</M> are not equivalent (paratopic). They are
+distinguished by the size of the full autoparatopy group.
+
+<Example><![CDATA[gap> Size(OrthogonalArrayAut(C1,rec(Paratopy:=true)));
+63
+gap> Size(OrthogonalArrayAut(C3,rec(Paratopy:=true)));
+42
+]]></Example>
+
+Projection cubes can be constructed from <M>n</M>-dimensional difference sets.
+The family of Paley difference sets extends naturally to higher dimensions.
+
+<Example><![CDATA[gap> D4:=PaleyDifferenceSet(7);
+[ [ 0*Z(7), Z(7)^0, Z(7), Z(7)^2, Z(7)^3, Z(7)^4, Z(7)^5 ], 
+  [ 0*Z(7), Z(7)^2, Z(7)^3, Z(7)^4, Z(7)^5, Z(7)^0, Z(7) ], 
+  [ 0*Z(7), Z(7)^4, Z(7)^5, Z(7)^0, Z(7), Z(7)^2, Z(7)^3 ] ]
+gap> C4:=DifferenceSetToOrthogonalArray(D4);
+[ [ 1, 2, 3, 4, 5, 6, 7 ], [ 2, 4, 6, 3, 1, 7, 5 ], [ 3, 6, 5, 7, 4, 1, 2 ], 
+  [ 4, 3, 7, 6, 2, 5, 1 ], [ 5, 1, 4, 2, 7, 3, 6 ], [ 6, 7, 1, 5, 3, 2, 4 ], 
+  [ 7, 5, 2, 1, 6, 4, 3 ], [ 1, 4, 5, 6, 7, 2, 3 ], [ 2, 3, 1, 7, 5, 4, 6 ], 
+  [ 3, 7, 4, 1, 2, 6, 5 ], [ 4, 6, 2, 5, 1, 3, 7 ], [ 5, 2, 7, 3, 6, 1, 4 ], 
+  [ 6, 5, 3, 2, 4, 7, 1 ], [ 7, 1, 6, 4, 3, 5, 2 ], [ 1, 6, 7, 2, 3, 4, 5 ], 
+  [ 2, 7, 5, 4, 6, 3, 1 ], [ 3, 1, 2, 6, 5, 7, 4 ], [ 4, 5, 1, 3, 7, 6, 2 ], 
+  [ 5, 3, 6, 1, 4, 2, 7 ], [ 6, 2, 4, 7, 1, 5, 3 ], [ 7, 4, 3, 5, 2, 1, 6 ] ]
+gap> OrthogonalArrayProjectionTest(C4);
+[ [ 7, 3, 1 ] ]
+]]></Example>
+
+This is a <M>7</M>-dimensional analog of the Fano plane. The cubes 
+<M>C_1</M> and <M>C_3</M> are its restrictions. 
+
+<Example><![CDATA[gap> AsSet(List(C4,x->x{[1,2,3]}))=C1;
+true
+gap> AsSet(List(C4,x->x{[1,2,4]}))=C3;
+true
+]]></Example>
+
+The cyclotomic difference sets (4th and 8th powers in finite fields of
+appropriate order) and the twin prime power difference sets also have
+higher-dimensional versions.
+
+<Example><![CDATA[gap> C5:=DifferenceSetToOrthogonalArray(PowerDifferenceSet(37,4));;
+gap> OrthogonalArrayProjectionTest(C5);
+[ [ 37, 9, 2 ] ]
+gap> C6:=DifferenceSetToOrthogonalArray(PowerDifferenceSet(73,8));;
+gap> OrthogonalArrayProjectionTest(C6);
+[ [ 73, 9, 1 ] ]
+gap> C7:=DifferenceSetToOrthogonalArray(TwinPrimePowerDifferenceSet(5));;
+gap> OrthogonalArrayProjectionTest(C7);
+[ [ 35, 17, 8 ] ]
+]]></Example>
+
+These are projection cubes in <M>P^{37}(37,9,2)</M>, <M>P^{73}(73,9,1)</M>, and 
+<M>P^5(35,17,8)</M>.  In the paper <Cite Key='KR24'/> the following <M>3</M>-dimensional 
+<M>(16,6,2)</M> difference set in <M>\mathbb{Z}_4\times \mathbb{Z}_4</M> is considered. 
+
+<Example><![CDATA[gap> D4:=[[[0,0],[0,0],[1,0]],[[0,0],[1,0],[0,0]],[[0,0],[0,1],[2,0]],
+> [[0,0],[2,0],[0,1]],[[0,0],[1,2],[0,3]],[[0,0],[2,3],[3,2]]];;
+gap> g:=SmallGroup(16,2);
+<pc group of size 16 with 4 generators>
+gap> StructureDescription(g);
+"C4 x C4"
+]]></Example>
+
+We first convert <M>D_4</M> to the <Package>DifSets</Package> package format. 
+
+<Example><![CDATA[gap> toel:=x->g.1^x[1]*g.2^x[2];;
+gap> D4a:=List(D4,x->List(x,toel));
+[ [ <identity> of ..., <identity> of ..., f1 ], 
+  [ <identity> of ..., f1, <identity> of ... ], [ <identity> of ..., f2, f3 ], 
+  [ <identity> of ..., f3, f2 ], [ <identity> of ..., f1*f4, f2*f4 ], 
+  [ <identity> of ..., f2*f3*f4, f1*f3*f4 ] ]
+gap> e:=Elements(g);
+[ <identity> of ..., f1, f2, f3, f4, f1*f2, f1*f3, f1*f4, f2*f3, f2*f4, f3*f4, 
+f1*f2*f3, f1*f2*f4, f1*f3*f4, f2*f3*f4, f1*f2*f3*f4 ]
+gap> D4b:=List(D4a,x->List(x,y->Position(e,y)));
+[ [ 1, 1, 2 ], [ 1, 2, 1 ], [ 1, 3, 4 ], [ 1, 4, 3 ], [ 1, 8, 10 ], 
+  [ 1, 15, 14 ] ]
+]]></Example>
+
+The function <Ref Func="DifferenceSetToOrthogonalArray"/> takes either a group
+and an <M>n</M>-dimensional difference set in <Package>DifSets</Package> format,
+or an additive difference set containing finite field elements. The development 
+of <M>D_4</M> over <M>G=\mathbb{Z}_4\times \mathbb{Z}_4</M> is a projection
+cube in <M>P^3(16,6,2)</M> with full autoparatopy group isomorphic to <M>G</M>. 
+
+<Example><![CDATA[gap> C8:=DifferenceSetToOrthogonalArray(g,D4b);;
+gap> OrthogonalArrayProjectionTest(C8);
+[ [ 16, 6, 2 ] ]
+gap> IsomorphismGroups(g,OrthogonalArrayAut(C8,rec(Paratopy:=true)));
+[ f1, f2 ] -> [ (1,7,4,2)(3,12,9,6)(5,14,11,8)(10,16,15,13)(17,23,20,18)(19,28,
+    25,22)(21,30,27,24)(26,32,31,29)(33,39,36,34)(35,44,41,38)(37,46,43,40)(42,
+    48,47,45), (1,10,5,3)(2,13,8,6)(4,15,11,9)(7,16,14,12)(17,26,21,19)(18,29,
+    24,22)(20,31,27,25)(23,32,30,28)(33,42,37,35)(34,45,40,38)(36,47,43,41)(39,
+    48,46,44) ]
+]]></Example>
+
+More examples of projection cubes are available on the following web page, 
+
+<P/>
+<URL>https://web.math.pmf.unizg.hr/~krcko/results/pcubes.html</URL> 
+
+<Br/>
+including <M>102</M> cubes in <M>P^3(16,6,2)</M> that cannot be constructed 
+from <M>3</M>-dimensional difference sets. Four of these cubes are shown in 
+Figure 2 of <Cite Key='KR24'/>. They have the interesting property that the 
+projections are non-isomorphic <M>(16,6,2)</M> designs.
+
+<Example><![CDATA[gap> Read("examples.oa");
+gap> fig2:=[Crrg,Crgg,Crrb,Crbb];;
+gap> List(fig2,OrthogonalArrayProjectionTest);
+[ [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ] ]
+gap> p:=oa->List(OrthogonalArrayProjections(oa),x->Size(OrthogonalArrayAut(x)));;
+gap> List(fig2,p);
+[ [ 768, 11520, 11520 ], [ 768, 768, 11520 ], [ 384, 11520, 11520 ], 
+  [ 384, 384, 11520 ] ]
+]]></Example>
+
+The four cubes are not equivalent with cubes constructed from difference sets 
+because their autotopy groups act non-transitively on the indices.
+
+<Example><![CDATA[gap> aut:=List(fig2,OrthogonalArrayAut);
+[ <permutation group with 3 generators>, <permutation group with 3 generators>, 
+  <permutation group with 3 generators>, <permutation group with 3 generators> ]
+gap> List(aut,x->List(Orbits(x),Size));
+[ [ 12, 4, 12, 4, 12, 4 ], [ 12, 4, 12, 4, 12, 4 ], [ 8, 8, 8, 8, 8, 8 ], 
+  [ 8, 8, 8, 8, 8, 8 ] ]
+]]></Example>
+
+</Section>
+
 
 <Section Label="Examples: Mosaics of Combinatorial Designs">
 <Heading>Examples: Mosaics of Combinatorial Designs</Heading>
@@ -1116,6 +1355,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="TransitiveGroupsOfDegree">
 
+<#Include Label="Homogeneity">
+
 <#Include Label="AllSubgroupsConjugation">
 
 <#Include Label="PermRepresentationRight">
@@ -1160,9 +1401,21 @@ The following functions are available in the PAG package.
 
 <#Include Label="ExpandMatRHS">
 
+<#Include Label="CameronSeidelSet">
+
+<#Include Label="OrthogonalNormalBasis">
+
+<#Include Label="KerdockSet">
+
+<#Include Label="SingerDifferenceSets">
+
+<#Include Label="NormalizedSingerDifferenceSets">
+
 <#Include Label="RightDevelopment">
 
 <#Include Label="LeftDevelopment">
+
+<#Include Label="EquivalentDifferenceSets">
 
 </Section>
 
@@ -1172,6 +1425,10 @@ The following functions are available in the PAG package.
 <#Include Label="BlockDesignAut">
 
 <#Include Label="BlockDesignFilter">
+
+<#Include Label="Cliquer">
+
+<#Include Label="DisjointCliques">
 
 <#Include Label="IntersectionNumbers">
 
@@ -1187,6 +1444,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="AddWeights">
 
+<#Include Label="AdjacencyMat">
+
 </Section>
 
 <Section Label="Latin Squares">
@@ -1195,8 +1454,6 @@ The following functions are available in the PAG package.
 <#Include Label="ReadMOLS">
 
 <#Include Label="WriteMOLS">
-
-<#Include Label="CayleyTableOfGroup">
 
 <#Include Label="FieldToMOLS">
 
@@ -1243,6 +1500,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="OrthogonalArrayToCube">
 
+<#Include Label="OrthogonalArrayToTransversalDesign">
+
 <#Include Label="CubeToTransversalDesign">
 
 <#Include Label="TransversalDesignToCube">
@@ -1260,6 +1519,35 @@ The following functions are available in the PAG package.
 <#Include Label="SDPSeriesGroup">
 
 <#Include Label="SDPSeriesDesign">
+
+</Section>
+
+<Section Label="Projection Cubes of Symmetric Designs">
+<Heading>Projection Cubes of Symmetric Designs</Heading>
+
+<#Include Label="CubeProjection">
+
+<#Include Label="CubeProjections">
+
+<#Include Label="CubeProjectionTest">
+
+<#Include Label="OrthogonalArrayProjection">
+
+<#Include Label="OrthogonalArrayProjections">
+
+<#Include Label="OrthogonalArrayProjectionTest">
+
+<#Include Label="DifferenceSetToOrthogonalArray">
+
+<#Include Label="PaleyDifferenceSet">
+
+<#Include Label="PowerDifferenceSet">
+
+<#Include Label="TwinPrimePowerDifferenceSet">
+
+<#Include Label="OrthogonalArrayAut">
+
+<#Include Label="OrthogonalArrayFilter">
 
 </Section>
 

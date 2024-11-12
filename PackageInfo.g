@@ -8,8 +8,8 @@
 SetPackageInfo( rec(
 PackageName := "PAG",
 Subtitle := "Prescribed Automorphism Groups",
-Version := "0.2.3",
-Date := "21/05/2024",
+Version := "0.2.4",
+Date := "12/11/2024",
 License := "GPL-2.0-or-later",
 PackageWWWHome :=
   Concatenation( "https://vkrcadinac.github.io/", ~.PackageName ),
@@ -133,7 +133,7 @@ AutoDoc := rec(
     """,
     Copyright := """
       <Index>License</Index>
-      &copyright; 2023 by Vedran Krcadinac<P/>
+      &copyright; 2024 by Vedran Krcadinac<P/>
       The &PAG; package is free software;
       you can redistribute it and/or modify it under the terms of the
       <URL Text="GNU General Public License">http://www.fsf.org/licenses/gpl.html</URL>

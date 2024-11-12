@@ -9,7 +9,7 @@
     Prescribed Automorphism Groups
   </Subtitle>
   <Version>
-    0.2.3
+    0.2.4
   </Version>
   <Author>
     Vedran Krcadinac<Alt Only="LaTeX"><Br/></Alt>
@@ -23,18 +23,16 @@ Bijenicka cesta 30, HR-10000 Zagreb, Croatia<Br/>
 
   </Author>
   <Date>
-    21 May 2024
+    12 November 2024
   </Date>
   <Abstract>
-    
-    &PAG; is a &GAP; package for constructing combinatorial objects with
+        &PAG; is a &GAP; package for constructing combinatorial objects with
     prescribed automorphism groups. 
     
   </Abstract>
   <Copyright>
-    
-      <Index>License</Index>
-      &copyright; 2023 by Vedran Krcadinac<P/>
+          <Index>License</Index>
+      &copyright; 2024 by Vedran Krcadinac<P/>
       The &PAG; package is free software;
       you can redistribute it and/or modify it under the terms of the
       <URL Text="GNU General Public License">http://www.fsf.org/licenses/gpl.html</URL>
@@ -43,8 +41,7 @@ Bijenicka cesta 30, HR-10000 Zagreb, Croatia<Br/>
       
   </Copyright>
   <Acknowledgements>
-    
-      Development of the &PAG; package has been supported by the Croatian
+          Development of the &PAG; package has been supported by the Croatian
       Science Foundation under the project IP-2020-02-9752. 
       
   </Acknowledgements>

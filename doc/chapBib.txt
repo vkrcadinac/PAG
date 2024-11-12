@@ -6,37 +6,49 @@
   
   [[20XCD07[120X] ([1m[31mColbourn, C. J. and Dinitz, J. H.[15X, Eds.), [17XHandbook of combinatorial designs. Second edition[117X, Chapman & Hall/CRC (2007).
   
-  [[20XCKZ15[120X] [16XCustic, A., Krcadinac, V. and Zhou, Y.[116X, [17XTiling groups with difference sets[117X, [18XElectron. J. Combin.[118X, [19X22[119X, 2 (2015), P2.56.
+  [[20XCKZ15[120X] [16XCustic, A., Krcadinac, V. and Zhou, Y.[116X, [17XTiling groups with difference sets[117X, [18XElectron. J. Combin.[118X, [19X22[119X, 2 (2015), P2.56, (https://doi.org/10.37236/5157).
+  
+  [[20XCS73[120X] [16XCameron, P. J. and Seidel, J. J.[116X, [17XQuadratic forms over GF(2)[117X, [18XIndag. Math.[118X, [19X35[119X (1973), 1–8.
   
   [[20XFal12[120X] [16XFalcon, R. M.[116X, [17XCycle structures of autotopisms of the Latin squares of order up to 11[117X, [18XArs Combin.[118X, [19X103[119X (2012), 239–256.
   
   [[20XGGP18[120X] [16XGnilke, O. W., Greferath, M. and Pavcevic, M. O.[116X, [17XMosaics of combinatorial designs[117X, [18XDes. Codes Cryptogr.[118X, [19X86[119X, 1 (2018), 85–95.
   
-  [[20XKan75[120X] [16XKantor, W. M.[116X, [17XSymplectic groups, symmetric designs, and line ovals[117X, [18X J. Algebra[118X, [19X33[119X (1975), 43–58.
+  [[20XKan72[120X] [16XKantor, W. M.[116X, [17Xk-homogenous groups[117X, [18XMath. Z.[118X, [19X124[119X (1972), 261–265.
+  
+  [[20XKan75[120X] [16XKantor, W. M.[116X, [17XSymplectic groups, symmetric designs, and line ovals[117X, [18XJ. Algebra[118X, [19X33[119X (1975), 43–58.
+  
+  [[20XKan95[120X] [16XKantor, W. M.[116X, [17XCodes, quadratic forms and finite geometries. In: Different aspects of coding theory (Proc. Sympos. Appl. Math., San Francisco, 1995)[117X, American Mathematical Society (1995), 153–177 pages.
   
   [[20XKD15[120X] [16XKeedwell, A. D. and Denes, J.[116X, [17XLatin squares and their applications. Second edition[117X, Elsevier/North-Holland (2015).
   
   [[20XKM76[120X] [16XKramer, E. S. and Mesner, D. M.[116X, [17Xt-designs on hypergraphs[117X, [18XDiscrete Math.[118X, [19X15[119X, 3 (1976), 263–296.
   
-  [[20XKNP11[120X] [16XKrcadinac, V., Nakic, A. and Pavcevic, M. O.[116X, [17XThe Kramer-Mesner method with tactical decompositions: some new unitals on 65 points[117X, [18XJ. Combin. Des.[118X, [19X19[119X, 4 (2011), 290–303.
+  [[20XKNP11[120X] [16XKrcadinac, V., Nakic, A. and Pavcevic, M. O.[116X, [17XThe Kramer-Mesner method with tactical decompositions: some new unitals on 65 points[117X, [18XJ. Combin. Des.[118X, [19X19[119X, 4 (2011), 290–303, (https://doi.org/10.1002/jcd.20277).
   
-  [[20XKPT23a[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XCubes of symmetric designs[117X, [18XPreprint[118X (2023), ((http://arxiv.org/abs/2304.05446)).
+  [[20XKP08[120X] [16XKaski, P. and Pottonen, O.[116X, [17Xlibexact User's Guide, Version 1.0, HIIT Technical Reports 2008-1[117X, Helsinki Institute for Information Technology HIIT (2008).
   
-  [[20XKPT23b[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XThree-dimensional Hadamard matrices of Paley type[117X, [18XFinite Fields Appl.[118X, [19X92[119X (2023), 102306.
+  [[20XKPT23[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XThree-dimensional Hadamard matrices of Paley type[117X, [18XFinite Fields Appl.[118X, [19X92[119X (2023), 102306, (https://doi.org/10.1016/j.ffa.2023.102306).
   
-  [[20XKrc18[120X] [16XKrcadinac, V.[116X, [17XSome new designs with prescribed automorphism groups[117X, [18XJ. Combin. Des.[118X, [19X26[119X, 4 (2018), 193–200.
+  [[20XKPT24[120X] [16XKrcadinac, V., Pavcevic, M. O. and Tabak, K.[116X, [17XCubes of symmetric designs[117X, [18XArs Math. Contemp.[118X (2024), (https://doi.org/10.26493/1855-3974.3222.e53).
   
-  [[20XKrc24[120X] [16XKrcadinac, V.[116X, [17XSmall examples of mosaics of combinatorial designs[117X, [18XPreprint[118X (2024), ((https://arxiv.org/abs/2405.12672)).
+  [[20XKR24[120X] [16XKrcadinac, V. and Relic, L.[116X, [17XProjection cubes of symmetric designs[117X, [18XPreprint[118X (2024), (https://arxiv.org/abs/2411.06936).
   
-  [[20XKV16[120X] [16XKrcadinac, V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X, [18XDiscrete Math.[118X, [19X339[119X, 12 (2016), 2884–2890.
+  [[20XKrc18[120X] [16XKrcadinac, V.[116X, [17XSome new designs with prescribed automorphism groups[117X, [18XJ. Combin. Des.[118X, [19X26[119X, 4 (2018), 193–200, (https://doi.org/10.1002/jcd.21587).
   
-  [[20XKVK21[120X] [16XKrcadinac, V. and Vlahovic Kruc, R.[116X, [17XQuasi-symmetric designs on 56 points[117X, [18XAdv. Math. Commun.[118X, [19X15[119X, 4 (2021), 633–646.
+  [[20XKrc24[120X] [16XKrcadinac, V.[116X, [17XSmall examples of mosaics of combinatorial designs[117X, [18XExamples and Counterexamples[118X, [19X6[119X (2024), 6100163, (https://doi.org/10.1016/j.exco.2024.100163).
+  
+  [[20XKV16[120X] [16XKrcadinac, V. and Vlahovic, R.[116X, [17XNew quasi-symmetric designs by the Kramer-Mesner method[117X, [18XDiscrete Math.[118X, [19X339[119X, 12 (2016), 2884–2890, (https://doi.org/10.1016/j.disc.2016.05.030).
+  
+  [[20XKVK21[120X] [16XKrcadinac, V. and Vlahovic Kruc, R.[116X, [17XQuasi-symmetric designs on 56 points[117X, [18XAdv. Math. Commun.[118X, [19X15[119X, 4 (2021), 633–646, (https://doi.org/10.3934/amc.2020086).
   
   [[20XMcK79[120X] [16XMcKay, B.[116X, [17XHadamard equivalence via graph isomorphism[117X, [18XDiscrete Math.[118X, [19X27[119X (1979), 213–214.
   
   [[20XMP14[120X] [16XMcKay, B. and Piperno, A.[116X, [17XPractical graph isomorphism, II[117X, [18XJ. Symbolic Comput.[118X, [19X60[119X (2014), 94–112.
   
-  [[20XNak21[120X] [16XNakic, A.[116X, [17XThe first example of a simple 2-(81,6,2) design[117X, [18XExamples and Counterexamples[118X, [19X1[119X (2021), 100005.
+  [[20XNak21[120X] [16XNakic, A.[116X, [17XThe first example of a simple 2-(81,6,2) design[117X, [18XExamples and Counterexamples[118X, [19X1[119X (2021), 100005, (https://doi.org/10.1016/j.exco.2021.100005).
+  
+  [[20XNO03[120X] [16XNiskanen, S. and Ostergard, P.[116X, [17XCliquer User's Guide, Version 1.0, Tech. Rep. T48[117X, Helsinki University of Technology (2003).
   
   [[20XSch93[120X] [16XSchmalz, B.[116X, [17XThe t-designs with prescribed automorphism group, new simple 6-designs[117X, [18XJ. Combin. Des.[118X, [19X1[119X, 2 (1993), 125–170.
   

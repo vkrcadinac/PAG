@@ -6,10 +6,10 @@
                         [1X Prescribed Automorphism Groups [101X
   
   
-                                     0.2.3
+                                     0.2.4
   
   
-                                  21 May 2024
+                                12 November 2024
   
   
                                 Vedran Krcadinac
@@ -33,7 +33,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2023 by Vedran Krcadinac[133X
+  [33X[0;0Y© 2024 by Vedran Krcadinac[133X
   
   [33X[0;0YThe  [5XPAG[105X  package is free software; you can redistribute it and/or modify it
   under     the     terms     of    the    GNU    General    Public    License
@@ -63,7 +63,8 @@
       1.3-4 [33X[0;0YQuasi-symmetric 2-(56,16,18) Designs[133X
     1.4 [33X[0;0YExamples: Latin Squares[133X
     1.5 [33X[0;0YExamples: Cubes of Symmetric Designs[133X
-    1.6 [33X[0;0YExamples: Mosaics of Combinatorial Designs[133X
+    1.6 [33X[0;0YExamples: Projection Cubes of Symmetric Designs[133X
+    1.7 [33X[0;0YExamples: Mosaics of Combinatorial Designs[133X
   2 [33X[0;0YThe PAG Functions[133X
     2.1 [33X[0;0YWorking With Permutation Groups[133X
       2.1-1 CyclicPerm
@@ -75,10 +76,11 @@
       2.1-7 RestrictedGroup
       2.1-8 PrimitiveGroupsOfDegree
       2.1-9 TransitiveGroupsOfDegree
-      2.1-10 AllSubgroupsConjugation
-      2.1-11 PermRepresentationRight
-      2.1-12 PermRepresentationLeft
-      2.1-13 ExtendedPermRepresentation
+      2.1-10 Homogeneity
+      2.1-11 AllSubgroupsConjugation
+      2.1-12 PermRepresentationRight
+      2.1-13 PermRepresentationLeft
+      2.1-14 ExtendedPermRepresentation
     2.2 [33X[0;0YGenerating Orbits[133X
       2.2-1 SubsetOrbitRep
       2.2-2 SubsetOrbitRepShort1
@@ -94,34 +96,42 @@
       2.3-4 SolveKramerMesner
       2.3-5 BaseBlocks
       2.3-6 ExpandMatRHS
-      2.3-7 RightDevelopment
-      2.3-8 LeftDevelopment
+      2.3-7 CameronSeidelSet
+      2.3-8 OrthogonalNormalBasis
+      2.3-9 KerdockSet
+      2.3-10 SingerDifferenceSets
+      2.3-11 NormalizedSingerDifferenceSets
+      2.3-12 RightDevelopment
+      2.3-13 LeftDevelopment
+      2.3-14 EquivalentDifferenceSets
     2.4 [33X[0;0YInspecting Objects and Other Functions[133X
       2.4-1 BlockDesignAut
       2.4-2 BlockDesignFilter
-      2.4-3 IntersectionNumbers
-      2.4-4 BlockScheme
-      2.4-5 PointPairScheme
-      2.4-6 TDesignB
-      2.4-7 IversonBracket
-      2.4-8 SymmetricDifference
-      2.4-9 AddWeights
+      2.4-3 Cliquer
+      2.4-4 DisjointCliques
+      2.4-5 IntersectionNumbers
+      2.4-6 BlockScheme
+      2.4-7 PointPairScheme
+      2.4-8 TDesignB
+      2.4-9 IversonBracket
+      2.4-10 SymmetricDifference
+      2.4-11 AddWeights
+      2.4-12 AdjacencyMat
     2.5 [33X[0;0YLatin Squares[133X
       2.5-1 ReadMOLS
       2.5-2 WriteMOLS
-      2.5-3 CayleyTableOfGroup
-      2.5-4 FieldToMOLS
-      2.5-5 MOLSToOrthogonalArray
-      2.5-6 OrthogonalArrayToMOLS
-      2.5-7 MOLSToTransversalDesign
-      2.5-8 TransversalDesignToMOLS
-      2.5-9 MOLSAut
-      2.5-10 MOLSFilter
-      2.5-11 IsAutotopyGroup
-      2.5-12 MOLSSubsetOrbitRep
-      2.5-13 KramerMesnerMOLS
-      2.5-14 KramerMesnerMOLSAutotopy
-      2.5-15 KramerMesnerMOLSAutoparatopy
+      2.5-3 FieldToMOLS
+      2.5-4 MOLSToOrthogonalArray
+      2.5-5 OrthogonalArrayToMOLS
+      2.5-6 MOLSToTransversalDesign
+      2.5-7 TransversalDesignToMOLS
+      2.5-8 MOLSAut
+      2.5-9 MOLSFilter
+      2.5-10 IsAutotopyGroup
+      2.5-11 MOLSSubsetOrbitRep
+      2.5-12 KramerMesnerMOLS
+      2.5-13 KramerMesnerMOLSAutotopy
+      2.5-14 KramerMesnerMOLSAutoparatopy
     2.6 [33X[0;0YCubes of Symmetric Designs[133X
       2.6-1 DifferenceCube
       2.6-2 GroupCube
@@ -131,44 +141,58 @@
       2.6-6 CubeLayers
       2.6-7 CubeToOrthogonalArray
       2.6-8 OrthogonalArrayToCube
-      2.6-9 CubeToTransversalDesign
-      2.6-10 TransversalDesignToCube
-      2.6-11 LatinSquareToCube
-      2.6-12 CubeTest
-      2.6-13 SliceInvariant
-      2.6-14 CubeAut
-      2.6-15 CubeFilter
-      2.6-16 SDPSeriesGroup
-      2.6-17 SDPSeriesDesign
-    2.7 [33X[0;0YHadamard Matrices[133X
-      2.7-1 IsHadamardMat
-      2.7-2 IsProperHadamardMat
-      2.7-3 Paley1Mat
-      2.7-4 Paley2Mat
-      2.7-5 Paley3DMat
-      2.7-6 SDPSeriesHadamardMat
-      2.7-7 AllOnesMat
-      2.7-8 ProductConstructionMat
-      2.7-9 DigitConstructionMat
-      2.7-10 CyclicDimensionIncrease
-      2.7-11 HadamardMatAut
-      2.7-12 HadamardMatFilter
-      2.7-13 HadamardToIncidence
-      2.7-14 IncidenceToHadamard
-    2.8 [33X[0;0YMosaics of Combinatorial Designs[133X
-      2.8-1 MosaicParameters
-      2.8-2 BlocksToIncidenceMat
-      2.8-3 IncidenceMatToBlocks
-      2.8-4 MosaicToBlockDesigns
-      2.8-5 ReadMat
-      2.8-6 WriteMat
-      2.8-7 AffineMosaic
-      2.8-8 DifferenceMosaic
-      2.8-9 PowersMosaic
-      2.8-10 MatAut
-      2.8-11 MatFilter
-    2.9 [33X[0;0YGlobal Options[133X
-      2.9-1 PAGGlobalOptions
+      2.6-9 OrthogonalArrayToTransversalDesign
+      2.6-10 CubeToTransversalDesign
+      2.6-11 TransversalDesignToCube
+      2.6-12 LatinSquareToCube
+      2.6-13 CubeTest
+      2.6-14 SliceInvariant
+      2.6-15 CubeAut
+      2.6-16 CubeFilter
+      2.6-17 SDPSeriesGroup
+      2.6-18 SDPSeriesDesign
+    2.7 [33X[0;0YProjection Cubes of Symmetric Designs[133X
+      2.7-1 CubeProjection
+      2.7-2 CubeProjections
+      2.7-3 CubeProjectionTest
+      2.7-4 OrthogonalArrayProjection
+      2.7-5 OrthogonalArrayProjections
+      2.7-6 OrthogonalArrayProjectionTest
+      2.7-7 DifferenceSetToOrthogonalArray
+      2.7-8 PaleyDifferenceSet
+      2.7-9 PowerDifferenceSet
+      2.7-10 TwinPrimePowerDifferenceSet
+      2.7-11 OrthogonalArrayAut
+      2.7-12 OrthogonalArrayFilter
+    2.8 [33X[0;0YHadamard Matrices[133X
+      2.8-1 IsHadamardMat
+      2.8-2 IsProperHadamardMat
+      2.8-3 Paley1Mat
+      2.8-4 Paley2Mat
+      2.8-5 Paley3DMat
+      2.8-6 SDPSeriesHadamardMat
+      2.8-7 AllOnesMat
+      2.8-8 ProductConstructionMat
+      2.8-9 DigitConstructionMat
+      2.8-10 CyclicDimensionIncrease
+      2.8-11 HadamardMatAut
+      2.8-12 HadamardMatFilter
+      2.8-13 HadamardToIncidence
+      2.8-14 IncidenceToHadamard
+    2.9 [33X[0;0YMosaics of Combinatorial Designs[133X
+      2.9-1 MosaicParameters
+      2.9-2 BlocksToIncidenceMat
+      2.9-3 IncidenceMatToBlocks
+      2.9-4 MosaicToBlockDesigns
+      2.9-5 ReadMat
+      2.9-6 WriteMat
+      2.9-7 AffineMosaic
+      2.9-8 DifferenceMosaic
+      2.9-9 PowersMosaic
+      2.9-10 MatAut
+      2.9-11 MatFilter
+    2.10 [33X[0;0YGlobal Options[133X
+      2.10-1 PAGGlobalOptions
   
   
   [32X

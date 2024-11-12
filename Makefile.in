@@ -2,9 +2,12 @@
 CC ?= gcc
 GAPARCH=@GAPARCH@
 CFLAGS= -O6 -Wall -malign-double -ffast-math -funroll-all-loops -fomit-frame-pointer -finline-functions
-NAUTYPATH=src/nauty2_8_6
+NAUTYPATH=src/nauty2_8_9
+CLIQUERPATH=src/cliquer-1.21
+CLIQUERFLAGS= -Wall -O3 -fomit-frame-pointer -funroll-loops -c 
+LIBEXACTPATH=src/libexact-1.0
 
-all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter bin/$(GAPARCH)/matfilter bin/$(GAPARCH)/mataut
+all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter bin/$(GAPARCH)/matfilter bin/$(GAPARCH)/mataut bin/$(GAPARCH)/pagcliquer bin/$(GAPARCH)/disjointcliques bin/$(GAPARCH)/solvelibexact
 
 bin/$(GAPARCH):
 	        mkdir -p bin/$(GAPARCH)
@@ -94,9 +97,41 @@ bin/$(GAPARCH)/matfilter: $(NAUTYPATH)/matfilter.c $(NAUTYPATH)/nauty.a bin/$(GA
 bin/$(GAPARCH)/mataut: $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/mataut $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a 
 
+$(CLIQUERPATH)/pagcliquer.c: src/pagcliquer.c
+	        cp src/pagcliquer.c $(CLIQUERPATH)
+
+$(CLIQUERPATH)/cliquer.o: $(CLIQUERPATH)/cliquer.c 
+	        $(CC) $(CLIQUERFLAGS) -o $(CLIQUERPATH)/cliquer.o $(CLIQUERPATH)/cliquer.c 
+
+$(CLIQUERPATH)/graph.o: $(CLIQUERPATH)/graph.c 
+	        $(CC) $(CLIQUERFLAGS) -o $(CLIQUERPATH)/graph.o $(CLIQUERPATH)/graph.c 
+
+$(CLIQUERPATH)/reorder.o: $(CLIQUERPATH)/reorder.c 
+	        $(CC) $(CLIQUERFLAGS) -o $(CLIQUERPATH)/reorder.o $(CLIQUERPATH)/reorder.c 
+
+bin/$(GAPARCH)/pagcliquer: $(CLIQUERPATH)/pagcliquer.c $(CLIQUERPATH)/cliquer.o $(CLIQUERPATH)/graph.o $(CLIQUERPATH)/reorder.o bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/pagcliquer $(CLIQUERPATH)/pagcliquer.c $(CLIQUERPATH)/cliquer.o $(CLIQUERPATH)/graph.o $(CLIQUERPATH)/reorder.o 
+
+$(CLIQUERPATH)/disjointcliques.c: src/disjointcliques.c
+	        cp src/disjointcliques.c $(CLIQUERPATH)
+
+bin/$(GAPARCH)/disjointcliques: $(CLIQUERPATH)/disjointcliques.c $(CLIQUERPATH)/cliquer.o $(CLIQUERPATH)/graph.o $(CLIQUERPATH)/reorder.o bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/disjointcliques $(CLIQUERPATH)/disjointcliques.c $(CLIQUERPATH)/cliquer.o $(CLIQUERPATH)/graph.o $(CLIQUERPATH)/reorder.o 
+
+$(LIBEXACTPATH)/solvelibexact.c: src/solvelibexact.c
+	        cp src/solvelibexact.c $(LIBEXACTPATH)
+
+$(LIBEXACTPATH)/libexact.a: $(LIBEXACTPATH) 
+	        cd $(LIBEXACTPATH) && make
+
+bin/$(GAPARCH)/solvelibexact: $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/solvelibexact $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a
+
 clean:
 	        rm -rf bin
 	        rm -f src/*.o 
 	        rm -f $(NAUTYPATH)/*.o 
+	        rm -f $(CLIQUERPATH)/*.o 
+	        rm -f $(LIBEXACTPATH)/*.o 
 	        rm -f Makefile
 

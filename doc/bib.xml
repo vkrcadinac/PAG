@@ -13,6 +13,7 @@
   <volume>15</volume>
   <number>4</number>
   <pages>633&ndash;646</pages>
+  <note><URL>https://doi.org/10.3934/amc.2020086</URL></note>
 </article></entry>
 
 <entry id="KV16"><article>
@@ -26,6 +27,7 @@
   <volume>339</volume>
   <number>12</number>
   <pages>2884&ndash;2890</pages>
+  <note><URL>https://doi.org/10.1016/j.disc.2016.05.030</URL></note>
 </article></entry>
 
 <entry id="VK18"><article>
@@ -38,6 +40,7 @@
   <volume>26</volume>
   <number>4</number>
   <pages>193&ndash;200</pages>
+  <note><URL>https://doi.org/10.1002/jcd.21587</URL></note>
 </article></entry>
 
 <entry id="KNP11"><article>
@@ -52,6 +55,7 @@
   <volume>19</volume>
   <number>4</number>
   <pages>290&ndash;303</pages>
+  <note><URL>https://doi.org/10.1002/jcd.20277</URL></note>
 </article></entry>
 
 <entry id="AN21"><article>
@@ -63,6 +67,7 @@
   <year>2021</year>
   <volume>1</volume>
   <pages>100005</pages>
+  <note><URL>https://doi.org/10.1016/j.exco.2021.100005</URL></note>
 </article></entry>
 
 <entry id="BM79"><article>
@@ -119,9 +124,9 @@
     <name><first>Kristijan</first><last>Tabak</last></name>
   </author>
   <title>Cubes of symmetric designs</title>
-  <journal>Preprint</journal>
-  <year>2023</year>
-  <note><URL>http://arxiv.org/abs/2304.05446</URL></note>
+  <journal>Ars Math. Contemp.</journal>
+  <year>2024</year>
+  <note><URL>https://doi.org/10.26493/1855-3974.3222.e53</URL></note>
 </article></entry>
 
 <entry id="KPT23b"><article>
@@ -135,6 +140,7 @@
   <year>2023</year>
   <volume>92</volume>
   <pages>102306</pages>
+  <note><URL>https://doi.org/10.1016/j.ffa.2023.102306</URL></note>
 </article></entry>
 
 <entry id="SVW12"><article>
@@ -197,16 +203,38 @@
   <pages>263&ndash;296</pages>
 </article></entry>
 
+<entry id="WK72"><article>
+  <author>
+    <name><first>W. M.</first><last>Kantor</last></name>
+  </author>
+  <title><M>k</M>-homogenous groups</title>
+  <journal>Math. Z.</journal>
+  <year>1972</year>
+  <volume>124</volume>
+  <pages>261&ndash;265</pages>
+</article></entry>
+
 <entry id="WK75"><article>
   <author>
     <name><first>W. M.</first><last>Kantor</last></name>
   </author>
   <title>Symplectic groups, symmetric designs, and line ovals</title>
-  <journal> J. Algebra</journal>
+  <journal>J. Algebra</journal>
   <year>1975</year>
   <volume>33</volume>
   <pages>43&ndash;58</pages>
 </article></entry>
+
+<entry id="WK95"><book>
+  <author>
+    <name><first>W. M.</first><last>Kantor</last></name>
+  </author>
+  <title><C>Codes, quadratic forms and finite geometries. In: Different
+  aspects of coding theory (Proc. Sympos. Appl. Math., San Francisco, 1995)</C></title>
+  <publisher>American Mathematical Society</publisher>
+  <year>1995</year>
+  <pages>153&ndash;177</pages>
+</book></entry>
 
 <entry id="YXY86"><article>
   <author>
@@ -218,6 +246,18 @@
   <volume>31</volume>
   <number>2</number>
   <pages>85&ndash;88</pages>
+</article></entry>
+
+<entry id="CS73"><article>
+  <author>
+    <name><first>P. J.</first><last>Cameron</last></name>
+    <name><first>J. J.</first><last>Seidel</last></name>
+  </author>
+  <title><C>Quadratic forms over <M>GF(2)</M></C></title>
+  <journal>Indag. Math.</journal>
+  <year>1973</year>
+  <volume>35</volume>
+  <pages>1&ndash;8</pages>
 </article></entry>
 
 <entry id="PC75"><article>
@@ -262,9 +302,11 @@
     <name><first>Vedran</first><last>Krcadinac</last></name>
   </author>
   <title>Small examples of mosaics of combinatorial designs</title>
-  <journal>Preprint</journal>
+  <journal>Examples and Counterexamples</journal>
+  <volume>6</volume>
   <year>2024</year>
-  <note><URL>https://arxiv.org/abs/2405.12672</URL></note>
+  <pages>6100163</pages>
+  <note><URL>https://doi.org/10.1016/j.exco.2024.100163</URL></note>
 </article></entry>
 
 <entry id="CKZ15"><article>
@@ -279,6 +321,40 @@
   <volume>22</volume>
   <number>2</number>
   <pages>P2.56</pages>
+  <note><URL>https://doi.org/10.37236/5157</URL></note>
+</article></entry>
+
+<entry id="NO03"><book>
+  <author>
+    <name><first>Sampo</first><last>Niskanen</last></name>
+    <name><first>Patric</first><last>Ostergard</last></name>
+  </author>
+  <title>Cliquer User's Guide, Version 1.0, Tech. Rep. T48</title>
+  <publisher>Helsinki University of Technology</publisher>
+  <year>2003</year>
+  <location>Espoo, Finland</location>
+</book></entry>
+
+<entry id="KP08"><book>
+  <author>
+    <name><first>Petteri</first><last>Kaski</last></name>
+    <name><first>Olli</first><last>Pottonen</last></name>
+  </author>
+  <title>libexact User's Guide, Version 1.0, HIIT Technical Reports 2008-1</title>
+  <publisher>Helsinki Institute for Information Technology HIIT</publisher>
+  <year>2008</year>
+  <location>Helsinki, Finland</location>
+</book></entry>
+
+<entry id="KR24"><article>
+  <author>
+    <name><first>Vedran</first><last>Krcadinac</last></name>
+    <name><first>Lucija</first><last>Relic</last></name>
+  </author>
+  <title>Projection cubes of symmetric designs</title>
+  <journal>Preprint</journal>
+  <year>2024</year>
+  <note><URL>https://arxiv.org/abs/2411.06936</URL></note>
 </article></entry>
 
 </file>

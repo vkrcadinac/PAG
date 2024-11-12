@@ -35,6 +35,32 @@ end );
 
 #############################################################################
 #
+#  Homogeneity( <G> ) 
+#
+#  Returns the degree of homogeneity of the permutation group <A>G</A>, i.e. the largest
+#  integer <M>k</M> such that <A>G</A> is <M>k</M>-homogeneous. This means that every
+#  <M>k</M>-subset of points can be mapped to every other. Kantor <Cite Key='WK72'/>
+#  classified all groups that are <M>k</M>-homogenous but not <M>k</M>-transitive.
+#
+InstallGlobalFunction( Homogeneity, function( g )
+local o,i;
+
+  o:=Orbits(g);
+  if Size(o)>1 then 
+    return 0;
+  else
+    i:=Transitivity(g);
+    o:=Union(o);
+    while Size(OrbitsDomain(g,Combinations(o,i+1),OnSets))=1 do
+      i:=i+1;
+    od;
+    return i;
+  fi;
+end );
+
+
+#############################################################################
+#
 #  CyclicPerm( <n> ) 
 #
 #  Returns the cyclic permutation (1,...,<A>n</A>).
@@ -602,17 +628,19 @@ end );
 #  SolveKramerMesner( <mat>[, <cm>][, <opt>] ) 
 #
 #  Solve a system of linear equations determined by the matrix <A>mat</A>
-#  over <M>{0,1}</M>. By default, A.Wassermann's LLL solver <C>solvediophant</C>.
+#  over <M>\{0,1\}</M>. By default, A.Wassermann's LLL solver <C>solvediophant</C>
 #  <Cite Key='AW98'/> is used. If the second argument is a compatibility
-#  matrix <A>cm</A>, the backtracing solver <C>solvecm</C> from the papers 
+#  matrix <A>cm</A>, the backtracking program <C>solvecm</C> from the papers 
 #  <Cite Key='KNP11'/> and <Cite Key='KV16'/> is used. The solver can also
-#  be chosen explicitly in the record <A>opt</A>. Possible components 
-#  of <A>opt</A> are:
+#  be chosen explicitly in the record <A>opt</A>. Possible components are:
 #  <List>
-#  <Item><A>Solver</A>:=<C>"solvediophant"</C> If defined, the 
-#  solver <C>solvediophant</C> is used.</Item>
-#  <Item><A>Solver</A>:=<C>"solvecm"</C> If defined, the 
-#  solver <C>solvecm</C> is used.</Item>
+#  <Item><A>Solver</A>:=<C>"solvediophant"</C> If defined, <C>solvediophant</C> 
+#  is used.</Item>
+#  <Item><A>Solver</A>:=<C>"solvecm"</C> If defined, <C>solvecm</C> is used.</Item>
+#  <Item><A>Solver</A>:=<C>"libexact"</C> If defined, <C>libexact</C> is used.
+#  This is P. Kaski and  O. Pottonen's implementation of the Dancing Links
+#  algorithm, see <Cite Key='KP08'/>. For this solver the coefficients of
+#  <A>mat</A> must be in <M>\{0,1\}</M>!</Item>
 #  </List>
 #
 InstallGlobalFunction( SolveKramerMesner, function( mat, arg... )
@@ -645,6 +673,9 @@ local input,output,row,el,command,cm,opt,sol;
       fi;
       if opt.Solver="solvecm" then
         sol:=2;
+      fi;
+      if opt.Solver="libexact" then
+        sol:=3;
       fi;
     fi;
 
@@ -684,6 +715,14 @@ local input,output,row,el,command,cm,opt,sol;
         Process(PAGGlobalOptions.TempDir, command, input, output, ["-osolve.out", "solve.in"] );
       else
         Process(PAGGlobalOptions.TempDir, command, input, output, ["-c","-osolve.out", "solve.in"] );
+      fi;
+    fi;
+    if sol=3 then
+      command:=Filename(DirectoriesPackagePrograms("PAG"), "solvelibexact");
+      if PAGGlobalOptions.Silent then
+        Process(PAGGlobalOptions.TempDir, command, input, output, ["-osolve.out", "solve.in"] );
+      else
+        Process(PAGGlobalOptions.TempDir, command, input, output, ["-r","-osolve.out", "solve.in"] );
       fi;
     fi;
     CloseStream(output);
@@ -774,7 +813,7 @@ end );
 
 #############################################################################
 #
-#  BlockDesignAut( <d>[, opt] )  
+#  BlockDesignAut( <d>[, <opt>] )  
 #
 #  Computes the full automorphism group of a block design <A>d</A>. 
 #  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
@@ -1044,7 +1083,7 @@ end );
 
 #############################################################################
 #
-#  BlockDesignFilter( <dl>[, opt] )  
+#  BlockDesignFilter( <dl>[, <opt>] )  
 #
 #  Eliminates isomorphic copies from a list of block designs <A>dl</A>. 
 #  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
@@ -1129,7 +1168,7 @@ end );
 
 #############################################################################
 #
-#  HadamardMatFilter( <hl>[, opt] )  
+#  HadamardMatFilter( <hl>[, <opt>] )  
 #
 #  Eliminates equivalent copies from a list of Hadamard matrices <A>hl</A>. 
 #  Represents the matrices by colored graphs (see <Cite Key='BM79'/>) and
@@ -1195,7 +1234,7 @@ end );
 
 #############################################################################
 #
-#  MatFilter( <ml>[, opt] )  
+#  MatFilter( <ml>[, <opt>] )  
 #
 #  Eliminates equivalent copies from a list of matrices <A>ml</A>. 
 #  It is assumed that all of the matrices have the same set of consecutive 
@@ -1705,21 +1744,6 @@ end );
 
 #############################################################################
 #
-#  CayleyTableOfGroup( <g> ) 
-#
-#  Returns a Cayley table of the group <A>g</A>. The elements
-#  are integers <M>1,\ldots,</M><C>Order(</C><A>g</A><C>)</C>.
-#
-InstallGlobalFunction( CayleyTableOfGroup, function( g )
-local e;
-
-    e:=Elements(g);
-    return List(e,x->List(e,y->Position(e,x*y)));
-end );
-
-
-#############################################################################
-#
 #  MOLSToOrthogonalArray( <ls> ) 
 #
 #  Transforms the set of MOLS <A>ls</A> to an equivalent orthogonal array.
@@ -1831,7 +1855,7 @@ end );
 
 #############################################################################
 #
-#  MOLSFilter( <ls>[, opt] )  
+#  MOLSFilter( <ls>[, <opt>] )  
 #
 #  Eliminates isotopic/paratopic copies from a list of MOLS sets <A>ls</A>. 
 #  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
@@ -2239,6 +2263,195 @@ end );
 
 #############################################################################
 #
+#  CameronSeidelSet( <m> ) 
+#
+#  Returns a list of <M>2^{m/2}</M> symplectic <M>m\times m</M> matrices 
+#  over <M>GF(2)</M> such that the difference of any two of them is
+#  a regular matrix. Here <A>m</A> is an even integer. The construction
+#  is described on page 6 of the paper <Cite Key='CS73'/>.
+#
+InstallGlobalFunction( CameronSeidelSet, function( m )
+local k,Tr,b,B1,B2;
+
+    k:=m/2;
+    Tr:=x->Sum([1..k],i->x^(2^i));
+    b:=function(x,y) return x[1]*y[2]+x[2]*y[1]; end;
+    B1:=List([0..k-1],i->Z(2^k)^i);
+    B2:=Concatenation(Cartesian(B1,[0*Z(2)]),Cartesian([0*Z(2)],B1));
+    return List(Elements(GF(2^k)),a->List(B2,x->List(B2,y->Tr(a*b(x,y)))));
+end );
+
+
+#############################################################################
+#
+#  OrthogonalNormalBasis( <k> ) 
+#
+#  Attempts to find a basis for the field <M>GF(2^k)</M> over <M>GF(2)</M>
+#  that is orthogonal with respect to the trace inner product <M>Tr(xy)</M>.
+#  This should work for odd integers <A>k</A>, but might fail for even
+#  integers.
+#
+InstallGlobalFunction( OrthogonalNormalBasis, function( k )
+local e,Tr,Gram,i,B;
+
+    e:=Elements(GF(2^k));
+    Tr:=x->Sum([1..k],i->x^(2^i));
+    Gram:=v->List(v,x->List(v,y->IversonBracket(Tr(x*y)=Z(2)^0)));
+    i:=0;
+    repeat
+      i:=i+1;
+      B:=List([0..k-1],j->e[i]^(2^j));
+    until Gram(B)=IdentityMat(k) or i=Size(e);
+    if Gram(B)=IdentityMat(k) then
+      return B;
+    else
+      return fail;
+    fi;
+end );
+
+
+#############################################################################
+#
+#  KerdockSet( <m> ) 
+#
+#  Returns a Kerdock set of <M>2^{m-1}</M> symplectic <M>m\times m</M> matrices 
+#  over <M>GF(2)</M> such that the difference of any two of them is a regular 
+#  matrix. Here <A>m</A> is an even integer. The construction is based on
+#  Example 2.4 in the paper <Cite Key='WK95'/>.
+#
+InstallGlobalFunction( KerdockSet, function( m )
+local e,B1,B2,p,vec,Tr;
+
+    e:=Elements(GF(2^(m-1)));
+    B1:=OrthogonalNormalBasis(m-1);
+    B2:=Concatenation(List(B1,x->[x,0*Z(2)]),[[0*Z(2),Z(2)^0]]);
+    p:=Cartesian(List([1..m],x->[0,1]));
+    vec:=List(p,x->x*B2);
+    Tr:=x->Sum([1..m-1],i->x^(2^i));
+    return Z(2)^0*List(e,a->List(B2,x->p[Position(vec,[a^2*x[1]+a*Tr(a*x[1])+a*x[2],Tr(a*x[1])])]));
+end );
+
+
+#############################################################################
+#
+#  SingerDifferenceSets( <q>, <n> ) 
+#
+#  Returns the classical Singer difference sets in the cyclic group
+#  of order <M>v=(q^n-1)/(q-1)</M>, e.g. <C>Group(CyclicPerm(v))</C>.
+#  The difference sets are subsets of <C>[1..v]</C> to make them compatible
+#  with the <Package>DifSets</Package> package. For each <M>D</M> returned,
+#  <M>D-1</M> is a difference set in the integers modulo <M>v</M> (a subset
+#  of <C>[0..v-1]</C>).
+#  
+InstallGlobalFunction( SingerDifferenceSets, function( q, n )
+local v,w,z,tr;
+
+    v:=(q^n-1)/(q-1);
+    w:=PrimitiveElement(GF(q^n));
+    tr:=x->Sum([0..n-1],y->x^(q^y));
+    z:=0*w;
+    return Union(List([0..v-1],b->List(Filtered([1..v-1],x->Gcd(x,v)=1),r->Filtered([0..v-1],i->tr(w^(r*i+b))=z))))+1;
+end );
+
+
+#############################################################################
+#
+#  NormalizedSingerDifferenceSets( <q>, <n> ) 
+#
+#  Returns the classical Singer difference sets in the cyclic group
+#  of order <M>v=(q^n-1)/(q-1)</M> that are normalized. If <M>D</M>
+#  is a difference set, this means that the elements of 
+#  <M>D-1</M> sum up to <M>0</M> modulo <M>v</M>.
+#  
+InstallGlobalFunction( NormalizedSingerDifferenceSets, function( q, n )
+local v,w,z,tr;
+
+    v:=(q^n-1)/(q-1);
+    w:=PrimitiveElement(GF(q^n));
+    tr:=x->Sum([0..n-1],y->x^(q^y));
+    z:=0*w;
+    return AsSet(List(Filtered([1..v-1],x->Gcd(x,v)=1),r->Filtered([0..v-1],i->tr(w^(r*i))=z)))+1;
+end );
+
+
+#############################################################################
+#
+#  PaleyDifferenceSet( <q> ) 
+#
+#  Returns the <A>q</A>-dimensional Paley difference set in <M>GF(q)</M>.
+#  This is a <M>(q,(q-1)/2,(q-3)/4)</M> difference set in the additive 
+#  group of <M>GF(q)</M>. See <Cite Key='KR24'/> for more details.
+#  
+InstallGlobalFunction( PaleyDifferenceSet, function( q )
+local r;
+
+    r:=Concatenation([0*Z(q)],List([0..q-2],i->Z(q)^i));
+    return List([0..(q-3)/2],i->r*Z(q)^(2*i));
+end );
+
+
+#############################################################################
+#
+#  PowerDifferenceSet( <q>, <m> ) 
+#
+#  Returns the <A>q</A>-dimensional difference set constructed from
+#  the <A>m</A>-th powers in <M>GF(q)</M>. Paley difference sets are
+#  power difference sets for <M>m=2</M>. See <Cite Key='KR24'/> for
+#  more details.
+#  
+InstallGlobalFunction( PowerDifferenceSet, function( q, m )
+local r;
+
+    r:=Concatenation([0*Z(q)],List([0..q-2],i->Z(q)^i));
+    return List([0..((q-1)/m-1)],i->r*Z(q)^(m*i));
+end );
+
+
+#############################################################################
+#
+#  TwinPrimePowerDifferenceSet( <q> ) 
+#
+#  Returns the <A>q</A>-dimensional twin prime power difference set. 
+#  For <M>n=(q+1)^2/4</M>, this is a <M>(4n-1,2n-1,n-1)</M> difference 
+#  set in the direct product <M>GF(q)\times GF(q+2)</M>. Both <A>q</A> 
+#  and <A>q</A><M>+2</M> must be powers of primes. See <Cite Key='KR24'/> 
+#  for more details.
+#
+InstallGlobalFunction( TwinPrimePowerDifferenceSet, function( q )
+local ze,d1,d2,d3;
+
+    ze:=[0*Z(q),0*Z(q+2)];
+    d1:=Concatenation(List([0..(q-3)/2],i->List([0..(q-1)/2],j->Concatenation([ze],List([0..q-2],k->[Z(q)^(2*i+k),Z(q+2)^(2*j+k)])))));
+    d2:=Concatenation(List([0..(q-3)/2],i->List([0..(q-1)/2],j->Concatenation([ze],List([1..q-1],k->[Z(q)^(2*i+k),Z(q+2)^(2*j+k)])))));
+    d3:=Concatenation([List([1..q],x->ze)],List([0..q-2],i->Concatenation([ze],List([0..q-2],k->[Z(q)^(i+k),0*Z(q+2)]))));
+    return Concatenation(d1,d2,d3);
+end );
+
+
+#############################################################################
+#
+#  EquivalentDifferenceSets( <g>, <D> ) 
+#
+#  Given a difference set or list of difference sets <A>D</A>
+#  in a group <A>g</A>, returns the set of all difference sets 
+#  equivalent to the ones in <A>D</A>. 
+#  
+InstallGlobalFunction( EquivalentDifferenceSets, function( g, ds )
+local aut,e,dse,autorb;
+
+    if NestingDepthA(ds)=1 then
+      ds:=[ds];
+    fi;
+    e:=Elements(g);
+    dse:=List(ds,x->e{x});
+    aut:=Elements(AutomorphismGroup(g));
+    autorb:=Union(List(dse,z->List(aut,y->AsSet(List(z,x->Position(e,Image(y,x)))))));
+    return Union(List(autorb,x->LeftDevelopment(g,x).blocks));
+end );
+
+
+#############################################################################
+#
 #  IversonBracket( <P> ) 
 #
 #  Returns 1 if <A>P</A> is true, and 0 otherwise. 
@@ -2275,7 +2488,178 @@ end );
 InstallGlobalFunction( AddWeights, function( wd )
 
   return Filtered(List([1..Size(wd)],i->[i-1,wd[i]]),x->x[2]>0);
+end );
 
+
+#############################################################################
+#
+#  AdjacencyMat( <g> ) 
+#
+#  Returns the adjacency matrix of the graph <A>g</A> in 
+#  <Package>GRAPE</Package> format. 
+#
+InstallGlobalFunction( AdjacencyMat, function( g )
+
+  return List([1..g.order],i->List([1..g.order],j->IversonBracket(IsEdge(g,[i,j]))));
+end );
+
+
+#############################################################################
+#
+#  Cliquer( <g>[, <opt>] ) 
+#
+#  Searches for cliques in the graph <A>g</A>. Uses <C>Cliquer</C> by 
+#  S.Niskanen and P.Ostergard <Cite Key='NO03'/>. The graph can either
+#  be given in <Package>GRAPE</Package> format, or as a list <C>[v,elist]</C>
+#  where <C>v</C> is the number of vertices and <C>elist</C> is a list of
+#  edges (<M>2</M>-element subsets of <C>[1..v]</C>). The optional argument 
+#  <A>opt</A> is a record for options. Possible components are:
+#  <List>
+#  <Item><A>Silent</A>:=<C>true</C>/<C>false</C> Work silently, or report
+#  progress. The default is taken from <C>PAGGlobalOptions</C>.</Item>
+#  <Item><A>FindAll</A>:=<C>true</C>/<C>false</C> Find all cliques, or
+#  search for a single clique. The default is <C>true</C>.</Item>
+#  <Item><A>CliqueSize</A>:=<C>n</C> or <C>[min,max]</C> Search for cliques
+#  of size <C>n</C>, or size from <C>min</C> to <C>max</C>. By default, 
+#  searches for cliques of maximum size.</Item>
+#  <Item><A>Order</A>:=<C>n</C> Reorder vertices by ordering function
+#  number <C>n</C>. Available functions are <C>n</C><M>=1</M> <C>ident</C>, 
+#  <C>n</C><M>=2</M> <C>reverse</C>, <C>n</C><M>=3</M> <C>degree</C>, 
+#  <C>n</C><M>=4</M> <C>random</C>, and <C>n</C><M>=5</M> <C>greedy</C> 
+#  (default).</Item>
+#  </List>
+#
+InstallGlobalFunction( Cliquer, function( g, opt... )
+local v,e,input,output,x,command,silent,copt,cmin,cmax,vord,all;
+
+  if IsGraph(g) then
+    v:=OrderGraph(g);
+    e:=UndirectedEdges(g);
+  else
+    v:=g[1];
+    e:=AsSet(g[2]);
+  fi;
+  e:=e-1;
+  output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"cliquer.in"), false );
+  PrintTo(output, v,"\n");
+  for x in e do
+    PrintTo(output, x[1]," ",x[2],"\n");
+  od;
+  PrintTo(output, "-1\n");
+  CloseStream(output);
+
+  silent:=PAGGlobalOptions.Silent;
+  cmin:=0;
+  cmax:=0;
+  vord:=0;
+  all:=true;
+  if Size(opt)>=1 then
+    if IsBound(opt[1].Silent) then
+         silent := opt[1].Silent;
+    fi;
+    if IsBound(opt[1].CliqueSize) then
+      if IsInt(opt[1].CliqueSize) then
+        opt[1].CliqueSize:=[opt[1].CliqueSize];
+      fi; 
+      cmin:=Minimum(opt[1].CliqueSize);
+      cmax:=Maximum(opt[1].CliqueSize);
+    fi;
+    if IsBound(opt[1].Order) then
+      vord:=opt[1].Order;
+    fi;
+    if IsBound(opt[1].FindAll) then
+      all:=opt[1].FindAll;
+    fi;
+  fi;
+
+  command:=Filename(DirectoriesPackagePrograms("PAG"), "pagcliquer");
+  copt:=[Concatenation("-l",String(cmin)),Concatenation("-u",String(cmax))];
+  if silent then copt:=Concatenation(copt,["-V"]); 
+  else copt:=Concatenation(copt,["-v"]); fi;
+  if vord>0 then copt:=Concatenation(copt,[Concatenation("-o",String(vord))]); fi;
+  if not all then copt:=Concatenation(copt,["-A"]); fi;
+
+  input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"cliquer.in") );
+  Process(PAGGlobalOptions.TempDir, command, input, OutputTextUser(), copt );
+  CloseStream(input);
+
+  return ReadAsFunction( Filename(PAGGlobalOptions.TempDir,"cliquer.out") )();
+end );
+
+
+#############################################################################
+#
+#  DisjointCliques( <L>[, <opt>] ) 
+#
+#  Given a list <A>L</A> of <M>k</M>-sets of integers, searches for
+#  cliques of mutually disjoint <M>k</M>-sets from the list. The sets 
+#  must be of equal size <M>k</M>! Uses <C>Cliquer</C> by S.Niskanen 
+#  and P.Ostergard <Cite Key='NO03'/>. The optional argument <A>opt</A> 
+#  is a record for options. Possible components are:
+#  <List>
+#  <Item><A>Silent</A>:=<C>true</C>/<C>false</C> Work silently, or report
+#  progress. The default is taken from <C>PAGGlobalOptions</C>.</Item>
+#  <Item><A>FindAll</A>:=<C>true</C>/<C>false</C> Find all cliques, or
+#  search for a single clique. The default is <C>true</C>.</Item>
+#  <Item><A>CliqueSize</A>:=<C>n</C> or <C>[min,max]</C> Search for cliques
+#  of size <C>n</C>, or size from <C>min</C> to <C>max</C>. By default, 
+#  searches for cliques of maximum size.</Item>
+#  <Item><A>Order</A>:=<C>n</C> Reorder vertices by ordering function
+#  number <C>n</C>. Available functions are <C>n</C><M>=1</M> <C>ident</C>, 
+#  <C>n</C><M>=2</M> <C>reverse</C>, <C>n</C><M>=3</M> <C>degree</C>, 
+#  <C>n</C><M>=4</M> <C>random</C>, and <C>n</C><M>=5</M> <C>greedy</C> 
+#  (default).</Item>
+#  </List>
+#
+InstallGlobalFunction( DisjointCliques, function( l, opt... )
+local v,e,input,output,x,y,command,silent,copt,cmin,cmax,vord,all;
+
+  output:=OutputTextFile( Filename(PAGGlobalOptions.TempDir,"disjointcliques.in"), false );
+  PrintTo(output, Size(l), " ", Size(l[1]), "\n");
+  for x in l do
+    for y in x do
+      PrintTo(output, y, " ");
+    od;
+    PrintTo(output, "\n");
+  od;
+  CloseStream(output);
+
+  silent:=PAGGlobalOptions.Silent;
+  cmin:=0;
+  cmax:=0;
+  vord:=0;
+  all:=true;
+  if Size(opt)>=1 then
+    if IsBound(opt[1].Silent) then
+         silent := opt[1].Silent;
+    fi;
+    if IsBound(opt[1].CliqueSize) then
+      if IsInt(opt[1].CliqueSize) then
+        opt[1].CliqueSize:=[opt[1].CliqueSize];
+      fi; 
+      cmin:=Minimum(opt[1].CliqueSize);
+      cmax:=Maximum(opt[1].CliqueSize);
+    fi;
+    if IsBound(opt[1].Order) then
+      vord:=opt[1].Order;
+    fi;
+    if IsBound(opt[1].FindAll) then
+      all:=opt[1].FindAll;
+    fi;
+  fi;
+
+  command:=Filename(DirectoriesPackagePrograms("PAG"), "disjointcliques");
+  copt:=[Concatenation("-l",String(cmin)),Concatenation("-u",String(cmax))];
+  if silent then copt:=Concatenation(copt,["-V"]); 
+  else copt:=Concatenation(copt,["-v"]); fi;
+  if vord>0 then copt:=Concatenation(copt,[Concatenation("-o",String(vord))]); fi;
+  if not all then copt:=Concatenation(copt,["-A"]); fi;
+
+  input:=InputTextFile( Filename(PAGGlobalOptions.TempDir,"disjointcliques.in") );
+  Process(PAGGlobalOptions.TempDir, command, input, OutputTextUser(), copt );
+  CloseStream(input);
+
+  return ReadAsFunction( Filename(PAGGlobalOptions.TempDir,"disjointcliques.out") )();
 end );
 
 
@@ -2444,6 +2828,69 @@ end );
 
 #############################################################################
 #
+#  CubeProjection( <C>, <p> ) 
+#
+#  Returns the projection of the <M>n</M>-dimensional cube <A>C</A> 
+#  on a pair of coordinates <A>p</A>.
+#
+InstallGlobalFunction( CubeProjection, function( c, p )
+local v;
+
+  v:=Size(c);
+  if NestingDepthA(c)=2 and p=[1,2] then return c;
+  else return List([1..v],i->List([1..v],j->Sum(Flat(CubeLayer(CubeLayer(c,p[1],i),p[2]-1,j)))));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  CubeProjections( <C> ) 
+#
+#  Returns the projections of the <M>n</M>-dimensional cube <A>C</A> 
+#  on all pairs of coordinates.
+#
+InstallGlobalFunction( CubeProjections, function( c )
+
+  return List(Combinations([1..NestingDepthA(c)],2),p->CubeProjection(c,p));
+end );
+
+
+#############################################################################
+#
+#  OrthogonalArrayProjection( <C>, <t> ) 
+#
+#  Returns the projection of the orthogonal array <A>oa</A> 
+#  on a tuple of coordinates <A>t</A>.
+#
+InstallGlobalFunction( OrthogonalArrayProjection, function( oa, t )
+
+  return AsSet(List(oa,x->x{t}));
+end );
+
+
+#############################################################################
+#
+#  OrthogonalArrayProjections( <oa>[, <k> ] ) 
+#
+#  Returns the projections of the orthogonal array <A>oa</A> 
+#  on all <A>k</A>-tuples of coordinates. If the second argument
+#  is not given, <A>k</A><M>=2</M> is assumed.
+#
+InstallGlobalFunction( OrthogonalArrayProjections, function( oa, opt... )
+local k;
+
+  if Size(opt)>=1 then
+    k:=opt[1];
+  else
+    k:=2;
+  fi;
+  return List(Combinations([1..Size(oa[1])],k),t->OrthogonalArrayProjection(oa,t));
+end );
+
+
+#############################################################################
+#
 #  CubeToOrthogonalArray( <C> ) 
 #
 #  Transforms the incidence cube <A>C</A> to an equivalent orthogonal array.
@@ -2505,7 +2952,22 @@ local v,d,a;
   d:=NestingDepthA(c);
   a:=List([0..d-1],i->v*i);
   return BlockDesign(v*d,List(CubeToOrthogonalArray(c),x->x+a));
+end );
 
+
+#############################################################################
+#
+#  OrthogonalArrayToTransversalDesign( <oa> ) 
+#
+#  Transforms the orthogonal array <A>oa</A> to an equivalent transversal design.
+#
+InstallGlobalFunction( OrthogonalArrayToTransversalDesign, function( oa )
+local v,d,a;
+
+  v:=Size(Union(oa));
+  d:=Size(oa[1]);
+  a:=List([0..d-1],i->v*i);
+  return BlockDesign(v*d,List(oa,x->x+a));
 end );
 
 
@@ -2551,6 +3013,46 @@ end );
 
 #############################################################################
 #
+#  DifferenceSetToOrthogonalArray( [<G>,] <ds> ) 
+#
+#  Transforms a (higher-dimensional) difference set to an orthogonal array. 
+#  The argument <A>G</A> is a group and <A>ds</A> is a difference set in 
+#  the <Package>DifSets</Package> package format, with positive integers
+#  as elements. If the first argument is not given, <A>ds</A> contains 
+#  finite field elements and the operation is addition. This is used 
+#  for Paley difference sets and twin prime power difference sets.  
+#
+InstallGlobalFunction( DifferenceSetToOrthogonalArray, function( arg... )
+local e,ds,q;
+
+  if Size(arg)=2 then
+    e:=Elements(arg[1]);
+    if NestingDepthA(arg[2])=1 then
+      ds:=TransposedMat([List([1..Size(arg[2])],x->e[1]),e{arg[2]}]);
+    else
+      ds:=List(arg[2],x->e{x});
+    fi;
+    return Concatenation(List(ds,y->List(e,x->List(y*x,z->Position(e,z)))));
+  else
+    if NestingDepthA(arg[1])=1 then
+      e:=Elements(DefaultField(arg[1]));
+      ds:=TransposedMat([List([1..Size(arg[1])],x->Zero(e[1])),arg[1]]);
+    else 
+      ds:=arg[1];
+      if NestingDepthA(ds)=2 then
+        e:=Elements(DefaultField(Union(ds)));
+      else
+        q:=Size(DefaultField(List(Union(ds),x->x[1])));
+        e:=Cartesian(Elements(GF(q)),Elements(GF(q+2)));
+      fi;
+    fi;
+    return Concatenation(List(ds,y->List(e,x->List(y+x,z->Position(e,z)))));
+  fi;
+end );
+
+
+#############################################################################
+#
 #  CubeTest( <C> ) 
 #
 #  Test whether an incidence cube <A>C</A> is a cube of symmetric designs.
@@ -2560,8 +3062,69 @@ end );
 InstallGlobalFunction( CubeTest, function( c )
 local v;
 
-  v:=Size(c);
-  return AsSet(List(CubeSlices(c),x->AllTDesignLambdas(BlockDesign(v,List(x,y->Positions(y,1))))));
+  if Union(List(CubeSlices(c),x->List(x,AsSet)))<>[[0,1]] then
+    return false;
+  else
+    v:=Size(c);
+    return AsSet(List(CubeSlices(c),x->AllTDesignLambdas(BlockDesign(v,List(x,y->Positions(y,1))))));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  CubeProjectionTest( <C> ) 
+#
+#  Test whether an incidence cube <A>C</A> is a projection cube of symmetric 
+#  designs. The result should be <C>[[v,k,lambda]]</C>. Anything else means that
+#  <A>C</A> is not a <M>(v,k,lambda)</M> projection cube.
+#
+InstallGlobalFunction( CubeProjectionTest, function( c )
+local pr;
+
+  pr:=CubeProjections(c);
+  if Union(List(pr,x->List(x,AsSet)))<>[[0,1]] then
+    return false;
+  else
+    return AsSet(List(pr,x->AllTDesignLambdas(BlockDesign(Size(x),Difference(IncidenceMatToBlocks(x),[[]])))));
+  fi;
+end );
+
+
+#############################################################################
+#
+#  OrthogonalArrayProjectionTest( <oa> ) 
+#
+#  Test whether an orthogonal array <A>oa</A> corresponds to a projection 
+#  cube of symmetric <M>(v,k,\lambda)</M> designs. The result should be 
+#  <C>[[v,k,lambda]]</C>. Anything else means that  <A>oa</A> does not 
+#  correspond to a projection cube.
+#
+InstallGlobalFunction( OrthogonalArrayProjectionTest, function( oa )
+local n,v,k,l,testmat,p,ok,oap,m;
+
+  n:=Size(oa[1]);
+  v:=Size(Union(oa));
+  k:=Size(oa)/v;
+  l:=k*(k-1)/(v-1);
+  if IsInt(k) and IsInt(l) then
+    testmat:=l*AllOnesMat(v)+(k-l)*IdentityMat(v);
+    ok:=true;
+    for p in Combinations([1..n],2) do
+      if ok then
+        oap:=List(oa,x->x{p});
+        m:=BlocksToIncidenceMat(List([1..v],r->List(Filtered(oap,x->x[2]=r),x->x[1])));
+        ok:=m*TransposedMat(m)=testmat;
+      fi;
+    od;
+    if ok then 
+      return [[v,k,l]];
+    else 
+      return false;
+    fi;
+  else
+    return false;
+  fi;
 end );
 
 
@@ -2599,7 +3162,7 @@ end );
 
 #############################################################################
 #
-#  CubeAut( <C>[, opt] )  
+#  CubeAut( <C>[, <opt>] )  
 #
 #  Computes the full auto(para)topy group of an incidence cube <A>C</A>. 
 #  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
@@ -2642,7 +3205,50 @@ end );
 
 #############################################################################
 #
-#  CubeFilter( <cl>[, opt] )  
+#  OrthogonalArrayAut( <oa>[, <opt>] )  
+#
+#  Computes the full auto(para)topy group of an orthogonal array <A>oa</A>. 
+#  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+#  The optional argument <A>opt</A> is a record for options. Possible 
+#  components are:
+#  <List>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Compute the full autotopy
+#  group of <A>oa</A>. This is the default.</Item>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Compute the full
+#  autoparatopy group of <A>oa</A>.</Item>
+#  </List>
+#  Any other components are forwarded to the <Ref Func="BlockDesignAut" Style="Text"/>
+#  function; see its documentation.
+#
+InstallGlobalFunction( OrthogonalArrayAut, function( oa, opt... )
+local opt2,v;
+
+  v:=Size(Union(oa));
+  if Size(opt)>=1 then
+    opt2:=StructuralCopy(opt[1]);
+    if IsBound(opt[1].Paratopy) then
+         if not opt[1].Paratopy then
+           opt2.PointClasses:=v;
+         fi;
+    else
+      opt2.PointClasses:=v;
+      if IsBound(opt[1].Isotopy) then
+         if not opt[1].Isotopy then
+           Unbind(opt2.PointClasses);
+         fi;
+      fi;
+    fi;
+  else
+    opt2:=rec(PointClasses:=v);
+  fi;
+
+  return BlockDesignAut(OrthogonalArrayToTransversalDesign(oa),opt2);
+end );
+
+
+#############################################################################
+#
+#  CubeFilter( <cl>[, <opt>] )  
 #
 #  Eliminates equivalent copies from a list of incidence cubes <A>cl</A>. 
 #  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
@@ -2687,6 +3293,59 @@ local opt2,v,pos;
       return BlockDesignFilter(List(cl,CubeToTransversalDesign),opt2);
     else
       return cl{BlockDesignFilter(List(cl,CubeToTransversalDesign),opt2)};
+    fi;
+  fi;
+end );
+
+
+#############################################################################
+#
+#  OrthogonalArrayFilter( <oal>[, <opt>] )  
+#
+#  Eliminates equivalent copies from a list of orthogonal arrays <A>oal</A>. 
+#  Uses <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno <Cite Key='MP14'/>. 
+#  The optional argument <A>opt</A> is a record for options. Possible 
+#  components are:
+#  <List>
+#  <Item><A>Paratopy</A>:=<C>true</C>/<C>false</C> Eliminate paratopic orthogonal 
+#  arrays. This is the default.</Item>
+#  <Item><A>Isotopy</A>:=<C>true</C>/<C>false</C> Eliminate isotopic orthogonal
+#  arrays.</Item>
+#  </List>
+#  Any other components are forwarded to the <Ref Func="BlockDesignFilter" Style="Text"/>
+#  function; see its documentation.
+#
+InstallGlobalFunction( OrthogonalArrayFilter, function( oal, opt... )
+local opt2,v,pos;
+
+  if oal=[] then return [];
+  else
+    v:=Size(Union(oal[1]));
+    pos:=false;
+    if Size(opt)>=1 then
+      opt2:=StructuralCopy(opt[1]);
+      if IsBound(opt[1].Paratopy) then
+         if not opt[1].Paratopy then
+           opt2.PointClasses:=v;
+         fi;
+      fi;
+      if IsBound(opt[1].Isotopy) then
+        if opt[1].Isotopy then
+          opt2.PointClasses:=v;
+        fi;
+      fi;
+      if IsBound(opt[1].Positions) then
+        pos:=opt[1].Positions;
+      fi;
+    else
+      opt2:=rec();
+    fi;
+    opt2.Positions:=true;
+
+    if pos then
+      return BlockDesignFilter(List(oal,OrthogonalArrayToTransversalDesign),opt2);
+    else
+      return oal{BlockDesignFilter(List(oal,OrthogonalArrayToTransversalDesign),opt2)};
     fi;
   fi;
 end );

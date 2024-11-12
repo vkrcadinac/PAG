@@ -46,7 +46,10 @@
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B532D6B81CC1FC2">1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></a>
 </span>
 </div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X80F5A3C186D623A2">1.6 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X84B09B65806D0FD2">1.6 <span class="Heading">Examples: Projection Cubes of Symmetric Designs</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X80F5A3C186D623A2">1.7 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></a>
 </span>
 </div>
 </div>
@@ -64,7 +67,7 @@
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("PAG"); </span></pre></div>
 
-<p>Let us present a small example from the paper <a href="chapBib.html#biBVK18">[Krc18]</a>. In Theorem 8.1, a simple 5-(16,7,10) design with the following automorphism group was constructed.</p>
+<p>Let us start with a small example from the paper <a href="chapBib.html#biBVK18">[Krc18]</a>. In Theorem 8.1, a simple 5-(16,7,10) design with the following automorphism group was constructed.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Group((2,3,4)(5,6,7,8,9,10)(11,12,13,14,15,16), </span>
@@ -113,7 +116,7 @@ true
 .
 </pre></div>
 
-<p>The output is a list of non-isomorphic designs in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. We can check that it is really a 5-design.</p>
+<p>The output is a list of non-isomorphic designs in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.13.1/pkg/design/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. We can check that it is really a 5-design.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AllTDesignLambdas);</span>
@@ -140,7 +143,7 @@ true
       [ 1, 2, 5, 6, 11, 14, 16 ] ] ]
 </pre></div>
 
-<p>In this case isomorph rejection is not performed and we get two sets of base blocks. They can be turned into designs by calling the <code class="func">BlockDesign</code> (<a href="/opt/gap-4.11.1/pkg/design-1.7/htm/CHAP003.htm#SECT001"><span class="RefLink">DESIGN: BlockDesign</span></a>) function: <code class="code">List(bb,x-&gt;BlockDesign(16,x,g));</code>.</p>
+<p>In this case isomorph rejection is not performed and we get two sets of base blocks. They can be turned into designs by calling the <code class="func">BlockDesign</code> (<a href="/opt/gap-4.13.1/pkg/design/htm/CHAP003.htm#SECT001"><span class="RefLink">DESIGN: BlockDesign</span></a>) function: <code class="code">List(bb,x-&gt;BlockDesign(16,x,g));</code>.</p>
 
 <p><a id="X8360C04082558A12" name="X8360C04082558A12"></a></p>
 
@@ -388,7 +391,7 @@ Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5)
 <p>See <a href="chapBib.html#biBKD15">[KD15]</a> for an introduction to Latin squares and definitions of isotopy, paratopy, etc. Multiplication tables of groups are examples of Latin squares.</p>
 
 
-<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CayleyTableOfGroup(CyclicGroup(7));</span>
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MultiplicationTable(CyclicGroup(7));</span>
 [ [ 1, 2, 3, 4, 5, 6, 7 ], 
   [ 2, 3, 4, 5, 6, 7, 1 ], 
   [ 3, 4, 5, 6, 7, 1, 2 ], 
@@ -398,7 +401,7 @@ Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5)
   [ 7, 1, 2, 3, 4, 5, 6 ] ]
 </pre></div>
 
-<p>We can construct more examples by prescribing symmetry groups. The <strong class="pkg">PAG</strong> function <code class="code">KramerMesnerMOLS</code> performs a search for sets of <span class="SimpleMath">s</span> mutually orthogonal Latin squares (MOLS) of order <span class="SimpleMath">n</span> and a given permutation group as autotopy or autoparatopy group. The group must act on the <span class="SimpleMath">s+2</span> point classes of the corresponding transversal design. By <a href="chapBib.html#biBRF12">[Fal12]</a> and <a href="chapBib.html#biBSVW12">[SVW12]</a>, an autotopism of order 5 of a Latin square of order 7 must have the following cycle structure.</p>
+<p>We can construct more examples by prescribing symmetry groups. The <strong class="pkg">PAG</strong> function <code class="code">KramerMesnerMOLS</code> performs a search for sets of <span class="SimpleMath">s</span> mutually orthogonal Latin squares (MOLS) of order <span class="SimpleMath">n</span> and a given permutation group as autotopy or autoparatopy group. The group must act on the <span class="SimpleMath">s+2</span> point classes of the corresponding transversal design. By <a href="chapBib.html#biBRF12">[Fal12]</a> and <a href="chapBib.html#biBSVW12">[SVW12]</a>, an autotopy of order 5 of a Latin square of order 7 must have the following cycle structure.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:=MultiPerm(CyclicPerm(5),[1..7],3);</span>
@@ -445,7 +448,7 @@ Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5)
 true
 </pre></div>
 
-<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.11.1/pkg/guava-3.19/doc/chap7.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">L</span> of order 10. Self-orthogonal means that <span class="SimpleMath">L</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">{L,L^t}</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
+<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.13.1/pkg/guava/doc/chap7.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">L</span> of order 10. Self-orthogonal means that <span class="SimpleMath">L</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">{L,L^t}</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=Sortex(Concatenation([11..20],[1..10],[31..40],[21..30]));</span>
@@ -453,7 +456,7 @@ true
 31)(22,32)(23,33)(24,34)(25,35)(26,36)(27,37)(28,38)(29,39)(30,40)
 </pre></div>
 
-<p>Furthermore, the example from <a href="chapBib.html#biBCD07">[CD07]</a> has an autotopism of order 9.</p>
+<p>Furthermore, the example from <a href="chapBib.html#biBCD07">[CD07]</a> has an autotopy of order 9.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:=MultiPerm(CyclicPerm(9),[1..10],4);</span>
@@ -502,7 +505,7 @@ true
 
 <h4>1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></h4>
 
-<p>Cubes of symmetric designs are studied in the paper <a href="chapBib.html#biBKPT23">[KPT23a]</a>. Here is an example.</p>
+<p>Cubes of symmetric designs are studied in the paper <a href="chapBib.html#biBKPT23">[KPT24]</a>. Here is an example.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=DifferenceCube(Group((1,2,3,4,5,6,7)),[1,2,4],3);</span>
@@ -578,7 +581,7 @@ true
   [ 1, 1, 1, 1, 1, 1, 3 ] ]
 </pre></div>
 
-<p>A cube of arbitrary dimension <span class="SimpleMath">nge 2</span> can be constructed from a difference set in a group by calling <code class="func">DifferenceCube</code> (<a href="chap2.html#X796E426D877E220A"><span class="RefLink">2.6-1</span></a>). The function uses the representation of difference sets from the <strong class="pkg">DifSets</strong> package <a href="/opt/gap-4.11.1/pkg/difsets-2.3.1/doc/chap1.html#X8248A9AB7E689C64"><span class="RefLink">DifSets: Difference Sets</span></a>. For <span class="SimpleMath">n=2</span>, the difference cube is simply an incidence matrix of the associated symmetric design, i.e. the development of the difference set.</p>
+<p>A cube of arbitrary dimension <span class="SimpleMath">n≥ 2</span> can be constructed from a difference set in a group by calling <code class="func">DifferenceCube</code> (<a href="chap2.html#X796E426D877E220A"><span class="RefLink">2.6-1</span></a>). The function uses the representation of difference sets from the <strong class="pkg">DifSets</strong> package <a href="/opt/gap-4.13.1/pkg/difsets/doc/chap1.html#X8248A9AB7E689C64"><span class="RefLink">DifSets: Difference Sets</span></a>. For <span class="SimpleMath">n=2</span>, the difference cube is simply an incidence matrix of the associated symmetric design, i.e. the development of the difference set.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=SmallGroup(15,1);</span>
@@ -608,7 +611,7 @@ true
 [ 15, 7, 3 ]
 </pre></div>
 
-<p>The function <code class="func">DifferenceSets</code> (<a href="/opt/gap-4.11.1/pkg/difsets-2.3.1/doc/chap2.html#X83297D2B85F9E074"><span class="RefLink">DifSets: DifferenceSets</span></a>) returns a list of all difference sets up to equivalence in a given group. Here is a small <span class="SimpleMath">4</span>-dimensional <span class="SimpleMath">(3,2,1)</span> cube.</p>
+<p>The function <code class="func">DifferenceSets</code> (<a href="/opt/gap-4.13.1/pkg/difsets/doc/chap2.html#X83297D2B85F9E074"><span class="RefLink">DifSets: DifferenceSets</span></a>) returns a list of all difference sets up to equivalence in a given group. Here is a small <span class="SimpleMath">4</span>-dimensional <span class="SimpleMath">(3,2,1)</span> cube.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=DifferenceCube(Group((1,2,3)),[1,2],4);</span>
@@ -625,7 +628,7 @@ true
 [ [ 3, 2, 1 ] ]
 </pre></div>
 
-<p>The function <code class="func">CubeTest</code> (<a href="chap2.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-12</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">(v,k,λ)</span> designs. In the next example we construct all <span class="SimpleMath">3</span>-dimensional difference cubes of order <span class="SimpleMath">21</span>.</p>
+<p>The function <code class="func">CubeTest</code> (<a href="chap2.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-13</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">(v,k,λ)</span> designs. In the next example we construct all <span class="SimpleMath">3</span>-dimensional difference cubes of order <span class="SimpleMath">21</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=AllSmallGroups(21);;</span>
@@ -643,7 +646,7 @@ true
 2646
 </pre></div>
 
-<p>The function <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-14</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib.html#biBKPT23">[KPT23a]</a>. First we search for all <span class="SimpleMath">(21,5,1)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">21</span>.</p>
+<p>The function <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-15</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib.html#biBKPT23">[KPT24]</a>. First we search for all <span class="SimpleMath">(21,5,1)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">21</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=Filtered(Combinations([1..21],5),x-&gt;IsDifferenceSet(g[1],x));;</span>
@@ -679,7 +682,7 @@ true
 1
 </pre></div>
 
-<p>The function <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-15</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">(21,5,1)</span> difference cubes.</p>
+<p>The function <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-16</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">(21,5,1)</span> difference cubes.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c3:=cc[1];;</span>
@@ -691,7 +694,7 @@ true
 441
 </pre></div>
 
-<p>However, the three cubes have the same slice invariant; see <a href="chapBib.html#biBKPT23">[KPT23a]</a> for the definition.</p>
+<p>However, the three cubes have the same slice invariant; see <a href="chapBib.html#biBKPT23">[KPT24]</a> for the definition.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([c1,c2,c3],SliceInvariant);</span>
@@ -699,7 +702,7 @@ true
   [ [ [ [ 120960, 21 ] ], 3 ] ] ]
 </pre></div>
 
-<p>Cubes with slice invariants different from any difference cube can be constructed for parameters of the form <span class="SimpleMath">(4^m,2^m-1(2^m-1),2^m-1(2^m-1-1))</span>, <span class="SimpleMath">mge 2</span>.</p>
+<p>Cubes with slice invariants different from any difference cube can be constructed for parameters of the form <span class="SimpleMath">(4^m,2^m-1(2^m-1),2^m-1(2^m-1-1))</span>, <span class="SimpleMath">m≥ 2</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:=2;; n:=3;;</span>
@@ -712,9 +715,9 @@ true
   [ [ [ [ 384, 16 ] ], 2 ], [ [ [ 11520, 16 ] ], 1 ] ] ]
 </pre></div>
 
-<p>The first cube in the list <code class="code">cl</code> is a difference cube. The other two cubes are not, because they have non-isomorphic slices in different directions. This construction works for all <span class="SimpleMath">mge 2</span> and dimensions <span class="SimpleMath">nge 3</span>, but it takes a lot of time and memory for bigger values of <span class="SimpleMath">m</span> and <span class="SimpleMath">n</span>. We classified all 3-dimensional group cubes of <span class="SimpleMath">(16,6,2)</span> designs; they are available at <span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/cubes.html">https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</a></span>. A list of 1423 non-group cubes of <span class="SimpleMath">(16,6,2)</span> designs is also provided.</p>
+<p>The first cube in the list <code class="code">cl</code> is a difference cube. The other two cubes are not, because they have non-isomorphic slices in different directions. This construction works for all <span class="SimpleMath">m≥ 2</span> and dimensions <span class="SimpleMath">n≥ 3</span>, but it takes a lot of time and memory for bigger values of <span class="SimpleMath">m</span> and <span class="SimpleMath">n</span>. We classified all 3-dimensional group cubes of <span class="SimpleMath">(16,6,2)</span> designs; they are available at <span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/cubes.html">https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</a></span>. A list of 1423 non-group cubes of <span class="SimpleMath">(16,6,2)</span> designs is also provided.</p>
 
-<p>The package <strong class="pkg">DifSets</strong> contains precomputed lists of difference sets up to equivalence. They are loaded by the function <code class="func">LoadDifferenceSets</code> (<a href="/opt/gap-4.11.1/pkg/difsets-2.3.1/doc/chap2.html#X848925877C3C891F"><span class="RefLink">DifSets: LoadDifferenceSets</span></a>). We can use them to compute all difference cubes up to equivalence.</p>
+<p>The package <strong class="pkg">DifSets</strong> contains precomputed lists of difference sets up to equivalence. They are loaded by the function <code class="func">LoadDifferenceSets</code> (<a href="/opt/gap-4.13.1/pkg/difsets/doc/chap2.html#X848925877C3C891F"><span class="RefLink">DifSets: LoadDifferenceSets</span></a>). We can use them to compute all difference cubes up to equivalence.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v:=27;</span>
@@ -748,17 +751,15 @@ true
   [ 5, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 23, 25, 27 ] ] ]
 </pre></div>
 
-<p>We will now construct some non-difference group cubes in <span class="SimpleMath">ℤ_9⋊ ℤ_3</span>. Here is an efficient way to get all difference sets, including equivalent ones.</p>
+<p>We will now construct some non-difference group cubes in <span class="SimpleMath">ℤ_9⋊ ℤ_3</span>. Here is an way to get all difference sets, including equivalent ones.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=SmallGroup(v,4);</span>
 &lt;pc group of size 27 with 3 generators&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ge:=ExtendedPermRepresentation(g);</span>
-&lt;permutation group with 7 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ds:=LoadDifferenceSets(v,4);</span>
 [ [ 1, 2, 3, 4, 5, 6, 9, 12, 16, 19, 20, 23, 26 ], 
   [ 1, 2, 3, 4, 5, 7, 8, 9, 13, 15, 18, 19, 23 ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=Union(List(ds,x-&gt;Orbit(ge,x,OnSets)));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=EquivalentDifferenceSets(g,ds);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(allds);</span>
 972
 </pre></div>
@@ -766,7 +767,9 @@ true
 <p>For parameters <span class="SimpleMath">(21,5,1)</span> we could search for all designs with difference sets as blocks. This would take too much time for <span class="SimpleMath">(27,13,6)</span>, so we prescribe an automorphism group of order 3.</p>
 
 
-<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:=AllSubgroupsConjugation(ge);;</span>
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ge:=ExtendedPermRepresentation(g);</span>
+&lt;permutation group with 7 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:=AllSubgroupsConjugation(ge);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">h:=sub[4];</span>
 Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
   (11,25,19)(13,26,21)(18,27,24) ])
@@ -872,9 +875,218 @@ Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
 
 <p><span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/cubes.html">https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</a></span></p>
 
+<p><a id="X84B09B65806D0FD2" name="X84B09B65806D0FD2"></a></p>
+
+<h4>1.6 <span class="Heading">Examples: Projection Cubes of Symmetric Designs</span></h4>
+
+<p>Projection cubes of symmetric designs are introduced and studied in <a href="chapBib.html#biBKR24">[KR24]</a>. They are <span class="SimpleMath">n</span>-dimensional matrices of zeros and ones such that all <span class="SimpleMath">2</span>-dimensional projections are incidence matrices of symmetric <span class="SimpleMath">(v,k,λ)</span> designs. The set of all such matrices is denoted <span class="SimpleMath">P^n(v,k,λ)</span>. Here are two pictures of <span class="SimpleMath">P^3(7,3,1)</span>-cubes.</p>
+
+<p><div><img src="c1.jpg" style="float: left; width:50%; margin-bottom: 0px; margin-left: 0px;" alt="C1" /></div> <div><img src="c3.jpg" style="float: left; width:50%; margin-bottom: 0px; margin-left: 0px;" alt="C3" /></div< <div style="clear:both;"></div></p>
+
+<p>These are the cubes <span class="SimpleMath">C_1</span> and <span class="SimpleMath">C_3</span> from <a href="chapBib.html#biBKR24">[KR24]</a>. Incidence cubes can be represented as sets of indices of the <span class="SimpleMath">1</span>-entries. The two cubes above have the following ``orthogonal array representations''.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C1:=[[1,2,3],[1,4,5],[1,6,7],[2,3,1],[2,4,6],[2,7,5],[3,1,2],[3,6,5],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[3,7,4],[4,3,7],[4,5,1],[4,6,2],[5,1,4],[5,2,7],[5,3,6],[6,2,4],[6,5,3],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[6,7,1],[7,1,6],[7,4,3],[7,5,2]];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C3:=[[1,2,4],[1,4,6],[1,6,2],[2,3,7],[2,4,3],[2,7,4],[3,1,6],[3,6,7],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[3,7,1],[4,3,6],[4,5,3],[4,6,5],[5,1,2],[5,2,3],[5,3,1],[6,2,7],[6,5,2],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[6,7,5],[7,1,4],[7,4,5],[7,5,1]];;</span>
+</pre></div>
+
+<p>We can switch between this representation and <span class="SimpleMath">n</span>-dimensional matrices with the functions <code class="func">OrthogonalArrayToCube</code> (<a href="chap2.html#X87C8CFE97ECDC3DA"><span class="RefLink">2.6-8</span></a>) and <code class="func">CubeToOrthogonalArray</code> (<a href="chap2.html#X8214B28081B21BDE"><span class="RefLink">2.6-7</span></a>).</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C1c:=OrthogonalArrayToCube(C1);</span>
+[ [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ] ], 
+  [ [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 1, 0, 0 ], 
+      [ 0, 0, 0, 1, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 1, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 1 ], 
+      [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 1, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 1, 0, 0, 0, 0, 0, 0 ] ], 
+  [ [ 0, 0, 0, 0, 0, 1, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 1, 0, 0, 0, 0 ], 
+      [ 0, 1, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ], 
+      [ 0, 0, 0, 0, 0, 0, 0 ] ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CubeProjectionTest(C1c);</span>
+[ [ 7, 3, 1 ] ]
+</pre></div>
+
+<p>The function <code class="func">CubeProjectionTest</code> (<a href="chap2.html#X8322D44C83B55DF7"><span class="RefLink">2.7-3</span></a>) checks if an <span class="SimpleMath">n</span>-dimensional matrix is a <span class="SimpleMath">P^n(v,k,λ)</span>-cube. The result should be <code class="code">[[v,k,lambda]]</code>. Anything else means it does not satisfy the requirements. There is a faster function <code class="func">OrthogonalArrayProjectionTest</code> (<a href="chap2.html#X802342217BFEF435"><span class="RefLink">2.7-6</span></a>) that works directly with the orthogonal array representation.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C3);</span>
+[ [ 7, 3, 1 ] ]
+</pre></div>
+
+<p>Functions <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-16</span></a>) and <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-15</span></a>) also have versions that work with orthogonal arrays.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(OrthogonalArrayFilter([C1,C3]));</span>
+2
+</pre></div>
+
+<p>This means that <span class="SimpleMath">C_1</span> and <span class="SimpleMath">C_3</span> are not equivalent (paratopic). They are distinguished by the size of the full autoparatopy group.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(OrthogonalArrayAut(C1,rec(Paratopy:=true)));</span>
+63
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(OrthogonalArrayAut(C3,rec(Paratopy:=true)));</span>
+42
+</pre></div>
+
+<p>Projection cubes can be constructed from <span class="SimpleMath">n</span>-dimensional difference sets. The family of Paley difference sets extends naturally to higher dimensions.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D4:=PaleyDifferenceSet(7);</span>
+[ [ 0*Z(7), Z(7)^0, Z(7), Z(7)^2, Z(7)^3, Z(7)^4, Z(7)^5 ], 
+  [ 0*Z(7), Z(7)^2, Z(7)^3, Z(7)^4, Z(7)^5, Z(7)^0, Z(7) ], 
+  [ 0*Z(7), Z(7)^4, Z(7)^5, Z(7)^0, Z(7), Z(7)^2, Z(7)^3 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C4:=DifferenceSetToOrthogonalArray(D4);</span>
+[ [ 1, 2, 3, 4, 5, 6, 7 ], [ 2, 4, 6, 3, 1, 7, 5 ], [ 3, 6, 5, 7, 4, 1, 2 ], 
+  [ 4, 3, 7, 6, 2, 5, 1 ], [ 5, 1, 4, 2, 7, 3, 6 ], [ 6, 7, 1, 5, 3, 2, 4 ], 
+  [ 7, 5, 2, 1, 6, 4, 3 ], [ 1, 4, 5, 6, 7, 2, 3 ], [ 2, 3, 1, 7, 5, 4, 6 ], 
+  [ 3, 7, 4, 1, 2, 6, 5 ], [ 4, 6, 2, 5, 1, 3, 7 ], [ 5, 2, 7, 3, 6, 1, 4 ], 
+  [ 6, 5, 3, 2, 4, 7, 1 ], [ 7, 1, 6, 4, 3, 5, 2 ], [ 1, 6, 7, 2, 3, 4, 5 ], 
+  [ 2, 7, 5, 4, 6, 3, 1 ], [ 3, 1, 2, 6, 5, 7, 4 ], [ 4, 5, 1, 3, 7, 6, 2 ], 
+  [ 5, 3, 6, 1, 4, 2, 7 ], [ 6, 2, 4, 7, 1, 5, 3 ], [ 7, 4, 3, 5, 2, 1, 6 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C4);</span>
+[ [ 7, 3, 1 ] ]
+</pre></div>
+
+<p>This is a <span class="SimpleMath">7</span>-dimensional analog of the Fano plane. The cubes <span class="SimpleMath">C_1</span> and <span class="SimpleMath">C_3</span> are its restrictions.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AsSet(List(C4,x-&gt;x{[1,2,3]}))=C1;</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AsSet(List(C4,x-&gt;x{[1,2,4]}))=C3;</span>
+true
+</pre></div>
+
+<p>The cyclotomic difference sets (4th and 8th powers in finite fields of appropriate order) and the twin prime power difference sets also have higher-dimensional versions.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C5:=DifferenceSetToOrthogonalArray(PowerDifferenceSet(37,4));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C5);</span>
+[ [ 37, 9, 2 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C6:=DifferenceSetToOrthogonalArray(PowerDifferenceSet(73,8));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C6);</span>
+[ [ 73, 9, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C7:=DifferenceSetToOrthogonalArray(TwinPrimePowerDifferenceSet(5));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C7);</span>
+[ [ 35, 17, 8 ] ]
+</pre></div>
+
+<p>These are projection cubes in <span class="SimpleMath">P^37(37,9,2)</span>, <span class="SimpleMath">P^73(73,9,1)</span>, and <span class="SimpleMath">P^5(35,17,8)</span>. In the paper <a href="chapBib.html#biBKR24">[KR24]</a> the following <span class="SimpleMath">3</span>-dimensional <span class="SimpleMath">(16,6,2)</span> difference set in <span class="SimpleMath">Z_4× Z_4</span> is considered.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D4:=[[[0,0],[0,0],[1,0]],[[0,0],[1,0],[0,0]],[[0,0],[0,1],[2,0]],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">[[0,0],[2,0],[0,1]],[[0,0],[1,2],[0,3]],[[0,0],[2,3],[3,2]]];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=SmallGroup(16,2);</span>
+&lt;pc group of size 16 with 4 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">StructureDescription(g);</span>
+"C4 x C4"
+</pre></div>
+
+<p>We first convert <span class="SimpleMath">D_4</span> to the <strong class="pkg">DifSets</strong> package format.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">toel:=x-&gt;g.1^x[1]*g.2^x[2];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D4a:=List(D4,x-&gt;List(x,toel));</span>
+[ [ &lt;identity&gt; of ..., &lt;identity&gt; of ..., f1 ], 
+  [ &lt;identity&gt; of ..., f1, &lt;identity&gt; of ... ], [ &lt;identity&gt; of ..., f2, f3 ], 
+  [ &lt;identity&gt; of ..., f3, f2 ], [ &lt;identity&gt; of ..., f1*f4, f2*f4 ], 
+  [ &lt;identity&gt; of ..., f2*f3*f4, f1*f3*f4 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">e:=Elements(g);</span>
+[ &lt;identity&gt; of ..., f1, f2, f3, f4, f1*f2, f1*f3, f1*f4, f2*f3, f2*f4, f3*f4, 
+f1*f2*f3, f1*f2*f4, f1*f3*f4, f2*f3*f4, f1*f2*f3*f4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">D4b:=List(D4a,x-&gt;List(x,y-&gt;Position(e,y)));</span>
+[ [ 1, 1, 2 ], [ 1, 2, 1 ], [ 1, 3, 4 ], [ 1, 4, 3 ], [ 1, 8, 10 ], 
+  [ 1, 15, 14 ] ]
+</pre></div>
+
+<p>The function <code class="func">DifferenceSetToOrthogonalArray</code> (<a href="chap2.html#X876F61527F6AA5E9"><span class="RefLink">2.7-7</span></a>) takes either a group and an <span class="SimpleMath">n</span>-dimensional difference set in <strong class="pkg">DifSets</strong> format, or an additive difference set containing finite field elements. The development of <span class="SimpleMath">D_4</span> over <span class="SimpleMath">G=Z_4× Z_4</span> is a projection cube in <span class="SimpleMath">P^3(16,6,2)</span> with full autoparatopy group isomorphic to <span class="SimpleMath">G</span>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">C8:=DifferenceSetToOrthogonalArray(g,D4b);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrthogonalArrayProjectionTest(C8);</span>
+[ [ 16, 6, 2 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsomorphismGroups(g,OrthogonalArrayAut(C8,rec(Paratopy:=true)));</span>
+[ f1, f2 ] -&gt; [ (1,7,4,2)(3,12,9,6)(5,14,11,8)(10,16,15,13)(17,23,20,18)(19,28,
+    25,22)(21,30,27,24)(26,32,31,29)(33,39,36,34)(35,44,41,38)(37,46,43,40)(42,
+    48,47,45), (1,10,5,3)(2,13,8,6)(4,15,11,9)(7,16,14,12)(17,26,21,19)(18,29,
+    24,22)(20,31,27,25)(23,32,30,28)(33,42,37,35)(34,45,40,38)(36,47,43,41)(39,
+    48,46,44) ]
+</pre></div>
+
+<p>More examples of projection cubes are available on the following web page,</p>
+
+<p><span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/pcubes.html">https://web.math.pmf.unizg.hr/~krcko/results/pcubes.html</a></span> <br /> including <span class="SimpleMath">102</span> cubes in <span class="SimpleMath">P^3(16,6,2)</span> that cannot be constructed from <span class="SimpleMath">3</span>-dimensional difference sets. Four of these cubes are shown in Figure 2 of <a href="chapBib.html#biBKR24">[KR24]</a>. They have the interesting property that the projections are non-isomorphic <span class="SimpleMath">(16,6,2)</span> designs.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Read("examples.oa");</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fig2:=[Crrg,Crgg,Crrb,Crbb];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(fig2,OrthogonalArrayProjectionTest);</span>
+[ [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ], [ [ 16, 6, 2 ] ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p:=oa-&gt;List(OrthogonalArrayProjections(oa),x-&gt;Size(OrthogonalArrayAut(x)));;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(fig2,p);</span>
+[ [ 768, 11520, 11520 ], [ 768, 768, 11520 ], [ 384, 11520, 11520 ], 
+  [ 384, 384, 11520 ] ]
+</pre></div>
+
+<p>The four cubes are not equivalent with cubes constructed from difference sets because their autotopy groups act non-transitively on the indices.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">aut:=List(fig2,OrthogonalArrayAut);</span>
+[ &lt;permutation group with 3 generators&gt;, &lt;permutation group with 3 generators&gt;, 
+  &lt;permutation group with 3 generators&gt;, &lt;permutation group with 3 generators&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(aut,x-&gt;List(Orbits(x),Size));</span>
+[ [ 12, 4, 12, 4, 12, 4 ], [ 12, 4, 12, 4, 12, 4 ], [ 8, 8, 8, 8, 8, 8 ], 
+  [ 8, 8, 8, 8, 8, 8 ] ]
+</pre></div>
+
 <p><a id="X80F5A3C186D623A2" name="X80F5A3C186D623A2"></a></p>
 
-<h4>1.6 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></h4>
+<h4>1.7 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></h4>
 
 <p>Mosaics of combinatorial designs were introduced in <a href="chapBib.html#biBGGP18">[GGP18]</a> and a contruction from resolvable designs was proved. This construction of mosaics is implemented in <strong class="pkg">PAG</strong> for affine designs.</p>
 
@@ -1071,6 +1283,6 @@ Group([ (1,3,2)(4,6,5)(7,9,8)(10,12,11)(14,16,15)(17,19,18)(20,22,21)
 <div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

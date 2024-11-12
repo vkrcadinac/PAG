@@ -7,6 +7,10 @@ if fail = LoadPackage("AutoDoc", ">= 2016.01.21") then
     Error("AutoDoc 2016.01.21 or newer is required");
 fi;
 
+SetGapDocLaTeXOptions("utf8"); 
+
+GAPDoc2LaTeXProcs.DefaultOptions.EarlyExtraPreamble := "\\usepackage{graphicx}\n";
+
 AutoDoc(rec(
     autodoc := true,
     gapdoc := rec(

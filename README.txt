@@ -38,6 +38,14 @@ Nauty and Traces:
 * Brendan McKay (Brendan.McKay@anu.edu.au)
 * Adolfo Piperno (piperno@di.uniroma1.it)
 
+Cliquer:
+* Sampo Niskanen (sampo.niskanen@iki.fi)
+* Patric Ostergard (patric.ostergard@aalto.fi)
+
+Libexact:
+* Petteri Kaski (petteri.kaski@aalto.fi)
+* Olli Pottonen (olli.pottonen@iki.fi)
+
 
 ## License
 
@@ -85,4 +93,24 @@ Adolfo Piperno: University of Rome "Sapienza"; piperno@di.uniroma1.it
 Gunnar Brinkmann: University of Ghent; Gunnar.Brinkmann@UGent.be
 Magma Administration: University of Sydney; admin@maths.usyd.edu.au
 Patric Ostergard: Aalto Univerity; patric.ostergard@aalto.fi
+
+## License for Cliquer
+
+Cliquer is licensed under the GNU General Public License. Basically, you can 
+use Cliquer for any purpose, provided that any programs or modifications you 
+make and distribute are also licensed under the GNU GPL.
+
+Absolutely no guarantees or warranties are made concerning the suitability, 
+correctness, or any other aspect of these routines.
+
+Copyright (C) 2002 Sampo Niskanen, Patric Ostergard.
+
+## License for libexact
+
+libexact is licensed under the GNU General Public License, version 2, 
+or (at your option) any later version. No guarantees or warranties are 
+made concerning the correctness of this software. Any use is at your 
+own risk.
+
+Copyright (C) 2008 Petteri Kaski, Olli Pottonen. 
 

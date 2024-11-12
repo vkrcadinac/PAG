@@ -28,7 +28,7 @@ local a,p,b,D,r,v,L;
   b:=Concatenation(Set(b,x->Set(ParallelClass(x))));
   D:=List(p,x->List(b,y->IversonBracket(x in y)));
   r:=Sum(D[1]);
-  L:=CayleyTableOfGroup(CyclicGroup(v/Sum(TransposedMat(D)[1]))); 
+  L:=MultiplicationTable(CyclicGroup(v/Sum(TransposedMat(D)[1]))); 
   return D*KroneckerProduct(IdentityMat(r),L);
 end );
 

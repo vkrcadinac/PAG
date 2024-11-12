@@ -14,7 +14,8 @@
 \makelabel{pag:Quasi-symmetric 2-(56,16,18) Designs}{1.3.4}{X7C9ADE74821A9A39}
 \makelabel{pag:Examples: Latin Squares}{1.4}{X7CCA2066781B6D56}
 \makelabel{pag:Examples: Cubes of Symmetric Designs}{1.5}{X7B532D6B81CC1FC2}
-\makelabel{pag:Examples: Mosaics of Combinatorial Designs}{1.6}{X80F5A3C186D623A2}
+\makelabel{pag:Examples: Projection Cubes of Symmetric Designs}{1.6}{X84B09B65806D0FD2}
+\makelabel{pag:Examples: Mosaics of Combinatorial Designs}{1.7}{X80F5A3C186D623A2}
 \makelabel{pag:The PAG Functions}{2}{X7A34C81F843FE798}
 \makelabel{pag:Working With Permutation Groups}{2.1}{X85FF48B18482CA86}
 \makelabel{pag:Generating Orbits}{2.2}{X7CA95AB080E5135D}
@@ -22,9 +23,10 @@
 \makelabel{pag:Inspecting Objects and Other Functions}{2.4}{X7A5A75EE7D024A4A}
 \makelabel{pag:Latin Squares}{2.5}{X7889CA477AC29A8C}
 \makelabel{pag:Cubes of Symmetric Designs}{2.6}{X79F7C22885C658DE}
-\makelabel{pag:Hadamard Matrices}{2.7}{X7AD0B7D486954F10}
-\makelabel{pag:Mosaics of Combinatorial Designs}{2.8}{X7C28F4067B055F95}
-\makelabel{pag:Global Options}{2.9}{X78E96F5385881B1B}
+\makelabel{pag:Projection Cubes of Symmetric Designs}{2.7}{X856545CA802352C0}
+\makelabel{pag:Hadamard Matrices}{2.8}{X7AD0B7D486954F10}
+\makelabel{pag:Mosaics of Combinatorial Designs}{2.9}{X7C28F4067B055F95}
+\makelabel{pag:Global Options}{2.10}{X78E96F5385881B1B}
 \makelabel{pag:Bibliography}{Bib}{X7A6F98FD85F02BFE}
 \makelabel{pag:References}{Bib}{X7A6F98FD85F02BFE}
 \makelabel{pag:Index}{Ind}{X83A0356F839C696F}
@@ -39,10 +41,11 @@
 \makelabel{pag:RestrictedGroup}{2.1.7}{X790683938254CDC1}
 \makelabel{pag:PrimitiveGroupsOfDegree}{2.1.8}{X7C6BC92378E6B4BC}
 \makelabel{pag:TransitiveGroupsOfDegree}{2.1.9}{X8589DDAD7DB0FCA8}
-\makelabel{pag:AllSubgroupsConjugation}{2.1.10}{X81A70E877DF8AA34}
-\makelabel{pag:PermRepresentationRight}{2.1.11}{X780C40F4873006FB}
-\makelabel{pag:PermRepresentationLeft}{2.1.12}{X815AE3827C9CA969}
-\makelabel{pag:ExtendedPermRepresentation}{2.1.13}{X7BD56AE78333F3A2}
+\makelabel{pag:Homogeneity}{2.1.10}{X7CAEAB907854A11A}
+\makelabel{pag:AllSubgroupsConjugation}{2.1.11}{X81A70E877DF8AA34}
+\makelabel{pag:PermRepresentationRight}{2.1.12}{X780C40F4873006FB}
+\makelabel{pag:PermRepresentationLeft}{2.1.13}{X815AE3827C9CA969}
+\makelabel{pag:ExtendedPermRepresentation}{2.1.14}{X7BD56AE78333F3A2}
 \makelabel{pag:SubsetOrbitRep}{2.2.1}{X7C1945A784AC5F72}
 \makelabel{pag:SubsetOrbitRepShort1}{2.2.2}{X7A6453417DBD5FC1}
 \makelabel{pag:SubsetOrbitRepIN}{2.2.3}{X81601D33790912F8}
@@ -56,32 +59,40 @@
 \makelabel{pag:SolveKramerMesner}{2.3.4}{X7A9D5D9A7FB92630}
 \makelabel{pag:BaseBlocks}{2.3.5}{X80F64ADB7EC13F7E}
 \makelabel{pag:ExpandMatRHS}{2.3.6}{X86582C2D7F941DCA}
-\makelabel{pag:RightDevelopment}{2.3.7}{X83B4006C82C7DCC7}
-\makelabel{pag:LeftDevelopment}{2.3.8}{X81C414057EC904AC}
+\makelabel{pag:CameronSeidelSet}{2.3.7}{X784EAE5481228BA3}
+\makelabel{pag:OrthogonalNormalBasis}{2.3.8}{X7900B5B07DCA4099}
+\makelabel{pag:KerdockSet}{2.3.9}{X8692DD457E3F124A}
+\makelabel{pag:SingerDifferenceSets}{2.3.10}{X81C2357178F20D6C}
+\makelabel{pag:NormalizedSingerDifferenceSets}{2.3.11}{X8020441679A2208A}
+\makelabel{pag:RightDevelopment}{2.3.12}{X83B4006C82C7DCC7}
+\makelabel{pag:LeftDevelopment}{2.3.13}{X81C414057EC904AC}
+\makelabel{pag:EquivalentDifferenceSets}{2.3.14}{X827306F37EBB71FA}
 \makelabel{pag:BlockDesignAut}{2.4.1}{X805C0B9F831607DC}
 \makelabel{pag:BlockDesignFilter}{2.4.2}{X7C629C8280899316}
-\makelabel{pag:IntersectionNumbers}{2.4.3}{X864491248518B7CD}
-\makelabel{pag:BlockScheme}{2.4.4}{X824E5FCE8742EB70}
-\makelabel{pag:PointPairScheme}{2.4.5}{X7EC3783778774F14}
-\makelabel{pag:TDesignB}{2.4.6}{X858A707E81380706}
-\makelabel{pag:IversonBracket}{2.4.7}{X8386E2DC7CDC30D2}
-\makelabel{pag:SymmetricDifference}{2.4.8}{X86F40A1A87BF4E96}
-\makelabel{pag:AddWeights}{2.4.9}{X7F9A590781405EAC}
+\makelabel{pag:Cliquer}{2.4.3}{X7DD939A28306BE7B}
+\makelabel{pag:DisjointCliques}{2.4.4}{X84D7D704788FE627}
+\makelabel{pag:IntersectionNumbers}{2.4.5}{X864491248518B7CD}
+\makelabel{pag:BlockScheme}{2.4.6}{X824E5FCE8742EB70}
+\makelabel{pag:PointPairScheme}{2.4.7}{X7EC3783778774F14}
+\makelabel{pag:TDesignB}{2.4.8}{X858A707E81380706}
+\makelabel{pag:IversonBracket}{2.4.9}{X8386E2DC7CDC30D2}
+\makelabel{pag:SymmetricDifference}{2.4.10}{X86F40A1A87BF4E96}
+\makelabel{pag:AddWeights}{2.4.11}{X7F9A590781405EAC}
+\makelabel{pag:AdjacencyMat}{2.4.12}{X79974935861D4838}
 \makelabel{pag:ReadMOLS}{2.5.1}{X7A81988C8176227D}
 \makelabel{pag:WriteMOLS}{2.5.2}{X7E57B98986C1F138}
-\makelabel{pag:CayleyTableOfGroup}{2.5.3}{X87AF98127C4CD44B}
-\makelabel{pag:FieldToMOLS}{2.5.4}{X7C72080B8777A3E8}
-\makelabel{pag:MOLSToOrthogonalArray}{2.5.5}{X7F1F5D9A833584F7}
-\makelabel{pag:OrthogonalArrayToMOLS}{2.5.6}{X7E7B537D83F87531}
-\makelabel{pag:MOLSToTransversalDesign}{2.5.7}{X84CA3E8478200A8A}
-\makelabel{pag:TransversalDesignToMOLS}{2.5.8}{X84C2E30C8354947C}
-\makelabel{pag:MOLSAut}{2.5.9}{X7D15F68E7A55A95F}
-\makelabel{pag:MOLSFilter}{2.5.10}{X826116DB845FC8E8}
-\makelabel{pag:IsAutotopyGroup}{2.5.11}{X85D053247FA1924B}
-\makelabel{pag:MOLSSubsetOrbitRep}{2.5.12}{X782EAB457FC77498}
-\makelabel{pag:KramerMesnerMOLS}{2.5.13}{X87FD64DB7C954BA1}
-\makelabel{pag:KramerMesnerMOLSAutotopy}{2.5.14}{X7861AB617AC13AF5}
-\makelabel{pag:KramerMesnerMOLSAutoparatopy}{2.5.15}{X87AFFFA97D37406B}
+\makelabel{pag:FieldToMOLS}{2.5.3}{X7C72080B8777A3E8}
+\makelabel{pag:MOLSToOrthogonalArray}{2.5.4}{X7F1F5D9A833584F7}
+\makelabel{pag:OrthogonalArrayToMOLS}{2.5.5}{X7E7B537D83F87531}
+\makelabel{pag:MOLSToTransversalDesign}{2.5.6}{X84CA3E8478200A8A}
+\makelabel{pag:TransversalDesignToMOLS}{2.5.7}{X84C2E30C8354947C}
+\makelabel{pag:MOLSAut}{2.5.8}{X7D15F68E7A55A95F}
+\makelabel{pag:MOLSFilter}{2.5.9}{X826116DB845FC8E8}
+\makelabel{pag:IsAutotopyGroup}{2.5.10}{X85D053247FA1924B}
+\makelabel{pag:MOLSSubsetOrbitRep}{2.5.11}{X782EAB457FC77498}
+\makelabel{pag:KramerMesnerMOLS}{2.5.12}{X87FD64DB7C954BA1}
+\makelabel{pag:KramerMesnerMOLSAutotopy}{2.5.13}{X7861AB617AC13AF5}
+\makelabel{pag:KramerMesnerMOLSAutoparatopy}{2.5.14}{X87AFFFA97D37406B}
 \makelabel{pag:DifferenceCube}{2.6.1}{X796E426D877E220A}
 \makelabel{pag:GroupCube}{2.6.2}{X7D20EEDC8566D8BF}
 \makelabel{pag:CubeSlice}{2.6.3}{X7F4C2D7579CA223C}
@@ -90,38 +101,51 @@
 \makelabel{pag:CubeLayers}{2.6.6}{X789FE9C6869F2208}
 \makelabel{pag:CubeToOrthogonalArray}{2.6.7}{X8214B28081B21BDE}
 \makelabel{pag:OrthogonalArrayToCube}{2.6.8}{X87C8CFE97ECDC3DA}
-\makelabel{pag:CubeToTransversalDesign}{2.6.9}{X8281E4697AA795A3}
-\makelabel{pag:TransversalDesignToCube}{2.6.10}{X7D717F98781699EF}
-\makelabel{pag:LatinSquareToCube}{2.6.11}{X8699117579A6173C}
-\makelabel{pag:CubeTest}{2.6.12}{X7B79A7857DAD2FFE}
-\makelabel{pag:SliceInvariant}{2.6.13}{X781264CA816BE32E}
-\makelabel{pag:CubeAut}{2.6.14}{X7E96F84678D23676}
-\makelabel{pag:CubeFilter}{2.6.15}{X810B22E286D857C1}
-\makelabel{pag:SDPSeriesGroup}{2.6.16}{X853C796F7AE3EAB3}
-\makelabel{pag:SDPSeriesDesign}{2.6.17}{X840763A67E94AE26}
-\makelabel{pag:IsHadamardMat}{2.7.1}{X7EE0947D870E2E21}
-\makelabel{pag:IsProperHadamardMat}{2.7.2}{X7F18513082BE7819}
-\makelabel{pag:Paley1Mat}{2.7.3}{X7E519C817CB5DEE9}
-\makelabel{pag:Paley2Mat}{2.7.4}{X7F7AC67F84DC99C3}
-\makelabel{pag:Paley3DMat}{2.7.5}{X7E3E2A2878247A97}
-\makelabel{pag:SDPSeriesHadamardMat}{2.7.6}{X805C567178DC9FD8}
-\makelabel{pag:AllOnesMat}{2.7.7}{X81AFF9727988A159}
-\makelabel{pag:ProductConstructionMat}{2.7.8}{X7D28C82B845911B1}
-\makelabel{pag:DigitConstructionMat}{2.7.9}{X80B7220F81182392}
-\makelabel{pag:CyclicDimensionIncrease}{2.7.10}{X79485FB081E50D5B}
-\makelabel{pag:HadamardMatAut}{2.7.11}{X801DEB1E7D5668E9}
-\makelabel{pag:HadamardMatFilter}{2.7.12}{X7E0014F67EC9FC23}
-\makelabel{pag:HadamardToIncidence}{2.7.13}{X7FC368717A9EC3AE}
-\makelabel{pag:IncidenceToHadamard}{2.7.14}{X7B745CE37816C093}
-\makelabel{pag:MosaicParameters}{2.8.1}{X79C359E6869912F3}
-\makelabel{pag:BlocksToIncidenceMat}{2.8.2}{X7A0635F97CC4262D}
-\makelabel{pag:IncidenceMatToBlocks}{2.8.3}{X7E75EC0D81178BF2}
-\makelabel{pag:MosaicToBlockDesigns}{2.8.4}{X7D72F1C687094EA0}
-\makelabel{pag:ReadMat}{2.8.5}{X7F3B822084A1C217}
-\makelabel{pag:WriteMat}{2.8.6}{X823C926682A2BD3F}
-\makelabel{pag:AffineMosaic}{2.8.7}{X79530F4B84CCA74C}
-\makelabel{pag:DifferenceMosaic}{2.8.8}{X7A82B85786098648}
-\makelabel{pag:PowersMosaic}{2.8.9}{X87882FFF7D015028}
-\makelabel{pag:MatAut}{2.8.10}{X7889941180ECF9AA}
-\makelabel{pag:MatFilter}{2.8.11}{X7AD4C75087D3DFDA}
-\makelabel{pag:PAGGlobalOptions}{2.9.1}{X8626782884DAC536}
+\makelabel{pag:OrthogonalArrayToTransversalDesign}{2.6.9}{X7C137E3087D9CA9E}
+\makelabel{pag:CubeToTransversalDesign}{2.6.10}{X8281E4697AA795A3}
+\makelabel{pag:TransversalDesignToCube}{2.6.11}{X7D717F98781699EF}
+\makelabel{pag:LatinSquareToCube}{2.6.12}{X8699117579A6173C}
+\makelabel{pag:CubeTest}{2.6.13}{X7B79A7857DAD2FFE}
+\makelabel{pag:SliceInvariant}{2.6.14}{X781264CA816BE32E}
+\makelabel{pag:CubeAut}{2.6.15}{X7E96F84678D23676}
+\makelabel{pag:CubeFilter}{2.6.16}{X810B22E286D857C1}
+\makelabel{pag:SDPSeriesGroup}{2.6.17}{X853C796F7AE3EAB3}
+\makelabel{pag:SDPSeriesDesign}{2.6.18}{X840763A67E94AE26}
+\makelabel{pag:CubeProjection}{2.7.1}{X840EF38786AB8854}
+\makelabel{pag:CubeProjections}{2.7.2}{X8702A1BB7DD8A62E}
+\makelabel{pag:CubeProjectionTest}{2.7.3}{X8322D44C83B55DF7}
+\makelabel{pag:OrthogonalArrayProjection}{2.7.4}{X85ABBDFD783F3416}
+\makelabel{pag:OrthogonalArrayProjections}{2.7.5}{X7D8579007BACA050}
+\makelabel{pag:OrthogonalArrayProjectionTest}{2.7.6}{X802342217BFEF435}
+\makelabel{pag:DifferenceSetToOrthogonalArray}{2.7.7}{X876F61527F6AA5E9}
+\makelabel{pag:PaleyDifferenceSet}{2.7.8}{X7ABF8D0483C31984}
+\makelabel{pag:PowerDifferenceSet}{2.7.9}{X819180617C511C84}
+\makelabel{pag:TwinPrimePowerDifferenceSet}{2.7.10}{X873D07597EA2F1C8}
+\makelabel{pag:OrthogonalArrayAut}{2.7.11}{X877D843E786FA4F2}
+\makelabel{pag:OrthogonalArrayFilter}{2.7.12}{X828E1C1C7C8B5874}
+\makelabel{pag:IsHadamardMat}{2.8.1}{X7EE0947D870E2E21}
+\makelabel{pag:IsProperHadamardMat}{2.8.2}{X7F18513082BE7819}
+\makelabel{pag:Paley1Mat}{2.8.3}{X7E519C817CB5DEE9}
+\makelabel{pag:Paley2Mat}{2.8.4}{X7F7AC67F84DC99C3}
+\makelabel{pag:Paley3DMat}{2.8.5}{X7E3E2A2878247A97}
+\makelabel{pag:SDPSeriesHadamardMat}{2.8.6}{X805C567178DC9FD8}
+\makelabel{pag:AllOnesMat}{2.8.7}{X81AFF9727988A159}
+\makelabel{pag:ProductConstructionMat}{2.8.8}{X7D28C82B845911B1}
+\makelabel{pag:DigitConstructionMat}{2.8.9}{X80B7220F81182392}
+\makelabel{pag:CyclicDimensionIncrease}{2.8.10}{X79485FB081E50D5B}
+\makelabel{pag:HadamardMatAut}{2.8.11}{X801DEB1E7D5668E9}
+\makelabel{pag:HadamardMatFilter}{2.8.12}{X7E0014F67EC9FC23}
+\makelabel{pag:HadamardToIncidence}{2.8.13}{X7FC368717A9EC3AE}
+\makelabel{pag:IncidenceToHadamard}{2.8.14}{X7B745CE37816C093}
+\makelabel{pag:MosaicParameters}{2.9.1}{X79C359E6869912F3}
+\makelabel{pag:BlocksToIncidenceMat}{2.9.2}{X7A0635F97CC4262D}
+\makelabel{pag:IncidenceMatToBlocks}{2.9.3}{X7E75EC0D81178BF2}
+\makelabel{pag:MosaicToBlockDesigns}{2.9.4}{X7D72F1C687094EA0}
+\makelabel{pag:ReadMat}{2.9.5}{X7F3B822084A1C217}
+\makelabel{pag:WriteMat}{2.9.6}{X823C926682A2BD3F}
+\makelabel{pag:AffineMosaic}{2.9.7}{X79530F4B84CCA74C}
+\makelabel{pag:DifferenceMosaic}{2.9.8}{X7A82B85786098648}
+\makelabel{pag:PowersMosaic}{2.9.9}{X87882FFF7D015028}
+\makelabel{pag:MatAut}{2.9.10}{X7889941180ECF9AA}
+\makelabel{pag:MatFilter}{2.9.11}{X7AD4C75087D3DFDA}
+\makelabel{pag:PAGGlobalOptions}{2.10.1}{X8626782884DAC536}
