@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <title>GAP (PAG) - Contents</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -32,10 +32,10 @@
 <h2>Prescribed Automorphism Groups</h2>
 
 <p>
-    0.2.0</p>
+    0.2.4</p>
 
 <p>
-    27 March 2023
+    12 November 2024
   </p>
 
 </div>
@@ -57,7 +57,7 @@
 
 <p><a id="X81488B807F2A1CF1" name="X81488B807F2A1CF1"></a></p>
 <h3>Copyright</h3>
-<p>© 2023 by Vedran Krcadinac</p>
+<p>© 2024 by Vedran Krcadinac</p>
 
 <p>The <strong class="pkg">PAG</strong> package is free software; you can redistribute it and/or modify it under the terms of the <span class="URL"><a href="http://www.fsf.org/licenses/gpl.html">GNU General Public License</a></span> as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 
@@ -95,6 +95,12 @@
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X7B532D6B81CC1FC2">1.5 <span class="Heading">Examples: Cubes of Symmetric Designs</span></a>
 </span>
 </div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X84B09B65806D0FD2">1.6 <span class="Heading">Examples: Projection Cubes of Symmetric Designs</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X80F5A3C186D623A2">1.7 <span class="Heading">Examples: Mosaics of Combinatorial Designs</span></a>
+</span>
+</div>
 </div>
 <div class="ContChap"><a href="chap2_mj.html#X7A34C81F843FE798">2 <span class="Heading">The PAG Functions</span></a>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X85FF48B18482CA86">2.1 <span class="Heading">Working With Permutation Groups</span></a>
@@ -109,9 +115,11 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X790683938254CDC1">2.1-7 RestrictedGroup</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C6BC92378E6B4BC">2.1-8 PrimitiveGroupsOfDegree</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8589DDAD7DB0FCA8">2.1-9 TransitiveGroupsOfDegree</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81A70E877DF8AA34">2.1-10 AllSubgroupsConjugation</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X780C40F4873006FB">2.1-11 PermRepresentationRight</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X815AE3827C9CA969">2.1-12 PermRepresentationLeft</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7CAEAB907854A11A">2.1-10 Homogeneity</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81A70E877DF8AA34">2.1-11 AllSubgroupsConjugation</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X780C40F4873006FB">2.1-12 PermRepresentationRight</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X815AE3827C9CA969">2.1-13 PermRepresentationLeft</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7BD56AE78333F3A2">2.1-14 ExtendedPermRepresentation</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7CA95AB080E5135D">2.2 <span class="Heading">Generating Orbits</span></a>
 </span>
@@ -133,34 +141,48 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7A9D5D9A7FB92630">2.3-4 SolveKramerMesner</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X80F64ADB7EC13F7E">2.3-5 BaseBlocks</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X86582C2D7F941DCA">2.3-6 ExpandMatRHS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X83B4006C82C7DCC7">2.3-7 RightDevelopment</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81C414057EC904AC">2.3-8 LeftDevelopment</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X784EAE5481228BA3">2.3-7 CameronSeidelSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7900B5B07DCA4099">2.3-8 OrthogonalNormalBasis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8692DD457E3F124A">2.3-9 KerdockSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81C2357178F20D6C">2.3-10 SingerDifferenceSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8020441679A2208A">2.3-11 NormalizedSingerDifferenceSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X83B4006C82C7DCC7">2.3-12 RightDevelopment</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81C414057EC904AC">2.3-13 LeftDevelopment</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X827306F37EBB71FA">2.3-14 EquivalentDifferenceSets</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7A5A75EE7D024A4A">2.4 <span class="Heading">Inspecting Objects and Other Functions</span></a>
 </span>
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X805C0B9F831607DC">2.4-1 BlockDesignAut</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C629C8280899316">2.4-2 BlockDesignFilter</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X864491248518B7CD">2.4-3 IntersectionNumbers</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X824E5FCE8742EB70">2.4-4 BlockScheme</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X858A707E81380706">2.4-5 TDesignB</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8386E2DC7CDC30D2">2.4-6 IversonBracket</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7DD939A28306BE7B">2.4-3 Cliquer</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X84D7D704788FE627">2.4-4 DisjointCliques</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X864491248518B7CD">2.4-5 IntersectionNumbers</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X824E5FCE8742EB70">2.4-6 BlockScheme</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7EC3783778774F14">2.4-7 PointPairScheme</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X858A707E81380706">2.4-8 TDesignB</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8386E2DC7CDC30D2">2.4-9 IversonBracket</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X86F40A1A87BF4E96">2.4-10 SymmetricDifference</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F9A590781405EAC">2.4-11 AddWeights</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X79974935861D4838">2.4-12 AdjacencyMat</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7889CA477AC29A8C">2.5 <span class="Heading">Latin Squares</span></a>
 </span>
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7A81988C8176227D">2.5-1 ReadMOLS</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E57B98986C1F138">2.5-2 WriteMOLS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87AF98127C4CD44B">2.5-3 CayleyTableOfGroup</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C72080B8777A3E8">2.5-4 FieldToMOLS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D15F68E7A55A95F">2.5-5 MOLSAut</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X826116DB845FC8E8">2.5-6 MOLSFilter</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81091786799E1D18">2.5-7 IsotopismToPerm</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X80287D6B8140E827">2.5-8 PermToIsotopism</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X782EAB457FC77498">2.5-9 MOLSSubsetOrbitRep</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F19D770838101F2">2.5-10 TuplesToMOLS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87FD64DB7C954BA1">2.5-11 KramerMesnerMOLS</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X79190696821CB0EC">2.5-12 KramerMesnerMOLSParatopism</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C72080B8777A3E8">2.5-3 FieldToMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F1F5D9A833584F7">2.5-4 MOLSToOrthogonalArray</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E7B537D83F87531">2.5-5 OrthogonalArrayToMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X84CA3E8478200A8A">2.5-6 MOLSToTransversalDesign</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X84C2E30C8354947C">2.5-7 TransversalDesignToMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D15F68E7A55A95F">2.5-8 MOLSAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X826116DB845FC8E8">2.5-9 MOLSFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X85D053247FA1924B">2.5-10 IsAutotopyGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X782EAB457FC77498">2.5-11 MOLSSubsetOrbitRep</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87FD64DB7C954BA1">2.5-12 KramerMesnerMOLS</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7861AB617AC13AF5">2.5-13 KramerMesnerMOLSAutotopy</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87AFFFA97D37406B">2.5-14 KramerMesnerMOLSAutoparatopy</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X79F7C22885C658DE">2.6 <span class="Heading">Cubes of Symmetric Designs</span></a>
 </span>
@@ -169,26 +191,74 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D20EEDC8566D8BF">2.6-2 GroupCube</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F4C2D7579CA223C">2.6-3 CubeSlice</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D2F947285ECC89F">2.6-4 CubeSlices</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8214B28081B21BDE">2.6-5 CubeToOrthogonalArray</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87C8CFE97ECDC3DA">2.6-6 OrthogonalArrayToCube</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8281E4697AA795A3">2.6-7 CubeToTransversalDesign</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D717F98781699EF">2.6-8 TransversalDesignToCube</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8699117579A6173C">2.6-9 LatinSquareToCube</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7B79A7857DAD2FFE">2.6-10 CubeTest</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E1717C57A5F7865">2.6-11 CubeInvariant</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E96F84678D23676">2.6-12 CubeAut</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X810B22E286D857C1">2.6-13 CubeFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X82DB78EE7AB9C8AB">2.6-5 CubeLayer</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X789FE9C6869F2208">2.6-6 CubeLayers</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8214B28081B21BDE">2.6-7 CubeToOrthogonalArray</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87C8CFE97ECDC3DA">2.6-8 OrthogonalArrayToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C137E3087D9CA9E">2.6-9 OrthogonalArrayToTransversalDesign</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8281E4697AA795A3">2.6-10 CubeToTransversalDesign</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D717F98781699EF">2.6-11 TransversalDesignToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8699117579A6173C">2.6-12 LatinSquareToCube</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7B79A7857DAD2FFE">2.6-13 CubeTest</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X781264CA816BE32E">2.6-14 SliceInvariant</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E96F84678D23676">2.6-15 CubeAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X810B22E286D857C1">2.6-16 CubeFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X853C796F7AE3EAB3">2.6-17 SDPSeriesGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X840763A67E94AE26">2.6-18 SDPSeriesDesign</a></span>
 </div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7AD0B7D486954F10">2.7 <span class="Heading">Hadamard Matrices</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X856545CA802352C0">2.7 <span class="Heading">Projection Cubes of Symmetric Designs</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X801DEB1E7D5668E9">2.7-1 HadamardMatAut</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E0014F67EC9FC23">2.7-2 HadamardMatFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X840EF38786AB8854">2.7-1 CubeProjection</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8702A1BB7DD8A62E">2.7-2 CubeProjections</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8322D44C83B55DF7">2.7-3 CubeProjectionTest</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X85ABBDFD783F3416">2.7-4 OrthogonalArrayProjection</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D8579007BACA050">2.7-5 OrthogonalArrayProjections</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X802342217BFEF435">2.7-6 OrthogonalArrayProjectionTest</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X876F61527F6AA5E9">2.7-7 DifferenceSetToOrthogonalArray</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7ABF8D0483C31984">2.7-8 PaleyDifferenceSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X819180617C511C84">2.7-9 PowerDifferenceSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X873D07597EA2F1C8">2.7-10 TwinPrimePowerDifferenceSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X877D843E786FA4F2">2.7-11 OrthogonalArrayAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X828E1C1C7C8B5874">2.7-12 OrthogonalArrayFilter</a></span>
 </div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X78E96F5385881B1B">2.8 <span class="Heading">Global Options</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7AD0B7D486954F10">2.8 <span class="Heading">Hadamard Matrices</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8626782884DAC536">2.8-1 PAGGlobalOptions</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7EE0947D870E2E21">2.8-1 IsHadamardMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F18513082BE7819">2.8-2 IsProperHadamardMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E519C817CB5DEE9">2.8-3 Paley1Mat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F7AC67F84DC99C3">2.8-4 Paley2Mat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E3E2A2878247A97">2.8-5 Paley3DMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X805C567178DC9FD8">2.8-6 SDPSeriesHadamardMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X81AFF9727988A159">2.8-7 AllOnesMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D28C82B845911B1">2.8-8 ProductConstructionMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X80B7220F81182392">2.8-9 DigitConstructionMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X79485FB081E50D5B">2.8-10 CyclicDimensionIncrease</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X801DEB1E7D5668E9">2.8-11 HadamardMatAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E0014F67EC9FC23">2.8-12 HadamardMatFilter</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7FC368717A9EC3AE">2.8-13 HadamardToIncidence</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7B745CE37816C093">2.8-14 IncidenceToHadamard</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X7C28F4067B055F95">2.9 <span class="Heading">Mosaics of Combinatorial Designs</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X79C359E6869912F3">2.9-1 MosaicParameters</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7A0635F97CC4262D">2.9-2 BlocksToIncidenceMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E75EC0D81178BF2">2.9-3 IncidenceMatToBlocks</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7D72F1C687094EA0">2.9-4 MosaicToBlockDesigns</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F3B822084A1C217">2.9-5 ReadMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X823C926682A2BD3F">2.9-6 WriteMat</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X79530F4B84CCA74C">2.9-7 AffineMosaic</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7A82B85786098648">2.9-8 DifferenceMosaic</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X87882FFF7D015028">2.9-9 PowersMosaic</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7889941180ECF9AA">2.9-10 MatAut</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7AD4C75087D3DFDA">2.9-11 MatFilter</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X78E96F5385881B1B">2.10 <span class="Heading">Global Options</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8626782884DAC536">2.10-1 PAGGlobalOptions</a></span>
 </div></div>
 </div>
 <div class="ContChap"><a href="chapBib_mj.html"><span class="Heading">References</span></a></div>
@@ -202,6 +272,6 @@
 <div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>
