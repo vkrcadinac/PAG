@@ -46,7 +46,7 @@ Libexact:
 * Petteri Kaski (petteri.kaski@aalto.fi)
 * Olli Pottonen (olli.pottonen@iki.fi)
 
-SSMCC, SSXCC and SSXCC-binary:
+dlx3, ssmcc, ssxcc and ssxcc-binary:
 * Donald E. Knuth
 (with modifications by Alfred Wassermann)
 
