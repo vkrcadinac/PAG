@@ -7,7 +7,7 @@ CLIQUERPATH=src/cliquer-1.21
 CLIQUERFLAGS= -Wall -O3 -fomit-frame-pointer -funroll-loops -c 
 LIBEXACTPATH=src/libexact-1.0
 
-all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter bin/$(GAPARCH)/matfilter bin/$(GAPARCH)/mataut bin/$(GAPARCH)/pagcliquer bin/$(GAPARCH)/disjointcliques bin/$(GAPARCH)/solvelibexact
+all: bin/$(GAPARCH)/sol2gap bin/$(GAPARCH)/gap2raw bin/$(GAPARCH)/forbrepint4 bin/$(GAPARCH)/shortorb4 bin/$(GAPARCH)/kmmat bin/$(GAPARCH)/orbmat5qd bin/$(GAPARCH)/solvediophant bin/$(GAPARCH)/solvecm bin/$(GAPARCH)/blockint bin/$(GAPARCH)/blockintmat bin/$(GAPARCH)/pointpairmat bin/$(GAPARCH)/togapmat bin/$(GAPARCH)/togapmatinc bin/$(GAPARCH)/delgen bin/$(GAPARCH)/bdaut bin/$(GAPARCH)/bdautsp bin/$(GAPARCH)/bdauttr bin/$(GAPARCH)/hadaut bin/$(GAPARCH)/bdfiltersp bin/$(GAPARCH)/bdfiltertr bin/$(GAPARCH)/hadfilter bin/$(GAPARCH)/matfilter bin/$(GAPARCH)/omfilter bin/$(GAPARCH)/conjfilter bin/$(GAPARCH)/mataut bin/$(GAPARCH)/pagcliquer bin/$(GAPARCH)/disjointcliques bin/$(GAPARCH)/solvelibexact bin/$(GAPARCH)/dlxsolvelibexact bin/$(GAPARCH)/makedlx bin/$(GAPARCH)/makedlx2 bin/$(GAPARCH)/cutdlx bin/$(GAPARCH)/solvelibexact4 bin/$(GAPARCH)/canonf bin/$(GAPARCH)/dlx3 bin/$(GAPARCH)/ssmcc bin/$(GAPARCH)/ssxcc bin/$(GAPARCH)/ssxcc-binary bin/$(GAPARCH)/sd2 
 
 bin/$(GAPARCH):
 	        mkdir -p bin/$(GAPARCH)
@@ -15,11 +15,32 @@ bin/$(GAPARCH):
 bin/$(GAPARCH)/sol2gap: src/sol2gap.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/sol2gap src/sol2gap.c $(CFLAGS)
 
+bin/$(GAPARCH)/gap2raw: src/gap2raw.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/gap2raw src/gap2raw.c $(CFLAGS)
+
+bin/$(GAPARCH)/canonf: src/canonf.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/canonf src/canonf.c $(CFLAGS)
+
+bin/$(GAPARCH)/forbrepint4: src/forbrepint4.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/forbrepint4 src/forbrepint4.c $(CFLAGS)
+
+bin/$(GAPARCH)/shortorb4: src/shortorb4.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/shortorb4 src/shortorb4.c $(CFLAGS)
+
+bin/$(GAPARCH)/kmmat: src/kmmat.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/kmmat src/kmmat.c $(CFLAGS)
+
+bin/$(GAPARCH)/orbmat5qd: src/orbmat5qd.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/orbmat5qd src/orbmat5qd.c $(CFLAGS)
+
 bin/$(GAPARCH)/solvecm: src/solvecm.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/solvecm src/solvecm.c $(CFLAGS)
 
 bin/$(GAPARCH)/togapmat: src/togapmat.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/togapmat src/togapmat.c $(CFLAGS)
+
+bin/$(GAPARCH)/togapmatinc: src/togapmatinc.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/togapmatinc src/togapmatinc.c $(CFLAGS)
 
 bin/$(GAPARCH)/blockint: src/blockint.c bin/$(GAPARCH)
 	        $(CC) -o bin/$(GAPARCH)/blockint src/blockint.c $(CFLAGS)
@@ -60,8 +81,14 @@ $(NAUTYPATH)/bdfiltertr.c: src/bdfiltertr.c
 $(NAUTYPATH)/hadfilter.c: src/hadfilter.c
 	        cp src/hadfilter.c $(NAUTYPATH)
 
-$(NAUTYPATH)/matfilter.c: src/hadfilter.c
+$(NAUTYPATH)/matfilter.c: src/matfilter.c
 	        cp src/matfilter.c $(NAUTYPATH)
+
+$(NAUTYPATH)/omfilter.c: src/omfilter.c
+	        cp src/omfilter.c $(NAUTYPATH)
+
+$(NAUTYPATH)/conjfilter.c: src/conjfilter.c
+	        cp src/conjfilter.c $(NAUTYPATH)
 
 $(NAUTYPATH)/mataut.c: src/mataut.c
 	        cp src/mataut.c $(NAUTYPATH)
@@ -94,6 +121,12 @@ bin/$(GAPARCH)/hadfilter: $(NAUTYPATH)/hadfilter.c $(NAUTYPATH)/nauty.a bin/$(GA
 bin/$(GAPARCH)/matfilter: $(NAUTYPATH)/matfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/matfilter $(NAUTYPATH)/matfilter.c $(NAUTYPATH)/nauty.a 
 
+bin/$(GAPARCH)/omfilter: $(NAUTYPATH)/omfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/omfilter $(NAUTYPATH)/omfilter.c $(NAUTYPATH)/nauty.a 
+
+bin/$(GAPARCH)/conjfilter: $(NAUTYPATH)/conjfilter.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/conjfilter $(NAUTYPATH)/conjfilter.c $(NAUTYPATH)/nauty.a 
+
 bin/$(GAPARCH)/mataut: $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/mataut $(NAUTYPATH)/mataut.c $(NAUTYPATH)/nauty.a 
 
@@ -121,11 +154,50 @@ bin/$(GAPARCH)/disjointcliques: $(CLIQUERPATH)/disjointcliques.c $(CLIQUERPATH)/
 $(LIBEXACTPATH)/solvelibexact.c: src/solvelibexact.c
 	        cp src/solvelibexact.c $(LIBEXACTPATH)
 
+$(LIBEXACTPATH)/dlxsolvelibexact.c: src/dlxsolvelibexact.c
+	        cp src/dlxsolvelibexact.c $(LIBEXACTPATH)
+
+$(LIBEXACTPATH)/makedlx.c: src/makedlx.c
+	        cp src/makedlx.c $(LIBEXACTPATH)
+
+$(LIBEXACTPATH)/solvelibexact4.c: src/solvelibexact4.c
+	        cp src/solvelibexact4.c $(LIBEXACTPATH)
+
 $(LIBEXACTPATH)/libexact.a: $(LIBEXACTPATH) 
 	        cd $(LIBEXACTPATH) && make
 
 bin/$(GAPARCH)/solvelibexact: $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/solvelibexact $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a
+
+bin/$(GAPARCH)/dlxsolvelibexact: $(LIBEXACTPATH)/dlxsolvelibexact.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/dlxsolvelibexact $(LIBEXACTPATH)/dlxsolvelibexact.c $(LIBEXACTPATH)/libexact.a
+
+bin/$(GAPARCH)/makedlx: $(LIBEXACTPATH)/makedlx.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/makedlx $(LIBEXACTPATH)/makedlx.c $(LIBEXACTPATH)/libexact.a
+
+bin/$(GAPARCH)/solvelibexact4: $(LIBEXACTPATH)/solvelibexact4.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
+	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/solvelibexact4 $(LIBEXACTPATH)/solvelibexact4.c $(LIBEXACTPATH)/libexact.a
+
+bin/$(GAPARCH)/dlx3: src/dlx3.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/dlx3 src/dlx3.c $(CFLAGS)
+
+bin/$(GAPARCH)/ssmcc: src/ssmcc.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/ssmcc src/ssmcc.c $(CFLAGS)
+
+bin/$(GAPARCH)/ssxcc: src/ssxcc.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/ssxcc src/ssxcc.c $(CFLAGS)
+
+bin/$(GAPARCH)/ssxcc-binary: src/ssxcc-binary.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/ssxcc-binary src/ssxcc-binary.c $(CFLAGS)
+
+bin/$(GAPARCH)/makedlx2: src/makedlx2.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/makedlx2 src/makedlx2.c $(CFLAGS)
+
+bin/$(GAPARCH)/cutdlx: src/cutdlx.c bin/$(GAPARCH)
+	        $(CC) -o bin/$(GAPARCH)/cutdlx src/cutdlx.c $(CFLAGS)
+
+bin/$(GAPARCH)/sd2: src/sd2
+	        cp src/sd2 bin/$(GAPARCH)
 
 clean:
 	        rm -rf bin

@@ -69,6 +69,31 @@ V.~Krcadinac, A.~Nakic, and M.~O. Pavcevic.
   {\texttt{https://doi.org/}\discretionary
   {}{}{}\texttt{10.1002/}\discretionary {}{}{}\texttt{jcd.20277}}.
 
+\bibitem[Knu00]{DK00}
+D.~Knuth.
+\newblock Dancing links.
+\newblock In J.~Davies, B.~Roscoe, and J.~Woodcock, editors, {\em Millennial
+  Perspectives in Computer Science}, page 187{\textendash}214. Palgrave
+  Macmillan, 2000.
+\newblock \href {https://doi.org/10.48550/arXiv.cs/0011047}
+  {\texttt{https://doi.org/}\discretionary
+  {}{}{}\texttt{10.48550/}\discretionary {}{}{}\texttt{arXiv.cs/}\discretionary
+  {}{}{}\texttt{0011047}}.
+
+\bibitem[Knu17]{DK17}
+D.~Knuth.
+\newblock {DLX3}, 2017.
+\newblock \href {https://www-cs-faculty.stanford.edu/~knuth/programs/dlx3.w}
+  {\texttt{https://www\texttt{\symbol{45}}cs\texttt{\symbol{45}}faculty.stanford.edu/}\discretionary
+  {}{}{}\texttt{\texttt{\symbol{126}}knuth/}\discretionary
+  {}{}{}\texttt{programs/}\discretionary {}{}{}\texttt{dlx3.w}}.
+
+\bibitem[Knu25]{DK25}
+D.~Knuth.
+\newblock {\em The Art of Computer Programming, Vol. 4: Combinatorial
+  Algorithms, Fascicle 7}.
+\newblock Addison\texttt{\symbol{45}}Wesley, 2025.
+
 \bibitem[KP08]{KP08}
 P.~Kaski and O.~Pottonen.
 \newblock {\em libexact User's Guide, Version 1.0, HIIT Technical Reports
@@ -173,6 +198,13 @@ A.~Wassermann.
 \newblock Finding simple $t$\texttt{\symbol{45}}designs with enumeration
   techniques.
 \newblock {\em J. Combin. Des.}, 6(2):79{\textendash}90, 1998.
+
+\bibitem[Was21]{AW21}
+A.~Wassermann.
+\newblock Search for combinatorial objects using lattice algorithms
+  {\textendash} revisited.
+\newblock In P.~Flocchini and L.~Moura, editors, {\em Combinatorial
+  algorithms}, page 20{\textendash}33. Springer, 2021.
 
 \bibitem[Yan86]{YXY86}
 Y.~X. Yang.

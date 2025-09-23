@@ -116,7 +116,7 @@ true
 .
 </pre></div>
 
-<p>The output is a list of non-isomorphic designs in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.13.1/pkg/design/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. We can check that it is really a 5-design.</p>
+<p>The output is a list of non-isomorphic designs in the <strong class="pkg">Design</strong> package format <a href="/opt/gap-4.14.0/pkg/design/htm/CHAP001.htm"><span class="RefLink">DESIGN: Design</span></a>. We can check that it is really a 5-design.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(d,AllTDesignLambdas);</span>
@@ -143,7 +143,7 @@ true
       [ 1, 2, 5, 6, 11, 14, 16 ] ] ]
 </pre></div>
 
-<p>In this case isomorph rejection is not performed and we get two sets of base blocks. They can be turned into designs by calling the <code class="func">BlockDesign</code> (<a href="/opt/gap-4.13.1/pkg/design/htm/CHAP003.htm#SECT001"><span class="RefLink">DESIGN: BlockDesign</span></a>) function: <code class="code">List(bb,x-&gt;BlockDesign(16,x,g));</code>.</p>
+<p>In this case isomorph rejection is not performed and we get two sets of base blocks. They can be turned into designs by calling the <code class="func">BlockDesign</code> (<a href="/opt/gap-4.14.0/pkg/design/htm/CHAP003.htm#SECT001"><span class="RefLink">DESIGN: BlockDesign</span></a>) function: <code class="code">List(bb,x-&gt;BlockDesign(16,x,g));</code>.</p>
 
 <p><a id="X8360C04082558A12" name="X8360C04082558A12"></a></p>
 
@@ -448,7 +448,7 @@ Group([ (3,28,27,26,25,24,23,22,21,20,19,18,17,4,16,15,14,13,12,11,10,9,8,7,6,5)
 true
 </pre></div>
 
-<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.13.1/pkg/guava/doc/chap7.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">L</span> of order 10. Self-orthogonal means that <span class="SimpleMath">L</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">{L,L^t}</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
+<p>The package <strong class="pkg">Guava</strong> contains a function <code class="func">AreMOLS</code> (<a href="/opt/gap-4.14.0/pkg/guava/doc/chap7.html#X81B9B40B7B2D97D5"><span class="RefLink">GUAVA: AreMOLS</span></a>) to test sets of MOLS. A famous problem is to find MOLS of order 10. The Handbook of Combinatorial Designs <a href="chapBib.html#biBCD07">[CD07]</a>, III.5.6 contains an example of a 1-diagonally cyclic self-orthogonal Latin square <span class="SimpleMath">L</span> of order 10. Self-orthogonal means that <span class="SimpleMath">L</span> is orthogonal to its transpose. In other words, the MOLS set <span class="SimpleMath">{L,L^t}</span> is invariant under the following conjugation, simultaneously exchanging rows–columns and the two Latin squares.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=Sortex(Concatenation([11..20],[1..10],[31..40],[21..30]));</span>
@@ -581,7 +581,7 @@ true
   [ 1, 1, 1, 1, 1, 1, 3 ] ]
 </pre></div>
 
-<p>A cube of arbitrary dimension <span class="SimpleMath">n≥ 2</span> can be constructed from a difference set in a group by calling <code class="func">DifferenceCube</code> (<a href="chap2.html#X796E426D877E220A"><span class="RefLink">2.6-1</span></a>). The function uses the representation of difference sets from the <strong class="pkg">DifSets</strong> package <a href="/opt/gap-4.13.1/pkg/difsets/doc/chap1.html#X8248A9AB7E689C64"><span class="RefLink">DifSets: Difference Sets</span></a>. For <span class="SimpleMath">n=2</span>, the difference cube is simply an incidence matrix of the associated symmetric design, i.e. the development of the difference set.</p>
+<p>A cube of arbitrary dimension <span class="SimpleMath">n≥ 2</span> can be constructed from a difference set in a group by calling <code class="func">DifferenceCube</code> (<a href="chap2.html#X796E426D877E220A"><span class="RefLink">2.6-1</span></a>). The function uses the representation of difference sets from the <strong class="pkg">DifSets</strong> package <a href="/opt/gap-4.14.0/pkg/difsets/doc/chap1.html#X8248A9AB7E689C64"><span class="RefLink">DifSets: Difference Sets</span></a>. For <span class="SimpleMath">n=2</span>, the difference cube is simply an incidence matrix of the associated symmetric design, i.e. the development of the difference set.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=SmallGroup(15,1);</span>
@@ -611,7 +611,7 @@ true
 [ 15, 7, 3 ]
 </pre></div>
 
-<p>The function <code class="func">DifferenceSets</code> (<a href="/opt/gap-4.13.1/pkg/difsets/doc/chap2.html#X83297D2B85F9E074"><span class="RefLink">DifSets: DifferenceSets</span></a>) returns a list of all difference sets up to equivalence in a given group. Here is a small <span class="SimpleMath">4</span>-dimensional <span class="SimpleMath">(3,2,1)</span> cube.</p>
+<p>The function <code class="func">DifferenceSets</code> (<a href="/opt/gap-4.14.0/pkg/difsets/doc/chap2.html#X83297D2B85F9E074"><span class="RefLink">DifSets: DifferenceSets</span></a>) returns a list of all difference sets up to equivalence in a given group. Here is a small <span class="SimpleMath">4</span>-dimensional <span class="SimpleMath">(3,2,1)</span> cube.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:=DifferenceCube(Group((1,2,3)),[1,2],4);</span>
@@ -628,7 +628,7 @@ true
 [ [ 3, 2, 1 ] ]
 </pre></div>
 
-<p>The function <code class="func">CubeTest</code> (<a href="chap2.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-13</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">(v,k,λ)</span> designs. In the next example we construct all <span class="SimpleMath">3</span>-dimensional difference cubes of order <span class="SimpleMath">21</span>.</p>
+<p>The function <code class="func">CubeTest</code> (<a href="chap2.html#X7B79A7857DAD2FFE"><span class="RefLink">2.6-14</span></a>) looks at all possible slices and checks if they are incidence matrices of <span class="SimpleMath">(v,k,λ)</span> designs. In the next example we construct all <span class="SimpleMath">3</span>-dimensional difference cubes of order <span class="SimpleMath">21</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=AllSmallGroups(21);;</span>
@@ -646,7 +646,7 @@ true
 2646
 </pre></div>
 
-<p>The function <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-15</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib.html#biBKPT23">[KPT24]</a>. First we search for all <span class="SimpleMath">(21,5,1)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">21</span>.</p>
+<p>The function <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-17</span></a>) computes the full autotopy group of a cube. By setting options, full autoparatopy groups can also be obtained. We can make a non-difference cube by the "group cube" construction of Theorem 4.1 from <a href="chapBib.html#biBKPT23">[KPT24]</a>. First we search for all <span class="SimpleMath">(21,5,1)</span> designs with blocks being difference sets in the Frobenius group of order <span class="SimpleMath">21</span>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">allds:=Filtered(Combinations([1..21],5),x-&gt;IsDifferenceSet(g[1],x));;</span>
@@ -682,7 +682,7 @@ true
 1
 </pre></div>
 
-<p>The function <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-16</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">(21,5,1)</span> difference cubes.</p>
+<p>The function <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-18</span></a>) eliminates equivalent copies from a list of cubes. Our new cube is not equivalent with the two <span class="SimpleMath">(21,5,1)</span> difference cubes.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c3:=cc[1];;</span>
@@ -717,7 +717,7 @@ true
 
 <p>The first cube in the list <code class="code">cl</code> is a difference cube. The other two cubes are not, because they have non-isomorphic slices in different directions. This construction works for all <span class="SimpleMath">m≥ 2</span> and dimensions <span class="SimpleMath">n≥ 3</span>, but it takes a lot of time and memory for bigger values of <span class="SimpleMath">m</span> and <span class="SimpleMath">n</span>. We classified all 3-dimensional group cubes of <span class="SimpleMath">(16,6,2)</span> designs; they are available at <span class="URL"><a href="https://web.math.pmf.unizg.hr/~krcko/results/cubes.html">https://web.math.pmf.unizg.hr/~krcko/results/cubes.html</a></span>. A list of 1423 non-group cubes of <span class="SimpleMath">(16,6,2)</span> designs is also provided.</p>
 
-<p>The package <strong class="pkg">DifSets</strong> contains precomputed lists of difference sets up to equivalence. They are loaded by the function <code class="func">LoadDifferenceSets</code> (<a href="/opt/gap-4.13.1/pkg/difsets/doc/chap2.html#X848925877C3C891F"><span class="RefLink">DifSets: LoadDifferenceSets</span></a>). We can use them to compute all difference cubes up to equivalence.</p>
+<p>The package <strong class="pkg">DifSets</strong> contains precomputed lists of difference sets up to equivalence. They are loaded by the function <code class="func">LoadDifferenceSets</code> (<a href="/opt/gap-4.14.0/pkg/difsets/doc/chap2.html#X848925877C3C891F"><span class="RefLink">DifSets: LoadDifferenceSets</span></a>). We can use them to compute all difference cubes up to equivalence.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v:=27;</span>
@@ -958,7 +958,7 @@ Group([ (1,10,4)(2,15,7)(3,17,9)(5,20,12)(6,22,14)(8,23,16)
 [ [ 7, 3, 1 ] ]
 </pre></div>
 
-<p>Functions <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-16</span></a>) and <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-15</span></a>) also have versions that work with orthogonal arrays.</p>
+<p>Functions <code class="func">CubeFilter</code> (<a href="chap2.html#X810B22E286D857C1"><span class="RefLink">2.6-18</span></a>) and <code class="func">CubeAut</code> (<a href="chap2.html#X7E96F84678D23676"><span class="RefLink">2.6-17</span></a>) also have versions that work with orthogonal arrays.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size(OrthogonalArrayFilter([C1,C3]));</span>

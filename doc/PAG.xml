@@ -1351,6 +1351,8 @@ The following functions are available in the PAG package.
 
 <#Include Label="RestrictedGroup">
 
+<#Include Label="TidyGroup">
+
 <#Include Label="PrimitiveGroupsOfDegree">
 
 <#Include Label="TransitiveGroupsOfDegree">
@@ -1359,30 +1361,52 @@ The following functions are available in the PAG package.
 
 <#Include Label="AllSubgroupsConjugation">
 
+<#Include Label="ConjugationFilter">
+
+<#Include Label="ConjugationFilter2">
+
 <#Include Label="PermRepresentationRight">
 
 <#Include Label="PermRepresentationLeft">
 
 <#Include Label="ExtendedPermRepresentation">
 
+<#Include Label="AllPermRepresentations">
+
 </Section>
 
-<Section Label="Generating Ortbits">
+<Section Label="Generating Orbits">
 <Heading>Generating Orbits</Heading>
 
 <#Include Label="SubsetOrbitRep">
 
 <#Include Label="SubsetOrbitRepShort1">
 
+<#Include Label="SubsetOrbitRepShort2">
+
+<#Include Label="SubsetOrbitRepShort3">
+
 <#Include Label="SubsetOrbitRepIN">
 
+<#Include Label="SubsetOrbitRepIN2">
+
+<#Include Label="SubsetOrbitRepSteiner">
+
+<#Include Label="SubsetOrbitRepOM">
+
 <#Include Label="IsGoodSubsetOrbit">
+
+<#Include Label="AreCompatibleSubsetOrbits">
 
 <#Include Label="SmallLambdaFilter">
 
 <#Include Label="OrbitFilter1">
 
 <#Include Label="OrbitFilter2">
+
+<#Include Label="InequivalentSubsetOrbits">
+
+<#Include Label="InequivalentSubsetOrbitPairs">
 
 </Section>
 
@@ -1391,13 +1415,51 @@ The following functions are available in the PAG package.
 
 <#Include Label="KramerMesnerSearch">
 
+<#Include Label="SteinerSearchOld">
+
+<#Include Label="SteinerSearch">
+
+<#Include Label="ExtendSteinerDesign">
+
+<#Include Label="ExtendSteinerBlocks">
+
 <#Include Label="KramerMesnerMat">
+
+<#Include Label="KramerMesnerMat2">
+
+<#Include Label="KramerMesnerMatOM">
+
+<#Include Label="WriteDLX">
+
+<#Include Label="MakeDLX">
+
+<#Include Label="MakeDLX2">
+
+<#Include Label="RectifySolutions">
 
 <#Include Label="CompatibilityMat">
 
 <#Include Label="SolveKramerMesner">
 
+<#Include Label="SolveDLX">
+
+<#Include Label="SolveSteiner">
+
 <#Include Label="BaseBlocks">
+
+<#Include Label="OrbitMats">
+
+<#Include Label="OrbitMatsWide">
+
+<#Include Label="OrbitMatsWide2">
+
+<#Include Label="ColumnsOM">
+
+<#Include Label="OrbitMatsWide3">
+
+<#Include Label="SubsetOrbitTypes">
+
+<#Include Label="OrbitMatFilter">
 
 <#Include Label="ExpandMatRHS">
 
@@ -1425,6 +1487,12 @@ The following functions are available in the PAG package.
 <#Include Label="BlockDesignAut">
 
 <#Include Label="BlockDesignFilter">
+
+<#Include Label="OrbitMatDual">
+
+<#Include Label="OrbitMatRowTest">
+
+<#Include Label="OrbitMatColumnTest">
 
 <#Include Label="Cliquer">
 
@@ -1508,7 +1576,11 @@ The following functions are available in the PAG package.
 
 <#Include Label="LatinSquareToCube">
 
+<#Include Label="Development3">
+
 <#Include Label="CubeTest">
+
+<#Include Label="Cube3Test">
 
 <#Include Label="SliceInvariant">
 
@@ -1573,6 +1645,8 @@ The following functions are available in the PAG package.
 <#Include Label="DigitConstructionMat">
 
 <#Include Label="CyclicDimensionIncrease">
+
+<#Include Label="LatinSquareDimensionIncrease">
 
 <#Include Label="HadamardMatAut">
 

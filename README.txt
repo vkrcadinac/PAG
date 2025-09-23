@@ -46,6 +46,10 @@ Libexact:
 * Petteri Kaski (petteri.kaski@aalto.fi)
 * Olli Pottonen (olli.pottonen@iki.fi)
 
+SSMCC, SSXCC and SSXCC-binary:
+* Donald E. Knuth
+(with modifications by Alfred Wassermann)
+
 
 ## License
 

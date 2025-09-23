@@ -21,4 +21,16 @@ Version 0.2.4: 12/11/2024
   Added functions Homogeneity, SingerDifferenceSets, NormalizedSingerDifferenceSets,
   EquivalentDifferenceSets, Cliquer, DisjointCliques, AdjacencyMat. Added functions
   for projection cubes of symmetric designs.
-
+Version 0.2.5: 23/09/2025
+  Upgraded/corrected functions ReadMat, WriteMat, SolveKramerMesner, KramerMesenrSearch, 
+  OrthogonalArrayProjection, OrthogonalArrayToCube, BlockDesignFilter, BlockDesignAut,
+  CubeFilter, CubeAut, OrthogonalArrayFilter, OrthogonalArrayAut.
+  Added functions SubsetOrbitRepIN2, OrbitMats, OrbitMatDual, OrbitMatRowTest, 
+  OrbitMatColumnTest, KramerMesnerOM, SolveDLX, MakeDLX, KramerMesnerMat2, 
+  InequivalentSubsetOrbits, InequivalentSubsetOrbitPairs, AreCompatibleSubsetOrbits, 
+  SteinerSearchOld, SteinerSearch, SubsetOrbitRepSteiner, SubsetOrbitRepOM, 
+  ConjugationFilter, ConjugationFilter2, SolveSteiner, AllPermRepresentations, 
+  SubsetOrbitRepShort2, MakeDLX2, OrbitMatsWide, OrbitMatsWide2, TidyGroup, 
+  ColumnsOM, OrbitMatsWide3, RectifySolutions, ExtendSteinerDesign, SubsetOrbitRepShort3, 
+  SubsetOrbitTypes, ExtendSteinerBlocks, Cube3Test, Development3, 
+  LatinSquareDimensionIncrease.

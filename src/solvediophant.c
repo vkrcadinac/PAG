@@ -547,7 +547,7 @@ original_columns[l]= 0;
 }
 #endif   
 }
-fprintf(stderr,"cols=%d\n",nboundedvars);
+fprintf(stdout,"cols=%d\n",nboundedvars);
 }
 /*:23*/
 #line 119 "solvediophant.w"

@@ -6,10 +6,10 @@
                         [1X Prescribed Automorphism Groups [101X
   
   
-                                     0.2.4
+                                     0.2.5
   
   
-                                12 November 2024
+                                  25 June 2025
   
   
                                 Vedran Krcadinac
@@ -33,7 +33,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2024 by Vedran Krcadinac[133X
+  [33X[0;0Y© 2025 by Vedran Krcadinac[133X
   
   [33X[0;0YThe  [5XPAG[105X  package is free software; you can redistribute it and/or modify it
   under     the     terms     of    the    GNU    General    Public    License
@@ -74,49 +74,83 @@
       2.1-5 MultiPerm
       2.1-6 MultiGroup
       2.1-7 RestrictedGroup
-      2.1-8 PrimitiveGroupsOfDegree
-      2.1-9 TransitiveGroupsOfDegree
-      2.1-10 Homogeneity
-      2.1-11 AllSubgroupsConjugation
-      2.1-12 PermRepresentationRight
-      2.1-13 PermRepresentationLeft
-      2.1-14 ExtendedPermRepresentation
+      2.1-8 TidyGroup
+      2.1-9 PrimitiveGroupsOfDegree
+      2.1-10 TransitiveGroupsOfDegree
+      2.1-11 Homogeneity
+      2.1-12 AllSubgroupsConjugation
+      2.1-13 ConjugationFilter
+      2.1-14 ConjugationFilter2
+      2.1-15 PermRepresentationRight
+      2.1-16 PermRepresentationLeft
+      2.1-17 ExtendedPermRepresentation
+      2.1-18 AllPermRepresentations
     2.2 [33X[0;0YGenerating Orbits[133X
       2.2-1 SubsetOrbitRep
       2.2-2 SubsetOrbitRepShort1
-      2.2-3 SubsetOrbitRepIN
-      2.2-4 IsGoodSubsetOrbit
-      2.2-5 SmallLambdaFilter
-      2.2-6 OrbitFilter1
-      2.2-7 OrbitFilter2
+      2.2-3 SubsetOrbitRepShort2
+      2.2-4 SubsetOrbitRepShort3
+      2.2-5 SubsetOrbitRepIN
+      2.2-6 SubsetOrbitRepIN2
+      2.2-7 SubsetOrbitRepSteiner
+      2.2-8 SubsetOrbitRepOM
+      2.2-9 IsGoodSubsetOrbit
+      2.2-10 AreCompatibleSubsetOrbits
+      2.2-11 SmallLambdaFilter
+      2.2-12 OrbitFilter1
+      2.2-13 OrbitFilter2
+      2.2-14 InequivalentSubsetOrbits
+      2.2-15 InequivalentSubsetOrbitPairs
     2.3 [33X[0;0YConstructing Objects[133X
       2.3-1 KramerMesnerSearch
-      2.3-2 KramerMesnerMat
-      2.3-3 CompatibilityMat
-      2.3-4 SolveKramerMesner
-      2.3-5 BaseBlocks
-      2.3-6 ExpandMatRHS
-      2.3-7 CameronSeidelSet
-      2.3-8 OrthogonalNormalBasis
-      2.3-9 KerdockSet
-      2.3-10 SingerDifferenceSets
-      2.3-11 NormalizedSingerDifferenceSets
-      2.3-12 RightDevelopment
-      2.3-13 LeftDevelopment
-      2.3-14 EquivalentDifferenceSets
+      2.3-2 SteinerSearchOld
+      2.3-3 SteinerSearch
+      2.3-4 ExtendSteinerDesign
+      2.3-5 ExtendSteinerBlocks
+      2.3-6 KramerMesnerMat
+      2.3-7 KramerMesnerMat2
+      2.3-8 KramerMesnerMatOM
+      2.3-9 WriteDLX
+      2.3-10 MakeDLX
+      2.3-11 MakeDLX2
+      2.3-12 RectifySolutions
+      2.3-13 CompatibilityMat
+      2.3-14 SolveKramerMesner
+      2.3-15 SolveDLX
+      2.3-16 SolveSteiner
+      2.3-17 BaseBlocks
+      2.3-18 OrbitMats
+      2.3-19 OrbitMatsWide
+      2.3-20 OrbitMatsWide2
+      2.3-21 ColumnsOM
+      2.3-22 OrbitMatsWide3
+      2.3-23 SubsetOrbitTypes
+      2.3-24 OrbitMatFilter
+      2.3-25 ExpandMatRHS
+      2.3-26 CameronSeidelSet
+      2.3-27 OrthogonalNormalBasis
+      2.3-28 KerdockSet
+      2.3-29 SingerDifferenceSets
+      2.3-30 NormalizedSingerDifferenceSets
+      2.3-31 RightDevelopment
+      2.3-32 LeftDevelopment
+      2.3-33 EquivalentDifferenceSets
     2.4 [33X[0;0YInspecting Objects and Other Functions[133X
       2.4-1 BlockDesignAut
       2.4-2 BlockDesignFilter
-      2.4-3 Cliquer
-      2.4-4 DisjointCliques
-      2.4-5 IntersectionNumbers
-      2.4-6 BlockScheme
-      2.4-7 PointPairScheme
-      2.4-8 TDesignB
-      2.4-9 IversonBracket
-      2.4-10 SymmetricDifference
-      2.4-11 AddWeights
-      2.4-12 AdjacencyMat
+      2.4-3 OrbitMatDual
+      2.4-4 OrbitMatRowTest
+      2.4-5 OrbitMatColumnTest
+      2.4-6 Cliquer
+      2.4-7 DisjointCliques
+      2.4-8 IntersectionNumbers
+      2.4-9 BlockScheme
+      2.4-10 PointPairScheme
+      2.4-11 TDesignB
+      2.4-12 IversonBracket
+      2.4-13 SymmetricDifference
+      2.4-14 AddWeights
+      2.4-15 AdjacencyMat
     2.5 [33X[0;0YLatin Squares[133X
       2.5-1 ReadMOLS
       2.5-2 WriteMOLS
@@ -145,12 +179,14 @@
       2.6-10 CubeToTransversalDesign
       2.6-11 TransversalDesignToCube
       2.6-12 LatinSquareToCube
-      2.6-13 CubeTest
-      2.6-14 SliceInvariant
-      2.6-15 CubeAut
-      2.6-16 CubeFilter
-      2.6-17 SDPSeriesGroup
-      2.6-18 SDPSeriesDesign
+      2.6-13 Development3
+      2.6-14 CubeTest
+      2.6-15 Cube3Test
+      2.6-16 SliceInvariant
+      2.6-17 CubeAut
+      2.6-18 CubeFilter
+      2.6-19 SDPSeriesGroup
+      2.6-20 SDPSeriesDesign
     2.7 [33X[0;0YProjection Cubes of Symmetric Designs[133X
       2.7-1 CubeProjection
       2.7-2 CubeProjections
@@ -175,10 +211,11 @@
       2.8-8 ProductConstructionMat
       2.8-9 DigitConstructionMat
       2.8-10 CyclicDimensionIncrease
-      2.8-11 HadamardMatAut
-      2.8-12 HadamardMatFilter
-      2.8-13 HadamardToIncidence
-      2.8-14 IncidenceToHadamard
+      2.8-11 LatinSquareDimensionIncrease
+      2.8-12 HadamardMatAut
+      2.8-13 HadamardMatFilter
+      2.8-14 HadamardToIncidence
+      2.8-15 IncidenceToHadamard
     2.9 [33X[0;0YMosaics of Combinatorial Designs[133X
       2.9-1 MosaicParameters
       2.9-2 BlocksToIncidenceMat

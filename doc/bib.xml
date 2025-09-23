@@ -117,6 +117,23 @@
   <pages>79&ndash;90</pages>
 </article></entry>
 
+<entry id="AW21"><incollection>
+  <author>
+    <name><first>Alfred</first><last>Wassermann</last></name>
+  </author>
+  <title>Search for combinatorial objects using lattice algorithms &ndash; 
+  revisited</title>
+  <booktitle>Combinatorial algorithms</booktitle>
+  <editor>
+    <name><first>P.</first><last>Flocchini</last></name>
+    <name><first>L.</first><last>Moura</last></name>
+  </editor>
+  <publisher>Springer</publisher>
+  <year>2021</year>
+  <location>Cham</location>
+  <pages>20&ndash;33</pages>
+</incollection></entry>
+
 <entry id="KPT23"><article>
   <author>
     <name><first>Vedran</first><last>Krcadinac</last></name>
@@ -356,6 +373,42 @@
   <year>2024</year>
   <note><URL>https://arxiv.org/abs/2411.06936</URL></note>
 </article></entry>
+
+<entry id="DK00"><incollection>
+  <author>
+    <name><first>Donald</first><last>Knuth</last></name>
+  </author>
+  <title>Dancing links</title>
+  <booktitle> Millennial Perspectives in Computer Science</booktitle>
+  <editor>
+    <name><first>J.</first><last>Davies</last></name>
+    <name><first>B.</first><last>Roscoe</last></name>
+    <name><first>J.</first><last>Woodcock</last></name>
+  </editor>
+  <publisher>Palgrave Macmillan</publisher>
+  <year>2000</year>
+  <location>Basingstoke</location>
+  <pages>187&ndash;214</pages>
+  <note><URL>https://doi.org/10.48550/arXiv.cs/0011047</URL></note>
+</incollection></entry>
+
+<entry id="DK17"><misc>
+  <author>
+    <name><first>Donald</first><last>Knuth</last></name>
+  </author>
+  <title><C>DLX3</C></title>
+  <year>2017</year>
+  <note><URL>https://www-cs-faculty.stanford.edu/~knuth/programs/dlx3.w</URL></note>
+</misc></entry>
+
+<entry id="DK25"><book>
+  <author>
+    <name><first>Donald</first><last>Knuth</last></name>
+  </author>
+  <title>The Art of Computer Programming, Vol. 4: Combinatorial Algorithms, Fascicle 7</title>
+  <publisher>Addison-Wesley</publisher>
+  <year>2025</year>
+</book></entry>
 
 </file>
 

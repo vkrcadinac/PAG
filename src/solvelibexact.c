@@ -4,7 +4,7 @@
     Calls libexact by Petteri Kaski and Olli Pottonen, see 
     https://pottonen.kapsi.fi/libexact.html
 
-    Vedran Krcadinac (krcko@math.hr), 15.10.2024.
+    Vedran Krcadinac (krcko@math.hr), 5.2.2025.
     Department of Mathematics, University of Zagreb, Croatia
 */
 
@@ -139,7 +139,10 @@ int main(int argc,char *argv[])
 	     
   while((soln = exact_solve(e, &soln_size)) != NULL) 
   { ++count;
-    if ((mask & 1) && (count%freq==0)) printf("Solution #%ld\n",count);
+    if ((mask & 1) && (count%freq==0)) 
+    { printf("Solution #%ld\n",count);
+      fflush(stdout);
+    }
     for (i=0; i<n; ++i) *(row+i)=0;
     for (i=0; i<soln_size; ++i) *(row+soln[i])=1;
     for (i=0; i<n; ++i) fprintf(outfile,"%d",*(row+i));

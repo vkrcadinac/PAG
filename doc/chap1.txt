@@ -625,7 +625,7 @@
     [4X[28X[ [ 3, 2, 1 ] ][128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe  function  [2XCubeTest[102X  ([14X2.6-13[114X) looks at all possible slices and checks if
+  [33X[0;0YThe  function  [2XCubeTest[102X  ([14X2.6-14[114X) looks at all possible slices and checks if
   they  are  incidence  matrices  of  [22X(v,k,λ)[122X  designs. In the next example we
   construct all [22X3[122X-dimensional difference cubes of order [22X21[122X.[133X
   
@@ -645,7 +645,7 @@
     [4X[28X2646[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe function [2XCubeAut[102X ([14X2.6-15[114X) computes the full autotopy group of a cube. By
+  [33X[0;0YThe function [2XCubeAut[102X ([14X2.6-17[114X) computes the full autotopy group of a cube. By
   setting  options, full autoparatopy groups can also be obtained. We can make
   a  non-difference  cube by the "group cube" construction of Theorem 4.1 from
   [KPT24].  First  we  search  for  all  [22X(21,5,1)[122X  designs  with  blocks being
@@ -688,7 +688,7 @@
     [4X[28X1[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe function [2XCubeFilter[102X ([14X2.6-16[114X) eliminates equivalent copies from a list of
+  [33X[0;0YThe function [2XCubeFilter[102X ([14X2.6-18[114X) eliminates equivalent copies from a list of
   cubes.  Our  new  cube  is  not  equivalent with the two [22X(21,5,1)[122X difference
   cubes.[133X
   
@@ -1000,7 +1000,7 @@
     [4X[28X[ [ 7, 3, 1 ] ][128X[104X
   [4X[32X[104X
   
-  [33X[0;0YFunctions  [2XCubeFilter[102X  ([14X2.6-16[114X) and [2XCubeAut[102X ([14X2.6-15[114X) also have versions that
+  [33X[0;0YFunctions  [2XCubeFilter[102X  ([14X2.6-18[114X) and [2XCubeAut[102X ([14X2.6-17[114X) also have versions that
   work with orthogonal arrays.[133X
   
   [4X[32X  Example  [32X[104X

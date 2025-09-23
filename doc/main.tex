@@ -99,8 +99,8 @@
 {\Huge \textbf{ Prescribed Automorphism Groups \mbox{}}}\\
 \vfill
 
-{\Huge  0.2.4 \mbox{}}\\[1cm]
-{ 12 November 2024 \mbox{}}\\[1cm]
+{\Huge  0.2.5 \mbox{}}\\[1cm]
+{ 25 June 2025 \mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Vedran Krcadinac\\
     \mbox{}}}\\
@@ -130,7 +130,7 @@ groups. \mbox{}}\\[1cm]
 {\small 
 \section*{Copyright}
 \logpage{[ 0, 0, 2 ]}
- \index{License} {\copyright} 2024 by Vedran Krcadinac
+ \index{License} {\copyright} 2025 by Vedran Krcadinac
 
  The \textsf{PAG} package is free software; you can redistribute it and/or modify it under the
 terms of the \href{http://www.fsf.org/licenses/gpl.html} {GNU General Public License} as published by the Free Software Foundation; either version 2 of the License,
@@ -1411,8 +1411,27 @@ one resolvable and two not resolvable.
 
  
 
-\subsection{\textcolor{Chapter }{PrimitiveGroupsOfDegree}}
+\subsection{\textcolor{Chapter }{TidyGroup}}
 \logpage{[ 2, 1, 8 ]}\nobreak
+\hyperdef{L}{X850DD173874AB37C}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TidyGroup({\mdseries\slshape G, set[, opt]})\index{TidyGroup@\texttt{TidyGroup}}
+\label{TidyGroup}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a permutation group \mbox{\texttt{\mdseries\slshape G}} and a set, returns a permutationally isomorphic group such that its orbits
+contain consecutive integers and are sorted by size. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record with component 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape MinimalGeneratingSet}}:=\texttt{true}/\texttt{false} Use a minimal generating set of \mbox{\texttt{\mdseries\slshape G}}. The default is \texttt{true}.
+\item \mbox{\texttt{\mdseries\slshape Normalizer}}:=\texttt{true}/\texttt{false} Put orbits that are equivalent under the normalizer in consecutive places. It
+is assumed that \mbox{\texttt{\mdseries\slshape set}} is of the form \texttt{[1..v]} and the normalizer of \mbox{\texttt{\mdseries\slshape G}} in \texttt{SymmetricGroup(v)} is computed. The default is \texttt{true}.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{PrimitiveGroupsOfDegree}}
+\logpage{[ 2, 1, 9 ]}\nobreak
 \hyperdef{L}{X7C6BC92378E6B4BC}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PrimitiveGroupsOfDegree({\mdseries\slshape v})\index{PrimitiveGroupsOfDegree@\texttt{PrimitiveGroupsOfDegree}}
 \label{PrimitiveGroupsOfDegree}
@@ -1424,7 +1443,7 @@ one resolvable and two not resolvable.
  
 
 \subsection{\textcolor{Chapter }{TransitiveGroupsOfDegree}}
-\logpage{[ 2, 1, 9 ]}\nobreak
+\logpage{[ 2, 1, 10 ]}\nobreak
 \hyperdef{L}{X8589DDAD7DB0FCA8}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TransitiveGroupsOfDegree({\mdseries\slshape v})\index{TransitiveGroupsOfDegree@\texttt{TransitiveGroupsOfDegree}}
 \label{TransitiveGroupsOfDegree}
@@ -1436,7 +1455,7 @@ one resolvable and two not resolvable.
  
 
 \subsection{\textcolor{Chapter }{Homogeneity}}
-\logpage{[ 2, 1, 10 ]}\nobreak
+\logpage{[ 2, 1, 11 ]}\nobreak
 \hyperdef{L}{X7CAEAB907854A11A}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Homogeneity({\mdseries\slshape G})\index{Homogeneity@\texttt{Homogeneity}}
 \label{Homogeneity}
@@ -1448,7 +1467,7 @@ one resolvable and two not resolvable.
  
 
 \subsection{\textcolor{Chapter }{AllSubgroupsConjugation}}
-\logpage{[ 2, 1, 11 ]}\nobreak
+\logpage{[ 2, 1, 12 ]}\nobreak
 \hyperdef{L}{X81A70E877DF8AA34}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AllSubgroupsConjugation({\mdseries\slshape G})\index{AllSubgroupsConjugation@\texttt{AllSubgroupsConjugation}}
 \label{AllSubgroupsConjugation}
@@ -1459,8 +1478,49 @@ one resolvable and two not resolvable.
 
  
 
+\subsection{\textcolor{Chapter }{ConjugationFilter}}
+\logpage{[ 2, 1, 13 ]}\nobreak
+\hyperdef{L}{X7C77598E79C60413}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ConjugationFilter({\mdseries\slshape v, gl[, opt]})\index{ConjugationFilter@\texttt{ConjugationFilter}}
+\label{ConjugationFilter}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a list of permutation groups \mbox{\texttt{\mdseries\slshape gl}}, returns a set of representatives up to conjugation in the symmetric group of
+degree \mbox{\texttt{\mdseries\slshape v}}, i.e. up to permutation isomorphism. If \mbox{\texttt{\mdseries\slshape gl}} is partitioned into blocks, it is assumed that the groups from different
+blocks are not equivalent and the function is applied to each block. This
+reduces the number of ccnjugation tests and makes the computation faster. The
+list \mbox{\texttt{\mdseries\slshape gl}} can be partitioned using invariants given in the record \mbox{\texttt{\mdseries\slshape opt}}. If the record has a component \mbox{\texttt{\mdseries\slshape Invariant}}, the list is partitioned accordingly and no conjugation tests are performed.
+Here are the values that \mbox{\texttt{\mdseries\slshape Invariant}} can take: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Invariant}}:="OrbitSizes" The orbit sizes of \texttt{g} on \texttt{[1..}\mbox{\texttt{\mdseries\slshape v}}\texttt{]} are used to partition \mbox{\texttt{\mdseries\slshape gl}}.
+\item \mbox{\texttt{\mdseries\slshape Invariant}}:="CycleLengths" The cycle lengths of all elements of \texttt{g} on \texttt{[1..}\mbox{\texttt{\mdseries\slshape v}}\texttt{]} are used to partition \mbox{\texttt{\mdseries\slshape gl}}.
+\item \mbox{\texttt{\mdseries\slshape Invariant}}:=\texttt{function} Any function that is an invariant of permutation isomorphism can also be given
+and is then used to partition \mbox{\texttt{\mdseries\slshape gl}}.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{ConjugationFilter2}}
+\logpage{[ 2, 1, 14 ]}\nobreak
+\hyperdef{L}{X811C67EC7C8ED84F}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ConjugationFilter2({\mdseries\slshape v, gl[, opt]})\index{ConjugationFilter2@\texttt{ConjugationFilter2}}
+\label{ConjugationFilter2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a list of permutation groups \mbox{\texttt{\mdseries\slshape gl}}, returns a set of representatives up to conjugation in the symmetric group of
+degree \mbox{\texttt{\mdseries\slshape v}}, i.e. up to permutation isomorphism. Uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. The last argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. The possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
 \subsection{\textcolor{Chapter }{PermRepresentationRight}}
-\logpage{[ 2, 1, 12 ]}\nobreak
+\logpage{[ 2, 1, 15 ]}\nobreak
 \hyperdef{L}{X780C40F4873006FB}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PermRepresentationRight({\mdseries\slshape G})\index{PermRepresentationRight@\texttt{PermRepresentationRight}}
 \label{PermRepresentationRight}
@@ -1472,7 +1532,7 @@ one resolvable and two not resolvable.
  
 
 \subsection{\textcolor{Chapter }{PermRepresentationLeft}}
-\logpage{[ 2, 1, 13 ]}\nobreak
+\logpage{[ 2, 1, 16 ]}\nobreak
 \hyperdef{L}{X815AE3827C9CA969}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PermRepresentationLeft({\mdseries\slshape G})\index{PermRepresentationLeft@\texttt{PermRepresentationLeft}}
 \label{PermRepresentationLeft}
@@ -1484,7 +1544,7 @@ one resolvable and two not resolvable.
  
 
 \subsection{\textcolor{Chapter }{ExtendedPermRepresentation}}
-\logpage{[ 2, 1, 14 ]}\nobreak
+\logpage{[ 2, 1, 17 ]}\nobreak
 \hyperdef{L}{X7BD56AE78333F3A2}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ExtendedPermRepresentation({\mdseries\slshape G})\index{ExtendedPermRepresentation@\texttt{ExtendedPermRepresentation}}
 \label{ExtendedPermRepresentation}
@@ -1493,10 +1553,22 @@ one resolvable and two not resolvable.
 
  Returns the extended permutation representation of a group \mbox{\texttt{\mdseries\slshape G}} including right multiplication, left multiplication, and group automorphisms. }
 
+ 
+
+\subsection{\textcolor{Chapter }{AllPermRepresentations}}
+\logpage{[ 2, 1, 18 ]}\nobreak
+\hyperdef{L}{X815AAE9C7ED682A8}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AllPermRepresentations({\mdseries\slshape G, nu})\index{AllPermRepresentations@\texttt{AllPermRepresentations}}
+\label{AllPermRepresentations}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns all permutation representations of a group \mbox{\texttt{\mdseries\slshape G}} on orbits of size given in a list of integers \mbox{\texttt{\mdseries\slshape nu}}. The integers should be divisors of the order of \mbox{\texttt{\mdseries\slshape G}}. }
+
  }
 
  
-\section{\textcolor{Chapter }{Generating Orbits}}\label{Generating Ortbits}
+\section{\textcolor{Chapter }{Generating Orbits}}\label{Generating Orbits}
 \logpage{[ 2, 2, 0 ]}
 \hyperdef{L}{X7CA95AB080E5135D}{}
 {
@@ -1513,7 +1585,7 @@ one resolvable and two not resolvable.
  Computes orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] under the action of the permutation group \mbox{\texttt{\mdseries\slshape G}}. The basic algorithm is described in \cite{KVK21}. The algorithm for short orbits is described in \cite{KV16}. The last argument is a record \mbox{\texttt{\mdseries\slshape opt}} for options. The possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
 \begin{itemize}
 \item \mbox{\texttt{\mdseries\slshape SizeLE}}:=\mbox{\texttt{\mdseries\slshape n}} If defined, only representatives of orbits of size less or equal to \mbox{\texttt{\mdseries\slshape n}} are computed.
-\item \mbox{\texttt{\mdseries\slshape IntesectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}} If defined, only representatives of good orbits are returned. These are orbits
+\item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}} If defined, only representatives of good orbits are returned. These are orbits
 with intersection numbers in the list of integers \mbox{\texttt{\mdseries\slshape lin}}.
 \end{itemize}
  }
@@ -1528,12 +1600,42 @@ with intersection numbers in the list of integers \mbox{\texttt{\mdseries\slshap
 }\hfill{\scriptsize (function)}}\\
 
 
- Computes \mbox{\texttt{\mdseries\slshape G}}\texttt{\symbol{45}}orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] of size less or equal \mbox{\texttt{\mdseries\slshape size}}. Here, \mbox{\texttt{\mdseries\slshape size}} is an integer smaller than the order of the group \mbox{\texttt{\mdseries\slshape G}}. The algorithm is described in \cite{KV16}. }
+ Computes \mbox{\texttt{\mdseries\slshape G}}\texttt{\symbol{45}}orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] of size less or equal \mbox{\texttt{\mdseries\slshape size}}. Here, \mbox{\texttt{\mdseries\slshape size}} is an integer smaller than the order of the group \mbox{\texttt{\mdseries\slshape G}}. The algorithm is described in \cite{KV16}. The implementation uses \texttt{OrbitFilter1} (\ref{OrbitFilter1}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{SubsetOrbitRepShort2}}
+\logpage{[ 2, 2, 3 ]}\nobreak
+\hyperdef{L}{X83F4C65A8747CB1D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepShort2({\mdseries\slshape G, v, k, size})\index{SubsetOrbitRepShort2@\texttt{SubsetOrbitRepShort2}}
+\label{SubsetOrbitRepShort2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes \mbox{\texttt{\mdseries\slshape G}}\texttt{\symbol{45}}orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] of size less or equal \mbox{\texttt{\mdseries\slshape size}}. Here, \mbox{\texttt{\mdseries\slshape size}} is an integer smaller than the order of the group \mbox{\texttt{\mdseries\slshape G}}. The algorithm is described in \cite{KV16}. The implementation uses \texttt{OrbitFilter2} (\ref{OrbitFilter2}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{SubsetOrbitRepShort3}}
+\logpage{[ 2, 2, 4 ]}\nobreak
+\hyperdef{L}{X8484B5538111B8A9}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepShort3({\mdseries\slshape G, v, k, size[, opt]})\index{SubsetOrbitRepShort3@\texttt{SubsetOrbitRepShort3}}
+\label{SubsetOrbitRepShort3}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes \mbox{\texttt{\mdseries\slshape G}}\texttt{\symbol{45}}orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] of size less or equal \mbox{\texttt{\mdseries\slshape size}}. Here, \mbox{\texttt{\mdseries\slshape size}} is an integer smaller than the order of the group \mbox{\texttt{\mdseries\slshape G}}. The algorithm is described in \cite{KV16}. This implementation calls a C program and allows specifying intersection
+numbers in a record \mbox{\texttt{\mdseries\slshape opt}}. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\texttt{lin} A set \texttt{lin} of up to four intersection numbers can be given.
+\item \mbox{\texttt{\mdseries\slshape SteinerT}}:=\texttt{t} Computes short orbits for Steiner \texttt{t}\texttt{\symbol{45}}designs. An integer \texttt{t} in [2,3,4] can be given; this means that the intersection numbers are [0..\texttt{t}\texttt{\symbol{45}}1]. 
+\end{itemize}
+ }
 
  
 
 \subsection{\textcolor{Chapter }{SubsetOrbitRepIN}}
-\logpage{[ 2, 2, 3 ]}\nobreak
+\logpage{[ 2, 2, 5 ]}\nobreak
 \hyperdef{L}{X81601D33790912F8}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepIN({\mdseries\slshape G, v, k, lin[, opt]})\index{SubsetOrbitRepIN@\texttt{SubsetOrbitRepIN}}
 \label{SubsetOrbitRepIN}
@@ -1551,8 +1653,66 @@ in \cite{KVK21}. The last (optional) argument \mbox{\texttt{\mdseries\slshape op
 
  
 
+\subsection{\textcolor{Chapter }{SubsetOrbitRepIN2}}
+\logpage{[ 2, 2, 6 ]}\nobreak
+\hyperdef{L}{X79E729477C303CC7}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepIN2({\mdseries\slshape G, v, k, x, y[, opt]})\index{SubsetOrbitRepIN2@\texttt{SubsetOrbitRepIN2}}
+\label{SubsetOrbitRepIN2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] under the action of the permutation group \mbox{\texttt{\mdseries\slshape G}} with intersection numbers \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}. Calls a \texttt{C}\texttt{\symbol{45}}subroutine for the time\texttt{\symbol{45}}critical part
+of the computation and should be faster than \texttt{SubsetOrbitRepIN} (\ref{SubsetOrbitRepIN}). The algorithm is described in \cite{KVK21}. The last (optional) argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Long}}:=\texttt{true}/\texttt{false} Compute and return the long orbits (of size equal to $|G|$).
+\item \mbox{\texttt{\mdseries\slshape Short}}:=\texttt{true}/\texttt{false} Compute and return the short orbits (of size less than $|G|$).
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SubsetOrbitRepSteiner}}
+\logpage{[ 2, 2, 7 ]}\nobreak
+\hyperdef{L}{X7D2AD3577C351A3D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepSteiner({\mdseries\slshape G, t, v, k[, opt]})\index{SubsetOrbitRepSteiner@\texttt{SubsetOrbitRepSteiner}}
+\label{SubsetOrbitRepSteiner}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes orbit representatives of \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}subsets of [1..\mbox{\texttt{\mdseries\slshape v}}] under the action of the permutation group \mbox{\texttt{\mdseries\slshape G}} with intersection numbers strictly less than \mbox{\texttt{\mdseries\slshape t}}. Calls \texttt{C}\texttt{\symbol{45}}subroutines for the time\texttt{\symbol{45}}critical parts
+of the computation. The algorithm is described in \cite{KVK21}. The last (optional) argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Long}}:=\texttt{true}/\texttt{false} Compute and return the long orbits (of size equal to $|G|$).
+\item \mbox{\texttt{\mdseries\slshape Short}}:=\texttt{true}/\texttt{false} Compute and return the short orbits (of size less than $|G|$).
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SubsetOrbitRepOM}}
+\logpage{[ 2, 2, 8 ]}\nobreak
+\hyperdef{L}{X7D95225079BA34F8}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitRepOM({\mdseries\slshape G, t, v, k, beta, OM[, opt]})\index{SubsetOrbitRepOM@\texttt{SubsetOrbitRepOM}}
+\label{SubsetOrbitRepOM}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes subset orbit representatives compatible with an orbit matrix or list
+of orbit matrices \mbox{\texttt{\mdseries\slshape OM}} with block orbit sizes \mbox{\texttt{\mdseries\slshape beta}}. For each orbit matrix, the result is returned as a list of two components.
+The first component is a list of sets of orbit representatives compatible with
+a column of the orbit matrix. The second component is a list of numbers
+indicating how many orbits have to be taken from each set. Calls \texttt{SubsetOrbitRepSteiner} (\ref{SubsetOrbitRepSteiner}) to generate the subset orbits. The last (optional) argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\end{itemize}
+ }
+
+ 
+
 \subsection{\textcolor{Chapter }{IsGoodSubsetOrbit}}
-\logpage{[ 2, 2, 4 ]}\nobreak
+\logpage{[ 2, 2, 9 ]}\nobreak
 \hyperdef{L}{X821B07AF82565DCE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsGoodSubsetOrbit({\mdseries\slshape G, rep, lin})\index{IsGoodSubsetOrbit@\texttt{IsGoodSubsetOrbit}}
 \label{IsGoodSubsetOrbit}
@@ -1564,8 +1724,21 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
 
  
 
+\subsection{\textcolor{Chapter }{AreCompatibleSubsetOrbits}}
+\logpage{[ 2, 2, 10 ]}\nobreak
+\hyperdef{L}{X821010847C48F075}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AreCompatibleSubsetOrbits({\mdseries\slshape G, rep1, rep2, lin})\index{AreCompatibleSubsetOrbits@\texttt{AreCompatibleSubsetOrbits}}
+\label{AreCompatibleSubsetOrbits}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Check if the subset orbits generated by the permutation group \mbox{\texttt{\mdseries\slshape G}} and the representatives \mbox{\texttt{\mdseries\slshape rep1}} and \mbox{\texttt{\mdseries\slshape rep2}} are compatible with respect to the list of intersection numbers \mbox{\texttt{\mdseries\slshape lin}}. This means that the intersection size of any pair of subsets from the two
+orbits is an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
+
+ 
+
 \subsection{\textcolor{Chapter }{SmallLambdaFilter}}
-\logpage{[ 2, 2, 5 ]}\nobreak
+\logpage{[ 2, 2, 11 ]}\nobreak
 \hyperdef{L}{X84B02FCA8105895E}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SmallLambdaFilter({\mdseries\slshape G, tsub, ksub, lambda})\index{SmallLambdaFilter@\texttt{SmallLambdaFilter}}
 \label{SmallLambdaFilter}
@@ -1577,7 +1750,7 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
  
 
 \subsection{\textcolor{Chapter }{OrbitFilter1}}
-\logpage{[ 2, 2, 6 ]}\nobreak
+\logpage{[ 2, 2, 12 ]}\nobreak
 \hyperdef{L}{X7DDEA540864CCB29}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitFilter1({\mdseries\slshape G, obj, action})\index{OrbitFilter1@\texttt{OrbitFilter1}}
 \label{OrbitFilter1}
@@ -1589,7 +1762,7 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
  
 
 \subsection{\textcolor{Chapter }{OrbitFilter2}}
-\logpage{[ 2, 2, 7 ]}\nobreak
+\logpage{[ 2, 2, 13 ]}\nobreak
 \hyperdef{L}{X844E305B81352606}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitFilter2({\mdseries\slshape G, obj, action})\index{OrbitFilter2@\texttt{OrbitFilter2}}
 \label{OrbitFilter2}
@@ -1597,6 +1770,44 @@ an integer in \mbox{\texttt{\mdseries\slshape lin}}. }
 
 
  Takes a list of objects \mbox{\texttt{\mdseries\slshape obj}} and returns one representative from each orbit of the group \mbox{\texttt{\mdseries\slshape G}} acting by \mbox{\texttt{\mdseries\slshape action}}. Canonical representatives are returned, so the result is not a sublist of \mbox{\texttt{\mdseries\slshape obj}}. The algorithm uses the \texttt{CanonicalImage} (\textbf{images: CanonicalImage}) function from the package \textsf{Images}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{InequivalentSubsetOrbits}}
+\logpage{[ 2, 2, 14 ]}\nobreak
+\hyperdef{L}{X84FB0E4C7B666F0D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{InequivalentSubsetOrbits({\mdseries\slshape N, ksub[, opt]})\index{InequivalentSubsetOrbits@\texttt{InequivalentSubsetOrbits}}
+\label{InequivalentSubsetOrbits}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Takes a list of subset orbit representatives \mbox{\texttt{\mdseries\slshape ksub}} and returns indices of the ones that cannot be mapped onto each other by the
+permutation group \mbox{\texttt{\mdseries\slshape N}} (typically the normalizer of the group generating the orbits). Uses the \texttt{CanonicalImage} (\textbf{images: CanonicalImage}) function from the \textsf{Images} package. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Partition}}:=\texttt{true}/\texttt{false} Returns a partition of \mbox{\texttt{\mdseries\slshape ksub}} into \mbox{\texttt{\mdseries\slshape N}}\texttt{\symbol{45}}equivalent subsets, not just one representative from each
+block. The partition is also given by indices.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{InequivalentSubsetOrbitPairs}}
+\logpage{[ 2, 2, 15 ]}\nobreak
+\hyperdef{L}{X827308DA7E2871C3}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{InequivalentSubsetOrbitPairs({\mdseries\slshape N, G, ksub[, opt]})\index{InequivalentSubsetOrbitPairs@\texttt{InequivalentSubsetOrbitPairs}}
+\label{InequivalentSubsetOrbitPairs}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Takes a list of subset orbit representatives \mbox{\texttt{\mdseries\slshape ksub}} and returns indices of the pairs that cannot be mapped onto each other by the
+permutation group \mbox{\texttt{\mdseries\slshape N}} (typically the normalizer of the group \mbox{\texttt{\mdseries\slshape G}} generating the orbits). Uses the \texttt{CanonicalImage} (\textbf{images: CanonicalImage}) function from the \textsf{Images} package. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}} If defined, only pairs of compatible orbits are returned. This means that each
+element from one orbit intersects each element from the other in a subset of
+size given in the list of integers \mbox{\texttt{\mdseries\slshape lin}}.
+\end{itemize}
+ }
 
  }
 
@@ -1621,13 +1832,127 @@ isomorph\texttt{\symbol{45}}rejection. Other available options are:
 \begin{itemize}
 \item \mbox{\texttt{\mdseries\slshape SmallLambda}}:=\texttt{true}/\texttt{false}. Perform the ``small lambda filter'', i.e. remove \mbox{\texttt{\mdseries\slshape k}}\texttt{\symbol{45}}orbits covering some of the \mbox{\texttt{\mdseries\slshape t}}\texttt{\symbol{45}}orbits more than \mbox{\texttt{\mdseries\slshape lambda}} times. By default, this is done if \mbox{\texttt{\mdseries\slshape lambda}}{\textless}=3.
 \item \mbox{\texttt{\mdseries\slshape IntersectionNumbers}}:=\mbox{\texttt{\mdseries\slshape lin}}/\texttt{false}. Search for designs with block intersection nubers in the list of integers \mbox{\texttt{\mdseries\slshape lin}} (e.g. quasi\texttt{\symbol{45}}symmetric designs).
+\item \mbox{\texttt{\mdseries\slshape Normalizer}}:=\texttt{true}/\texttt{false} Compute the normalizer and use inequivalent orbits as the first choice, to
+reduce the number of isomorphic designs and speed\texttt{\symbol{45}}up the
+computation.
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print information on the progress of the computation.
 \end{itemize}
- }
+ Other options, such as \mbox{\texttt{\mdseries\slshape Solver}}, are passed to the function \texttt{SolveKramerMesner} (\ref{SolveKramerMesner}); see its documentation. }
+
+ 
+
+\subsection{\textcolor{Chapter }{SteinerSearchOld}}
+\logpage{[ 2, 3, 2 ]}\nobreak
+\hyperdef{L}{X855EFF8687E1808A}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SteinerSearchOld({\mdseries\slshape t, v, ksub, G[, opt]})\index{SteinerSearchOld@\texttt{SteinerSearchOld}}
+\label{SteinerSearchOld}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Performs a search for Steiner \mbox{\texttt{\mdseries\slshape t}}\texttt{\symbol{45}}designs with prescribed automorphism group \mbox{\texttt{\mdseries\slshape G}} and blocks from the subset orbit representatives \mbox{\texttt{\mdseries\slshape ksub}}. They may be given in format returned by the \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}) function. The point set is \texttt{[1..}\mbox{\texttt{\mdseries\slshape v}}\texttt{]}. A record \mbox{\texttt{\mdseries\slshape opt}} with options can be supplied and will be passed to the function \texttt{SolveSteiner} (\ref{SolveSteiner}); see its documentation. This old version uses the \texttt{libexact} solver, P. Kaski and O. Pottonen's implementation of the Dancing Links
+algorithm \cite{KP08}. It does not use DLX files to communicate with the solver. }
+
+ 
+
+\subsection{\textcolor{Chapter }{SteinerSearch}}
+\logpage{[ 2, 3, 3 ]}\nobreak
+\hyperdef{L}{X7D635C9A7A084E39}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SteinerSearch({\mdseries\slshape t, v, ksub, G[, opt]})\index{SteinerSearch@\texttt{SteinerSearch}}
+\label{SteinerSearch}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Performs a search for Steiner \mbox{\texttt{\mdseries\slshape t}}\texttt{\symbol{45}}designs with prescribed automorphism group \mbox{\texttt{\mdseries\slshape G}} and blocks from the subset orbit representatives \mbox{\texttt{\mdseries\slshape ksub}}. The orbits may be given in format returned by the \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}) function. The point set is \texttt{[1..}\mbox{\texttt{\mdseries\slshape v}}\texttt{]}. A record \mbox{\texttt{\mdseries\slshape opt}} with options can be supplied: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print information on the progress of the computation. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape NonIsomorphic}}:=\texttt{true}/\texttt{false} Reject isomorphic designs by calling \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}) at the end. The default is \texttt{true}.
+\item \mbox{\texttt{\mdseries\slshape Time}}:=\texttt{true}/\texttt{false} Print date and time before and after calling the solver. Uses the shell
+command \texttt{date}. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape Normalizer}}:=\texttt{true}/\texttt{false} Compute the normalizer and use inequivalent orbits as the first choice, to
+reduce the number of isomorphic designs and speed\texttt{\symbol{45}}up the
+computation. This can also be achieved "manually" by setting the \mbox{\texttt{\mdseries\slshape UseOrbits}} option. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape Partition}}:=\texttt{true}/\texttt{false} Compute partition of orbits into equivalence classes under the normalizer and
+use the
+exact\texttt{\symbol{45}}cover\texttt{\symbol{45}}with\texttt{\symbol{45}}colors
+approach. The default is \texttt{true} if the \mbox{\texttt{\mdseries\slshape Normalizer}} option is also set.
+\item \mbox{\texttt{\mdseries\slshape Iterate}}:=\texttt{true}/\texttt{false} Call the solver separately for every inequivalent orbit under the normalizer,
+instead of modifying the exact cover problem. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ The \mbox{\texttt{\mdseries\slshape TempDir}} option and some other options are also forwarded to \texttt{MakeDLX2} (\ref{MakeDLX2}) (\mbox{\texttt{\mdseries\slshape UseOrbits}}) and \texttt{SolveDLX} (\ref{SolveDLX}) (\mbox{\texttt{\mdseries\slshape Solver}}, \mbox{\texttt{\mdseries\slshape M}}). See the documentation of these functions. }
+
+ 
+
+\subsection{\textcolor{Chapter }{ExtendSteinerDesign}}
+\logpage{[ 2, 3, 4 ]}\nobreak
+\hyperdef{L}{X8023403C7AF5F2E9}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ExtendSteinerDesign({\mdseries\slshape d[, opt]})\index{ExtendSteinerDesign@\texttt{ExtendSteinerDesign}}
+\label{ExtendSteinerDesign}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Performs a search for extensions of a Steiner design \mbox{\texttt{\mdseries\slshape d}}. By default, the extended designs are assumed to be invariant under the full
+automorphism group of \mbox{\texttt{\mdseries\slshape d}}. This can be changed by setting options in the record \mbox{\texttt{\mdseries\slshape opt}}. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Group}}:= \texttt{g} (permutation group) or \texttt{n} (integer). If a permutation group \texttt{g} is given, it will be used for the search. If an integer \texttt{n} is given, the \texttt{n}\texttt{\symbol{45}}th subgroup of the full automorphism group of \mbox{\texttt{\mdseries\slshape d}} will be used. Here \texttt{n}$=1$ means the full automorhism group, \texttt{n}$=2$ means the second largest subgroup etc. The subgroups are taken in reverse
+order from the list returned by \texttt{AllSubgroupsConjugation( BlockDesignAut( }\mbox{\texttt{\mdseries\slshape d}}\texttt{ ) )}. Furthermore, \texttt{n}$=0$ means the trivial group. 
+\item \mbox{\texttt{\mdseries\slshape MinGroupSize}}:=\texttt{n} Extend using subgroups of size at least \texttt{n} of the automorphism group of \mbox{\texttt{\mdseries\slshape d}}. Examine the subgroups in descending order until extensions are found or all
+subgroups are exhausted.
+\item \mbox{\texttt{\mdseries\slshape MaxGroupSize}}:=\texttt{n} Extend using subgroups of size at most \texttt{n} of the automorphism group of \mbox{\texttt{\mdseries\slshape d}}. Examine the subgroups in descenting order until extensions are found or all
+subgroups are exhausted.
+\item \mbox{\texttt{\mdseries\slshape Normalizer}}:=\texttt{true}/\texttt{false} Compute the normalizer and use inequivalent orbits as the first choice, to
+reduce the number of isomorphic designs and speed\texttt{\symbol{45}}up the
+computation.
+\item \mbox{\texttt{\mdseries\slshape Partition}}:=\texttt{true}/\texttt{false} Compute partition of orbits into equivalence classes under the normalizer and
+use the
+exact\texttt{\symbol{45}}cover\texttt{\symbol{45}}with\texttt{\symbol{45}}colors
+approach. The default is \texttt{true} if the \mbox{\texttt{\mdseries\slshape Normalizer}} option is also set to \texttt{true}.
+\item \mbox{\texttt{\mdseries\slshape Iterate}}:=\texttt{true}/\texttt{false} Call the solver separately for every inequivalent orbit under the normalizer,
+instead of modifying the exact cover problem. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape Time}}:=\texttt{true}/\texttt{false} Print date and time before and after calling the solver. Uses the shell
+command \texttt{date}. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape NonIsomorphic}}:=\texttt{true}/\texttt{false} Reject isomorphic designs by calling \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}) at the end. The default is \texttt{true}.
+\end{itemize}
+ Other options such as \mbox{\texttt{\mdseries\slshape Verbose}}, \mbox{\texttt{\mdseries\slshape Solver}}, \mbox{\texttt{\mdseries\slshape M}}, \mbox{\texttt{\mdseries\slshape Iterate}}, and \mbox{\texttt{\mdseries\slshape TempDir}} are passed to the functions \texttt{MakeDLX2} (\ref{MakeDLX2}) and \texttt{SolveDLX} (\ref{SolveDLX}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{ExtendSteinerBlocks}}
+\logpage{[ 2, 3, 5 ]}\nobreak
+\hyperdef{L}{X80196CC886A56927}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ExtendSteinerBlocks({\mdseries\slshape t, v, d[, opt]})\index{ExtendSteinerBlocks@\texttt{ExtendSteinerBlocks}}
+\label{ExtendSteinerBlocks}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Performs a search for Steiner \mbox{\texttt{\mdseries\slshape t}}\texttt{\symbol{45}}designs containing a set of blocks \mbox{\texttt{\mdseries\slshape d}}. The blocks should be given in \textsf{Design} package format. If the argument \mbox{\texttt{\mdseries\slshape v}} is equal to \mbox{\texttt{\mdseries\slshape d}}\texttt{.v}, the designs are assumed to be invariant under the full automorphism group of \mbox{\texttt{\mdseries\slshape d}}. This can be changed by setting options in the record \mbox{\texttt{\mdseries\slshape opt}}. If the argument \mbox{\texttt{\mdseries\slshape v}} is greater than \mbox{\texttt{\mdseries\slshape d}}\texttt{.v}, a permutation group should be given by the \mbox{\texttt{\mdseries\slshape Group}} option. Possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Group}}:= \texttt{g} (permutation group) or \texttt{n} (integer). If a permutation group \texttt{g} is given, it will be used for the search. If an integer \texttt{n} is given, the \texttt{n}\texttt{\symbol{45}}th subgroup of the full automorphism group of \mbox{\texttt{\mdseries\slshape d}} will be used. Here \texttt{n}$=1$ means the full automorhism group, \texttt{n}$=2$ means the second largest subgroup etc. The subgroups are taken in reverse
+order from the list returned by \texttt{AllSubgroupsConjugation( BlockDesignAut( }\mbox{\texttt{\mdseries\slshape d}}\texttt{ ) )}. Furthermore, \texttt{n}$=0$ means the trivial group. 
+\item \mbox{\texttt{\mdseries\slshape BlockCandidates}}:=\texttt{ksub} Use list of $k$\texttt{\symbol{45}}subsets \texttt{ksub} as block candidates and return the compatible ones. If this option is not
+given, all $k$\texttt{\symbol{45}}subsets of \texttt{[1..}\mbox{\texttt{\mdseries\slshape v}}\texttt{]} (or the corresponding orbit representatives) are used and a search for
+extensions is performed.
+\item \mbox{\texttt{\mdseries\slshape MinGroupSize}}:=\texttt{n} Extend using subgroups of size at least \texttt{n} of the automorphism group of \mbox{\texttt{\mdseries\slshape d}}. Examine the subgroups in descending order until extensions are found or all
+subgroups are exhausted.
+\item \mbox{\texttt{\mdseries\slshape MaxGroupSize}}:=\texttt{n} Extend using subgroups of size at most \texttt{n} of the automorphism group of \mbox{\texttt{\mdseries\slshape d}}. Examine the subgroups in descenting order until extensions are found or all
+subgroups are exhausted.
+\item \mbox{\texttt{\mdseries\slshape Normalizer}}:=\texttt{true}/\texttt{false} Compute the normalizer and use inequivalent orbits as the first choice, to
+reduce the number of isomorphic designs and speed\texttt{\symbol{45}}up the
+computation.
+\item \mbox{\texttt{\mdseries\slshape Partition}}:=\texttt{true}/\texttt{false} Compute partition of orbits into equivalence classes under the normalizer and
+use the
+exact\texttt{\symbol{45}}cover\texttt{\symbol{45}}with\texttt{\symbol{45}}colors
+approach. The default is \texttt{true} if the \mbox{\texttt{\mdseries\slshape Normalizer}} option is also set to \texttt{true}.
+\item \mbox{\texttt{\mdseries\slshape Time}}:=\texttt{true}/\texttt{false} Print date and time before and after calling the solver. Uses the shell
+command \texttt{date}. The default is \texttt{false}.
+\item \mbox{\texttt{\mdseries\slshape NonIsomorphic}}:=\texttt{true}/\texttt{false} Reject isomorphic designs by calling \texttt{BlockDesignFilter} (\ref{BlockDesignFilter}) at the end. The default is \texttt{true}.
+\end{itemize}
+ Other options such as \mbox{\texttt{\mdseries\slshape Verbose}}, \mbox{\texttt{\mdseries\slshape Solver}}, \mbox{\texttt{\mdseries\slshape M}}, \mbox{\texttt{\mdseries\slshape Iterate}}, and \mbox{\texttt{\mdseries\slshape TempDir}} are passed to the functions \texttt{MakeDLX2} (\ref{MakeDLX2}) and \texttt{SolveDLX} (\ref{SolveDLX}). }
 
  
 
 \subsection{\textcolor{Chapter }{KramerMesnerMat}}
-\logpage{[ 2, 3, 2 ]}\nobreak
+\logpage{[ 2, 3, 6 ]}\nobreak
 \hyperdef{L}{X831AFBCE828421DC}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMat({\mdseries\slshape G, tsub, ksub[, lambda][, b]})\index{KramerMesnerMat@\texttt{KramerMesnerMat}}
 \label{KramerMesnerMat}
@@ -1638,8 +1963,98 @@ isomorph\texttt{\symbol{45}}rejection. Other available options are:
 
  
 
+\subsection{\textcolor{Chapter }{KramerMesnerMat2}}
+\logpage{[ 2, 3, 7 ]}\nobreak
+\hyperdef{L}{X7F68889E80932DB3}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMat2({\mdseries\slshape G, tsub, ksub[, lambda][, b]})\index{KramerMesnerMat2@\texttt{KramerMesnerMat2}}
+\label{KramerMesnerMat2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the Kramer\texttt{\symbol{45}}Mesner matrix for a permutation group \mbox{\texttt{\mdseries\slshape G}}. The rows are labelled by $t$\texttt{\symbol{45}}subset orbits represented by \mbox{\texttt{\mdseries\slshape tsub}}, and the columns by $k$\texttt{\symbol{45}}subset orbits represented by \mbox{\texttt{\mdseries\slshape ksub}}. A column of constants \mbox{\texttt{\mdseries\slshape lambda}} is added if the optional argument \mbox{\texttt{\mdseries\slshape lambda}} is given. Another row is added if the optional argument \mbox{\texttt{\mdseries\slshape b}} is given, repesenting the constraint that sizes of the chosen $k$\texttt{\symbol{45}}subset orbits must sum up to the number of blocks \mbox{\texttt{\mdseries\slshape b}}. This function calls a \texttt{C}\texttt{\symbol{45}}subroutine for the time\texttt{\symbol{45}}critical part
+of the computation and should be faster than \texttt{KramerMesnerMat} (\ref{KramerMesnerMat}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{KramerMesnerMatOM}}
+\logpage{[ 2, 3, 8 ]}\nobreak
+\hyperdef{L}{X8028EC1A817267DA}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KramerMesnerMatOM({\mdseries\slshape G, tsub, ksub, lambda})\index{KramerMesnerMatOM@\texttt{KramerMesnerMatOM}}
+\label{KramerMesnerMatOM}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the Kramer\texttt{\symbol{45}}Mesner matrix for a permutation group \mbox{\texttt{\mdseries\slshape G}} compatible with an orbit matrix. Rows are labeled by $t$\texttt{\symbol{45}}subset orbits \mbox{\texttt{\mdseries\slshape tsub}}. The $k$\texttt{\symbol{45}}subset orbits \mbox{\texttt{\mdseries\slshape ksub}} labeling the columns should be given as returned by the function \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}). }
+
+ 
+
+\subsection{\textcolor{Chapter }{WriteDLX}}
+\logpage{[ 2, 3, 9 ]}\nobreak
+\hyperdef{L}{X790002F883B5CF6B}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{WriteDLX({\mdseries\slshape filename, KM})\index{WriteDLX@\texttt{WriteDLX}}
+\label{WriteDLX}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Write a Kramer\texttt{\symbol{45}}Mesner matrix \mbox{\texttt{\mdseries\slshape KM}} to a file in format suitable for Donald Knuth's DLX3 program \cite{DK17}. The matrix must contain only $0$\texttt{\symbol{45}}$1$ entries, except in the last column. }
+
+ 
+
+\subsection{\textcolor{Chapter }{MakeDLX}}
+\logpage{[ 2, 3, 10 ]}\nobreak
+\hyperdef{L}{X7B87AFA18607D10E}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MakeDLX({\mdseries\slshape filename, G, tsub, ksub[, opt]})\index{MakeDLX@\texttt{MakeDLX}}
+\label{MakeDLX}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Creates a DLX file \mbox{\texttt{\mdseries\slshape filename}} for the permutation group \mbox{\texttt{\mdseries\slshape G}}, $t$\texttt{\symbol{45}}subset and $k$\texttt{\symbol{45}}subset orbits representatives \mbox{\texttt{\mdseries\slshape tsub}} and \mbox{\texttt{\mdseries\slshape ksub}}. The orbits must be such that the corresponding
+Kramer\texttt{\symbol{45}}Mesner matrix has only $0$\texttt{\symbol{45}}$1$ entries. The \mbox{\texttt{\mdseries\slshape ksub}} argument may be given as returned by \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}). In that case additional equations will be added to make the solutions
+compatible with the orbit matrix. For the DLX file format, see \cite{DK17}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape UseOrbits}}:=\texttt{list} Add equations and variables (in Knuth's terms: items and options) so that at
+least one of the orbits given in \texttt{list} must be chosen. This can be used to prune parts of the search tree leading to
+isomorphic designs, by using the normalizer.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{MakeDLX2}}
+\logpage{[ 2, 3, 11 ]}\nobreak
+\hyperdef{L}{X8350DD207B60F67E}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MakeDLX2({\mdseries\slshape filename, G, tsub, ksub[, opt]})\index{MakeDLX2@\texttt{MakeDLX2}}
+\label{MakeDLX2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Creates a DLX file \mbox{\texttt{\mdseries\slshape filename}} for the permutation group \mbox{\texttt{\mdseries\slshape G}}, $t$\texttt{\symbol{45}}subset and $k$\texttt{\symbol{45}}subset orbits representatives \mbox{\texttt{\mdseries\slshape tsub}} and \mbox{\texttt{\mdseries\slshape ksub}}. The orbits must be such that the corresponding
+Kramer\texttt{\symbol{45}}Mesner matrix has only $0$\texttt{\symbol{45}}$1$ entries. The \mbox{\texttt{\mdseries\slshape ksub}} argument may be given as returned by \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}). In that case additional equations will be added to make the solutions
+compatible with the orbit matrix. For the DLX file format, see \cite{DK17}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape UseOrbits}}:=\texttt{list} Add equations and variables (in Knuth's terms: items and options) so that at
+least one of the orbits given in \texttt{list} must be chosen. This can be used to prune parts of the search tree leading to
+isomorphic designs, by using the normalizer.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{RectifySolutions}}
+\logpage{[ 2, 3, 12 ]}\nobreak
+\hyperdef{L}{X82EE65237952EACB}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{RectifySolutions({\mdseries\slshape norb, list, sol})\index{RectifySolutions@\texttt{RectifySolutions}}
+\label{RectifySolutions}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Make solution(s) \mbox{\texttt{\mdseries\slshape sol}} of a DLX file produced by \texttt{MakeDLX} (\ref{MakeDLX}) with the \texttt{UseOrbits}:=\mbox{\texttt{\mdseries\slshape list}} option compatible with \mbox{\texttt{\mdseries\slshape norb}} orbits. }
+
+ 
+
 \subsection{\textcolor{Chapter }{CompatibilityMat}}
-\logpage{[ 2, 3, 3 ]}\nobreak
+\logpage{[ 2, 3, 13 ]}\nobreak
 \hyperdef{L}{X79E1DA2E802C2EDA}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CompatibilityMat({\mdseries\slshape G, ksub, lin})\index{CompatibilityMat@\texttt{CompatibilityMat}}
 \label{CompatibilityMat}
@@ -1651,26 +2066,84 @@ isomorph\texttt{\symbol{45}}rejection. Other available options are:
  
 
 \subsection{\textcolor{Chapter }{SolveKramerMesner}}
-\logpage{[ 2, 3, 4 ]}\nobreak
+\logpage{[ 2, 3, 14 ]}\nobreak
 \hyperdef{L}{X7A9D5D9A7FB92630}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SolveKramerMesner({\mdseries\slshape mat[, cm][, opt]})\index{SolveKramerMesner@\texttt{SolveKramerMesner}}
 \label{SolveKramerMesner}
 }\hfill{\scriptsize (function)}}\\
 
 
- Solve a system of linear equations determined by the matrix \mbox{\texttt{\mdseries\slshape mat}} over $\{0,1\}$. By default, A.Wassermann's LLL solver \texttt{solvediophant} \cite{AW98} is used. If the second argument is a compatibility matrix \mbox{\texttt{\mdseries\slshape cm}}, the backtracking program \texttt{solvecm} from the papers \cite{KNP11} and \cite{KV16} is used. The solver can also be chosen explicitly in the record \mbox{\texttt{\mdseries\slshape opt}}. Possible components are: 
+ Solve a system of linear equations determined by the matrix \mbox{\texttt{\mdseries\slshape mat}} over $\{0,1\}$. By default, A.Wassermann's LLL solver \texttt{solvediophant2} \cite{AW21} is used. If the second argument is a compatibility matrix \mbox{\texttt{\mdseries\slshape cm}}, the backtracking program \texttt{solvecm} from the papers \cite{KNP11} and \cite{KV16} is used. The solver can also be chosen explicitly in the record \mbox{\texttt{\mdseries\slshape opt}}. Possible components are: 
 \begin{itemize}
-\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} If defined, \texttt{solvediophant} is used.
-\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} If defined, \texttt{solvecm} is used.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant2"} or \texttt{"sd2"} Use \texttt{solvediophant2}. Without \mbox{\texttt{\mdseries\slshape cm}}, this is the default.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvecm"} Use \texttt{solvecm}. This is the default if \mbox{\texttt{\mdseries\slshape cm}} is given.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"libexact"} Use \texttt{libexact}. This is P. Kaski and O. Pottonen's implementation of the Dancing Links
+algorithm, see \cite{KP08}. The coefficients of \mbox{\texttt{\mdseries\slshape mat}} must be in $\{0,1\}$. Other options are passed to the function \texttt{SolveDLX} (\ref{SolveDLX}); see its documentation.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"dlx3"} / \texttt{"ssxcc"} / \texttt{"ssxcc\texttt{\symbol{45}}binary"} / \texttt{"ssmcc"} Use one of D. E. Knuth's implementations of the Dancing Links or Dancing Cells
+algorithms; see \cite{DK00} and \cite{DK25}. The coefficients of \mbox{\texttt{\mdseries\slshape mat}} must be in $\{0,1\}$. Other options are passed to the function \texttt{SolveDLX} (\ref{SolveDLX}); see its documentation.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SolveDLX}}
+\logpage{[ 2, 3, 15 ]}\nobreak
+\hyperdef{L}{X8384E1EA86F9F54D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SolveDLX({\mdseries\slshape filename[, opt]})\index{SolveDLX@\texttt{SolveDLX}}
+\label{SolveDLX}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Solve an exact cover problem given in the file \mbox{\texttt{\mdseries\slshape filename}}. The file must be in Donald Knuth's DLX3 format \cite{DK17}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"dlx3"} / \texttt{"ssxcc"} / \texttt{"ssxcc\texttt{\symbol{45}}binary"} / \texttt{"ssmcc"} If defined, one of D. E. Knuth's implementations of the Dancing Links or
+Dancing Cells algorithms is used; see \cite{DK00} and \cite{DK25}. The default is \texttt{dlx3}.
+\item \mbox{\texttt{\mdseries\slshape M}}:=\mbox{\texttt{\mdseries\slshape n}} Set memory option for Knuth's solvers to \texttt{n}. The default is $130000000$.
 \item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"libexact"} If defined, \texttt{libexact} is used. This is P. Kaski and O. Pottonen's implementation of the Dancing
-Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\texttt{\mdseries\slshape mat}} must be in $\{0,1\}$!
+Links algorithm; see \cite{KP08}.
+\item \mbox{\texttt{\mdseries\slshape UseOrbits}}:=\texttt{list} Return only solutions using at least one of the orbits (or sets of orbits)
+given in \texttt{list}. This can be used to prune parts of the search tree leading to isomorphic
+designs, using the normalizer.
+\item \mbox{\texttt{\mdseries\slshape Iterate}}:=\texttt{true}/\texttt{false} Restart solver for eached of the fixed orbits given in \mbox{\texttt{\mdseries\slshape UseOrbits}}. By default, this is done only if sets of more than one orbit are fixed.
+Otherwise the solver is started once with additional rows and columns for the
+fixed orbits.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SolveSteiner}}
+\logpage{[ 2, 3, 16 ]}\nobreak
+\hyperdef{L}{X7AFF5C557FFC7C9A}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SolveSteiner({\mdseries\slshape G, tsub, ksub[, opt]})\index{SolveSteiner@\texttt{SolveSteiner}}
+\label{SolveSteiner}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Set up and solve exact cover problem for the permutation group \mbox{\texttt{\mdseries\slshape G}}, $t$\texttt{\symbol{45}}subset and $k$\texttt{\symbol{45}}subset orbits representatives \mbox{\texttt{\mdseries\slshape tsub}} and \mbox{\texttt{\mdseries\slshape ksub}}. The orbits must be such that the corresponding
+Kramer\texttt{\symbol{45}}Mesner matrix has only $0$\texttt{\symbol{45}}$1$ entries. The \mbox{\texttt{\mdseries\slshape ksub}} argument may be given as returned by \texttt{SubsetOrbitRepOM} (\ref{SubsetOrbitRepOM}). In that case additional equations will be added to make the solutions
+compatible with the orbit matrix. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"libexact"} If defined, \texttt{libexact} is used. This is P. Kaski and O. Pottonen's implementation of the Dancing
+Links algorithm, see \cite{KP08}.
+\item \mbox{\texttt{\mdseries\slshape UseOrbits}}:=\texttt{list} Add equations and variables (in Knuth's terms: items and options) so that at
+least one of the orbits given in \texttt{list} must be chosen. This can be used to prune parts of the search tree leading to
+isomorphic designs, by using the normalizer. A partition of orbits can also be
+given in \texttt{list} to avoid multiple solutions and reduce the search tree further.
+\item \mbox{\texttt{\mdseries\slshape Iterate}}:=\texttt{true}/\texttt{false} Re\texttt{\symbol{45}}create exact cover problem and restart solver for eached
+of the fixed orbits given in \mbox{\texttt{\mdseries\slshape UseOrbits}}. By default, the fixed orbits are modelled by adding a single equation
+(item), duplicatng variables (options) and starting the solver once. If a
+partition is given in \mbox{\texttt{\mdseries\slshape UseOrbits}}, iterating is the default.
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Report fixing of orbits when iterating and restarting the solver.
 \end{itemize}
  }
 
  
 
 \subsection{\textcolor{Chapter }{BaseBlocks}}
-\logpage{[ 2, 3, 5 ]}\nobreak
+\logpage{[ 2, 3, 17 ]}\nobreak
 \hyperdef{L}{X80F64ADB7EC13F7E}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BaseBlocks({\mdseries\slshape ksub, sol})\index{BaseBlocks@\texttt{BaseBlocks}}
 \label{BaseBlocks}
@@ -1681,8 +2154,146 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
 
  
 
+\subsection{\textcolor{Chapter }{OrbitMats}}
+\logpage{[ 2, 3, 18 ]}\nobreak
+\hyperdef{L}{X79A29362873B4048}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMats({\mdseries\slshape t, v, k, lambda, nu, beta})\index{OrbitMats@\texttt{OrbitMats}}
+\label{OrbitMats}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns orbit matrices for $t$\texttt{\symbol{45}}$(v,k,lambda)$ designs with point and block orbit size vectors \mbox{\texttt{\mdseries\slshape nu}} and \mbox{\texttt{\mdseries\slshape beta}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatsWide}}
+\logpage{[ 2, 3, 19 ]}\nobreak
+\hyperdef{L}{X824E7CFD836698CF}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatsWide({\mdseries\slshape t, v, k, lambda, nu, beta[, opt]})\index{OrbitMatsWide@\texttt{OrbitMatsWide}}
+\label{OrbitMatsWide}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns orbit matrices for $t$\texttt{\symbol{45}}$(v,k,lambda)$ designs with point and block orbit size vectors \mbox{\texttt{\mdseries\slshape nu}} and \mbox{\texttt{\mdseries\slshape beta}}. Uses an algorithm suited for matrices with few rows and many columns, i.e.
+short \mbox{\texttt{\mdseries\slshape nu}} and long \mbox{\texttt{\mdseries\slshape beta}}. A.Wassermann's LLL solver \texttt{solvediophant2} is called. The function \texttt{OrbitMats} (\ref{OrbitMats}) returns matrices in canonical form, therefore inequivalent. In contrast, this
+function may return equivalent matrices multiple times. This can be changed by
+setting options. Possible components of the record \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Inequivalent}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, equivalent copies of the orbit matrices are eliminated.
+\item \mbox{\texttt{\mdseries\slshape Canonical}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, canonical forms of the orbit matrices are returned.
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant2"} or \texttt{"sd2"} Use \texttt{solvediophant2}. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}. 
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatsWide2}}
+\logpage{[ 2, 3, 20 ]}\nobreak
+\hyperdef{L}{X837FCDC386564000}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatsWide2({\mdseries\slshape t, v, k, lambda, nu, bo[, opt]})\index{OrbitMatsWide2@\texttt{OrbitMatsWide2}}
+\label{OrbitMatsWide2}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns orbit matrices for $t$\texttt{\symbol{45}}$(v,k,lambda)$ designs with point size vector \mbox{\texttt{\mdseries\slshape nu}} and block orbit sizes from a set of integers \mbox{\texttt{\mdseries\slshape bo}}. Typically, \mbox{\texttt{\mdseries\slshape bo}} contains divisors of the group order. Uses an algorithm suited for matrices
+with few rows (i.e. short \mbox{\texttt{\mdseries\slshape nu}}\texttt{\symbol{45}}vector) and many columns. A.Wassermann's LLL solver \texttt{solvediophant2} is called. The function \texttt{OrbitMats} (\ref{OrbitMats}) returns matrices in canonical form, therefore inequivalent. By default, this
+function may return equivalent matrices. This can be changed by setting
+options. Possible components of the record \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Inequivalent}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, equivalent copies of the orbit matrices are eliminated.
+\item \mbox{\texttt{\mdseries\slshape Canonical}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, canonical forms of the orbit matrices are returned.
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant2"} or \texttt{"sd2"} Use \texttt{solvediophant2}. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}. 
+\item \mbox{\texttt{\mdseries\slshape StopAfter}}:=$n$ Stop search after $n$ solutions have been found. By default, the search goes on until all solutions
+are found.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{ColumnsOM}}
+\logpage{[ 2, 3, 21 ]}\nobreak
+\hyperdef{L}{X78C568387CBC95FB}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ColumnsOM({\mdseries\slshape g, t, v, k[, opt]})\index{ColumnsOM@\texttt{ColumnsOM}}
+\label{ColumnsOM}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns candidates for columns of orbit matrices corresponding to Steiner $t$\texttt{\symbol{45}}$(v,k,1)$ designs with \mbox{\texttt{\mdseries\slshape g}} as group of automorphisms. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options with possible components: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Bounds}}:=\texttt{true}/\texttt{false} With each column also return an upper bound on how many times it may be used
+in the orbit matrix.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatsWide3}}
+\logpage{[ 2, 3, 22 ]}\nobreak
+\hyperdef{L}{X840FBECA7F86BE17}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatsWide3({\mdseries\slshape t, v, k, g[, opt]})\index{OrbitMatsWide3@\texttt{OrbitMatsWide3}}
+\label{OrbitMatsWide3}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns orbit matrices for Steiner $t$\texttt{\symbol{45}}$(v,k,1)$ designs with \mbox{\texttt{\mdseries\slshape g}} as group of automorphisms. This version computes the point and block orbit
+sizes, the column candidates and upper bounds on how many times they may be
+used from the group \mbox{\texttt{\mdseries\slshape g}}. Uses an algorithm suited for matrices with few rows and many columns.
+A.Wassermann's LLL solver \texttt{solvediophant2} is called. The function \texttt{OrbitMats} (\ref{OrbitMats}) returns matrices in canonical form, therefore inequivalent. By default, this
+function may return equivalent matrices. This can be changed by setting
+options. Possible components of the record \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Inequivalent}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, equivalent copies of the orbit matrices are eliminated.
+\item \mbox{\texttt{\mdseries\slshape Canonical}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, canonical forms of the orbit matrices are returned.
+\item \mbox{\texttt{\mdseries\slshape Verbose}}:=\texttt{true}/\texttt{false} Print comments reporting the progress of the calculation.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant2"} or \texttt{"sd2"} Use \texttt{solvediophant2}. This is the default.
+\item \mbox{\texttt{\mdseries\slshape Solver}}:=\texttt{"solvediophant"} Use \texttt{solvediophant}. 
+\item \mbox{\texttt{\mdseries\slshape StopAfter}}:=$n$ Stop search after $n$ solutions have been found. By default, the search goes on until all solutions
+are found.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SubsetOrbitTypes}}
+\logpage{[ 2, 3, 23 ]}\nobreak
+\hyperdef{L}{X84C3DED67FB89406}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SubsetOrbitTypes({\mdseries\slshape g, v, ksub, i})\index{SubsetOrbitTypes@\texttt{SubsetOrbitTypes}}
+\label{SubsetOrbitTypes}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes the types of index \mbox{\texttt{\mdseries\slshape i}} for the subset orbit representatives \mbox{\texttt{\mdseries\slshape ksub}} under the permutation group \mbox{\texttt{\mdseries\slshape g}} of degree \mbox{\texttt{\mdseries\slshape v}}. The type information is returned as a record. The supplied arguments are
+also returned as components of the record. }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatFilter}}
+\logpage{[ 2, 3, 24 ]}\nobreak
+\hyperdef{L}{X7E613742786A2002}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatFilter({\mdseries\slshape nu, beta, om[, opt]})\index{OrbitMatFilter@\texttt{OrbitMatFilter}}
+\label{OrbitMatFilter}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Eliminates equivalent copies from a list of orbit matrices \mbox{\texttt{\mdseries\slshape om}}. All of the matrices should have the same orbit size vectors \mbox{\texttt{\mdseries\slshape nu}} and \mbox{\texttt{\mdseries\slshape beta}}. Two matrices are equivalent if one can be transformed into the other by row
+and column permutations respecting these vectors. Uses \texttt{nauty/Traces 2.8} by B.D.McKay and A.Piperno \cite{MP14}. The optional argument \mbox{\texttt{\mdseries\slshape opt}} is a record for options. Possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Canonical}}:=\texttt{true}/\texttt{false} Puts the matrices in canonical form.
+\item \mbox{\texttt{\mdseries\slshape TempDir}}:=\texttt{"dir{\textunderscore}name"} Put all temporary files in the named directory. By default, \texttt{PAGGlobalOptions.TempDir} is used.
+\end{itemize}
+ }
+
+ 
+
 \subsection{\textcolor{Chapter }{ExpandMatRHS}}
-\logpage{[ 2, 3, 6 ]}\nobreak
+\logpage{[ 2, 3, 25 ]}\nobreak
 \hyperdef{L}{X86582C2D7F941DCA}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ExpandMatRHS({\mdseries\slshape mat, lambda})\index{ExpandMatRHS@\texttt{ExpandMatRHS}}
 \label{ExpandMatRHS}
@@ -1694,7 +2305,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{CameronSeidelSet}}
-\logpage{[ 2, 3, 7 ]}\nobreak
+\logpage{[ 2, 3, 26 ]}\nobreak
 \hyperdef{L}{X784EAE5481228BA3}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CameronSeidelSet({\mdseries\slshape m})\index{CameronSeidelSet@\texttt{CameronSeidelSet}}
 \label{CameronSeidelSet}
@@ -1706,7 +2317,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{OrthogonalNormalBasis}}
-\logpage{[ 2, 3, 8 ]}\nobreak
+\logpage{[ 2, 3, 27 ]}\nobreak
 \hyperdef{L}{X7900B5B07DCA4099}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrthogonalNormalBasis({\mdseries\slshape k})\index{OrthogonalNormalBasis@\texttt{OrthogonalNormalBasis}}
 \label{OrthogonalNormalBasis}
@@ -1718,7 +2329,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{KerdockSet}}
-\logpage{[ 2, 3, 9 ]}\nobreak
+\logpage{[ 2, 3, 28 ]}\nobreak
 \hyperdef{L}{X8692DD457E3F124A}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{KerdockSet({\mdseries\slshape m})\index{KerdockSet@\texttt{KerdockSet}}
 \label{KerdockSet}
@@ -1730,7 +2341,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{SingerDifferenceSets}}
-\logpage{[ 2, 3, 10 ]}\nobreak
+\logpage{[ 2, 3, 29 ]}\nobreak
 \hyperdef{L}{X81C2357178F20D6C}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SingerDifferenceSets({\mdseries\slshape q, n})\index{SingerDifferenceSets@\texttt{SingerDifferenceSets}}
 \label{SingerDifferenceSets}
@@ -1742,7 +2353,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{NormalizedSingerDifferenceSets}}
-\logpage{[ 2, 3, 11 ]}\nobreak
+\logpage{[ 2, 3, 30 ]}\nobreak
 \hyperdef{L}{X8020441679A2208A}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{NormalizedSingerDifferenceSets({\mdseries\slshape q, n})\index{NormalizedSingerDifferenceSets@\texttt{NormalizedSingerDifferenceSets}}
 \label{NormalizedSingerDifferenceSets}
@@ -1754,7 +2365,7 @@ Links algorithm, see \cite{KP08}. For this solver the coefficients of \mbox{\tex
  
 
 \subsection{\textcolor{Chapter }{RightDevelopment}}
-\logpage{[ 2, 3, 12 ]}\nobreak
+\logpage{[ 2, 3, 31 ]}\nobreak
 \hyperdef{L}{X83B4006C82C7DCC7}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{RightDevelopment({\mdseries\slshape G, ds})\index{RightDevelopment@\texttt{RightDevelopment}}
 \label{RightDevelopment}
@@ -1767,7 +2378,7 @@ returned. }
  
 
 \subsection{\textcolor{Chapter }{LeftDevelopment}}
-\logpage{[ 2, 3, 13 ]}\nobreak
+\logpage{[ 2, 3, 32 ]}\nobreak
 \hyperdef{L}{X81C414057EC904AC}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{LeftDevelopment({\mdseries\slshape G, ds})\index{LeftDevelopment@\texttt{LeftDevelopment}}
 \label{LeftDevelopment}
@@ -1780,7 +2391,7 @@ returned. }
  
 
 \subsection{\textcolor{Chapter }{EquivalentDifferenceSets}}
-\logpage{[ 2, 3, 14 ]}\nobreak
+\logpage{[ 2, 3, 33 ]}\nobreak
 \hyperdef{L}{X827306F37EBB71FA}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{EquivalentDifferenceSets({\mdseries\slshape g, D})\index{EquivalentDifferenceSets@\texttt{EquivalentDifferenceSets}}
 \label{EquivalentDifferenceSets}
@@ -1818,8 +2429,9 @@ permutations of degree $v$.
 \item \mbox{\texttt{\mdseries\slshape Dual}}:=\texttt{true}/\texttt{false} If set to \texttt{true}, dual automorphisms (correlations) are also included. They will appear only
 for self\texttt{\symbol{45}}dual symmetric designs (with the same number of
 points and blocks). The default is \texttt{false}.
-\item \mbox{\texttt{\mdseries\slshape PointClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Color the points into classes of size \mbox{\texttt{\mdseries\slshape s}} that cannot be mapped onto each other. By default all points are in the same
-class.
+\item \mbox{\texttt{\mdseries\slshape PointClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Color the points into classes of size \mbox{\texttt{\mdseries\slshape s}} that cannot be mapped onto each other (for autotopy). By default, all points
+are in the same class.
+\item \mbox{\texttt{\mdseries\slshape ParatopyClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Make point classes of size \mbox{\texttt{\mdseries\slshape s}} that can be exchanged (for autoparatopy).
 \item \mbox{\texttt{\mdseries\slshape VertexInvariant}}:=\mbox{\texttt{\mdseries\slshape n}} Use vertex invariant number \mbox{\texttt{\mdseries\slshape n}}. The numbering is the same as in \texttt{dreadnaut}, e.g. \mbox{\texttt{\mdseries\slshape n}}=1: \texttt{twopaths}, \mbox{\texttt{\mdseries\slshape n}}=2: \texttt{adjtriang}, etc. The default is \texttt{twopaths}. Vertex invariants only work with dense \texttt{nauty}. They are ignored by sparse \texttt{nauty} and \texttt{Traces}.
 \item \mbox{\texttt{\mdseries\slshape Mininvarlevel}}:=\mbox{\texttt{\mdseries\slshape n}} Set \texttt{mininvarlevel} to \mbox{\texttt{\mdseries\slshape n}}. The default is \mbox{\texttt{\mdseries\slshape n}}=0.
 \item \mbox{\texttt{\mdseries\slshape Maxinvarlevel}}:=\mbox{\texttt{\mdseries\slshape n}} Set \texttt{maxinvarlevel} to \mbox{\texttt{\mdseries\slshape n}}. The default is \mbox{\texttt{\mdseries\slshape n}}=2.
@@ -1841,16 +2453,53 @@ class.
 \begin{itemize}
 \item \mbox{\texttt{\mdseries\slshape Traces}}:=\texttt{true}/\texttt{false} Use \texttt{Traces}. This is the default.
 \item \mbox{\texttt{\mdseries\slshape SparseNauty}}:=\texttt{true}/\texttt{false} Use \texttt{nauty} for sparse graphs.
-\item \mbox{\texttt{\mdseries\slshape PointClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Color the points into classes of size \mbox{\texttt{\mdseries\slshape s}} that cannot be mapped onto each other. By default all points are in the same
-class.
+\item \mbox{\texttt{\mdseries\slshape PointClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Color the points into classes of size \mbox{\texttt{\mdseries\slshape s}} that cannot be mapped onto each other (for isotopy). By default, all points
+are in the same class.
+\item \mbox{\texttt{\mdseries\slshape ParatopyClasses}}:=\mbox{\texttt{\mdseries\slshape s}} Make point classes of size \mbox{\texttt{\mdseries\slshape s}} that can be exchanged (for paratopy).
 \item \mbox{\texttt{\mdseries\slshape Positions}}:=\texttt{true}/\texttt{false} Return positions of nonisomorphic designs instead of the designs themselves.
 \end{itemize}
  }
 
  
 
-\subsection{\textcolor{Chapter }{Cliquer}}
+\subsection{\textcolor{Chapter }{OrbitMatDual}}
 \logpage{[ 2, 4, 3 ]}\nobreak
+\hyperdef{L}{X85B24C6E78C141C1}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatDual({\mdseries\slshape nu, beta, om})\index{OrbitMatDual@\texttt{OrbitMatDual}}
+\label{OrbitMatDual}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the dual of the orbit matrix \mbox{\texttt{\mdseries\slshape om}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatRowTest}}
+\logpage{[ 2, 4, 4 ]}\nobreak
+\hyperdef{L}{X7CE60EFB8467B295}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatRowTest({\mdseries\slshape v, k, lambda, nu, beta, om})\index{OrbitMatRowTest@\texttt{OrbitMatRowTest}}
+\label{OrbitMatRowTest}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes row products of \mbox{\texttt{\mdseries\slshape om}} and tests if it is an orbit matrix for a $2$\texttt{\symbol{45}}$(v,k,lambda)$ design. }
+
+ 
+
+\subsection{\textcolor{Chapter }{OrbitMatColumnTest}}
+\logpage{[ 2, 4, 5 ]}\nobreak
+\hyperdef{L}{X87D1BD6381D275D5}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{OrbitMatColumnTest({\mdseries\slshape v, k, lambda, x, y, nu, beta, om})\index{OrbitMatColumnTest@\texttt{OrbitMatColumnTest}}
+\label{OrbitMatColumnTest}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Computes column products of \mbox{\texttt{\mdseries\slshape om}} and tests if it is an orbit matrix for a quasi\texttt{\symbol{45}}symmetric $2$\texttt{\symbol{45}}$(v,k,lambda)$ design with intersection numbers \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{Cliquer}}
+\logpage{[ 2, 4, 6 ]}\nobreak
 \hyperdef{L}{X7DD939A28306BE7B}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Cliquer({\mdseries\slshape g[, opt]})\index{Cliquer@\texttt{Cliquer}}
 \label{Cliquer}
@@ -1869,7 +2518,7 @@ class.
  
 
 \subsection{\textcolor{Chapter }{DisjointCliques}}
-\logpage{[ 2, 4, 4 ]}\nobreak
+\logpage{[ 2, 4, 7 ]}\nobreak
 \hyperdef{L}{X84D7D704788FE627}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DisjointCliques({\mdseries\slshape L[, opt]})\index{DisjointCliques@\texttt{DisjointCliques}}
 \label{DisjointCliques}
@@ -1889,7 +2538,7 @@ disjoint $k$\texttt{\symbol{45}}sets from the list. The sets must be of equal si
  
 
 \subsection{\textcolor{Chapter }{IntersectionNumbers}}
-\logpage{[ 2, 4, 5 ]}\nobreak
+\logpage{[ 2, 4, 8 ]}\nobreak
 \hyperdef{L}{X864491248518B7CD}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IntersectionNumbers({\mdseries\slshape d[, opt]})\index{IntersectionNumbers@\texttt{IntersectionNumbers}}
 \label{IntersectionNumbers}
@@ -1905,7 +2554,7 @@ disjoint $k$\texttt{\symbol{45}}sets from the list. The sets must be of equal si
  
 
 \subsection{\textcolor{Chapter }{BlockScheme}}
-\logpage{[ 2, 4, 6 ]}\nobreak
+\logpage{[ 2, 4, 9 ]}\nobreak
 \hyperdef{L}{X824E5FCE8742EB70}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{BlockScheme({\mdseries\slshape d[, opt]})\index{BlockScheme@\texttt{BlockScheme}}
 \label{BlockScheme}
@@ -1918,7 +2567,7 @@ an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{PointPairScheme}}
-\logpage{[ 2, 4, 7 ]}\nobreak
+\logpage{[ 2, 4, 10 ]}\nobreak
 \hyperdef{L}{X7EC3783778774F14}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{PointPairScheme({\mdseries\slshape d[, opt]})\index{PointPairScheme@\texttt{PointPairScheme}}
 \label{PointPairScheme}
@@ -1933,7 +2582,7 @@ defines an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{TDesignB}}
-\logpage{[ 2, 4, 8 ]}\nobreak
+\logpage{[ 2, 4, 11 ]}\nobreak
 \hyperdef{L}{X858A707E81380706}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{TDesignB({\mdseries\slshape t, v, k, lambda})\index{TDesignB@\texttt{TDesignB}}
 \label{TDesignB}
@@ -1945,7 +2594,7 @@ defines an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{IversonBracket}}
-\logpage{[ 2, 4, 9 ]}\nobreak
+\logpage{[ 2, 4, 12 ]}\nobreak
 \hyperdef{L}{X8386E2DC7CDC30D2}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IversonBracket({\mdseries\slshape P})\index{IversonBracket@\texttt{IversonBracket}}
 \label{IversonBracket}
@@ -1957,7 +2606,7 @@ defines an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{SymmetricDifference}}
-\logpage{[ 2, 4, 10 ]}\nobreak
+\logpage{[ 2, 4, 13 ]}\nobreak
 \hyperdef{L}{X86F40A1A87BF4E96}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SymmetricDifference({\mdseries\slshape X, Y})\index{SymmetricDifference@\texttt{SymmetricDifference}}
 \label{SymmetricDifference}
@@ -1969,7 +2618,7 @@ defines an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{AddWeights}}
-\logpage{[ 2, 4, 11 ]}\nobreak
+\logpage{[ 2, 4, 14 ]}\nobreak
 \hyperdef{L}{X7F9A590781405EAC}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AddWeights({\mdseries\slshape wd})\index{AddWeights@\texttt{AddWeights}}
 \label{AddWeights}
@@ -1981,7 +2630,7 @@ defines an association scheme. }
  
 
 \subsection{\textcolor{Chapter }{AdjacencyMat}}
-\logpage{[ 2, 4, 12 ]}\nobreak
+\logpage{[ 2, 4, 15 ]}\nobreak
 \hyperdef{L}{X79974935861D4838}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AdjacencyMat({\mdseries\slshape g})\index{AdjacencyMat@\texttt{AdjacencyMat}}
 \label{AdjacencyMat}
@@ -2354,20 +3003,44 @@ set \mbox{\texttt{\mdseries\slshape ds}} in the group \mbox{\texttt{\mdseries\sl
 
  
 
-\subsection{\textcolor{Chapter }{CubeTest}}
+\subsection{\textcolor{Chapter }{Development3}}
 \logpage{[ 2, 6, 13 ]}\nobreak
+\hyperdef{L}{X79C1FFFD7A9C2F68}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Development3({\mdseries\slshape G, ds})\index{Development3@\texttt{Development3}}
+\label{Development3}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Transforms a difference set of propriety $3$ to an orthogonal array. The argument \mbox{\texttt{\mdseries\slshape G}} is a group and \mbox{\texttt{\mdseries\slshape ds}} is a difference set. }
+
+ 
+
+\subsection{\textcolor{Chapter }{CubeTest}}
+\logpage{[ 2, 6, 14 ]}\nobreak
 \hyperdef{L}{X7B79A7857DAD2FFE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeTest({\mdseries\slshape C})\index{CubeTest@\texttt{CubeTest}}
 \label{CubeTest}
 }\hfill{\scriptsize (function)}}\\
 
 
- Test whether an incidence cube \mbox{\texttt{\mdseries\slshape C}} is a cube of symmetric designs. The result should be \texttt{[[v,k,lambda]]}. Anything else means that \mbox{\texttt{\mdseries\slshape C}} is not a $(v,k,\lambda)$ cube. }
+ Test whether an incidence cube \mbox{\texttt{\mdseries\slshape C}} is a cube of symmetric designs. The result should be \texttt{[[v,k,lambda]]}. Anything else means that \mbox{\texttt{\mdseries\slshape C}} is not a $\mathcal{C}^n(v,k,\lambda)$\texttt{\symbol{45}}cube. }
+
+ 
+
+\subsection{\textcolor{Chapter }{Cube3Test}}
+\logpage{[ 2, 6, 15 ]}\nobreak
+\hyperdef{L}{X810F43BA82B74F61}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Cube3Test({\mdseries\slshape C})\index{Cube3Test@\texttt{Cube3Test}}
+\label{Cube3Test}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Test whether an incidence cube \mbox{\texttt{\mdseries\slshape C}} is a three\texttt{\symbol{45}}dimensional symmetric design of propriety $3$. The result should be \texttt{[v,[k],[lambda]]}. Anything else means that \mbox{\texttt{\mdseries\slshape C}} is not a $\mathcal{C}^3_3(v,k,\lambda)$\texttt{\symbol{45}}cube. }
 
  
 
 \subsection{\textcolor{Chapter }{SliceInvariant}}
-\logpage{[ 2, 6, 14 ]}\nobreak
+\logpage{[ 2, 6, 16 ]}\nobreak
 \hyperdef{L}{X781264CA816BE32E}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SliceInvariant({\mdseries\slshape C})\index{SliceInvariant@\texttt{SliceInvariant}}
 \label{SliceInvariant}
@@ -2380,7 +3053,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{CubeAut}}
-\logpage{[ 2, 6, 15 ]}\nobreak
+\logpage{[ 2, 6, 17 ]}\nobreak
 \hyperdef{L}{X7E96F84678D23676}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeAut({\mdseries\slshape C[, opt]})\index{CubeAut@\texttt{CubeAut}}
 \label{CubeAut}
@@ -2397,7 +3070,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{CubeFilter}}
-\logpage{[ 2, 6, 16 ]}\nobreak
+\logpage{[ 2, 6, 18 ]}\nobreak
 \hyperdef{L}{X810B22E286D857C1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{CubeFilter({\mdseries\slshape cl[, opt]})\index{CubeFilter@\texttt{CubeFilter}}
 \label{CubeFilter}
@@ -2414,7 +3087,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{SDPSeriesGroup}}
-\logpage{[ 2, 6, 17 ]}\nobreak
+\logpage{[ 2, 6, 19 ]}\nobreak
 \hyperdef{L}{X853C796F7AE3EAB3}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesGroup({\mdseries\slshape m})\index{SDPSeriesGroup@\texttt{SDPSeriesGroup}}
 \label{SDPSeriesGroup}
@@ -2426,7 +3099,7 @@ paratopy have the same invariant. }
  
 
 \subsection{\textcolor{Chapter }{SDPSeriesDesign}}
-\logpage{[ 2, 6, 18 ]}\nobreak
+\logpage{[ 2, 6, 20 ]}\nobreak
 \hyperdef{L}{X840763A67E94AE26}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{SDPSeriesDesign({\mdseries\slshape m, i})\index{SDPSeriesDesign@\texttt{SDPSeriesDesign}}
 \label{SDPSeriesDesign}
@@ -2728,12 +3401,24 @@ construction of Yang \cite{YXY86}. }
 }\hfill{\scriptsize (function)}}\\
 
 
- Given an $n$\texttt{\symbol{45}}dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}}, returns the $(n+1)$\texttt{\symbol{45}}dimensional Hadamard matrix obtained by Theorem 6.1.5 of \cite{YNX10}. The construction also works for cyclic cubes of symmetric designs. }
+ Given an $n$\texttt{\symbol{45}}dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}}, returns the $(n+1)$\texttt{\symbol{45}}dimensional Hadamard matrix obtained by Theorem 6.1.5 of \cite{YNX10}. The construction also works for cubes of symmetric designs of propriety $n$. }
+
+ 
+
+\subsection{\textcolor{Chapter }{LatinSquareDimensionIncrease}}
+\logpage{[ 2, 8, 11 ]}\nobreak
+\hyperdef{L}{X87A561FF7B46FAD9}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{LatinSquareDimensionIncrease({\mdseries\slshape H, ls})\index{LatinSquareDimensionIncrease@\texttt{LatinSquareDimensionIncrease}}
+\label{LatinSquareDimensionIncrease}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given an $n$\texttt{\symbol{45}}dimensional Hadamard matrix \mbox{\texttt{\mdseries\slshape H}} of order $v$, returns the $(n+1)$\texttt{\symbol{45}}dimensional Hadamard matrix of order $v$ obtained by a generalization of \cite{YNX10}, Theorem 6.1.5. A Latin square \mbox{\texttt{\mdseries\slshape ls}} of order $v$ is used instead of addition modulo $v$. The construction also works for cubes of symmetric designs of propriety $n$. }
 
  
 
 \subsection{\textcolor{Chapter }{HadamardMatAut}}
-\logpage{[ 2, 8, 11 ]}\nobreak
+\logpage{[ 2, 8, 12 ]}\nobreak
 \hyperdef{L}{X801DEB1E7D5668E9}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatAut({\mdseries\slshape H[, opt]})\index{HadamardMatAut@\texttt{HadamardMatAut}}
 \label{HadamardMatAut}
@@ -2749,7 +3434,7 @@ construction of Yang \cite{YXY86}. }
  
 
 \subsection{\textcolor{Chapter }{HadamardMatFilter}}
-\logpage{[ 2, 8, 12 ]}\nobreak
+\logpage{[ 2, 8, 13 ]}\nobreak
 \hyperdef{L}{X7E0014F67EC9FC23}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardMatFilter({\mdseries\slshape hl[, opt]})\index{HadamardMatFilter@\texttt{HadamardMatFilter}}
 \label{HadamardMatFilter}
@@ -2768,7 +3453,7 @@ themselves.
  
 
 \subsection{\textcolor{Chapter }{HadamardToIncidence}}
-\logpage{[ 2, 8, 13 ]}\nobreak
+\logpage{[ 2, 8, 14 ]}\nobreak
 \hyperdef{L}{X7FC368717A9EC3AE}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HadamardToIncidence({\mdseries\slshape M})\index{HadamardToIncidence@\texttt{HadamardToIncidence}}
 \label{HadamardToIncidence}
@@ -2780,7 +3465,7 @@ themselves.
  
 
 \subsection{\textcolor{Chapter }{IncidenceToHadamard}}
-\logpage{[ 2, 8, 14 ]}\nobreak
+\logpage{[ 2, 8, 15 ]}\nobreak
 \hyperdef{L}{X7B745CE37816C093}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IncidenceToHadamard({\mdseries\slshape M})\index{IncidenceToHadamard@\texttt{IncidenceToHadamard}}
 \label{IncidenceToHadamard}
@@ -2850,26 +3535,35 @@ distinct designs. }
 \subsection{\textcolor{Chapter }{ReadMat}}
 \logpage{[ 2, 9, 5 ]}\nobreak
 \hyperdef{L}{X7F3B822084A1C217}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ReadMat({\mdseries\slshape filename})\index{ReadMat@\texttt{ReadMat}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ReadMat({\mdseries\slshape filename[, opt]})\index{ReadMat@\texttt{ReadMat}}
 \label{ReadMat}
 }\hfill{\scriptsize (function)}}\\
 
 
  Reads a list of $m\times n$ integer matrices from a file. The file starts with the number of rows $m$ and columns $n$ followed by the matrix entries. Integers in the file are separated by
-whitespaces. }
+whitespaces. The last argument is a record \mbox{\texttt{\mdseries\slshape opt}} for options. The possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Format}}:=\texttt{"inc"} If defined, the matrices are assumed to have $0/1$ entries not necessarily separated by whitespaces.
+\item \mbox{\texttt{\mdseries\slshape Format}}:=\texttt{"om"} If defined, the file is assumed to contain orbit matrices. After $m$ and $n$, the point and block orbit size vectors $\nu$ and $\beta$ follow, then the matrices.
+\end{itemize}
+ }
 
  
 
 \subsection{\textcolor{Chapter }{WriteMat}}
 \logpage{[ 2, 9, 6 ]}\nobreak
 \hyperdef{L}{X823C926682A2BD3F}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{WriteMat({\mdseries\slshape filename, list})\index{WriteMat@\texttt{WriteMat}}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{WriteMat({\mdseries\slshape filename, list[, opt]})\index{WriteMat@\texttt{WriteMat}}
 \label{WriteMat}
 }\hfill{\scriptsize (function)}}\\
 
 
  Writes a list of $m\times n$ integer matrices to a file. The number of rows $m$ and columns $n$ is written first, followed by the matrix entries. Integers are separated by
-whitespaces. }
+whitespaces. The last argument is a record \mbox{\texttt{\mdseries\slshape opt}} for options. The possible components of \mbox{\texttt{\mdseries\slshape opt}} are: 
+\begin{itemize}
+\item \mbox{\texttt{\mdseries\slshape Format}}:=\texttt{"inc"} If defined, the matrices are assumed to have $0/1$ entries and the entries are written without whitespaces.
+\end{itemize}
+ }
 
  
 

@@ -8,7 +8,7 @@
     nautil.c, naugraph.c, schreier.c, naurng.c, nausparse.c, gtools.c,
     and traces.c. 
 
-    Vedran Krcadinac (krcko@math.hr), 7.1.2023.
+    Vedran Krcadinac (krcko@math.hr), 16.7.2025.
     Department of Mathematics, University of Zagreb, Croatia
 */
 
@@ -43,8 +43,8 @@ int main(int argc,char *argv[])
 
   int n,m;
 
-  int b=0,v=0; /* Design parameters */
-  int p=0;     /* Point class size for initial coloring */
+  int b=0,v=0,v2; /* Design parameters */
+  int p=0,np;     /* Point class size for initial coloring */
 
   int i,j,x,ok;
   char c;
@@ -60,7 +60,14 @@ int main(int argc,char *argv[])
       while (argv[i][j] != '\0')
       { if (argv[i][j] == 'd') mask |= 1;
 	if (argv[i][j] == 'D') mask &= ~1;
-	if (argv[i][j] == 'p') sscanf(argv[i]+j+1,"%d",&p);
+	if (argv[i][j] == 'p') 
+	{ sscanf(argv[i]+j+1,"%d",&p);
+          mask &= ~16;
+        }
+	if (argv[i][j] == 't') 
+	{ sscanf(argv[i]+j+1,"%d",&p);
+          mask |= 16;
+        }
 
         /* Help */
         if ((argv[i][j] == 'h') || (argv[i][j] == 'H') || (argv[i][j] == '?'))
@@ -69,6 +76,7 @@ int main(int argc,char *argv[])
 	  printf("Options:\n");
           printf("-d, -D  Allow dual automorphisms, i.e. correlations (default no)\n");
           printf("-pN     Color points in classes of size N (default no)\n");
+          printf("-tN     Make points classes of size N that can be exchanged (default no)\n");
 	  exit(0);
         }
         ++j;
@@ -88,7 +96,9 @@ int main(int argc,char *argv[])
   options.defaultptn = FALSE;
   options.getcanon = FALSE;
 
-  n=v+b;
+  if (mask & 16) v2=v+p;
+  else v2=v;
+  n=v2+b;
   m = SETWORDSNEEDED(n);
 
   nauty_check(WORDSIZE,m,n,NAUTYVERSIONID);
@@ -99,13 +109,15 @@ int main(int argc,char *argv[])
   DYNALLOC1(int,orbits,orbits_sz,n,"malloc");
   EMPTYGRAPH(g,m,n);
 
-  for (i=0; i<n; ++i) 
-  { lab[i] = i; 
-    ptn[i] = 1; 
+  for (i=0; i<n; ++i)
+  { lab[i] = i;
+    ptn[i] = 1;
   }
   if (!(mask & 1)) ptn[v-1] = 0;
+  if (mask & 16) ptn[v2-1]=0;
   ptn[n-1] = 0;
-  if (p>0) for (i=0; i<v; ++i) if ((i+1)%p==0) ptn[i]=0;
+  if ((p>0) && ((mask & 16)==0)) for (i=0; i<v; ++i) if ((i+1)%p==0) ptn[i]=0;
+
 
   /* Read design and define graph */
 
@@ -134,7 +146,7 @@ int main(int argc,char *argv[])
       }
       /* printf("%d ",x); */
       --x;
-      ADDONEEDGE(g,v+i,x,m);
+      ADDONEEDGE(g,v2+i,x,m);
       c=0;
       while (ok==1 && c!=']' && c!=',') ok= scanf("%c",&c);
       if (ok!=1)
@@ -146,6 +158,11 @@ int main(int argc,char *argv[])
     /* for (j=0; j<vb; ++j) printf("%d ",db1[j]);
     printf("\n"); */
     ++i;
+  }
+
+  if (mask & 16)
+  { np=v/p;
+    for (i=0; i<np; ++i) for (j=0; j<p; ++j) ADDONEEDGE(g,v+i,i*p+j,m);
   }
 
   /* Convert to sparse graph */

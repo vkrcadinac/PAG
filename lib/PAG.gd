@@ -41,6 +41,67 @@ DeclareGlobalFunction( "TransitiveGroupsOfDegree" );
 
 #############################################################################
 ##
+#F  ConjugationFilter( <v>, <gl>[, <opt>] ) 
+##
+##  <#GAPDoc Label="ConjugationFilter">
+##  <ManSection>
+##  <Func Name="ConjugationFilter" Arg="v, gl[, opt]"/>
+##
+##  <Description>
+##  Given a list of permutation groups <A>gl</A>, returns a set 
+##  of representatives up to conjugation in the symmetric group 
+##  of degree <A>v</A>, i.e. up to permutation isomorphism. If 
+##  <A>gl</A> is partitioned into blocks, it is assumed that the 
+##  groups from different blocks are not equivalent and the function 
+##  is applied to each block. This reduces the number of ccnjugation
+##  tests and makes the computation faster. The list <A>gl</A> can 
+##  be partitioned using invariants given in the record <A>opt</A>.
+##  If the record has a component <A>Invariant</A>, the list is 
+##  partitioned accordingly and no conjugation tests are performed.
+##  Here are the values that <A>Invariant</A> can take: 
+##  <List>
+##  <Item><A>Invariant</A>:="OrbitSizes"  The orbit sizes of 
+##  <C>g</C> on <C>[1..</C><A>v</A><C>]</C> are used to partition
+##  <A>gl</A>.</Item> 
+##  <Item><A>Invariant</A>:="CycleLengths"  The cycle lengths of 
+##  all elements of <C>g</C> on <C>[1..</C><A>v</A><C>]</C> are 
+##  used to partition <A>gl</A>.</Item> 
+##  <Item><A>Invariant</A>:=<C>function</C>  Any function that 
+##  is an invariant of permutation isomorphism can also be
+##  given and is then used to partition <A>gl</A>.</Item> 
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ConjugationFilter" );
+
+#############################################################################
+##
+#F  ConjugationFilter2( <v>, <gl>[, <opt>] ) 
+##
+##  <#GAPDoc Label="ConjugationFilter2">
+##  <ManSection>
+##  <Func Name="ConjugationFilter2" Arg="v, gl[, opt]"/>
+##
+##  <Description>
+##  Given a list of permutation groups <A>gl</A>, returns a set 
+##  of representatives up to conjugation in the symmetric group 
+##  of degree <A>v</A>, i.e. up to permutation isomorphism. Uses 
+##  <C>nauty/Traces 2.8</C> by B.D.McKay and A.Piperno 
+##  <Cite Key='MP14'/>. The last argument <A>opt</A> is a record 
+##  for options. The possible components of <A>opt</A> are:
+##  <List>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files 
+##  in the named directory. By default, 
+##  <C>PAGGlobalOptions.TempDir</C> is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ConjugationFilter2" );
+
+#############################################################################
+##
 #F  Homogeneity( <G> ) 
 ##
 ##  <#GAPDoc Label="Homogeneity">
@@ -172,6 +233,35 @@ DeclareGlobalFunction( "RestrictedGroup" );
 
 #############################################################################
 ##
+#F  TidyGroup( <G>, <set>[, <opt>] ) 
+##
+##  <#GAPDoc Label="TidyGroup">
+##  <ManSection>
+##  <Func Name="TidyGroup" Arg="G, set[, opt]"/>
+##
+##  <Description>
+##  Given a permutation group <A>G</A> and a set, returns a 
+##  permutationally isomorphic group such that its orbits 
+##  contain consecutive integers and are sorted by size. The 
+##  optional argument <A>opt</A> is a record with component 
+##  <List>
+##  <Item><A>MinimalGeneratingSet</A>:=<C>true</C>/<C>false</C>  
+##  Use a minimal generating set of <A>G</A>. The default is 
+##  <C>true</C>.</Item>
+##  <Item><A>Normalizer</A>:=<C>true</C>/<C>false</C>  
+##  Put orbits that are equivalent under the normalizer in
+##  consecutive places. It is assumed that <A>set</A> is
+##  of the form <C>[1..v]</C> and the normalizer of <A>G</A>
+##  in <C>SymmetricGroup(v)</C> is computed. The default is 
+##  <C>true</C>.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "TidyGroup" );
+
+#############################################################################
+##
 #F  AllSubgroupsConjugation( <G> ) 
 ##
 ##  <#GAPDoc Label="AllSubgroupsConjugation">
@@ -236,6 +326,23 @@ DeclareGlobalFunction( "ExtendedPermRepresentation" );
 
 #############################################################################
 ##
+#F  AllPermRepresentations( <G>, <nu> ) 
+##
+##  <#GAPDoc Label="AllPermRepresentations">
+##  <ManSection>
+##  <Func Name="AllPermRepresentations" Arg="G, nu"/>
+##
+##  <Description>
+##  Returns all permutation representations of a group <A>G</A>
+##  on orbits of size given in a list of integers <A>nu</A>.
+##  The integers should be divisors of the order of <A>G</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AllPermRepresentations" );
+
+#############################################################################
+##
 #F  SubsetOrbitRep( <G>, <v>, <k>[, <opt>] ) 
 ##
 ##  <#GAPDoc Label="SubsetOrbitRep">
@@ -251,7 +358,7 @@ DeclareGlobalFunction( "ExtendedPermRepresentation" );
 ##  <List>
 ##  <Item><A>SizeLE</A>:=<A>n</A>  If defined, only representatives of orbits of
 ##  size less or equal to <A>n</A> are computed.</Item>
-##  <Item><A>IntesectionNumbers</A>:=<A>lin</A>  If defined, only representatives
+##  <Item><A>IntersectionNumbers</A>:=<A>lin</A>  If defined, only representatives
 ##  of good orbits are returned. These are orbits with intersection
 ##  numbers in the list of integers <A>lin</A>.</Item>
 ##  </List>
@@ -290,6 +397,91 @@ DeclareGlobalFunction( "SubsetOrbitRepIN" );
 
 #############################################################################
 ##
+#F  SubsetOrbitRepIN2( <G>, <v>, <k>, <x>, <y>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SubsetOrbitRepIN2">
+##  <ManSection>
+##  <Func Name="SubsetOrbitRepIN2" Arg="G, v, k, x, y[, opt]"/>
+##
+##  <Description>
+##  Computes orbit representatives of <A>k</A>-subsets of [1..<A>v</A>] 
+##  under the action of the permutation group <A>G</A> with intersection 
+##  numbers <A>x</A> and <A>y</A>. Calls a <C>C</C>-subroutine for the 
+##  time-critical part of the computation and should be faster than
+##  <Ref Func="SubsetOrbitRepIN"/>. The algorithm is described in 
+##  <Cite Key='KVK21'/>. The last (optional) argument <A>opt</A> is 
+##  a record for options. Possible components are:
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Long</A>:=<C>true</C>/<C>false</C>  Compute and return
+##  the long orbits (of size equal to <M>|G|</M>).</Item>
+##  <Item><A>Short</A>:=<C>true</C>/<C>false</C>  Compute and return
+##  the short orbits (of size less than <M>|G|</M>).</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitRepIN2" );
+
+#############################################################################
+##
+#F  SubsetOrbitRepSteiner( <G>, <t>, <v>, <k>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SubsetOrbitRepSteiner">
+##  <ManSection>
+##  <Func Name="SubsetOrbitRepSteiner" Arg="G, t, v, k[, opt]"/>
+##
+##  <Description>
+##  Computes orbit representatives of <A>k</A>-subsets of [1..<A>v</A>] 
+##  under the action of the permutation group <A>G</A> with intersection 
+##  numbers strictly less than <A>t</A>. Calls <C>C</C>-subroutines 
+##  for the time-critical parts of the computation. The algorithm is 
+##  described in <Cite Key='KVK21'/>. The last (optional) argument 
+##  <A>opt</A> is a record for options. Possible components are:
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Long</A>:=<C>true</C>/<C>false</C>  Compute and return
+##  the long orbits (of size equal to <M>|G|</M>).</Item>
+##  <Item><A>Short</A>:=<C>true</C>/<C>false</C>  Compute and return
+##  the short orbits (of size less than <M>|G|</M>).</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitRepSteiner" );
+
+#############################################################################
+##
+#F  SubsetOrbitRepOM( <G>, <t>, <v>, <k>, <beta>, <OM>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SubsetOrbitRepOM">
+##  <ManSection>
+##  <Func Name="SubsetOrbitRepOM" Arg="G, t, v, k, beta, OM[, opt]"/>
+##
+##  <Description>
+##  Computes subset orbit representatives compatible with an orbit
+##  matrix or list of orbit matrices <A>OM</A> with block orbit sizes
+##  <A>beta</A>. For each orbit matrix, the result is returned as a 
+##  list of two components. The first component is a list of sets of 
+##  orbit representatives compatible with a column of the orbit matrix. 
+##  The second component is a list of numbers indicating how many 
+##  orbits have to be taken from each set. Calls 
+##  <Ref Func="SubsetOrbitRepSteiner"/> to generate the subset orbits.
+##  The last (optional) argument <A>opt</A> is a record for options. 
+##  Possible components are:
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitRepOM" );
+
+#############################################################################
+##
 #F  SubsetOrbitRepShort1( <G>, <v>, <k>, <size> ) 
 ##
 ##  <#GAPDoc Label="SubsetOrbitRepShort1">
@@ -299,11 +491,58 @@ DeclareGlobalFunction( "SubsetOrbitRepIN" );
 ##  <Description>
 ##  Computes <A>G</A>-orbit representatives of <A>k</A>-subsets of [1..<A>v</A>] 
 ##  of size less or equal <A>size</A>. Here, <A>size</A> is an integer smaller 
-##  than the order of the group <A>G</A>. The algorithm is described in <Cite Key='KV16'/>. 
+##  than the order of the group <A>G</A>. The algorithm is described in 
+##  <Cite Key='KV16'/>. The implementation uses <Ref Func="OrbitFilter1"/>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SubsetOrbitRepShort1" );
+
+#############################################################################
+##
+#F  SubsetOrbitRepShort2( <G>, <v>, <k>, <size> ) 
+##
+##  <#GAPDoc Label="SubsetOrbitRepShort2">
+##  <ManSection>
+##  <Func Name="SubsetOrbitRepShort2" Arg="G, v, k, size"/>
+##
+##  <Description>
+##  Computes <A>G</A>-orbit representatives of <A>k</A>-subsets of [1..<A>v</A>] 
+##  of size less or equal <A>size</A>. Here, <A>size</A> is an integer smaller 
+##  than the order of the group <A>G</A>. The algorithm is described in 
+##  <Cite Key='KV16'/>. The implementation uses <Ref Func="OrbitFilter2"/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitRepShort2" );
+
+#############################################################################
+##
+#F  SubsetOrbitRepShort3( <G>, <v>, <k>, <size>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SubsetOrbitRepShort3">
+##  <ManSection>
+##  <Func Name="SubsetOrbitRepShort3" Arg="G, v, k, size[, opt]"/>
+##
+##  <Description>
+##  Computes <A>G</A>-orbit representatives of <A>k</A>-subsets of [1..<A>v</A>] 
+##  of size less or equal <A>size</A>. Here, <A>size</A> is an integer smaller 
+##  than the order of the group <A>G</A>. The algorithm is described in 
+##  <Cite Key='KV16'/>. This implementation calls a C program and allows 
+##  specifying intersection numbers in a record <A>opt</A>. Possible 
+##  components are:
+##  <List>
+##  <Item><A>IntersectionNumbers</A>:=<C>lin</C>  A set <C>lin</C> of up
+##  to four intersection numbers can be given.</Item> 
+##  <Item><A>SteinerT</A>:=<C>t</C>  Computes short orbits for Steiner 
+##  <C>t</C>-designs. An integer <C>t</C> in [2,3,4] can be given;
+##  this means that the intersection numbers are [0..<C>t</C>-1].
+##  </Item> 
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitRepShort3" );
 
 #############################################################################
 ##
@@ -323,6 +562,25 @@ DeclareGlobalFunction( "SubsetOrbitRepShort1" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "IsGoodSubsetOrbit" );
+
+#############################################################################
+##
+#F  AreCompatibleSubsetOrbits( <G>, <rep1>, <rep2>, <lin> ) 
+##
+##  <#GAPDoc Label="AreCompatibleSubsetOrbits">
+##  <ManSection>
+##  <Func Name="AreCompatibleSubsetOrbits" Arg="G, rep1, rep2, lin"/>
+##
+##  <Description>
+##  Check if the subset orbits generated by the permutation group <A>G</A>
+##  and the representatives <A>rep1</A> and <A>rep2</A> are compatible with 
+##  respect to the list of intersection numbers <A>lin</A>. This means that 
+##  the intersection size of any pair of subsets from the two orbits is an 
+##  integer in <A>lin</A>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "AreCompatibleSubsetOrbits" );
 
 #############################################################################
 ##
@@ -381,6 +639,62 @@ DeclareGlobalFunction( "OrbitFilter2" );
 
 #############################################################################
 ##
+#F  InequivalentSubsetOrbits( <N>, <ksub>[, <opt>] ) 
+##
+##  <#GAPDoc Label="InequivalentSubsetOrbits">
+##  <ManSection>
+##  <Func Name="InequivalentSubsetOrbits" Arg="N, ksub[, opt]"/>
+##
+##  <Description>
+##  Takes a list of subset orbit representatives <A>ksub</A> and returns 
+##  indices of the ones that cannot be mapped onto each other by the 
+##  permutation group <A>N</A> (typically the normalizer of the group
+##  generating the orbits). Uses the 
+##  <Ref Func="CanonicalImage" BookName="Images"/> function from the 
+##  <Package>Images</Package> package. The optional argument <A>opt</A> 
+##  is a record for options. Possible components are:
+##  <List>
+##  <Item><A>Partition</A>:=<C>true</C>/<C>false</C> Returns a partition 
+##  of <A>ksub</A> into <A>N</A>-equivalent subsets, not just one 
+##  representative from each block. The partition is also given by 
+##  indices.</Item> 
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "InequivalentSubsetOrbits" );
+
+#############################################################################
+##
+#F  InequivalentSubsetOrbitPairs( <N>, <G>, <ksub>[, <opt>] ) 
+##
+##  <#GAPDoc Label="InequivalentSubsetOrbitPairs">
+##  <ManSection>
+##  <Func Name="InequivalentSubsetOrbitPairs" Arg="N, G, ksub[, opt]"/>
+##
+##  <Description>
+##  Takes a list of subset orbit representatives <A>ksub</A> and returns 
+##  indices of the pairs that cannot be mapped onto each other by the 
+##  permutation group <A>N</A> (typically the normalizer of the group
+##  <A>G</A> generating the orbits). Uses the 
+##  <Ref Func="CanonicalImage" BookName="Images"/> function from the 
+##  <Package>Images</Package> package. The optional argument <A>opt</A> 
+##  is a record for options. Possible components are:
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>IntersectionNumbers</A>:=<A>lin</A>  If defined, only
+##  pairs of compatible orbits are returned. This means that each
+##  element from one orbit intersects each element from the other 
+##  in a subset of size given in the list of integers <A>lin</A>.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "InequivalentSubsetOrbitPairs" );
+
+#############################################################################
+##
 #F  KramerMesnerMat( <G>, <tsub>, <ksub>[, <lambda>][, <b>] ) 
 ##
 ##  <#GAPDoc Label="KramerMesnerMat">
@@ -399,6 +713,145 @@ DeclareGlobalFunction( "OrbitFilter2" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "KramerMesnerMat" );
+
+#############################################################################
+##
+#F  KramerMesnerMat( <G>, <tsub>, <ksub>[, <lambda>][, <b>] ) 
+##
+##  <#GAPDoc Label="KramerMesnerMat2">
+##  <ManSection>
+##  <Func Name="KramerMesnerMat2" Arg="G, tsub, ksub[, lambda][, b]"/>
+##
+##  <Description>
+##  Returns the Kramer-Mesner matrix for a permutation group <A>G</A>. The 
+##  rows are labelled by <M>t</M>-subset orbits represented by <A>tsub</A>, and
+##  the columns by <M>k</M>-subset orbits represented by <A>ksub</A>. A column
+##  of constants <A>lambda</A> is added if the optional argument <A>lambda</A>
+##  is given. Another row is added if the optional argument <A>b</A> is
+##  given, repesenting the constraint that sizes of the chosen <M>k</M>-subset
+##  orbits must sum up to the number of blocks <A>b</A>. This function calls
+##  a <C>C</C>-subroutine for the time-critical part of the computation and 
+##  should be faster than <Ref Func="KramerMesnerMat"/>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "KramerMesnerMat2" );
+
+#############################################################################
+##
+#F  MakeDLX( <filename>, <G>, <tsub>, <ksub>[, <opt>] ) 
+##
+##  <#GAPDoc Label="MakeDLX">
+##  <ManSection>
+##  <Func Name="MakeDLX" Arg="filename, G, tsub, ksub[, opt]"/>
+##
+##  <Description>
+##  Creates a DLX file <A>filename</A> for the permutation group <A>G</A>, 
+##  <M>t</M>-subset and <M>k</M>-subset orbits representatives <A>tsub</A> 
+##  and <A>ksub</A>. The orbits must be such that the corresponding 
+##  Kramer-Mesner matrix has only <M>0</M>-<M>1</M> entries. The <A>ksub</A>
+##  argument may be given as returned by <Ref Func="SubsetOrbitRepOM"/>.
+##  In that case additional equations will be added to make the solutions
+##  compatible with the orbit matrix. For the DLX file format, see
+##  <Cite Key='DK17'/>. The optional argument <A>opt</A> is a record for 
+##  options. Possible components are:
+##  <List>
+##  <Item><A>UseOrbits</A>:=<C>list</C> Add equations and variables (in 
+##  Knuth's terms: items and options) so that at least one of the orbits 
+##  given in <C>list</C> must be chosen. This can be used to prune parts 
+##  of the search tree leading to isomorphic designs, by using the 
+##  normalizer.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MakeDLX" );
+
+#############################################################################
+##
+#F  MakeDLX2( <filename>, <G>, <tsub>, <ksub>[, <opt>] ) 
+##
+##  <#GAPDoc Label="MakeDLX2">
+##  <ManSection>
+##  <Func Name="MakeDLX2" Arg="filename, G, tsub, ksub[, opt]"/>
+##
+##  <Description>
+##  Creates a DLX file <A>filename</A> for the permutation group <A>G</A>, 
+##  <M>t</M>-subset and <M>k</M>-subset orbits representatives <A>tsub</A> 
+##  and <A>ksub</A>. The orbits must be such that the corresponding 
+##  Kramer-Mesner matrix has only <M>0</M>-<M>1</M> entries. The <A>ksub</A>
+##  argument may be given as returned by <Ref Func="SubsetOrbitRepOM"/>.
+##  In that case additional equations will be added to make the solutions
+##  compatible with the orbit matrix. For the DLX file format, see
+##  <Cite Key='DK17'/>. The optional argument <A>opt</A> is a record for 
+##  options. Possible components are:
+##  <List>
+##  <Item><A>UseOrbits</A>:=<C>list</C> Add equations and variables (in 
+##  Knuth's terms: items and options) so that at least one of the orbits 
+##  given in <C>list</C> must be chosen. This can be used to prune parts 
+##  of the search tree leading to isomorphic designs, by using the 
+##  normalizer.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "MakeDLX2" );
+
+#############################################################################
+##
+#F  RectifySolutions( <norb>, <list>, <sol> ) 
+##
+##  <#GAPDoc Label="RectifySolutions">
+##  <ManSection>
+##  <Func Name="RectifySolutions" Arg="norb, list, sol"/>
+##
+##  <Description>
+##  Make solution(s) <A>sol</A> of a DLX file produced by <Ref Func="MakeDLX"/>
+##  with the <C>UseOrbits</C>:=<A>list</A> option compatible with <A>norb</A> 
+##  orbits. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "RectifySolutions" );
+
+#############################################################################
+##
+#F  KramerMesnerMatOM( <G>, <tsub>, <ksub>, <lambda> ) 
+##
+##  <#GAPDoc Label="KramerMesnerMatOM">
+##  <ManSection>
+##  <Func Name="KramerMesnerMatOM" Arg="G, tsub, ksub, lambda"/>
+##
+##  <Description>
+##  Returns the Kramer-Mesner matrix for a permutation group <A>G</A> 
+##  compatible with an orbit matrix. Rows are labeled by <M>t</M>-subset 
+##  orbits <A>tsub</A>. The <M>k</M>-subset orbits <A>ksub</A> labeling 
+##  the columns should be given as returned by the function
+##  <Ref Func="SubsetOrbitRepOM"/>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "KramerMesnerMatOM" );
+
+#############################################################################
+##
+#F  WriteDLX( <filename>, <KM> ) 
+##
+##  <#GAPDoc Label="WriteDLX">
+##  <ManSection>
+##  <Func Name="WriteDLX" Arg="filename, KM"/>
+##
+##  <Description>
+##  Write a Kramer-Mesner matrix <A>KM</A> to a file in format suitable
+##  for Donald Knuth's DLX3 program <Cite Key='DK17'/>. The matrix must
+##  contain only <M>0</M>-<M>1</M> entries, except in the last column.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "WriteDLX" );
 
 #############################################################################
 ##
@@ -444,24 +897,114 @@ DeclareGlobalFunction( "ExpandMatRHS" );
 ##
 ##  <Description>
 ##  Solve a system of linear equations determined by the matrix <A>mat</A>
-##  over <M>\{0,1\}</M>. By default, A.Wassermann's LLL solver <C>solvediophant</C>
-##  <Cite Key='AW98'/> is used. If the second argument is a compatibility
+##  over <M>\{0,1\}</M>. By default, A.Wassermann's LLL solver <C>solvediophant2</C>
+##  <Cite Key='AW21'/> is used. If the second argument is a compatibility
 ##  matrix <A>cm</A>, the backtracking program <C>solvecm</C> from the papers 
 ##  <Cite Key='KNP11'/> and <Cite Key='KV16'/> is used. The solver can also
 ##  be chosen explicitly in the record <A>opt</A>. Possible components are:
 ##  <List>
-##  <Item><A>Solver</A>:=<C>"solvediophant"</C> If defined, <C>solvediophant</C> 
-##  is used.</Item>
-##  <Item><A>Solver</A>:=<C>"solvecm"</C> If defined, <C>solvecm</C> is used.</Item>
-##  <Item><A>Solver</A>:=<C>"libexact"</C> If defined, <C>libexact</C> is used.
+##  <Item><A>Solver</A>:=<C>"solvediophant2"</C> or <C>"sd2"</C> Use 
+##  <C>solvediophant2</C>. Without <A>cm</A>, this is the default.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>.</Item>
+##  <Item><A>Solver</A>:=<C>"solvecm"</C> Use <C>solvecm</C>. This is
+##  the default if <A>cm</A> is given.</Item>
+##  <Item><A>Solver</A>:=<C>"libexact"</C> Use <C>libexact</C>.
 ##  This is P. Kaski and  O. Pottonen's implementation of the Dancing Links
-##  algorithm, see <Cite Key='KP08'/>. For this solver the coefficients of
-##  <A>mat</A> must be in <M>\{0,1\}</M>!</Item>
+##  algorithm, see <Cite Key='KP08'/>. The coefficients of <A>mat</A> must 
+##  be in <M>\{0,1\}</M>. Other options are passed to the function 
+##  <Ref Func="SolveDLX"/>; see its documentation.</Item>
+##  <Item><A>Solver</A>:=<C>"dlx3"</C> / <C>"ssxcc"</C> / <C>"ssxcc-binary"</C> / 
+##  <C>"ssmcc"</C>  Use one of D. E. Knuth's implementations of the Dancing 
+##  Links or Dancing Cells algorithms; see <Cite Key='DK00'/> and
+##  <Cite Key='DK25'/>. The coefficients of <A>mat</A> must be in <M>\{0,1\}</M>.
+##  Other options are passed to the function <Ref Func="SolveDLX"/>; see 
+##  its documentation.</Item>
 ##  </List>
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SolveKramerMesner" );
+
+#############################################################################
+##
+#F  SolveDLX( <filename>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SolveDLX">
+##  <ManSection>
+##  <Func Name="SolveDLX" Arg="filename[, opt]"/>
+##
+##  <Description>
+##  Solve an exact cover problem given in the file <A>filename</A>. 
+##  The file must be in Donald Knuth's DLX3 format <Cite Key='DK17'/>. 
+##  The optional argument <A>opt</A> is a record for options. Possible 
+##  components are:
+##  <List>
+##  <Item><A>Solver</A>:=<C>"dlx3"</C> / <C>"ssxcc"</C> / <C>"ssxcc-binary"</C> / 
+##  <C>"ssmcc"</C>  If defined, one of D. E. Knuth's implementations of the Dancing 
+##  Links or Dancing Cells algorithms is used; see <Cite Key='DK00'/> and
+##  <Cite Key='DK25'/>. The default is <C>dlx3</C>.</Item> 
+##  <Item><A>M</A>:=<A>n</A>  Set memory option for Knuth's solvers to <C>n</C>.
+##  The default is <M>130000000</M>.</Item>
+##  <Item><A>Solver</A>:=<C>"libexact"</C> If defined, <C>libexact</C> is used.
+##  This is P. Kaski and  O. Pottonen's implementation of the Dancing Links
+##  algorithm; see <Cite Key='KP08'/>.</Item>
+##  <Item><A>UseOrbits</A>:=<C>list</C> Return only solutions using at least 
+##  one of the orbits (or sets of orbits) given in <C>list</C>. This can be 
+##  used to prune parts of the search tree leading to isomorphic designs, 
+##  using the normalizer.</Item>
+##  <Item><A>Iterate</A>:=<C>true</C>/<C>false</C> Restart solver for eached 
+##  of the fixed orbits given in <A>UseOrbits</A>. By default, this is done 
+##  only if sets of more than one orbit are fixed. Otherwise the solver is 
+##  started once with additional rows and columns for the fixed orbits.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SolveDLX" );
+
+#############################################################################
+##
+#F  SolveSteiner( <G>, <tsub>, <ksub>[, <opt>] ) 
+##
+##  <#GAPDoc Label="SolveSteiner">
+##  <ManSection>
+##  <Func Name="SolveSteiner" Arg="G, tsub, ksub[, opt]"/>
+##
+##  <Description>
+##  Set up and solve exact cover problem for the permutation group <A>G</A>, 
+##  <M>t</M>-subset and <M>k</M>-subset orbits representatives <A>tsub</A> 
+##  and <A>ksub</A>. The orbits must be such that the corresponding 
+##  Kramer-Mesner matrix has only <M>0</M>-<M>1</M> entries. The <A>ksub</A>
+##  argument may be given as returned by <Ref Func="SubsetOrbitRepOM"/>.
+##  In that case additional equations will be added to make the solutions
+##  compatible with the orbit matrix. The optional argument <A>opt</A> is 
+##  a record for options. Possible components are:
+##  <List>
+##  <Item><A>Solver</A>:=<C>"libexact"</C> If defined, <C>libexact</C> is 
+##  used. This is P. Kaski and  O. Pottonen's implementation of the Dancing 
+##  Links algorithm, see <Cite Key='KP08'/>.</Item>
+##  <Item><A>UseOrbits</A>:=<C>list</C> Add equations and variables (in 
+##  Knuth's terms: items and options) so that at least one of the orbits 
+##  given in <C>list</C> must be chosen. This can be used to prune parts 
+##  of the search tree leading to isomorphic designs, by using the 
+##  normalizer. A partition of orbits can also be given in <C>list</C> to
+##  avoid multiple solutions and reduce the search tree further.</Item>
+##  <Item><A>Iterate</A>:=<C>true</C>/<C>false</C> Re-create exact cover
+##  problem and restart solver for eached of the fixed orbits given in 
+##  <A>UseOrbits</A>. By default, the fixed orbits are modelled by adding
+##  a single equation (item), duplicatng variables (options) and starting 
+##  the solver once. If a partition is given in <A>UseOrbits</A>, iterating
+##  is the default.</Item>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C> Report fixing of orbits
+##  when iterating and restarting the solver.</Item> 
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SolveSteiner" );
 
 #############################################################################
 ##
@@ -481,6 +1024,213 @@ DeclareGlobalFunction( "BaseBlocks" );
 
 #############################################################################
 ##
+#F  OrbitMats( <t>, <v>, <k>, <lambda>, <nu>, <beta> )
+##
+##  <#GAPDoc Label="OrbitMats">
+##  <ManSection>
+##  <Func Name="OrbitMats" Arg="t, v, k, lambda, nu, beta"/>
+##  
+##  <Description>
+##  Returns orbit matrices for <M>t</M>-<M>(v,k,lambda)</M> designs
+##  with point and block orbit size vectors <A>nu</A> and <A>beta</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMats" );
+
+#############################################################################
+##
+#F  OrbitMatsWide( <t>, <v>, <k>, <lambda>, <nu>, <beta>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrbitMatsWide">
+##  <ManSection>
+##  <Func Name="OrbitMatsWide" Arg="t, v, k, lambda, nu, beta[, opt]"/>
+##  
+##  <Description>
+##  Returns orbit matrices for <M>t</M>-<M>(v,k,lambda)</M> designs
+##  with point and block orbit size vectors <A>nu</A> and <A>beta</A>.
+##  Uses an algorithm suited for matrices with few rows and many 
+##  columns, i.e. short <A>nu</A> and long <A>beta</A>. A.Wassermann's 
+##  LLL solver <C>solvediophant2</C> is called. 
+##  The function <Ref Func="OrbitMats" Style="Text"/> returns matrices 
+##  in canonical form, therefore inequivalent. In contrast, this function 
+##  may return equivalent matrices multiple times. This can be changed 
+##  by setting options. Possible components of the record <A>opt</A> are:
+##  <List>
+##  <Item><A>Inequivalent</A>:=<C>true</C>/<C>false</C> If set to <C>true</C>, 
+##  equivalent copies of the orbit matrices are eliminated.</Item>
+##  <Item><A>Canonical</A>:=<C>true</C>/<C>false</C>  If set to <C>true</C>, 
+##  canonical forms of the orbit matrices are returned.</Item>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant2"</C> or <C>"sd2"</C> Use 
+##  <C>solvediophant2</C>. This is the default.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>. 
+##  </Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatsWide" );
+
+#############################################################################
+##
+#F  OrbitMatsWide2( <t>, <v>, <k>, <lambda>, <nu>, <bo>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrbitMatsWide2">
+##  <ManSection>
+##  <Func Name="OrbitMatsWide2" Arg="t, v, k, lambda, nu, bo[, opt]"/>
+##  
+##  <Description>
+##  Returns orbit matrices for <M>t</M>-<M>(v,k,lambda)</M> designs
+##  with point size vector <A>nu</A> and block orbit sizes from a
+##  set of integers <A>bo</A>. Typically, <A>bo</A> contains divisors 
+##  of the group order. Uses an algorithm suited for matrices with 
+##  few rows (i.e. short <A>nu</A>-vector) and many columns. 
+##  A.Wassermann's LLL solver <C>solvediophant2</C> is called. The 
+##  function <Ref Func="OrbitMats" Style="Text"/> returns matrices in 
+##  canonical form, therefore inequivalent. By default, this function 
+##  may return equivalent matrices. This can be changed by setting 
+##  options. Possible components of the record <A>opt</A> are:
+##  <List>
+##  <Item><A>Inequivalent</A>:=<C>true</C>/<C>false</C> If set to <C>true</C>, 
+##  equivalent copies of the orbit matrices are eliminated.</Item>
+##  <Item><A>Canonical</A>:=<C>true</C>/<C>false</C>  If set to <C>true</C>, 
+##  canonical forms of the orbit matrices are returned.</Item>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant2"</C> or <C>"sd2"</C> Use 
+##  <C>solvediophant2</C>. This is the default.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>. 
+##  </Item>
+##  <Item><A>StopAfter</A>:=<M>n</M> Stop search after <M>n</M> solutions 
+##  have been found. By default, the search goes on until all solutions 
+##  are found.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatsWide2" );
+
+#############################################################################
+##
+#F  ColumnsOM( <g>, <t>, <v>, <k>[, <opt>] )  
+##
+##  <#GAPDoc Label="ColumnsOM">
+##  <ManSection>
+##  <Func Name="ColumnsOM" Arg="g, t, v, k[, opt]"/>
+##  
+##  <Description>
+##  Returns candidates for columns of orbit matrices corresponding to
+##  Steiner <M>t</M>-<M>(v,k,1)</M> designs with <A>g</A> as group of
+##  automorphisms. The optional argument <A>opt</A> is a record for 
+##  options with possible components:
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Bounds</A>:=<C>true</C>/<C>false</C>  With each column 
+##  also return an upper bound on how many times it may be used in 
+##  the orbit matrix.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ColumnsOM" );
+
+#############################################################################
+##
+#F  OrbitMatsWide3( <t>, <v>, <k>, <g>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrbitMatsWide3">
+##  <ManSection>
+##  <Func Name="OrbitMatsWide3" Arg="t, v, k, g[, opt]"/>
+##  
+##  <Description>
+##  Returns orbit matrices for Steiner <M>t</M>-<M>(v,k,1)</M> designs
+##  with <A>g</A> as group of automorphisms. This version computes the
+##  point and block orbit sizes, the column candidates and upper bounds
+##  on how many times they may be used from the group <A>g</A>. Uses 
+##  an algorithm suited for matrices with few rows and many columns. 
+##  A.Wassermann's LLL solver <C>solvediophant2</C> is called. The 
+##  function <Ref Func="OrbitMats" Style="Text"/> returns matrices in 
+##  canonical form, therefore inequivalent. By default, this function 
+##  may return equivalent matrices. This can be changed by setting 
+##  options. Possible components of the record <A>opt</A> are:
+##  <List>
+##  <Item><A>Inequivalent</A>:=<C>true</C>/<C>false</C> If set to <C>true</C>, 
+##  equivalent copies of the orbit matrices are eliminated.</Item>
+##  <Item><A>Canonical</A>:=<C>true</C>/<C>false</C>  If set to <C>true</C>, 
+##  canonical forms of the orbit matrices are returned.</Item>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C>  Print comments
+##  reporting the progress of the calculation.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant2"</C> or <C>"sd2"</C> Use 
+##  <C>solvediophant2</C>. This is the default.</Item>
+##  <Item><A>Solver</A>:=<C>"solvediophant"</C> Use <C>solvediophant</C>. 
+##  </Item>
+##  <Item><A>StopAfter</A>:=<M>n</M> Stop search after <M>n</M> solutions 
+##  have been found. By default, the search goes on until all solutions 
+##  are found.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatsWide3" );
+
+#############################################################################
+##
+#F  SubsetOrbitTypes( <g>, <v>, <ksub>, <i> )  
+##
+##  <#GAPDoc Label="SubsetOrbitTypes">
+##  <ManSection>
+##  <Func Name="SubsetOrbitTypes" Arg="g, v, ksub, i"/>
+##  
+##  <Description>
+##  Computes the types of index <A>i</A> for the subset orbit
+##  representatives <A>ksub</A> under the permutation group 
+##  <A>g</A> of degree <A>v</A>. The type information is 
+##  returned as a record. The supplied arguments are also 
+##  returned as components of the record.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SubsetOrbitTypes" );
+
+#############################################################################
+##
+#F  OrbitMatFilter( <nu>, <beta>, <om>[, <opt>] )  
+##
+##  <#GAPDoc Label="OrbitMatFilter">
+##  <ManSection>
+##  <Func Name="OrbitMatFilter" Arg="nu, beta, om[, opt]"/>
+##  
+##  <Description>
+##  Eliminates equivalent copies from a list of orbit matrices <A>om</A>. 
+##  All of the matrices should have the same orbit size
+##  vectors <A>nu</A> and <A>beta</A>. Two matrices are equivalent if 
+##  one can be transformed into the other by row and column permutations 
+##  respecting these vectors. Uses <C>nauty/Traces 2.8</C> by B.D.McKay 
+##  and A.Piperno <Cite Key='MP14'/>. The optional argument <A>opt</A> 
+##  is a record for options. Possible components of <A>opt</A> are:
+##  <List>
+##  <Item><A>Canonical</A>:=<C>true</C>/<C>false</C> Puts the matrices in
+##  canonical form.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatFilter" );
+
+#############################################################################
+##
 #F  TDesignB( <t>, <v>, <k>, <lambda> )  
 ##
 ##  <#GAPDoc Label="TDesignB">
@@ -493,6 +1243,54 @@ DeclareGlobalFunction( "BaseBlocks" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "TDesignB" );
+
+#############################################################################
+##
+#F  OrbitMatDual( <nu>, <beta>, <om> )  
+##
+##  <#GAPDoc Label="OrbitMatDual">
+##  <ManSection>
+##  <Func Name="OrbitMatDual" Arg="nu, beta, om"/>
+##  
+##  <Description>
+##  Returns the dual of the orbit matrix <A>om</A>. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatDual" );
+
+#############################################################################
+##
+#F  OrbitMatRowTest( <v>, <k>, <lambda>, <nu>, <beta>, <om> )  
+##
+##  <#GAPDoc Label="OrbitMatRowTest">
+##  <ManSection>
+##  <Func Name="OrbitMatRowTest" Arg="v, k, lambda, nu, beta, om"/>
+##  
+##  <Description>
+##  Computes row products of <A>om</A> and tests if it is an
+##  orbit matrix for a <M>2</M>-<M>(v,k,lambda)</M> design. 
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatRowTest" );
+
+#############################################################################
+##
+#F  OrbitMatColumnTest( <v>, <k>, <lambda>, <x>, <y>, <nu>, <beta>, <om> )  
+##
+##  <#GAPDoc Label="OrbitMatColumnTest">
+##  <ManSection>
+##  <Func Name="OrbitMatColumnTest" Arg="v, k, lambda, x, y, nu, beta, om"/>
+##  
+##  <Description>
+##  Computes column products of <A>om</A> and tests if it is an orbit 
+##  matrix for a quasi-symmetric <M>2</M>-<M>(v,k,lambda)</M> design 
+##  with intersection numbers <A>x</A> and <A>y</A>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "OrbitMatColumnTest" );
 
 #############################################################################
 ##
@@ -549,8 +1347,10 @@ DeclareGlobalFunction( "IntersectionNumbers" );
 ##  appear only for self-dual symmetric designs (with the same number
 ##  of points and blocks). The default is <C>false</C>.</Item>
 ##  <Item><A>PointClasses</A>:=<A>s</A>   Color the points into classes 
-##  of size <A>s</A> that cannot be mapped onto each other. By default
-##  all points are in the same class.</Item>
+##  of size <A>s</A> that cannot be mapped onto each other (for autotopy). 
+##  By default, all points are in the same class.</Item>
+##  <Item><A>ParatopyClasses</A>:=<A>s</A>   Make point classes of size 
+##  <A>s</A> that can be exchanged (for autoparatopy).</Item>
 ##  <Item><A>VertexInvariant</A>:=<A>n</A>   Use vertex invariant number 
 ##  <A>n</A>. The numbering is the same as in <C>dreadnaut</C>, e.g. 
 ##  <A>n</A>=1: <C>twopaths</C>, <A>n</A>=2: <C>adjtriang</C>, etc. The 
@@ -634,8 +1434,10 @@ DeclareGlobalFunction( "MatAut" );
 ##  <Item><A>SparseNauty</A>:=<C>true</C>/<C>false</C>  Use <C>nauty</C>
 ##  for sparse graphs.</Item>
 ##  <Item><A>PointClasses</A>:=<A>s</A>   Color the points into classes 
-##  of size <A>s</A> that cannot be mapped onto each other. By default
-##  all points are in the same class.</Item>
+##  of size <A>s</A> that cannot be mapped onto each other (for isotopy). 
+##  By default, all points are in the same class.</Item>
+##  <Item><A>ParatopyClasses</A>:=<A>s</A>   Make point classes of size 
+##  <A>s</A> that can be exchanged (for paratopy).</Item>
 ##  <Item><A>Positions</A>:=<C>true</C>/<C>false</C> Return positions 
 ##  of nonisomorphic designs instead of the designs themselves.</Item>
 ##  </List>
@@ -672,7 +1474,7 @@ DeclareGlobalFunction( "HadamardMatFilter" );
 
 #############################################################################
 ##
-#F  MatFilter( <hl>[, <opt>] )  
+#F  MatFilter( <ml>[, <opt>] )  
 ##
 ##  <#GAPDoc Label="MatFilter">
 ##  <ManSection>
@@ -840,12 +1642,32 @@ DeclareGlobalFunction( "DigitConstructionMat" );
 ##  <Description>
 ##  Given an <M>n</M>-dimensional Hadamard matrix <A>H</A>, returns the 
 ##  <M>(n+1)</M>-dimensional Hadamard matrix obtained by Theorem 6.1.5
-##  of <Cite Key='YNX10'/>. The construction also works for cyclic cubes 
-##  of symmetric designs.
+##  of <Cite Key='YNX10'/>. The construction also works for cubes of 
+##  symmetric designs of propriety <M>n</M>.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CyclicDimensionIncrease" );
+
+#############################################################################
+##
+#F  LatinSquareDimensionIncrease( <H>, <ls> )  
+##
+##  <#GAPDoc Label="LatinSquareDimensionIncrease">
+##  <ManSection>
+##  <Func Name="LatinSquareDimensionIncrease" Arg="H, ls"/>
+##  
+##  <Description>
+##  Given an <M>n</M>-dimensional Hadamard matrix <A>H</A> of order <M>v</M>, 
+##  returns the <M>(n+1)</M>-dimensional Hadamard matrix of order <M>v</M>
+##  obtained by a generalization of <Cite Key='YNX10'/>, Theorem 6.1.5. 
+##  A Latin square <A>ls</A> of order <M>v</M> is used instead of addition
+##  modulo <M>v</M>. The construction also works for cubes of symmetric 
+##  designs of propriety <M>n</M>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "LatinSquareDimensionIncrease" );
 
 #############################################################################
 ##
@@ -954,11 +1776,214 @@ DeclareGlobalFunction( "PointPairScheme" );
 ##  <Item><A>IntersectionNumbers</A>:=<A>lin</A>/<C>false</C>. Search
 ##  for designs with block intersection nubers in the list of integers
 ##  <A>lin</A> (e.g. quasi-symmetric designs).</Item>
+##  <Item><A>Normalizer</A>:=<C>true</C>/<C>false</C> Compute the normalizer 
+##  and use inequivalent orbits as the first choice, to reduce the number
+##  of isomorphic designs and speed-up the computation.</Item>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C> Print information on 
+##  the progress of the computation.</Item>
 ##  </List>
+##  Other options, such as <A>Solver</A>, are passed to the function
+##  <Ref Func="SolveKramerMesner" Style="Text"/>; see its documentation.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "KramerMesnerSearch" );
+
+#############################################################################
+##
+#F  SteinerSearchOld( <t>, <v>, <ksub>, <G>[, <opt>] )
+##
+##  <#GAPDoc Label="SteinerSearchOld">
+##  <ManSection>
+##  <Func Name="SteinerSearchOld" Arg="t, v, ksub, G[, opt]"/>
+##  
+##  <Description>
+##  Performs a search for Steiner <A>t</A>-designs with prescribed automorphism 
+##  group <A>G</A> and blocks from the subset orbit representatives <A>ksub</A>.
+##  They may be given in format returned by the <Ref Func="SubsetOrbitRepOM"/>
+##  function. The point set is <C>[1..</C><A>v</A><C>]</C>. A record <A>opt</A> 
+##  with options can be supplied and will be passed to the function 
+##  <Ref Func="SolveSteiner"/>; see its documentation. This old version uses
+##  the <C>libexact</C> solver, P. Kaski and  O. Pottonen's implementation 
+##  of the Dancing Links algorithm <Cite Key='KP08'/>. It does not use DLX 
+##  files to communicate with the solver.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SteinerSearchOld" );
+
+#############################################################################
+##
+#F  SteinerSearch( <t>, <v>, <ksub>, <G>[, <opt>] )
+##
+##  <#GAPDoc Label="SteinerSearch">
+##  <ManSection>
+##  <Func Name="SteinerSearch" Arg="t, v, ksub, G[, opt]"/>
+##  
+##  <Description>
+##  Performs a search for Steiner <A>t</A>-designs with prescribed automorphism 
+##  group <A>G</A> and blocks from the subset orbit representatives <A>ksub</A>.
+##  The orbits may be given in format returned by the <Ref Func="SubsetOrbitRepOM"/>
+##  function. The point set is <C>[1..</C><A>v</A><C>]</C>. A record <A>opt</A> 
+##  with options can be supplied: 
+##  <List>
+##  <Item><A>Verbose</A>:=<C>true</C>/<C>false</C> Print information on 
+##  the progress of the computation. The default is <C>false</C>.</Item>
+##  <Item><A>NonIsomorphic</A>:=<C>true</C>/<C>false</C> Reject isomorphic
+##  designs by calling <Ref Func="BlockDesignFilter" Style="Text"/> at the
+##  end. The default is <C>true</C>.</Item>
+##  <Item><A>Time</A>:=<C>true</C>/<C>false</C> Print date and time before
+##  and after calling the solver. Uses the shell command <C>date</C>.
+##  The default is <C>false</C>.</Item>
+##  <Item><A>Normalizer</A>:=<C>true</C>/<C>false</C> Compute the normalizer 
+##  and use inequivalent orbits as the first choice, to reduce the number
+##  of isomorphic designs and speed-up the computation. This can also be 
+##  achieved "manually" by setting the <A>UseOrbits</A> option. The default 
+##  is <C>false</C>.</Item>
+##  <Item><A>Partition</A>:=<C>true</C>/<C>false</C> Compute partition of 
+##  orbits into equivalence classes under the normalizer and use the 
+##  exact-cover-with-colors approach. The default is <C>true</C> if the 
+##  <A>Normalizer</A> option is also set.</Item>
+##  <Item><A>Iterate</A>:=<C>true</C>/<C>false</C> Call the solver
+##  separately for every inequivalent orbit under the normalizer,
+##  instead of modifying the exact cover problem. The default is 
+##  <C>false</C>.</Item>
+##  <Item><A>TempDir</A>:=<C>"dir_name"</C> Put all temporary files in
+##  the named directory. By default, <C>PAGGlobalOptions.TempDir</C>
+##  is used.</Item>
+##  </List>
+##  The <A>TempDir</A> option and some other options are also forwarded 
+##  to <Ref Func="MakeDLX2" Style="Text"/> (<A>UseOrbits</A>) and 
+##  <Ref Func="SolveDLX" Style="Text"/> (<A>Solver</A>, <A>M</A>). See 
+##  the documentation of these functions.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "SteinerSearch" );
+
+#############################################################################
+##
+#F  ExtendSteinerDesign( <d>[, <opt>] )
+##
+##  <#GAPDoc Label="ExtendSteinerDesign">
+##  <ManSection>
+##  <Func Name="ExtendSteinerDesign" Arg="d[, opt]"/>
+##  
+##  <Description>
+##  Performs a search for extensions of a Steiner design <A>d</A>.
+##  By default, the extended designs are assumed to be invariant under
+##  the full automorphism group of <A>d</A>. This can be changed by
+##  setting options in the record <A>opt</A>. Possible components are:
+##  <List>
+##  <Item><A>Group</A>:= <C>g</C> (permutation group) or <C>n</C> (integer).
+##  If a permutation group <C>g</C> is given, it will be used for the
+##  search. If an integer <C>n</C> is given, the <C>n</C>-th subgroup
+##  of the full automorphism group of <A>d</A> will be used. Here 
+##  <C>n</C><M>=1</M> means the full automorhism group, <C>n</C><M>=2</M> 
+##  means the second largest subgroup etc. The subgroups are taken in 
+##  reverse order from the list returned by
+##  <C>AllSubgroupsConjugation( BlockDesignAut( </C><A>d</A><C> ) )</C>.
+##  Furthermore, <C>n</C><M>=0</M> means the trivial group.
+##  </Item>
+##  <Item><A>MinGroupSize</A>:=<C>n</C>  Extend using subgroups of 
+##  size at least <C>n</C> of the automorphism group of <A>d</A>. 
+##  Examine the subgroups in descending order until extensions are
+##  found or all subgroups are exhausted.</Item>
+##  <Item><A>MaxGroupSize</A>:=<C>n</C>  Extend using subgroups of 
+##  size at most <C>n</C> of the automorphism group of <A>d</A>.
+##  Examine the subgroups in descenting order until extensions are
+##  found or all subgroups are exhausted.</Item>
+##  <Item><A>Normalizer</A>:=<C>true</C>/<C>false</C> Compute the normalizer 
+##  and use inequivalent orbits as the first choice, to reduce the number
+##  of isomorphic designs and speed-up the computation.</Item>
+##  <Item><A>Partition</A>:=<C>true</C>/<C>false</C> Compute partition of 
+##  orbits into equivalence classes under the normalizer and use the 
+##  exact-cover-with-colors approach. The default is <C>true</C> if the 
+##  <A>Normalizer</A> option is also set to <C>true</C>.</Item>
+##  <Item><A>Iterate</A>:=<C>true</C>/<C>false</C> Call the solver
+##  separately for every inequivalent orbit under the normalizer,
+##  instead of modifying the exact cover problem. The default is 
+##  <C>false</C>.</Item>
+##  <Item><A>Time</A>:=<C>true</C>/<C>false</C> Print date and time before
+##  and after calling the solver. Uses the shell command <C>date</C>.
+##  The default is <C>false</C>.</Item>
+##  <Item><A>NonIsomorphic</A>:=<C>true</C>/<C>false</C> Reject isomorphic
+##  designs by calling <Ref Func="BlockDesignFilter" Style="Text"/> at the
+##  end. The default is <C>true</C>.</Item>
+##  </List>
+##  Other options such as <A>Verbose</A>, <A>Solver</A>, <A>M</A>,  
+##  <A>Iterate</A>, and <A>TempDir</A> are passed to the functions
+##  <Ref Func="MakeDLX2" Style="Text"/> and 
+##  <Ref Func="SolveDLX" Style="Text"/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ExtendSteinerDesign" );
+
+#############################################################################
+##
+#F  ExtendSteinerBlocks( <t>, <v>, <d>[, <opt>] )
+##
+##  <#GAPDoc Label="ExtendSteinerBlocks">
+##  <ManSection>
+##  <Func Name="ExtendSteinerBlocks" Arg="t, v, d[, opt]"/>
+##  
+##  <Description>
+##  Performs a search for Steiner <A>t</A>-designs containing a set of 
+##  blocks <A>d</A>. The blocks should be given in <Package>Design</Package> 
+##  package format. If the argument <A>v</A> is equal to <A>d</A><C>.v</C>,
+##  the designs are assumed to be invariant under the full automorphism group 
+##  of <A>d</A>. This can be changed by setting options in the record <A>opt</A>. 
+##  If the argument <A>v</A> is greater than <A>d</A><C>.v</C>, a permutation
+##  group should be given by the <A>Group</A> option. Possible components of 
+##  <A>opt</A> are:
+##  <List>
+##  <Item><A>Group</A>:= <C>g</C> (permutation group) or <C>n</C> (integer).
+##  If a permutation group <C>g</C> is given, it will be used for the
+##  search. If an integer <C>n</C> is given, the <C>n</C>-th subgroup
+##  of the full automorphism group of <A>d</A> will be used. Here 
+##  <C>n</C><M>=1</M> means the full automorhism group, <C>n</C><M>=2</M> 
+##  means the second largest subgroup etc. The subgroups are taken in 
+##  reverse order from the list returned by
+##  <C>AllSubgroupsConjugation( BlockDesignAut( </C><A>d</A><C> ) )</C>.
+##  Furthermore, <C>n</C><M>=0</M> means the trivial group.
+##  </Item>
+##  <Item><A>BlockCandidates</A>:=<C>ksub</C>  Use list of 
+##  <M>k</M>-subsets <C>ksub</C> as block candidates and return the
+##  compatible ones. If this option is not given, all <M>k</M>-subsets 
+##  of <C>[1..</C><A>v</A><C>]</C> (or the corresponding orbit 
+##  representatives) are used and a search for extensions is
+##  performed.</Item>
+##  <Item><A>MinGroupSize</A>:=<C>n</C>  Extend using subgroups of 
+##  size at least <C>n</C> of the automorphism group of <A>d</A>. 
+##  Examine the subgroups in descending order until extensions are
+##  found or all subgroups are exhausted.</Item>
+##  <Item><A>MaxGroupSize</A>:=<C>n</C>  Extend using subgroups of 
+##  size at most <C>n</C> of the automorphism group of <A>d</A>.
+##  Examine the subgroups in descenting order until extensions are
+##  found or all subgroups are exhausted.</Item>
+##  <Item><A>Normalizer</A>:=<C>true</C>/<C>false</C> Compute the normalizer 
+##  and use inequivalent orbits as the first choice, to reduce the number
+##  of isomorphic designs and speed-up the computation.</Item>
+##  <Item><A>Partition</A>:=<C>true</C>/<C>false</C> Compute partition of 
+##  orbits into equivalence classes under the normalizer and use the 
+##  exact-cover-with-colors approach. The default is <C>true</C> if the 
+##  <A>Normalizer</A> option is also set to <C>true</C>.</Item>
+##  <Item><A>Time</A>:=<C>true</C>/<C>false</C> Print date and time before
+##  and after calling the solver. Uses the shell command <C>date</C>.
+##  The default is <C>false</C>.</Item>
+##  <Item><A>NonIsomorphic</A>:=<C>true</C>/<C>false</C> Reject isomorphic
+##  designs by calling <Ref Func="BlockDesignFilter" Style="Text"/> at the
+##  end. The default is <C>true</C>.</Item>
+##  </List>
+##  Other options such as <A>Verbose</A>, <A>Solver</A>, <A>M</A>,  
+##  <A>Iterate</A>, and <A>TempDir</A> are passed to the functions
+##  <Ref Func="MakeDLX2" Style="Text"/> and 
+##  <Ref Func="SolveDLX" Style="Text"/>.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "ExtendSteinerBlocks" );
 
 #############################################################################
 ##
@@ -1847,6 +2872,23 @@ DeclareGlobalFunction( "DifferenceSetToOrthogonalArray" );
 
 #############################################################################
 ##
+#F  Development3( <G>, <ds> ) 
+##
+##  <#GAPDoc Label="Development3">
+##  <ManSection>
+##  <Func Name="Development3" Arg="G, ds"/>
+##
+##  <Description>
+##  Transforms a difference set of propriety <M>3</M> to an orthogonal 
+##  array. The argument <A>G</A> is a group and <A>ds</A> is a 
+##  difference set.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Development3" );
+
+#############################################################################
+##
 #F  CubeTest( <C> ) 
 ##
 ##  <#GAPDoc Label="CubeTest">
@@ -1856,11 +2898,29 @@ DeclareGlobalFunction( "DifferenceSetToOrthogonalArray" );
 ##  <Description>
 ##  Test whether an incidence cube <A>C</A> is a cube of symmetric designs.
 ##  The result should be <C>[[v,k,lambda]]</C>. Anything else means that
-##  <A>C</A> is not a <M>(v,k,\lambda)</M> cube.
+##  <A>C</A> is not a <M>\mathcal{C}^n(v,k,\lambda)</M>-cube.
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "CubeTest" );
+
+#############################################################################
+##
+#F  Cube3Test( <C> ) 
+##
+##  <#GAPDoc Label="Cube3Test">
+##  <ManSection>
+##  <Func Name="Cube3Test" Arg="C"/>
+##
+##  <Description>
+##  Test whether an incidence cube <A>C</A> is a three-dimensional 
+##  symmetric design of propriety <M>3</M>. The result should be 
+##  <C>[v,[k],[lambda]]</C>. Anything else means that <A>C</A> is 
+##  not a <M>\mathcal{C}^3_3(v,k,\lambda)</M>-cube.
+##  </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "Cube3Test" );
 
 #############################################################################
 ##
@@ -2111,16 +3171,24 @@ DeclareGlobalFunction( "BlocksToIncidenceMat" );
 
 #############################################################################
 ##
-#F  ReadMat( <filename> ) 
+#F  ReadMat( <filename>[, <opt>] ) 
 ##
 ##  <#GAPDoc Label="ReadMat">
 ##  <ManSection>
-##  <Func Name="ReadMat" Arg="filename"/>
+##  <Func Name="ReadMat" Arg="filename[, opt]"/>
 ##
 ##  <Description>
 ##  Reads a list of <M>m\times n</M> integer matrices from a file. The file starts with 
 ##  the number of rows <M>m</M> and columns <M>n</M> followed by the matrix entries. 
-##  Integers in the file are separated by whitespaces.
+##  Integers in the file are separated by whitespaces. The last argument is a record 
+##  <A>opt</A> for options. The possible components of <A>opt</A> are:
+##  <List>
+##  <Item><A>Format</A>:=<C>"inc"</C>  If defined, the matrices are assumed to have
+##  <M>0/1</M> entries not necessarily separated by whitespaces.</Item>
+##  <Item><A>Format</A>:=<C>"om"</C>  If defined, the file is assumed to contain 
+##  orbit matrices. After <M>m</M> and <M>n</M>, the point and block orbit size
+##  vectors <M>\nu</M> and <M>\beta</M> follow, then the matrices.</Item>
+##  </List>
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -2128,16 +3196,21 @@ DeclareGlobalFunction( "ReadMat" );
 
 #############################################################################
 ##
-#F  WriteMat( <filename>, <list> ) 
+#F  WriteMat( <filename>, <list>[, <opt>] ) 
 ##
 ##  <#GAPDoc Label="WriteMat">
 ##  <ManSection>
-##  <Func Name="WriteMat" Arg="filename, list"/>
+##  <Func Name="WriteMat" Arg="filename, list[, opt]"/>
 ##
 ##  <Description>
 ##  Writes a list of <M>m\times n</M> integer matrices to a file. The number of 
 ##  rows <M>m</M> and columns <M>n</M> is written first, followed by the matrix 
-##  entries. Integers are separated by whitespaces.
+##  entries. Integers are separated by whitespaces. The last argument is a record 
+##  <A>opt</A> for options. The possible components of <A>opt</A> are:
+##  <List>
+##  <Item><A>Format</A>:=<C>"inc"</C>  If defined, the matrices are assumed to have
+##  <M>0/1</M> entries and the entries are written without whitespaces.</Item>
+##  </List>
 ##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -2250,5 +3323,7 @@ DeclareGlobalFunction( "PowersMosaic" );
 DeclareGlobalVariable( "PAGGlobalOptions",
    "record with global options for the PAG package");
 
+
+DeclareGlobalVariable( "PAGProcessResult", "global variable for returning results");
 
 #E  PAG.gd  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
