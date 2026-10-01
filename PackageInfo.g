@@ -66,7 +66,7 @@ PackageDoc := rec(
 Dependencies := rec(
   # GAP version, use the version string for specifying a least version,
   # prepend a '=' for specifying an exact version.
-  GAP := "4.11",
+  GAP := ">= 4.13",
   NeededOtherPackages := [["GAPDoc", "1.5"],
                           ["images", "1.3"],
                           ["GRAPE", "4.8"],
@@ -79,6 +79,11 @@ Dependencies := rec(
   ExternalConditions := []
                       
 ),
+
+# AffineMosaic, loaded as soon as FinInG is loaded
+Extensions := [
+  rec( needed := [ [ "FinInG", "1.4.1" ] ], filename := "lib/PAG-FinInG.gi" ),
+],
 
 ##  Provide a test function for the availability of this package.
 ##  For packages containing nothing but GAP code, just say 'ReturnTrue' here.

@@ -15,8 +15,8 @@
 #
 #  Returns the block intersection scheme of a block design <A>d</A>.
 #  If <A>d</A> is not block schematic, returns <C>fail</C>. Uses the package 
-#  <Package>AssociationSchemes</Package>. If this package is not available,
-#  <C>BlockScheme</C> will not be loaded. The optional argument <A>opt</A> is 
+#  <Package>AssociationSchemes</Package>. If this package is not loaded,
+#  the matrix is returned. The optional argument <A>opt</A> is 
 #  a record for options. If it contains the component <A>Matrix</A>:=<C>true</C>,
 #  the block intersection matrix is returned instead. 
 #
@@ -44,10 +44,10 @@ local input,output,command,mat;
     CloseStream(output);
     CloseStream(input);
 
-    if mat then
+    if mat or not IsPackageLoaded("AssociationSchemes") then
       return ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"blockintmat.out"))();
     else
-      return HomogeneousCoherentConfiguration(ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"blockintmat.out"))());
+      return ValueGlobal("HomogeneousCoherentConfiguration")(ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"blockintmat.out"))());
     fi;
 end );
 
@@ -58,8 +58,8 @@ end );
 #
 #  Returns the point pair scheme of a block design <A>d</A>. If <A>d</A> is 
 #  not point pair schematic, returns <C>fail</C>. Uses the package 
-#  <Package>AssociationSchemes</Package>. If this package is not available,
-#  <C>BlockScheme</C> will not be loaded. The optional argument <A>opt</A> is 
+#  <Package>AssociationSchemes</Package>. If this package is not loaded,
+#  the matrix is returned. The optional argument <A>opt</A> is 
 #  a record for options. If it contains the component <A>Matrix</A>:=<C>true</C>,
 #  the point pair inclusion matrix is returned instead. 
 #  The point pair scheme was defined by Cameron <Cite Key='PC75'/> for Steiner 
@@ -90,10 +90,10 @@ local input,output,command,mat;
     CloseStream(output);
     CloseStream(input);
 
-    if mat then
+    if mat or not IsPackageLoaded("AssociationSchemes") then
       return ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"pointpairmat.out"))();
     else
-      return HomogeneousCoherentConfiguration(ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"pointpairmat.out"))());
+      return ValueGlobal("HomogeneousCoherentConfiguration")(ReadAsFunction(Filename(PAGGlobalOptions.TempDir,"pointpairmat.out"))());
     fi;
 end );
 
