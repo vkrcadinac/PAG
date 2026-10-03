@@ -95,7 +95,7 @@ $(NAUTYPATH)/mataut.c: src/mataut.c
 
 $(NAUTYPATH)/nauty.a: $(NAUTYPATH)/configure 
 	        cd $(NAUTYPATH) && ./configure
-	        cd $(NAUTYPATH) && make
+	        cd $(NAUTYPATH) && $(MAKE)
 
 bin/$(GAPARCH)/bdaut: $(NAUTYPATH)/bdaut.c $(NAUTYPATH)/nauty.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/bdaut $(NAUTYPATH)/bdaut.c $(NAUTYPATH)/nauty.a 
@@ -164,7 +164,7 @@ $(LIBEXACTPATH)/solvelibexact4.c: src/solvelibexact4.c
 	        cp src/solvelibexact4.c $(LIBEXACTPATH)
 
 $(LIBEXACTPATH)/libexact.a: $(LIBEXACTPATH) 
-	        cd $(LIBEXACTPATH) && make
+	        cd $(LIBEXACTPATH) && $(MAKE)
 
 bin/$(GAPARCH)/solvelibexact: $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a bin/$(GAPARCH)
 	        $(CC) $(CFLAGS) -o bin/$(GAPARCH)/solvelibexact $(LIBEXACTPATH)/solvelibexact.c $(LIBEXACTPATH)/libexact.a

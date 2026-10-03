@@ -13,9 +13,7 @@ GAPDoc2LaTeXProcs.DefaultOptions.EarlyExtraPreamble := "\\usepackage{graphicx}\n
 
 AutoDoc(rec(
     autodoc := true,
-    gapdoc := rec(
-        main := "main.xml"
-    ),
+    gapdoc := true,
     scaffold := rec(
         includes := [ "PAG.xml" ],
         bib := "bib.xml", 
